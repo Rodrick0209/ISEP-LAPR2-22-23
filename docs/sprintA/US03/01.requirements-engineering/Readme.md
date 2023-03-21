@@ -25,7 +25,7 @@ As a system administrator, I want to register a new employee.
 
 ### 1.4. Found out Dependencies
 
-*Identify here any found out dependency to other US and/or requirements.*
+* There were no dependencies found.
 
 ### 1.5 Input and Output Data
 
@@ -48,8 +48,6 @@ As a system administrator, I want to register a new employee.
 * (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
-
-*Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
 
 ![US03-SSD](svg/us03-system-sequence-diagram_SSD.svg)
 
