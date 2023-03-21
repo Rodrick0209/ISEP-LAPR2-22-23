@@ -11,9 +11,6 @@ As a system administrator, I want to register a new employee.
 **From the specifications document:**
 
 >	
->	
-
-
 
 **From the client clarifications:**
 
@@ -24,7 +21,7 @@ As a system administrator, I want to register a new employee.
 
 ### 1.3. Acceptance Criteria
 
-*Insert here the client acceptance criteria.*
+> AC1: To register an employee it is necessary to specify: name, citizen's card number, tax number, address, email address, contact telephone number, agency to which it is assinged.
 
 ### 1.4. Found out Dependencies
 
@@ -32,7 +29,23 @@ As a system administrator, I want to register a new employee.
 
 ### 1.5 Input and Output Data
 
-*Identity here the data to be inputted by the system actor as well as the output data that the system have/needs to present in order to properly support the actor actions. Regarding the inputted data, it is suggested to distinguish between typed data and selected data (e.g. from a list)*
+**Input Data:**
+* Typed data:
+  * a name,
+  * a citizen's card number,
+  * a tax number,
+  * an address,
+  * an email address,
+  * a contact telephone number.
+
+* Selected Data:
+    * an agency to which the employee is assigned,
+    * a role.
+
+**Output Data:**
+* List of existing agencies,
+* List of existing roles.
+* (In)Success of the operation.
 
 ### 1.6. System Sequence Diagram (SSD)
 
