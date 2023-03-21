@@ -21,7 +21,7 @@ As a system administrator, I want to register a new employee.
 
 ### 1.3. Acceptance Criteria
 
-> AC1: To register an employee it is necessary to specify: name, citizen's card number, tax number, address, email address, contact telephone number, agency to which it is assinged.
+> AC1: To register an employee it is necessary to specify: name, citizen's card number, tax number, address, email address, contact telephone number, agency to which it is assigned.
 
 ### 1.4. Found out Dependencies
 
@@ -51,7 +51,7 @@ As a system administrator, I want to register a new employee.
 
 *Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered.*
 
-![USXXX-SSD](USXXX-SSD.svg)
+![US03-SSD](svg/us03-system-sequence-diagram_SSD.svg)
 
 ### 1.7 Other Relevant Remarks
 
