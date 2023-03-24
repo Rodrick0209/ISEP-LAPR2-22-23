@@ -15,38 +15,33 @@ As a system administrator, I want to register a store.
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+>   The system administrator registers a store, specifying the designation, location and its local manager.
 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
 
 
 
 **From the client clarifications:**
 
-> **Question:** Does a store designation have to be detailed? If so, will the system administrator have to register the name, email, phone number or anything else?
+> **Question:** Does a store designation have to be detailed? If so, will the system administrator have to register the name, email, phone number or anything else? Does the location of a store have to be detailed as well? If yes, will the system administrator have to record the address, postcode or something else? To register the store manager, does the system administrator only register the manager's name? If not, will the system administrator have to register the manager as if he were an employee (except the agent he is assigned to)?
 >  
-> **Answer:** 
+> **Answer:** When registering a store, the System Administrator should introduce the following information: an ID, a designation/name, a location, a local manager, a phone number and an e-mail address. The ID is an integer number. An example of the store location is: 71 ST. NICHOLAS DRIVE, NORTH POLE, FAIRBANKS NORTH STAR, AK, 99705. An example phone number is (907) 488-6419.
 
 
-> **Question:** Does the location of a store have to be detailed as well? If yes, will the system administrator have to record the address, postcode or something else?
->  
-> **Answer:** 
+> **Question:** Could you please share how will the designation of new stores be made, is there a pattern perhaps?
+>
+> **Answer:** There is no pattern. The System Administrator can introduce any designation/name. The designation/name should have at most forty characters.
 
-> **Question:**
+> **Question:** When a System Administrator (admin) makes a request to register a new employee or a new network branch (or any other alteration), does the System ask for the admin credentials (login, password)?
 > 
-> **Answer:**
- 
-> **Question:**
-> 
-> **Answer:**
+> **Answer:** The System Administrator should be logged in the application.
+
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:** The System Administrator must be logged in the application.
+* **AC2:** The Credentials of the Store must be valid.
+* **AC3:** All required fields must be filled in.
 
 
 ### 1.4. Found out Dependencies

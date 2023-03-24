@@ -16,21 +16,18 @@ activate Administrator
     Administrator -> Store : asks to obtain information about the designation, location and local manager
     activate Store
 
-        Store --> Administrator : send information
+        Store --> Administrator : send the information
     deactivate Store
 
-    Administrator -> System : insert information
+    Administrator -> System : insert the information
     activate System
 
-    System -> System : sort information
+    System --> Administrator: keep the information
 
-        Store --> Administrator : send information
-    deactivate Store
+        Administrator -> System : submits the information
+        deactivate Administrator
 
-    Administrator -> Store : submits data
+    System -> Store : display the designation, location and local manager
     activate Store
-
-        Store --> Administrator : displays operation success
-    deactivate Store
 
 @enduml
