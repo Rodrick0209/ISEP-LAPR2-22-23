@@ -3,31 +3,30 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative One
+title User Story 005 - System Sequence Diagram (SSD)
 
 autonumber
 
+participant ":Store" as Store
 actor "System Administrator" as Administrator
-participant "System" as System
-participant "Store" as Store
+participant ":System" as System
+
 
 activate Administrator
+activate Store
 
-    Administrator -> Store : asks to obtain information about the designation, location and local manager
-    activate Store
-
-        Store --> Administrator : send the information
+    Store --> Administrator : sends necessary information \n(ID, designation, location, e-mail address \nand contact telephone number)
     deactivate Store
 
-    Administrator -> System : insert the information
+    Administrator -> System : inserts information
     activate System
 
-    System --> Administrator: keep the information
+    Administrator -> System : submits credentials
+    deactivate Administrator
 
-        Administrator -> System : submits the information
-        deactivate Administrator
+    System -> System : saves information
 
-    System -> Store : display the designation, location and local manager
-    activate Store
+    System -> System : displays credentials
+
 
 @enduml
