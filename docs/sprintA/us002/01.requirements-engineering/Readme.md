@@ -1,12 +1,11 @@
-# US 006 - To create a Task 
+# US 002 - To create a Task 
 
 ## 1. Requirements Engineering
 
 
 ### 1.1. User Story Description
 
-
-As a system administrator, I want to register a store.
+As an agent, I can publish any sale announcement on the system, for example received through a phone call.
 
 
 
@@ -22,7 +21,8 @@ As a system administrator, I want to register a store.
 
 
 
-**From the client clarifications:**
+**From the client clarifications:**  // perguntas mais importantes do forum de us2
+// eu, agente , pergunto ao cliente:
 
 > **Question:** Does a store designation have to be detailed? If so, will the system administrator have to register the name, email, phone number or anything else?
 >  
@@ -41,7 +41,7 @@ As a system administrator, I want to register a store.
 > 
 > **Answer:**
 
-### 1.3. Acceptance Criteria
+### 1.3. Acceptance Criteria // o que é necessario 
 
 
 * **AC1:** All required fiels must be filled in.
@@ -49,7 +49,7 @@ As a system administrator, I want to register a store.
 * **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
 
 
-### 1.4. Found out Dependencies
+### 1.4. Found out Dependencies // dependencia de outro user story
 
 
 * There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
