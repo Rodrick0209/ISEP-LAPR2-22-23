@@ -31,12 +31,27 @@ activate Employee
         System --> Employee : request data
     deactivate System
 
-    Employee -> System : types requested data(property area, location, distance from city centre, price)
+    Employee -> System :select options
+
 
      activate System
 
-        System --> Employee : request data
+        System --> Employee : shows agent list
     deactivate System
+
+    Employee -> System :  selects agent
+
+     activate System
+
+        System --> Employee : shows all the data related to the request
+     deactivate System
+
+     Employee -> System : submits data
+
+     activate System
+
+            System --> Employee : display operation sucess
+     deactivate System
 
 
 @enduml
