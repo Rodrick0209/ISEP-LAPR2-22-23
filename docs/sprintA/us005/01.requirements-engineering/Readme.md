@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 006 - To register a store
 
 ## 1. Requirements Engineering
 
@@ -66,12 +66,9 @@ As a system administrator, I want to register a store.
 ### 1.6. System Sequence Diagram (SSD)
 
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram](svg/us005-system-sequence-diagram.svg)
 
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* The ID is an integral number.
