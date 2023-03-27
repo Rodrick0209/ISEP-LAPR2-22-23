@@ -26,13 +26,17 @@ activate Employee
     deactivate System
 
     Employee -> System : selects type of property
+
+alt House or apartment
     activate System
 
         System --> Employee : request data
     deactivate System
 
-    Employee -> System :select options
 
+    Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces and the avaiable equipment)
+
+end
 
      activate System
 
