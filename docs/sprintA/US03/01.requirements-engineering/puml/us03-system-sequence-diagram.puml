@@ -34,9 +34,12 @@ activate SystemAdministrator
     activate System
 
         System --> SystemAdministrator : shows list of typed and selected information and asks to submit data
+    deactivate System
 
     SystemAdministrator -> System : submits data
     activate System
+
+    System --> SystemAdministrator : displays automatic generated password
 
         System --> SystemAdministrator : displays operation success
     deactivate System

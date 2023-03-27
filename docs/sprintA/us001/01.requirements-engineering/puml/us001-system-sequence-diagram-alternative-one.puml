@@ -1,0 +1,35 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Unregistered user" as user
+participant ":System" as System
+participant ":Property controller" as controller
+participant ":Database" as database
+
+activate user
+
+    user --> System : accesses the system
+    activate System
+
+        System --> controller : request list of properties
+    deactivate System
+
+    controller --> database : asks for the list of stored properties
+    activate System
+
+        database --> controller : returns the list of properties
+    deactivate System
+
+    controller --> System : returns the list of properties
+    activate System
+
+        System --> user : displays the property list
+    deactivate System
+
+@enduml
