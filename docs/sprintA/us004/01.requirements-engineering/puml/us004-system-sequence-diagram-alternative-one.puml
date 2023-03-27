@@ -34,15 +34,33 @@ alt House or apartment
     deactivate System
 
 
-    Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces and the avaiable equipment)
+    Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces and the avaiable equipment) and the existence of a central heating and/or air conditioning
 
-alt if the property is a house
-    activate System
 
-        System --> Employee : shows basement options
-end
 end
 
+alt only house
+
+      activate System
+
+            System --> Employee : shows basement options
+      deactivate System
+
+      Employee -> System : selects option
+
+      activate System
+
+            System --> Employee : shows inhabitable loft options
+      deactivate System
+
+      Employee -> System :  selects option
+
+      activate System
+
+            System --> Employee :shows sun exposure list
+end
+
+      Employee -> System :selects option
 
      activate System
 
