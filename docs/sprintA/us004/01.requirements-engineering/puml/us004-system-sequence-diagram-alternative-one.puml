@@ -36,7 +36,13 @@ alt House or apartment
 
     Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces and the avaiable equipment)
 
+alt if the property is a house
+    activate System
+
+        System --> Employee : shows basement options
 end
+end
+
 
      activate System
 
