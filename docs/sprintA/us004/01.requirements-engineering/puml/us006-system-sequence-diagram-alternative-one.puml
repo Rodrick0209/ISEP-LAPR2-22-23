@@ -7,33 +7,36 @@ title System Sequence Diagram (SSD) - Alternative One
 
 autonumber
 
-actor "Organization Employee" as Employee
+actor "Owner" as Employee
 participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to create a new task
+    Employee -> System : asks to create a new request
     activate System
 
-        System --> Employee : requests data
+        System --> Employee : shows type of request list
     deactivate System
 
-    Employee -> System : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
+    Employee -> System : selects type of request
     activate System
 
-        System --> Employee : shows task category list and asks to select one
+        System --> Employee : shows type of property list
+
     deactivate System
 
-    Employee -> System : selects a task category
+    Employee -> System : selects type of property
     activate System
 
-        System --> Employee : shows selected category
+        System --> Employee : request data
     deactivate System
 
-    Employee -> System : submits data
-    activate System
+    Employee -> System : types requested data(property area, location, distance from city centre, price)
 
-        System --> Employee : displays operation success
+     activate System
+
+        System --> Employee : request data
     deactivate System
+
 
 @enduml
