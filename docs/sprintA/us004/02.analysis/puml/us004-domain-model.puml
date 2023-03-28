@@ -19,11 +19,11 @@ hide methods
 class Owner
 
 class Property  {
-   description and price \n of the property
+   description
 }
 
 class Agent {
-    name and \n contacts
+    name \n contacts
 }
 
 'class User {
@@ -34,7 +34,7 @@ class Agent {
 
 'Platform  -- "*" Owner : has registered >
 'Platform -- "*" Category : defines >
-Owner  -Agent : hire >
+Owner  -Agent : request >
 Owner  - Property: owns >
 'Property  --  Real Estate Agent: created by >
 Agent  --  Property : listing >
