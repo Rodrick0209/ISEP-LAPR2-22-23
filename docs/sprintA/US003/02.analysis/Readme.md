@@ -3,7 +3,7 @@
 
 ### 2.1. Relevant Domain Model Excerpt
 
-![USXXX-MD](USXXX-MD.svg)
+![US003-DM](svg/us003-domain-model-Domain_Model.svg)
 
 ### 2.2. Other Remarks
 

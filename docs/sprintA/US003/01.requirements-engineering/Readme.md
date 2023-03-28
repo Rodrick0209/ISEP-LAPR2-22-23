@@ -108,7 +108,7 @@ telephone number and the agency to which it is assigned).
 
 ### 1.6. System Sequence Diagram (SSD)
 
-![US03-SSD](svg/us003-system-sequence-diagram-SSD.svg)
+![US003-SSD](svg/us003-system-sequence-diagram-SSD.svg)
 
 ### 1.7 Other Relevant Remarks
 
