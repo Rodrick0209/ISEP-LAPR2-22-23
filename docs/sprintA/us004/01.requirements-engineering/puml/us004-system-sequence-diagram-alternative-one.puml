@@ -1,0 +1,83 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Owner" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to create a new request
+    activate System
+
+        System --> Employee : shows type of request list
+    deactivate System
+
+    Employee -> System : selects type of request
+    activate System
+
+        System --> Employee : shows type of property list
+
+    deactivate System
+
+    Employee -> System : selects type of property
+
+    activate System
+
+        System --> Employee : request data
+    deactivate System
+
+
+    Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces \n and the avaiable equipment) and the existence \n of a central heating and/or air conditioning
+
+
+alt only house
+
+      activate System
+
+            System --> Employee : shows basement options
+      deactivate System
+
+      Employee -> System : selects option
+
+      activate System
+
+            System --> Employee : shows inhabitable loft options
+      deactivate System
+
+      Employee -> System :  selects option
+
+      activate System
+
+            System --> Employee :shows sun exposure list
+
+      Employee -> System :selects option
+end
+
+
+
+     activate System
+
+        System --> Employee : shows agent list
+    deactivate System
+
+    Employee -> System :  selects agent
+
+     activate System
+
+        System --> Employee : shows all the data related to the request
+     deactivate System
+
+     Employee -> System : confirm data
+
+     activate System
+
+            System --> Employee : display operation sucess
+     deactivate System
+
+@enduml
