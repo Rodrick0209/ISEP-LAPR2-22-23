@@ -10,21 +10,17 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
+title Domain Model
 
 'class Platform {
-'  -description
+' -description
 '}
 
-class Organization {
-    name
-    vatNumber
-    website
-    phoneNumber
-    email
+class System {
+
 }
 
-class Task {
+class Database {
     reference
     description
     informalDesc
@@ -33,29 +29,29 @@ class Task {
     cost
 }
 
-class Category {
-    description
-}
+'class Category {
+'   description
+'}
 
-class Employee {
+class Property\ncontroller {
     name
     email
     position
     phone
 }
 
-'class User {
-'    name
-'    email
-'    password
-'}
+class Unregistered\nuser {
+    name
+    phoneNumber
+    email
+}
 
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
+System "1" - "0..*" Property\ncontroller : request >
+System "1" - "0..*" Property\ncontroller : foward\ninformation <
+Database "1.." - "0..*" System: owns >
+Unregistered\nuser "1" - "0..*" System: interacts with >
+Property\ncontroller "1." -- "*" Database : request >
+Property\ncontroller "1." -- "*" Database : sends\nnecessary\ninformation <
+
+
 @enduml
