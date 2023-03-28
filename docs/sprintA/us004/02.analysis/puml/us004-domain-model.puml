@@ -24,6 +24,7 @@ class Property  {
 
 class Agent {
     name \n contacts
+
 }
 
 'class User {
