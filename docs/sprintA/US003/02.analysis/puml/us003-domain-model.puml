@@ -17,6 +17,7 @@ tax_number
 address
 email_address
 contact
+employeeRole
 }
 
 class SystemAdministrator{
