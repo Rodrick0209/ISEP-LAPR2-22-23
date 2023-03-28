@@ -2,7 +2,7 @@
 
 ## Functionality
 
-_Specifies functionalities that:_
+_Spa§ities that:_
 
 - _are common across several US/UC;_
 - _are not related to US/UC, namely: Audit, Reporting and Security._
