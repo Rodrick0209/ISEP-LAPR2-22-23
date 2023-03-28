@@ -14,25 +14,29 @@ actor "Real Estate Agent" as Agent
 participant "System" as System
 
 
-activate System
+
 activate Agent
 
+Agent -> System :asks to insert property information
 
-    System -> Agent: asks for property data
+activate System
+
+    System --> Agent: request property data
     deactivate System
 
 
-    Agent -> System :registers  all necessary data of the property
+    Agent -> System :registers  all necessary property data
 
     activate System
 
-    System-> Agent:asks for a  comission
+    System--> Agent:asks for a  comission
      deactivate System
    Agent-> System:sends comission
 
    activate System
-System -> Agent : informs the agent that the announcment has been published
-deactivate System
+System --> Agent : informs the agent when the announcment has been published
+
+
 
 
 

@@ -19,7 +19,7 @@ class Platform {
 class Organization {
     name
     vatNumber
-    website
+    acts
     phoneNumber
     email
 }
