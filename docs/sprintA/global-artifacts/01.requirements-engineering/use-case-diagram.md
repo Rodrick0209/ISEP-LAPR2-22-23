@@ -18,6 +18,6 @@ link as suggested below.**
 | UC/US  | Description                                   |                   
 |:-------|:----------------------------------------------|
 | US 001 | [Short Name for US001](../../us001/Readme.md) |
-| ...    | ...                                           |
+| US 003 | [Register Employee]                           |
 | US 006 | [Create Task](../../us006/Readme.md)          |
 | ...    | ...                                           |
