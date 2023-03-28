@@ -1,0 +1,49 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+class Employee{
+name
+citizen_card_number
+tax_number
+address
+email_address
+contact
+}
+
+class SystemAdministrator{
+}
+
+class EmployeeRole{
+description
+}
+
+class Company{
+}
+
+class Agency{
+}
+
+class User{
+name
+email
+password
+}
+
+SystemAdministrator "1" -- "*" Employee : registers >
+Employee "*" -- "1" Agency : is assigned to >
+Company "1" -- "1" SystemAdministrator : has >
+Employee "1" -- "1" EmployeeRole :  has >
+SystemAdministrator "1" -- "*" EmployeeRole : defines >
+SystemAdministrator "1" -- "1" User : is a >
+Employee "1" -- "1" User : is a >
+Company "1" -- "1..*" Agency : has >
+@enduml
