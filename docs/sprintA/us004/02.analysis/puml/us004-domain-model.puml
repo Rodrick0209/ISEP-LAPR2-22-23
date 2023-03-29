@@ -19,8 +19,13 @@ hide methods
 
 class Owner
 
+class House{
+existence of a
+basement, an inhabitable \nloft,  and sun exposure
+}
+
 class Property  {
-   description
+    the number of bedrooms, the number of \nbathrooms,  the number of parking spaces \nand central heating and/or air conditioning
 }
 
 class Agent {
@@ -41,4 +46,5 @@ Owner  - Property: owns >
 'Property  --  Real Estate Agent: created by >
 Agent  --  Property : listing >
 'Agent  --  User: acts as >
+Property -- House
 @enduml
