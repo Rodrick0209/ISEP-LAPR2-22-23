@@ -1,4 +1,4 @@
-# US 006 - To register a store
+# US 005 - To register a store
 
 ## 1. Requirements Engineering
 
