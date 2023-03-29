@@ -62,7 +62,7 @@ As an organization employee, I want to create a new task in order to be further 
 	* an estimated cost
 	
 * Selected data:
-	* Classifying task category 
+	* house or apartment
 
 
 **Output Data:**
@@ -77,10 +77,6 @@ As an organization employee, I want to create a new task in order to be further 
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
