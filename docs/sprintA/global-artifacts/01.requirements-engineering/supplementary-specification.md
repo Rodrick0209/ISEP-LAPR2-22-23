@@ -2,13 +2,12 @@
 
 ## Functionality
 
-_Spa§ities that:_
+_Spacifies that:_
 
-- _are common across several US/UC;_
-- _are not related to US/UC, namely: Audit, Reporting and Security._
+- are common across several US/UC: 
+- are not related to US/UC, namely: Audit, Reporting and Security._
 
-
-(fill in here)
+the class property is present in all user stories ,on the user story 5 the property is a store , on the other one the property is undifined .
 
 
 ## Usability 
@@ -47,9 +46,11 @@ configurability, installability, scalability and more._
 ### Design Constraints
 
 _Specifies or constraints the system design process. Examples may include: programming languages, software process, mandatory standards/patterns, use of development tools, class library, etc._
-  
+java, html,css. A non-interactive functionality to run and store and organize data for example, and an interactive fucntionality to interact with the agent for example. "Property" is going to be one of the main classes.
+Each subject of the US is gonna be a class .
 
-(fill in here )
+
+java (or python but probably java ),java .jar to build graphs,
 
 
 ### Implementation Constraints

@@ -20,4 +20,4 @@ link as suggested below.**
 | US 001 | [Short Name for US001](../../us001/Readme.md) |
 | US 003 | [Register Employee]                           |
 | US 006 | [Create Task](../../us006/Readme.md)          |
-| ...    | ...                                           |
+| US 002 |                                               |
