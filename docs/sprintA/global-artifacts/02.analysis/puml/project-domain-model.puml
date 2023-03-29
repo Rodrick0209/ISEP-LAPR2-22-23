@@ -8,77 +8,43 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
+title Domain Model
 
-'class Platform {
-'  -description
-'}
 
-class Organization {
-    name
-    vatNumber
-    website
-    phoneNumber
-    email
+class Employee{
+name
+citizen_card_number
+tax_number
+address
+email_address
+contact
 }
 
-class Task {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
+class SystemAdministrator{
 }
 
-class Category {
-    description
+class EmployeeRole{
+description
 }
 
-class Employee {
-    name
-    email
-    position
-    phone
+class Company{
 }
 
-class TechnicalSkill{
-    shortDescription
-    fullDescription
+class Agency{
 }
 
-class ActivityArea{
-    shortDescription
-    fullDescription
+class User{
+name
+email
+password
 }
 
-class FeatureTS{
-    mandatory
-}
-
-'class User {
-'    name
-'    email
-'    password
-'}
-class PostalAddress{
-    street
-    zipCode
-    city
-}
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
-TechnicalSkill "*" - "1" ActivityArea: regarding an >
-
-Category "*" - "*" TechnicalSkill :  : requires >
-(Category, TechnicalSkill) . FeatureTS
-
-Organization "1" -left "1" PostalAddress : located At >
-
+SystemAdministrator "1" -- "*" Employee : registers >
+Employee "*" -- "1" Agency : is assigned to >
+Company "1" -- "1" SystemAdministrator : has >
+Employee "1" -- "1" EmployeeRole :  has >
+SystemAdministrator "1" -- "*" EmployeeRole : defines >
+SystemAdministrator "1" -- "1" User : is a >
+Employee "1" -- "1" User : is a >
+Company "1" -- "1..*" Agency : has >
 @enduml

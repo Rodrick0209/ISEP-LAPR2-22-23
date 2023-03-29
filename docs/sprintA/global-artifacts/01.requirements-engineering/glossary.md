@@ -8,7 +8,10 @@
 |:---------------|:-------------------------------------------------------------------------------------------------------------------------------------------|
 | **ID**         | Acronym for identification.                                                                                                                |
 | **Tax Number** | A form of personal identification that is essential for purchasing goods or services, entering into contracts, opening bank accounts, etc. |
-| **Trespasse**  | A injury to the use of real property without the consent or permission of the person lawfully entitled to possession of the real estate.   |
+| **Commision**  | A form of payment in a percentage or a fixed value received when a transaction is made.                                                    |
+| **Property**   |                                                                                                                                            |
+
+
 
 
 

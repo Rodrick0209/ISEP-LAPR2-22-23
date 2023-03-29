@@ -1,0 +1,44 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+'title Domain Model
+
+'class Platform {
+'  -description
+'}
+
+class Owner
+
+class Property  {
+   description
+}
+
+class Agent {
+    name \n contacts
+
+}
+
+'class User {
+'    name
+'    email
+'    password
+'}
+
+'Platform  -- "*" Owner : has registered >
+'Platform -- "*" Category : defines >
+Owner  -Agent : request >
+Owner  - Property: owns >
+'Property  --  Real Estate Agent: created by >
+Agent  --  Property : listing >
+'Agent  --  User: acts as >
+@enduml

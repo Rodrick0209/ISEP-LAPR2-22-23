@@ -36,7 +36,8 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Roles of People or Organizations**
 
-* 
+* System Administrator
+* Employee
 
 
 ---
@@ -48,7 +49,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 ---
 
-** Noteworthy Events**
+**Noteworthy Events**
 
 * 
 
@@ -64,7 +65,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Descriptions of Things**
 
-*  
+* Employee Role 
 
 
 ---
@@ -93,7 +94,8 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Organizations**
 
-*  
+* Company
+* Agency 
 
 ---
 
@@ -140,10 +142,14 @@ An association is a relationship between instances of objects that indicates a r
 
 
 
-| Concept (A) 		|  Association   	|  Concept (B) |
-|----------	   		|:-------------:		|------:       |
-| C1  	| verb1    		 	| C2  |
-| ...  	| ...    		 	| ...  |
+| Concept (A) 		       | Association   	  | Concept (B) |
+|----------------------|:----------------:|------------:|
+| C1  	                |    verb1    	    |          C2 |
+| Employee Role        | Contained in   	 |    Employee |
+| Employee             |  Works for    	  |      Agency |
+| Company              |     Contains     |      Agency |
+| System Administrator |     Manages      |     Company |
+
 
 
 
