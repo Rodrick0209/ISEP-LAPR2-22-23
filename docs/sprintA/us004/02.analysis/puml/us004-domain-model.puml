@@ -16,6 +16,7 @@ hide methods
 'class Platform {
 '  -description
 '}
+
 class Property  {
     type of property
     area in m2
