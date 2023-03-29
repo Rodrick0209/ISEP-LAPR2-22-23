@@ -1,14 +1,12 @@
-# US 006 - To create a Task 
+# US 004 - submit a request
 
 ## 1. Requirements Engineering
 
 
 ### 1.1. User Story Description
 
-
-As an organization employee, I want to create a new task in order to be further published.
-
-
+: As an owner, I intend to submit a request for listing a property sale or rent,
+choosing the responsible agent.
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -54,33 +52,28 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+  * type of property or land
+  * number of bedrooms
+  * number ofs bathrooms
+  * number of parking spaces
+  * existence of central heating
+  * existence of air conditioning
+  * existence of a basement
+  * existence of an inhabitable loft
+  * existence of sun exposure
 	
 * Selected data:
-	* Classifying task category 
+	* house or apartment or land 
 
 
 **Output Data:**
 
-* List of existing task categories
+* List of property or land that satisfy the requirements
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**Other alternatives might exist.**
-
-#### Alternative One
-
 ![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 

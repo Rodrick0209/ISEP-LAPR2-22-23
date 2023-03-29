@@ -1,8 +1,8 @@
-# US 006 - To create a Task 
+# US 004 - submit a request
 
-[Requirements Engineering](01.requirements-engineering/Readme.md)
+[Requirements Engineering](01.requirements-engineering/US004-requiremements-engineering.md)
 
-[Analysis](02.analysis/Readme.md)
+[Analysis](02.analysis/US004-analysis.md)
 
 [Design](03.design/Readme.md)
 

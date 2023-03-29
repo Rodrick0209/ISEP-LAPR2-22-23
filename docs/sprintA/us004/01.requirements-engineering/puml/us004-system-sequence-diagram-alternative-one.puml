@@ -61,8 +61,6 @@ alt only house
 end
 end
 
-
-
      activate System
 
         System --> Employee : shows agent list
