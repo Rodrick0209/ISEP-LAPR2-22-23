@@ -1,0 +1,44 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+'title Domain Model
+
+'class Platform {
+'  -description
+'}
+
+class Agent {
+}
+
+class Owner {
+}
+
+class Property {
+    type
+    location
+    area
+    amount_of_sun_exposure
+    number_of_bedrooms
+    number_of_bathrooms
+}
+
+class Announcement {
+    description
+    comission
+  }
+
+Owner "1" -- "1" Agent : selects >
+Owner "1" -- "1..*" Property : owns >
+Agent "1" -- "1..*" Announcement : publishes >
+Agent "1..*" -- "1" Agency : works for >
+
+@enduml

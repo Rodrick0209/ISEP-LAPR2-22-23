@@ -28,6 +28,7 @@ description
 }
 
 class Company{
+description
 }
 
 class Agency{
@@ -39,6 +40,14 @@ email
 password
 }
 
+class Store {
+    id
+    designation
+    location
+    email_address
+    phone_number
+}
+
 SystemAdministrator "1" -- "*" Employee : registers >
 Employee "*" -- "1" Agency : is assigned to >
 Company "1" -- "1" SystemAdministrator : has >
@@ -47,4 +56,7 @@ SystemAdministrator "1" -- "*" EmployeeRole : defines >
 SystemAdministrator "1" -- "1" User : is a >
 Employee "1" -- "1" User : is a >
 Company "1" -- "1..*" Agency : has >
+SystemAdministrator "1" -- "*" Store : registers >
+Store "1..*" -- "1" StoreManager : managed by >
+
 @enduml

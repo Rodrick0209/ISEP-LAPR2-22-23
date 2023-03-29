@@ -21,8 +21,16 @@ class Company {
     description
 }
 
+class User {
+    name
+    email
+    password
+}
+
+SystemAdministrator "1" -- "1" Company : has >
 SystemAdministrator "1" - "*" Store : registers >
-SystemAdministrator "1..*" -- "1" Company : belongs to >
 Store "1..*" -- "1" StoreManager : managed by >
+SystemAdministrator "1" -- "1" User : is >
+StoreManager "1" -- "1" User : is >
 
 @enduml
