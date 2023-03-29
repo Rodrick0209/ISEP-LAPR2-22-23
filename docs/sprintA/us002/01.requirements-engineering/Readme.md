@@ -7,88 +7,69 @@
 
 As an agent, I can publish any sale announcement on the system, for example received through a phone call.
 
-
-
 ### 1.2. Customer Specifications and Clarifications 
-
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+>	The real estate agent publishes announcements of the company's  properties.
 
+> As soon as the clients are interested on the properties, the agent schedules a meeting with the future possibility of getting a sale or  property rent.
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+** From the client clarifications:**  
 
+> **Question:** How does the agent determine whether it is a fixed commission or a percentage commission? 
+>
+> **Answer:** The agent should choose the type of commission and enter the value.
 
+> **Question:** Is the phone call the only way the agent can receive the sale announcement? Or he can receive them via e-mail/letter/etc
+>
+> **Answer:** For now this is the only way.
 
-**From the client clarifications:**  // perguntas mais importantes do forum de us2
-// eu, agente , pergunto ao cliente:
+> **Question:** Can an Agent work in more than 1 store (Multiple stores)? 
+>
+> **Answer:** No.
 
-> **Question:** Does a store designation have to be detailed? If so, will the system administrator have to register the name, email, phone number or anything else?
->  
-> **Answer:** 
-
-
-> **Question:** Does the location of a store have to be detailed as well? If yes, will the system administrator have to record the address, postcode or something else?
->  
-> **Answer:** 
-
-> **Question:**
-> 
-> **Answer:**
  
-> **Question:**
+> **Question:** According to the Project Description, the agent when selling a property can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
 > 
-> **Answer:**
-
-### 1.3. Acceptance Criteria // o que é necessario 
+> **Answer:** There is no maximum and the minimum is 0.
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+### 1.3. Acceptance Criteria 
 
 
-### 1.4. Found out Dependencies // dependencia de outro user story
+* **AC1:** It must be given necessary information about the company's property from the owner for the agent to submit on the system
+* **AC2:** The program the agent interacts has to be functional
+* **AC3:** the client has to be able to communicate (on the same language) with the agent
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
+### 1.4. Found out Dependencies 
 
+* There is a dependency on US004 in which the owner submits a request for a property sale or rent, choosing the responsible agent since the subject of US002 (the  agent) has to wait to be selected before he can start working.
+The owner also submits the company property data to the agent through a phone call , without the property data the USS02 can't proceed because the agent can't publish any announcement.
 
 ### 1.5 Input and Output Data
-
 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
-	
-* Selected data:
-	* Classifying task category 
+	* type of property (house ,apartment,basement ..etc..), 
+	* house information (number of:bedrooms ,bathrooms, amount of sun exposure,number of rooms  )
+    * Commision 
+    * property location
+    * 
+
 
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* Property anouncment 
+* Data of a possible meeting with the client
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**Other alternatives might exist.**
-
-#### Alternative One
-
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
+![System Sequence Diagram - Alternative One](svg/us002-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* It is important to know that a person can play different roles on these user stories ,a client and a store manager can also be an agents for example.
