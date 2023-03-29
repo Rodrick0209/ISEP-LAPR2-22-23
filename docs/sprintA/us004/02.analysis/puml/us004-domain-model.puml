@@ -16,21 +16,53 @@ hide methods
 'class Platform {
 '  -description
 '}
-
-class Owner
-
-class House{
-existence of a
-basement, an inhabitable \nloft,  and sun exposure
-}
-
 class Property  {
-    the number of bedrooms, the number of \nbathrooms,  the number of parking spaces \nand central heating and/or air conditioning
+    type of property
+    area in m2
+    location
+    distance from the city centre
+    requested price
+    one or more photos
 }
+
+class Owner{
+    name
+    citize's card number
+    tax number
+    adress
+    email adress
+    contact telephone number
+    agency
+}
+
+class Apartment{
+    number of bedrooms
+    number ofs bathrooms
+    number of parking spaces
+    existence of central heating
+    existence of air conditioning
+
+}
+class House{
+    number of bedrooms
+    number ofs bathrooms
+    number of parking spaces
+    existence of central heating
+    existence of air conditioning
+    existence of a basement
+    existence of an inhabitable loft
+    existence of sun exposure
+}
+
 
 class Agent {
-    name \n contacts
-
+    name
+    citize's card number
+    tax number
+    adress
+    email adress
+    contact telephone number
+    agency
 }
 
 'class User {
@@ -41,10 +73,11 @@ class Agent {
 
 'Platform  -- "*" Owner : has registered >
 'Platform -- "*" Category : defines >
-Owner  -Agent : request >
-Owner  - Property: owns >
-'Property  --  Real Estate Agent: created by >
-Agent  --  Property : listing >
-'Agent  --  User: acts as >
-Property -- House : if >
+Property "1"-D-> "1..*" House :  can be a
+Property "1    "-U-> "1..* " Apartment :  can be an
+Property "1"->"0" Owner : has an
+Owner "1"-> "0" Agent : contracts an
+
+
+
 @enduml
