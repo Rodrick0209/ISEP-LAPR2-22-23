@@ -17,7 +17,8 @@ among them: error prevention; interface aesthetics and design; help and
 documentation; consistency and standards._
 
 
-(fill in here )
+* Make recurring tests to evaluate that the user interface is not in error with the various options that the user can choose;
+* The user interface needs to be easy to the user navigate;
 
 ## Reliability
 _Refers to the integrity, compliance and interoperability of the software. The requirements to be considered are: frequency and severity of failure, possibility of recovery, possibility of prediction, accuracy, average time between failures._
@@ -29,7 +30,8 @@ _Refers to the integrity, compliance and interoperability of the software. The r
 _Evaluates the performance requirements of the software, namely: response time, start-up time, recovery time, memory consumption, CPU usage, load capacity and application availability._
 
 
-(fill in here )
+* The system should be quick in all the tasks (max: 3 secs);
+
 
 ## Supportability
 _The supportability requirements gathers several characteristics, such as:
