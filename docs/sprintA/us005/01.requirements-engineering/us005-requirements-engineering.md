@@ -75,7 +75,7 @@ As a system administrator, I want to register a store.
 ### 1.6. System Sequence Diagram (SSD)
 
 
-![System Sequence Diagram](svg/us005-system-sequence-diagram.svg)
+![US005 SSD](svg/us005-system-sequence-diagram.svg)
 
 
 ### 1.7 Other Relevant Remarks
