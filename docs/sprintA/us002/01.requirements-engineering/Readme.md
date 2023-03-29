@@ -1,4 +1,4 @@
-# US 002 - To create a Task 
+# US 002 - To publish an announcement 
 
 ## 1. Requirements Engineering
 
@@ -38,33 +38,32 @@ As an agent, I can publish any sale announcement on the system, for example rece
 ### 1.3. Acceptance Criteria 
 
 
-* **AC1:** It must be given necessary information about the company's property from the owner for the agent to submit on the system
-* **AC2:** The program the agent interacts has to be functional
-* **AC3:** the client has to be able to communicate (on the same language) with the agent
-
+* **AC1:** The agent must register all necessary property data into the system.
+* **AC2:** The program the agent interacts with has to be functional.
+* **AC3:** The client has to be able to communicate (in the same language) with the agent.
 
 ### 1.4. Found out Dependencies 
 
-* There is a dependency on US004 in which the owner submits a request for a property sale or rent, choosing the responsible agent since the subject of US002 (the  agent) has to wait to be selected before he can start working.
-The owner also submits the company property data to the agent through a phone call , without the property data the USS02 can't proceed because the agent can't publish any announcement.
+* There is a dependency on US004 in which the owner submits a request for a property sale or rent, choosing the responsible agent .
+The owner submits the company property data to the agent through a phone call , without the property data the USS02 can't proceed because the agent can't publish any announcement.
 
 ### 1.5 Input and Output Data
 
 **Input Data:**
 
 * Typed data:
-	* type of property (house ,apartment,basement ..etc..), 
-	* house information (number of:bedrooms ,bathrooms, amount of sun exposure,number of rooms  )
-    * Commision 
-    * property location
-    * 
 
+* Commision
+* property annoucment publishment
+
+
+* Selected data:
+  * type of property (house ,apartment,basement ..etc..),
 
 
 **Output Data:**
 
-* Property anouncment 
-* Data of a possible meeting with the client
+* (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 

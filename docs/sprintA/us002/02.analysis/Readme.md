@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 002 - To publish an announcement
 
 ## 2. Analysis
 
