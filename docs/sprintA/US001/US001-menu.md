@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 006 - To display listed properties (unregistered user) 
 
 [Requirements Engineering](01.requirements-engineering/US001-requirements-engineering..md)
 
