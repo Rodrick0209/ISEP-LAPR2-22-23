@@ -1,4 +1,4 @@
-# US 001 - To create a Task 
+# US 001 - To display listed properties (unregistered user) 
 
 ## 1. Requirements Engineering
 
@@ -6,7 +6,7 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
+As an unregistered user, I want to display listed properties.
 
 
 
@@ -15,23 +15,27 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+>	The possible owner can browse available properties in a specific area and get an idea of the market 
 
 
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
+>	The owner are able to filter the search results by location, price range, and property type, and view high-quality images and detailed descriptions of each property. He´s also able to save his favorite properties and compare them with others he has seen on the website. Ultimately, the goal is to find something that meets his needs and budget, and then persuade him to register for an account to start the process of buying or renting it 
 
 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Does the unregistered user need to login or register to see the list of properties?
 >  
-> **Answer:** Duration is estimated in days.
+> **Answer:** No, the unregistered user does not need to login or register to see the property list.
 
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** What specific information about the properties will the unregistered user be able to see in the list?
 >  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
+> **Answer:** This will depend on what has been defined as basic property information. This information includes the property type, number of rooms, price, location and a photo. The unregistered user may not have access to more detailed information, such as full descriptions, additional features or seller contact information.
+
+> **Question:** Will there be any information about the availability of properties on the list?
+> 
+> **Answer:** Normally, the availability of properties is updated in real time, but it may be that the information is not available in the list. The unregistered user may need to click on a specific property to check its updated availability.
 
 
 ### 1.3. Acceptance Criteria
@@ -77,10 +81,6 @@ As an organization employee, I want to create a new task in order to be further 
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
-
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 

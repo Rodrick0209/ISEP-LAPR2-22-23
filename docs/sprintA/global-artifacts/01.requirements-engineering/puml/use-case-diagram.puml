@@ -20,7 +20,7 @@ rectangle "Use Cases" as usecases{
     SystemAdministrator --> UC5
     usecase "UC2 - To publish an announcement" as UC2
     Agent --> UC2
-    usecase "UC1 -" as UC1
+    usecase "UC1 - To display listed properties \n(unregistered user)" as UC1
     UnregisteredUser --> UC1
     }
 
