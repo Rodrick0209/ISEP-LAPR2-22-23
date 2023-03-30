@@ -4,32 +4,25 @@ skinparam packageStyle rectangle
 'skinparam shadowing false
 
 skinparam rectangle{
-    BorderColor yellow
+    BorderColor white
 }
 
 'title Use Case Diagram Example
 
-left to right direction
-
-rectangle "System Actors" as actors {
-    actor Freelancer
-    actor "Organization\nEmployee" as Employee
-}
-
-
-note right of Freelancer
-    Actor identified but still
-    no concrete use cases
-end note
+top to bottom direction
 
 rectangle "Use Cases" as usecases{
-    usecase "UC6 - Create a Task" as UC6
-    Employee --> UC6
-}
-note right of actors
-    Rectangles and Titles are for
-    demonstration purposes only.
-    Omitt on your diagrams.
-end note
+    usecase "UC4 - To submit a request" as UC4
+    Owner --> UC4
+    usecase "UC3 - To register an employee" as UC3
+    SystemAdministrator --> UC3
+    usecase "UC5 - To register a store" as UC5
+    SystemAdministrator --> UC5
+    usecase "UC2 - To publish an announcement" as UC2
+    Agent --> UC2
+    usecase "UC1 -" as UC1
+    UnregisteredUser --> UC1
+    }
+
 
 @enduml
