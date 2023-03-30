@@ -20,7 +20,7 @@
 | **Request**               | An act of asking for something                                                                                                                                                            |
 | **Store Manager**         | Employee who is responsible for one individual store, who has duties such as monitoring and streamlining the branch, as well as analysing and evaluating the performance of employees.    |
 | **Store Network Manager** | Employee who runs daily analysis of the performance of each one of the company's branches and the global behavior of the network.                                                         |
-
+| **Unregistered User**     | A person who is not registered on a website or platform, but still wants to be able to view a list of properties that are available for rent or purchase                                  |
 
 
 
