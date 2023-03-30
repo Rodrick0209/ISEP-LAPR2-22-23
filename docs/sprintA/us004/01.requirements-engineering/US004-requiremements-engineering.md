@@ -5,7 +5,7 @@
 
 ### 1.1. User Story Description
 
-: As an owner, I intend to submit a request for listing a property sale or rent,
+As an owner, I intend to submit a request for listing a property sale or rent,
 choosing the responsible agent.
 
 ### 1.2. Customer Specifications and Clarifications 
@@ -13,31 +13,39 @@ choosing the responsible agent.
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
+>	The owner provides property characteristics and the requested price and sends the request to an agent
 
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
-
+>	The agent sets the commission and publishes the offer in the system. The commission can be a fixed amount or a percentage.
 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** If the owner doesn't select any agent in the request, is the agent randomly chosen by the system? 
 >  
-> **Answer:** Duration is estimated in days.
+> **Answer:** Yes, if the owner does not select an agent, the last one is randomly selected by the system.
 
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** Does the owner have a limit of requests they can do?
 >  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
+> **Answer:** No, he doesn't.
 
+
+> **Question:** When renting, does the owner have any space to clarify any prohibitions or obligations with the property?
+>
+> **Answer:** No, he doesn't.
+
+
+> **Question:** In the case of listing a land property, shall the owner refer if there is a building permit already approved?
+>
+> **Answer:** No, he doesn't.
+>
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
+* **AC1:** All required property's characteristics must be filled in.
 * **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+  * **AC3:** To the owner submit a request for listing a property 
 
 
 ### 1.4. Found out Dependencies
@@ -52,7 +60,6 @@ choosing the responsible agent.
 **Input Data:**
 
 * Typed data:
-  * type of property or land
   * number of bedrooms
   * number ofs bathrooms
   * number of parking spaces
