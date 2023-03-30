@@ -18,13 +18,15 @@ documentation; consistency and standards._
 
 
 * Make recurring tests to evaluate that the user interface is not in error with the various options that the user can choose;
-* The user interface needs to be easy to the user navigate;
+* The user interface needs to be simple to the user navigate;
+* The interface must support at least the English language since it is the main language of the country.
 
 ## Reliability
 _Refers to the integrity, compliance and interoperability of the software. The requirements to be considered are: frequency and severity of failure, possibility of recovery, possibility of prediction, accuracy, average time between failures._
 
+* The system must run every day,at every hour.
+* the software must be secure and protect personal and confidential information. 
 
-(fill in here )
 
 ## Performance
 _Evaluates the performance requirements of the software, namely: response time, start-up time, recovery time, memory consumption, CPU usage, load capacity and application availability._
@@ -39,8 +41,9 @@ testability, adaptability, maintainability, compatibility,
 configurability, installability, scalability and more._ 
 
 
-
-(fill in here )
+* The software should be easy and cheap to maintain.
+* The software should have some updates to improve the app when necessary.
+* The app should have an email and a contact from the company to clients have contact with it when they are unable to submit the characteristics of the property.
 
 
 ## +
