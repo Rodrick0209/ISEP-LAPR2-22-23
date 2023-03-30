@@ -7,7 +7,10 @@ _Spacifies that:_
 - are common across several US/UC: 
 - are not related to US/UC, namely: Audit, Reporting and Security._
 
-* The class property is present in all user stories ,on the user story 5 the property is a store , on the other one the property is undifined .
+* The agents should be able to review advertisement requests, register information, publish offers visible to all clients, record visits to properties and indicate whether or not they think a deal will take place.
+* The client should be able to sort the list of properties by type of property, number of bedrooms, by price and by location.
+* The client should also be able to ask for a visit to the property and the agent need to confirm and schedule the visit.
+* The System administrator needs to insert every relevant information about the employees and each store.
 
 
 ## Usability 
@@ -24,8 +27,9 @@ documentation; consistency and standards._
 ## Reliability
 _Refers to the integrity, compliance and interoperability of the software. The requirements to be considered are: frequency and severity of failure, possibility of recovery, possibility of prediction, accuracy, average time between failures._
 
-* The system must run every day,at every hour.
-* the software must be secure and protect personal and confidential information. 
+* The system must run every day, at every hour.
+* The software must be secure and protect personal and confidential information. 
+* The system should have as few errors as possible, and they must be fixed quickly.  
 
 
 ## Performance
@@ -33,6 +37,7 @@ _Evaluates the performance requirements of the software, namely: response time, 
 
 
 * The system should be quick in all the tasks (max: 3 secs);
+* The app should consume the less CPU and memory possible.
 
 
 ## Supportability
@@ -46,8 +51,6 @@ configurability, installability, scalability and more._
 * The app should have an email and a contact from the company to clients have contact with it when they are unable to submit the characteristics of the property.
 
 
-## +
-
 ### Design Constraints
 
 _Specifies or constraints the system design process. Examples may include: programming languages, software process, mandatory standards/patterns, use of development tools, class library, etc._
@@ -55,7 +58,8 @@ java, html,css. A non-interactive functionality to run and store and organize da
 Each subject of the US is gonna be a class .
 
 
-java (or python but probably java ),java .jar to build graphs,
+* The programming language will be Java.
+* The application will be developed using the IntelliJ IDE and the graphical interface is to be developed in JavaFX 11.
 
 
 ### Implementation Constraints
@@ -64,19 +68,19 @@ _Specifies or constraints the code or construction of a system such
 such as: mandatory standards/patterns, implementation languages,
 database integrity, resource limits, operating system._
 
-
-(fill in here )
+* The graphical interface is to be developed in JavaFX 11.
+* The app must support English language.
+* The application will be developed in Java language using the IntelliJ IDE or NetBeans.
 
 
 ### Interface Constraints
 _Specifies or constraints the features inherent to the interaction of the
 system being developed with other external systems._
 
-
-(fill in here )
+* The application graphical interface is to be developed in JavaFX 11.
 
 ### Physical Constraints
 
 _Specifies a limitation or physical requirement regarding the hardware used to house the system, as for example: material, shape, size or weight._
 
-(fill in here )
+* The system must use a database to store and manage data, with appropriate backups and redundancy measures in place.
