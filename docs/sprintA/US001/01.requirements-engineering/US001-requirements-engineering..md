@@ -18,7 +18,7 @@ As an unregistered user, I want to display listed properties.
 >	The possible owner can browse available properties in a specific area and get an idea of the market 
 
 
->	The owner are able to filter the search results by location, price range, and property type, and view high-quality images and detailed descriptions of each property. He´s also able to save his favorite properties and compare them with others he has seen on the website. Ultimately, the goal is to find something that meets his needs and budget, and then persuade him to register for an account to start the process of buying or renting it 
+>	The goal is to find something that meets his needs and budget, and then persuade him to register for an account to start the process of buying or renting it 
 
 
 
@@ -41,9 +41,10 @@ As an unregistered user, I want to display listed properties.
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:** The user should be able to filter the listing results by location, price, size, property type and other relevant criteria.
+* **AC2:** He´s also able to save his favorite properties and compare them with others he has seen
+* **AC3:** The properties must be displayed in a clear and organized way, facilitating the reading and identification of the main details of each property.
+
 
 
 ### 1.4. Found out Dependencies
@@ -58,30 +59,23 @@ As an unregistered user, I want to display listed properties.
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* A search bar so the user can search for specific properties by name, address or other relevant information.
 	
 * Selected data:
-	* Classifying task category 
+	* Sorting options (e.g. price, location, size)
+    * Filtering options (e.g. price range, location, number of bedrooms)
 
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* A list of properties is displayed
+
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**Other alternatives might exist.**
-
-#### Alternative One
-
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us001-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
+* Information on listed properties is guaranteed to be accurate and up to date, so users can make informed decisions when considering a property.
+* The security of users and their personal information, including contact details and payment information, is guaranteed if the platform allows booking properties.
