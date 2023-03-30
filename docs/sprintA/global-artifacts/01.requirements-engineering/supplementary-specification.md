@@ -7,7 +7,7 @@ _Spacifies that:_
 - are common across several US/UC: 
 - are not related to US/UC, namely: Audit, Reporting and Security._
 
-the class property is present in all user stories ,on the user story 5 the property is a store , on the other one the property is undifined .
+* The class property is present in all user stories ,on the user story 5 the property is a store , on the other one the property is undifined .
 
 
 ## Usability 

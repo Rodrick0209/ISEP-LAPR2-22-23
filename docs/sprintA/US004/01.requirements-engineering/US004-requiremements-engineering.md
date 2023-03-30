@@ -38,20 +38,20 @@ choosing the responsible agent.
 > **Question:** In the case of listing a land property, shall the owner refer if there is a building permit already approved?
 >
 > **Answer:** No, he doesn't.
->
+
 
 ### 1.3. Acceptance Criteria
 
 
 * **AC1:** All required property's characteristics must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-  * **AC3:** To the owner submit a request for listing a property 
+* **AC2:** The owner needs to select the type of property ( house, apartment or land).
+* **AC3:** The agent needs to register the information and publish it, so it is visible to all clients that visit and use the application
 
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
+* There is a dependency to US003 because  US004 needs an agent that is registered by administrator.
 
 
 ### 1.5 Input and Output Data
@@ -70,7 +70,7 @@ choosing the responsible agent.
   * existence of sun exposure
 	
 * Selected data:
-	* house or apartment or land 
+	* land or house or apartment 
 
 
 **Output Data:**
