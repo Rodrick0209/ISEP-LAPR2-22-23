@@ -10,27 +10,17 @@ hide methods
 
 title Domain Model
 
-class System {
-
-}
-
 class Database {
-    proprety table
-    user table
+    proprety_table
+    user_table
 }
 
-class Unregistered\nuser {
-    name
-    phoneNumber
-    email
+class UnregisteredUser {
 }
 
-System "1" - "0..*" Property\ncontroller : request >
-System "1" - "0..*" Property\ncontroller : foward\ninformation <
-Database "1.." - "0..*" System: recives information \nfrom >
-Unregistered\nuser "1" - "0..*" System: interacts with >
-Property\ncontroller "1." -- "*" Database : request >
-Property\ncontroller "1." -- "*" Database : sends\nnecessary\ninformation <
+UnregisteredUser "1" - "0..*" PropertyController : request >
+PropertyController "1." -- "*" Database : request >
+PropertyController "1." -- "*" Database : sends necessary information to <
 
 
 @enduml
