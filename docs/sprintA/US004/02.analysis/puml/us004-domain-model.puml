@@ -18,12 +18,12 @@ hide methods
 '}
 
 class Property  {
-    type of property
-    area in m2
+    type_of_property
+    area
     location
-    distance from the city centre
-    requested price
-    one or more photos
+    distance_from_the_city_centre
+    requested_price
+    photos
 }
 
 class Owner{
@@ -37,22 +37,22 @@ class Owner{
 }
 
 class Apartment{
-    number of bedrooms
-    number ofs bathrooms
-    number of parking spaces
-    existence of central heating
-    existence of air conditioning
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking_spaces
+    existence_of_central_heating
+    existence_of_air_conditioning
 
 }
 class House{
-    number of bedrooms
-    number ofs bathrooms
-    number of parking spaces
-    existence of central heating
-    existence of air conditioning
-    existence of a basement
-    existence of an inhabitable loft
-    existence of sun exposure
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking spaces
+    existence_of_central heating
+    existence_of_air_conditioning
+    existence_of_a_basement
+    existence_of_an_inhabitable_loft
+    existence_of_sun_exposure
 }
 
 
@@ -76,8 +76,8 @@ class Agent {
 'Platform -- "*" Category : defines >
 Property "1"-D-> "1..*" House :  can be a
 Property "1    "-U-> "1..* " Apartment :  can be an
-Property "1"->"0" Owner : has an
-Owner "1"-> "0" Agent : contracts an
+Property "1"->"*" Owner : has an
+Owner "1"-> "*" Agent : contracts an
 
 
 
