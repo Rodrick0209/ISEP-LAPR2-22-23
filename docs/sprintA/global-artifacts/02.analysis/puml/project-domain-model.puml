@@ -28,8 +28,6 @@ class Company{
 description
 }
 
-class Agency{
-}
 
 class User{
 name
@@ -78,24 +76,33 @@ class House{
     existence_of_sun_exposure
 }
 
-SystemAdministrator "1" -- "*" Employee : registers >
-Employee "*" -- "1" Agency : is assigned to >
-Company "1" -- "1" SystemAdministrator : has >
-Employee "1" -- "1" EmployeeRole :  has >
-SystemAdministrator "1" -- "*" EmployeeRole : defines >
-SystemAdministrator "1" -- "1" User : is >
-Employee "1" -- "1" User : is >
-Company "1" -- "1..*" Agency : has >
-SystemAdministrator "1" -- "*" Store : registers >
-Store "1..*" -- "1" StoreManager : managed by >
-StoreManager "1" -- "1" User : is >
-Owner "1" -- "1" Agent : selects >
-Owner "1" -- "1..*" Property : owns >
+class Database {
+    proprety_table
+    user_table
+}
+
+UnregisteredUser "1" - "0..*" PropertyController : request >
+PropertyController "1." -- "*" Database : request >
+PropertyController "1." -- "*" Database : sends necessary information to <
+PropertyController "*" -- "1"  Property : contains >
 Agent "1" -- "1..*" Announcement : publishes >
 Agency "1" -- "1..*" Agent : has >
-Agent "1" -- "1" User : is >
-Owner "1" -- "1" User : is >
+SystemAdministrator "1" -- "*" Employee : registers >
+Employee "*" -- "1" Agency : is assigned to >
+Employee "1" -- "1" EmployeeRole :  has >
+SystemAdministrator "1" -- "*" EmployeeRole : defines >
+Owner "1" -- "1..*" Property : owns >
 Property "1" -- "*" House :  can be >
 Property "1" -- "*" Apartment :  can be >
+Owner "1" -- "1" Agent : selects >
+SystemAdministrator "1" - "*" Store : registers >
+StoreManager "1" -- "1..*" Store : manages >
+Store "1" -- "1" Agency : is >
+Company "1" -- "1..*" Agency : has >
+Company "1" -- "1" SystemAdministrator : has >
+SystemAdministrator "1" -- "1" User : is >
+Employee "1" -- "1" User : is >
+Agent "1" -- "1" User : is >
+Owner "1" -- "1" User : is >
 
 @enduml

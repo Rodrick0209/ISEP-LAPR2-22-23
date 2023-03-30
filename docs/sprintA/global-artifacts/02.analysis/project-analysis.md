@@ -14,7 +14,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 ---
 
-**Transaction Line Itemss**
+**Transaction Line Items**
 
 *
 
@@ -22,7 +22,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Product/Service related to a Transaction or Transaction Line Item**
 
-*  
+* Property
 
 ---
 
@@ -38,14 +38,17 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 * System Administrator
 * Employee
-
+* Store Manager
+* Agent
 
 ---
 
 
 **Places**
 
-*  
+* Store
+* Home
+* Apartment
 
 ---
 
@@ -65,7 +68,8 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Descriptions of Things**
 
-* Employee Role 
+* Employee Role
+* Property Controller
 
 
 ---
@@ -101,7 +105,9 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Other External/Collaborating Systems**
 
-*  
+*  Owner
+*  Database
+*  Unregisted User
 
 
 ---
@@ -142,22 +148,34 @@ An association is a relationship between instances of objects that indicates a r
 
 
 
-| Concept (A) 		       | Association   	  | Concept (B) |
-|----------------------|:----------------:|------------:|
-| C1  	                |    verb1    	    |          C2 |
-| Employee Role        | Contained in   	 |    Employee |
-| Employee             |  Works for    	  |      Agency |
-| Company              |     Contains     |      Agency |
-| System Administrator |     Manages      |     Company |
+| Concept (A) 		         |   Association   	   |         Concept (B) |
+|------------------------|:-------------------:|--------------------:|
+| System Administrator  	 |     Creates   	     |            Employee |
+| Employee Role          |  Contained in   	   |            Employee |
+| Employee               |   Works for    	    |              Agency |
+| Company                |      Contains       |              Agency |
+| System Administrator   |       Manages       |             Company |
+| Owner                  |        Owns         |            Property |
+| Owner                  |       Selects       |               Agent |
+| Agent                  |      Works for      |              Agency |
+| House                  | Is a description of |            Property |
+| Apartment              | Is a description of |            Property |
+| Agent                  |       Creates       |        Announcement |
+| System Administrator   |       Creates       |               Store |
+| Store Manager          |       Manages       |               Store |
+| Property               |    Contained in     | Property Controller |
+| Unregisted User        |      Requests       | Property Controller |
+| Property Controller    |      Requests       |            Database |
+| Database               |        Uses         | Property Controller |
+
+
+
+
 
 
 
 
 ## Domain Model
-
-**Do NOT forget to identify concepts atributes too.**
-
-**Insert below the Domain Model Diagram in a SVG format**
 
 ![Domain Model](svg/project-domain-model.svg)
 
