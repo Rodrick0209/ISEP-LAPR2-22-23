@@ -1,4 +1,4 @@
-# US 006 - To Register an Employee
+# US 003 - To Register an Employee
 
 [Requirements Engineering](01.requirements-engineering/US003-requirements-engineering.md)
 
