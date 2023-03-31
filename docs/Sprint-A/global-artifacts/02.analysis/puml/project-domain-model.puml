@@ -18,6 +18,10 @@ tax_number
 address
 email_address
 contact
+employeeRole
+}
+
+class SystemAdministrator{
 }
 
 class EmployeeRole{
@@ -28,6 +32,14 @@ class Company{
 description
 }
 
+class Agency{
+ID
+designation
+location
+local_manager
+phone_number
+email
+}
 
 class User{
 name

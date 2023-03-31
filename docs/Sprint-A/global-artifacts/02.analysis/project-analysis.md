@@ -39,6 +39,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 * System Administrator
 * Employee
 * Store Manager
+* Agency
 * Agent
 
 ---
