@@ -28,9 +28,16 @@ description
 }
 
 class Company{
+description
 }
 
 class Agency{
+ID
+designation
+location
+local_manager
+phone_number
+email
 }
 
 class User{

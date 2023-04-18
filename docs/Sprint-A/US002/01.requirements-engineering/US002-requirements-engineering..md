@@ -11,9 +11,9 @@ As an agent, I can publish any sale announcement on the system, for example rece
 
 **From the specifications document:**
 
->	The real estate agent publishes announcements of the company's  properties.
+>The real estate agent publishes announcements of thw owner's  properties.
 
-> As soon as the clients are interested on the properties, the agent schedules a meeting with the future possibility of getting a sale or  property rent.
+> As soon as the clients are interested on these properties, the agent schedules a meeting with the future possibility of getting a sale or property rent.
 
 ** From the client clarifications:**  
 
@@ -29,7 +29,6 @@ As an agent, I can publish any sale announcement on the system, for example rece
 >
 > **Answer:** No.
 
- 
 > **Question:** According to the Project Description, the agent when selling a property can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
 > 
 > **Answer:** There is no maximum and the minimum is 0.
@@ -54,7 +53,7 @@ The owner submits the company property data to the agent through a phone call , 
 * Typed data:
 
 * Commision
-* property annoucment publishment
+* property data for annoucment publishment
 
 
 * Selected data:
