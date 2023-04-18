@@ -1,0 +1,120 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype ortho
+'left to right direction
+skinparam classAttributeIconSize 0
+hide circle
+hide methods
+
+title Domain Model
+
+
+class Employee{
+name
+citizen_card_number
+tax_number
+address
+email_address
+contact
+employeeRole
+}
+
+class SystemAdministrator{
+}
+
+class EmployeeRole{
+description
+}
+
+class Company{
+description
+}
+
+class Agency{
+ID
+designation
+location
+local_manager
+phone_number
+email
+}
+
+class User{
+name
+email
+password
+}
+
+class Store {
+    id
+    designation
+    location
+    email_address
+    phone_number
+}
+
+class Property {
+    type
+    area
+    location
+    distance_from_the_city_centre
+    requested_price
+    photos
+    }
+
+class Announcement {
+        description
+        comission
+      }
+
+class Apartment{
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking_spaces
+    existence_of_central_heating
+    existence_of_air_conditioning
+}
+
+class House{
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking spaces
+    existence_of_central heating
+    existence_of_air_conditioning
+    existence_of_a_basement
+    existence_of_an_inhabitable_loft
+    existence_of_sun_exposure
+}
+
+class Database {
+    proprety_table
+    user_table
+}
+
+UnregisteredUser "1" - "0..*" PropertyController : request >
+PropertyController "1." -- "*" Database : request >
+PropertyController "1." -- "*" Database : sends necessary information to <
+PropertyController "*" -- "1"  Property : contains >
+Agent "1" -- "1..*" Announcement : publishes >
+Agency "1" -- "1..*" Agent : has >
+SystemAdministrator "1" -- "*" Employee : registers >
+Employee "*" -- "1" Agency : is assigned to >
+Employee "1" -- "1" EmployeeRole :  has >
+SystemAdministrator "1" -- "*" EmployeeRole : defines >
+Owner "1" -- "1..*" Property : owns >
+Property "1" -- "*" House :  can be >
+Property "1" -- "*" Apartment :  can be >
+Owner "1" -- "1" Agent : selects >
+SystemAdministrator "1" - "*" Store : registers >
+StoreManager "1" -- "1..*" Store : manages >
+Store "1" -- "1" Agency : is >
+Company "1" -- "1..*" Agency : has >
+Company "1" -- "1" SystemAdministrator : has >
+SystemAdministrator "1" -- "1" User : is >
+Employee "1" -- "1" User : is >
+Agent "1" -- "1" User : is >
+Owner "1" -- "1" User : is >
+
+@enduml

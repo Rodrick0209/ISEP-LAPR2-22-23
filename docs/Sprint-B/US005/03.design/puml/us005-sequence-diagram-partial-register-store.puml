@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "admin\n:Administrator" as Admin
+participant "store\n:Store" as Store
+
+autonumber 16
+-> Admin: registerStore(id, designation, \nlocation, emailAddress, \ntelephoneNumber)
+
+autonumber 16.1
+activate Admin
+    group Register Store
+
+        Admin -> Store**: register(id, designation,\nlocation, emailAddress, \ntelephoneNumber)
+        Admin -> Admin: addStore(store)
+
+        activate Admin
+            Admin -> Admin: validateStore(store)
+            activate Admin
+                Admin --> Admin
+            deactivate Admin
+
+            Admin --> Admin
+        deactivate Admin
+    end
+
+    autonumber 17
+    <-- Admin : store
+deactivate Admin
+
+
+@enduml

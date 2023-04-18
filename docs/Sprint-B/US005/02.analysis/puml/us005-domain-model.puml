@@ -1,0 +1,36 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+class Store {
+    id
+    designation
+    location
+    emailAddress
+    phoneNumber
+}
+
+class Company {
+    description
+}
+
+class User {
+    name
+    email
+    password
+}
+
+SystemAdministrator "1" -- "1" Company : has >
+SystemAdministrator "1" - "*" Store : registers >
+Store "1..*" -- "1" StoreManager : managed by >
+SystemAdministrator "1" -- "1" User : is >
+StoreManager "1" -- "1" User : is >
+
+@enduml
