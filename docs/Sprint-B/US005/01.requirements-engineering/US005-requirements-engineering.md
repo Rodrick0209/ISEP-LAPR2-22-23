@@ -68,6 +68,12 @@ As a system administrator, I want to register a store.
 	* a phone number,
 	* an e-mail address.
 
+
+* Selected data:
+	* a state,
+    * a district,
+    * a city.
+
 **Output Data:**
 
 * (In)success of the operation

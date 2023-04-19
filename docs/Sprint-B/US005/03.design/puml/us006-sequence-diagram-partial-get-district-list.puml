@@ -7,17 +7,17 @@ autonumber
 
 'hide footbox
 
-participant ":CreateTaskController" as CTRL
+participant ":RegisterStoreController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant "locationRepository:\nLocationRepository" as LocationRepository
 
 autonumber 3
 
- -> CTRL : getTaskCategories()
+ -> CTRL : getDistricts()
 autonumber 3.1
 activate CTRL
-    group Get Task Category List
+    group Get District List
 
 
             CTRL -> RepositorySingleton : getInstance()
@@ -26,22 +26,22 @@ activate CTRL
                 RepositorySingleton --> CTRL: repositories
             deactivate RepositorySingleton
 
-            CTRL -> PLAT : getTaskCategoryRepository()
+            CTRL -> PLAT : getLocationRepository()
             activate PLAT
 
-                PLAT --> CTRL: taskCategoryRepository
+                PLAT --> CTRL: locationRepository
             deactivate PLAT
 
-            CTRL -> TaskCategoryRepository : getTaskCategories()
-            activate TaskCategoryRepository
+            CTRL -> LocationRepository : getDistricts(state)
+            activate LocationRepository
 
-                TaskCategoryRepository --> CTRL : taskCategoryList
-            deactivate TaskCategoryRepository
+                LocationRepository --> CTRL : districtList
+            deactivate LocationRepository
 
 
     end
     autonumber 4
-    <-- CTRL  : taskCategoryList
+    <-- CTRL  : districtList
 deactivate CTRL
 
 

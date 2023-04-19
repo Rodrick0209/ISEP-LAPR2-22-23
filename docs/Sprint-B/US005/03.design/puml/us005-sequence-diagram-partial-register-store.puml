@@ -3,32 +3,32 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant "admin\n:Administrator" as Admin
+participant "company\n:Company" as Company
 participant "store\n:Store" as Store
 
-autonumber 16
--> Admin: registerStore(id, designation, \nlocation, emailAddress, \ntelephoneNumber)
+autonumber 20
+-> Company: registerStore(id, designation, state, district, city, \nportNumber, zipCode, emailAddress, telephoneNumber)
 
-autonumber 16.1
-activate Admin
+autonumber 20.1
+activate Company
     group Register Store
 
-        Admin -> Store**: register(id, designation,\nlocation, emailAddress, \ntelephoneNumber)
-        Admin -> Admin: addStore(store)
+        Company -> Store**: register(id, designation, state, district, \ncity, portNumber, zipCode, \nemailAddress, telephoneNumber)
+            Company -> Company: addStore(store)
+            deactivate Store
+        activate Company
+            Company -> Company: validateStore(store)
+            activate Company
+                Company --> Company
+            deactivate Company
 
-        activate Admin
-            Admin -> Admin: validateStore(store)
-            activate Admin
-                Admin --> Admin
-            deactivate Admin
-
-            Admin --> Admin
-        deactivate Admin
+            Company --> Company
+        deactivate Company
     end
 
-    autonumber 17
-    <-- Admin : store
-deactivate Admin
+    autonumber 21
+    <-- Company : store
+deactivate Company
 
 
 @enduml

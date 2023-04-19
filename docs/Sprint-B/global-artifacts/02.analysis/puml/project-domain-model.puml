@@ -50,7 +50,11 @@ password
 class Store {
     id
     designation
-    location
+    state
+    district
+    city
+    port_number
+    zip_code
     email_address
     phone_number
 }
@@ -108,7 +112,8 @@ Property "1" -- "*" House :  can be >
 Property "1" -- "*" Apartment :  can be >
 Owner "1" -- "1" Agent : selects >
 SystemAdministrator "1" - "*" Store : registers >
-StoreManager "1" -- "1..*" Store : manages >
+StoreManager "1" -- "1" Store : manages >
+StoreNetworkManager "1" -- "*" Store : manages >
 Store "1" -- "1" Agency : is >
 Company "1" -- "1..*" Agency : has >
 Company "1" -- "1" SystemAdministrator : has >
