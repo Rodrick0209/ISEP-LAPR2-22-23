@@ -12,12 +12,12 @@ participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "locationRepository:\nLocationRepository" as LocationRepository
 
-autonumber 3
+autonumber 5
 
- -> CTRL : getDistricts()
-autonumber 3.1
+ -> CTRL : getStates()
+autonumber 5.1
 activate CTRL
-    group Get District List
+    group Get State List
 
 
             CTRL -> RepositorySingleton : getInstance()
@@ -32,16 +32,16 @@ activate CTRL
                 PLAT --> CTRL: locationRepository
             deactivate PLAT
 
-            CTRL -> LocationRepository : getDistricts(state)
+            CTRL -> LocationRepository : getStates()
             activate LocationRepository
 
-                LocationRepository --> CTRL : districtList
+                LocationRepository --> CTRL : stateList
             deactivate LocationRepository
 
 
     end
-    autonumber 4
-    <-- CTRL  : districtList
+    autonumber 6
+    <-- CTRL  : stateList
 deactivate CTRL
 
 

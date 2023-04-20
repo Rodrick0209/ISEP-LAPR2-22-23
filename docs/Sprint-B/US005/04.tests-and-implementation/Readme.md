@@ -6,7 +6,7 @@
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
+		Store instance = new Store(null, null, null, null, null, null, null);
 	}
 	
 
@@ -14,9 +14,8 @@
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
 		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
+		Store instance = new Store("15030", "Store Designation", "Alaska", "Anchorage School", "Anchorage", 294, 56729, "457-9384");
 	}
 
 
@@ -28,7 +27,7 @@
 ## Class CreateTaskController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription,
+public Store createStore(int id, String designation, String informalDescription,
 								 String technicalDescription, Integer duration, Double cost,
 								 String taskCategoryDescription) {
 

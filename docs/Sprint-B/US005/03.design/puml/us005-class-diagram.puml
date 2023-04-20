@@ -18,19 +18,13 @@ class Store {
     - String emailAddress
     - String phoneNumber
 
-    + Store(id, designation, state, district,\ncity, emailAddress, telephoneNumber)
-}
-
-class TaskCategory {
-    - String description
-
-    + TaskCategory(description)
+    + store(id, designation, state, district,\ncity, emailAddress, telephoneNumber)
 }
 
 class Company {
     - addStore(store)
     - validateStore(store)
-    + registerStore(id, designation, state, district,\ncity, emailAddress, telephoneNumber)
+    + registerStore(id, designation, state, district,city, \nportNumber, zipCode, emailAddress, telephoneNumber)
 
 '  +saveStore(store)
 }
@@ -38,15 +32,11 @@ class Company {
 class LocationRepository {
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
-}
 
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
-    + getTaskCategoryRepository()
-    + getOrganizationRepository()
+    + getLocationRepository()
 }
 
 class RegisterStoreController {
@@ -54,52 +44,30 @@ class RegisterStoreController {
     + getStates()
     + getDistricts(state)
     + getCities(state, district)
-    + createTask(userEmail, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, categoryDescription)
-    - getTaskCategoryByDescription(taskCategoryDescription)
-    - getEmployeeFromSession()
+    + registerStore(id, designation, \nstate, district, city, portNumber, \nzipCode, emailAddres, phoneNumber )
 }
 
-note right of RegisterStoreController
-    - userEmail is obtained
-    from the user session
-    - categoryDescription
-    is retrieved from selected data
-end note
 
 note bottom of LocationRepository
     - used for displaying
-    the category list
+    the state, district
+    and city lists
 end note
 
-class CreateTaskUI {
-}
 
 Repositories -> Repositories : instance
-ApplicationSession -> ApplicationSession : instance
 
-CreateTaskUI .> RegisterStoreController
+RegisterStoreUI .> RegisterStoreController
 
 RegisterStoreController .> Repositories : repositories
 
 Repositories -> "1" LocationRepository
 
-RegisterStoreController ..> TaskCategory
-RegisterStoreController ..> OrganizationRepository : organizationRepository
 RegisterStoreController ..> LocationRepository : LocationRepository
 
-Repositories --> "1" OrganizationRepository
 
-OrganizationRepository --> "*" Company
-ApplicationSession --> "1" UserSession : userSession
+RegisterStoreController ..> "1" Company : company
+Company "1" --> "*" Store : has
 
-RegisterStoreController ..> "1" Company : organization
-RegisterStoreController ..> ApplicationSession
-RegisterStoreController ..> UserSession
-Store "*" --> "1" TaskCategory : taskCategory
-LocationRepository "1" --> "*" TaskCategory : taskCategory
-Company "1" --> "*" Store : tasks
-Store --> Employee : createdBy
-
-Company --> "*" Employee : employs
 
 @enduml
