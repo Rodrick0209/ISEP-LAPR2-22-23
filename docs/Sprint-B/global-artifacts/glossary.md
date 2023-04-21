@@ -22,7 +22,7 @@
 | **Store Network Manager** | Employee who runs daily analysis of the performance of each one of the company's branches and the global behavior of the network.                                                         |
 | **System Administrator**  | The one responsible for registering all employees and branches of the network and preparing the system in order to facilitate the insertion of advertisements and use of the application. |
 | **Tax Number**            | A form of personal identification that is essential for purchasing goods or services, entering into contracts, opening bank accounts, etc.                                                |
-| **Zip Code**              |                                                                                                                                                                                           
+| **Zip Code**              | A postal code that indicates your property location consisting of five or nine digits.                                                                                                    |                                    
 
 
 
