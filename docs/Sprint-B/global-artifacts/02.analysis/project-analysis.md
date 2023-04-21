@@ -149,25 +149,25 @@ An association is a relationship between instances of objects that indicates a r
 
 
 
-| Concept (A) 		         |   Association   	   |         Concept (B) |
-|------------------------|:-------------------:|--------------------:|
-| System Administrator  	 |     Creates   	     |            Employee |
-| Employee Role          |  Contained in   	   |            Employee |
-| Employee               |   Works for    	    |              Agency |
-| Company                |      Contains       |              Agency |
-| System Administrator   |       Manages       |             Company |
-| Owner                  |        Owns         |            Property |
-| Owner                  |       Selects       |               Agent |
-| Agent                  |      Works for      |              Agency |
-| House                  | Is a description of |            Property |
-| Apartment              | Is a description of |            Property |
-| Agent                  |       Creates       |        Announcement |
-| System Administrator   |       Creates       |               Store |
-| Store Manager          |       Manages       |               Store |
-| Property               |    Contained in     | Property Controller |
-| Unregisted User        |      Requests       | Property Controller |
-| Property Controller    |      Requests       |            Database |
-| Database               |        Uses         | Property Controller |
+| Concept (A) 		          |   Association   	   | Concept (B)         |
+|-------------------------|:-------------------:|---------------------|
+| System Administrator  	 |     Creates   	     | Employee            |
+| Employee Role           |  Contained in   	   | Employee            |
+| Employee                |   Works for    	    | Agency              |
+| Company                 |      Contains       | Agency              |
+| System Administrator    |       Manages       | Company             |
+| Owner                   |        Owns         | Property            |
+| Owner                   |       Selects       | Agent               |
+| Agent                   |      Works for      | Agency              |
+| House                   | Is a description of | Property            |
+| Apartment               | Is a description of | Property            |
+| Agent                   |       Creates       | Announcement        |
+| System Administrator    |       Creates       | Store               |
+| Store Manager           |       Manages       | Store               |
+| Property                |    Contained in     | Property Controller |
+| Unregisted User         |      Requests       | Property Controller |
+| Property Controller     |      Requests       | Database            |
+| Database                |        Uses         | Property Controller |
 
 
 
