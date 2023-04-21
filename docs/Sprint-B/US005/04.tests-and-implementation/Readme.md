@@ -24,22 +24,18 @@
 # 5. Construction (Implementation)
 
 
-## Class CreateTaskController 
+## Class RegisterStoreController 
 
 ```java
-public Store createStore(int id, String designation, String informalDescription,
-								 String technicalDescription, Integer duration, Double cost,
-								 String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, 
-			duration, cost,taskCategory, employee);
+public Store registerStore(int id, String designation, String location, String emailAddress,
+                            String telephoneNumber, Organization organization)	        
+        {
     
-	return newTask;
+	Organization organization = getOrganizationRepository().getOrganizationByDescription(description);
+
+	newStore = organization.register(id, designation, location, emailAddress, telephoneNumber, organization)
+    
+	return newStore;
 }
 ```
 

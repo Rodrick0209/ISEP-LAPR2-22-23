@@ -20,72 +20,28 @@ activate ADM
         UI --> ADM: requests data
         deactivate UI
 
-    ADM -> UI : types requested data (id, designation, \nport number, zip code, e-mail address, \nand contact telephone number)
-        activate UI
-
-UI -> CTRL : getStates()
-        ref over CTRL
-            Get State List
-
-
-          end ref
-
-
-        activate CTRL
-
-            CTRL --> UI : stateList
-            deactivate CTRL
-            UI --> ADM : shows state list
+    ADM -> UI : types requested data (id, designation, location, \nemail address and contact telephone number)
+    activate UI
+        UI --> ADM : shows typed data
         deactivate UI
-
-    ADM -> UI : selects state
-    activate UI
-
-    UI -> CTRL : getDistricts(state)
-            ref over CTRL
-                Get District List
-
-
-              end ref
-
-
-            activate CTRL
-
-                CTRL --> UI : districtList
-                deactivate CTRL
-                UI --> ADM : shows district list
-            deactivate UI
-    ADM -> UI: selects district
-    activate UI
-
-    UI -> CTRL : getCities(state, district)
-         ref over CTRL
-                        Get City List
-
-
-                      end ref
-
-
-                    activate CTRL
-
-                        CTRL --> UI : cityList
-                        deactivate CTRL
-                        UI --> ADM : shows city list
-                    deactivate UI
-    ADM -> UI: selects city
-    activate UI
-
-        UI --> ADM : shows data
-    deactivate UI
 
     ADM -> UI : submits data
     activate UI
 
-        UI -> CTRL : registerStore(id, designation, state, district, city, \nportNumber, zipCode, emailAddress, telephoneNumber)
+        UI -> CTRL : registerStore(id, designation, location, emailAddress, \ntelephoneNumber, organizationDescription)
         activate CTRL
 
+            CTRL -> CTRL: getAdministratorFromSession()
+            activate CTRL
 
-            CTRL -> Company: registerStore(id, designation, state, district, city, \nportNumber, zipCode, emailAddress, telephoneNumber)
+                ref over CTRL
+                    Get Administrator
+
+                end
+            CTRL --> CTRL: administrator
+            deactivate CTRL
+
+            CTRL -> Company: registerStore(id, designation, location, \nemailAddress, telephoneNumber, administrator)
             activate Company
 
                 ref over Company

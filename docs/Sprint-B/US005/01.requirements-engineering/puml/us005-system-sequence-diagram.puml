@@ -18,29 +18,16 @@ activate Administrator
         System --> Administrator : requests data
         deactivate System
 
-    Administrator -> System : types requested data (id, designation, \ne-mail address, \ncontact telephone number), \nport number and zip code)
+    Administrator -> System : types requested data (id, designation, \nlocation, e-mail address and \ncontact telephone number)
     activate System
-        System --> Administrator: shows state list
-        deactivate System
-
-    Administrator -> System: selects state
-    activate System
-        System --> Administrator: shows district list
-        deactivate System
-
-    Administrator -> System: selects district
-    activate System
-        System --> Administrator: shows city list
-        deactivate System
-
-    Administrator -> System: selects city
-    activate System
-        System --> Administrator: shows data
+        System --> Administrator: shows typed data
         deactivate System
 
     Administrator -> System : submits data
     activate System
         System --> Administrator : Shows operation success
         deactivate System
+
+deactivate Administrator
 
 @enduml

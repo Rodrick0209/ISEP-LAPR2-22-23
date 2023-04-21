@@ -9,65 +9,79 @@ skinparam classAttributeIconSize 0
 
 'left to right direction
 
+class ApplicationSession
+{
+    + static getInstance()
+    + getCurrentSession()
+}
+
+class UserSession
+{
+    + getUserEmail()
+}
 
 class Store {
     - Integer id
     - String designation
-    - Integer portNumber
-    - Integer zipCode
+    - String location
     - String emailAddress
     - String phoneNumber
 
-    + store(id, designation, state, district,\ncity, emailAddress, telephoneNumber)
+    + Store(id, designation, \nlocation, emailAddress, \nphoneNumber, registeredBy)
 }
 
 class Company {
+    - String description
     - addStore(store)
     - validateStore(store)
-    + registerStore(id, designation, state, district,city, \nportNumber, zipCode, emailAddress, telephoneNumber)
-
-'  +saveStore(store)
+    + registerStore(id, designation, location, \nemailAddress, phoneNumber)
+    '+ saveStore(store)
+    + Company(description)
+    - getAdministratorByEmail(email)
 }
-
-class LocationRepository {
-}
-
 
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
-    + getLocationRepository()
+    + getCompanyRepository()
 }
 
 class RegisterStoreController {
-    + RegisterStoreController(locationRepository)
-    + getStates()
-    + getDistricts(state)
-    + getCities(state, district)
-    + registerStore(id, designation, \nstate, district, city, portNumber, \nzipCode, emailAddres, phoneNumber )
+    + RegisterStoreController(companyRepository)
+    + registerStore(id, designation, location, \nemailAddress, phoneNumber)
+    - getAdministratorFromSession()
 }
 
+class CompanyRepository{
+    +getCompanyByUserEmail(email)
+}
 
-note bottom of LocationRepository
-    - used for displaying
-    the state, district
-    and city lists
-end note
-
+class Administrator{
+-name
+-email
+-password
+}
 
 Repositories -> Repositories : instance
+ApplicationSession -> ApplicationSession : instance
 
 RegisterStoreUI .> RegisterStoreController
 
 RegisterStoreController .> Repositories : repositories
 
-Repositories -> "1" LocationRepository
+Repositories -> "1" CompanyRepository
 
-RegisterStoreController ..> LocationRepository : LocationRepository
-
+RegisterStoreController ..> CompanyRepository : companyRepository
+CompanyRepository "1" --> "*" Company : company
+ApplicationSession --> "1" UserSession : userSession
 
 RegisterStoreController ..> "1" Company : company
+RegisterStoreController ..> ApplicationSession
+RegisterStoreController ..> UserSession
+Store --> Administrator : registeredBy
 Company "1" --> "*" Store : has
+Administrator "1" --> "*" Company : administrates
+
 
 
 @enduml
