@@ -1,8 +1,8 @@
-# US 006 - To create a Task 
+# US 005 - To register a store
 
 # 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Store class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
@@ -10,12 +10,12 @@
 	}
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Check that it is not possible to create an instance of the Store class with a designation containing more than forty chars - AC1. 
 
 	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
+		public void ensureReferenceMeetsAC1() {
 		
-		Store instance = new Store("15030", "Store Designation", "Alaska", "Anchorage School", "Anchorage", 294, 56729, "457-9384");
+		Store instance = new Store("15030", "Store Desgnation Company Made by System Administrator", "Alaska", "Anchorage School", "71 Bourbon Street, EAST Seattle", "abcd@isep.ipp.pt", "457-9384");
 	}
 
 
@@ -27,33 +27,27 @@
 ## Class RegisterStoreController 
 
 ```java
-public Store registerStore(int id, String designation, String location, String emailAddress,
-                            String telephoneNumber, Organization organization)	        
-        {
-    
-	Organization organization = getOrganizationRepository().getOrganizationByDescription(description);
+public Company registerStore(int id, String designation, String location, String emailAddress, String phoneNumber) {
+        Administrator administrator = getAdministratorFromSession();
+        Company company = getCompanyRepository().getCompanyByAdministrator(administrator);
 
-	newStore = organization.register(id, designation, location, emailAddress, telephoneNumber, organization)
-    
-	return newStore;
-}
+        newStore = company.registerStore(id, designation, location, emailAddress, phoneNumber, administrator);
+
+        return newStore;
+        }
 ```
 
 
-## Class Organization
+## Class Company
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                     String technicalDescription, Integer duration, Double cost,
-                                     TaskCategory taskCategory, Employee employee) {
-    
-        Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                taskCategory, employee);
+public Optional<Store> registerStore (Integer id, String designation, String location, String emailAddress, String phoneNumber, Administrator administrator){
+        Store store = new Store(id, designation, location, emailAddress, phoneNumber, administrator);
 
-        addTask(task);
-        
-        return task;
-    }
+        addStore(store);
+
+        return store;
+        }
 ```
 
 # 6. Integration and Demo 
