@@ -1,0 +1,280 @@
+    @startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Owner" as ADM
+participant ":CreateRequestUI" as UI
+participant ":CreateRequestController" as CTRL
+participant ":Repositories" as Rep
+participant "repositories\n:Repositories" as PLAT
+participant "RequestTypeRepository:\nRequestTypeRepository" as TaskCategoryRepository
+participant "PropertyTypeRepository" as ProType
+participant "branch: \nBranch" as Br
+participant "branchRepository:\nBranchRepository" as BrRep
+participant "request: \nRequest" as Req
+participant "property: \nProperty" as Prop
+participant "Agent:\nAgent" as Agent
+participant "agentList:\nAgentList" as AgList
+participant "apartment:\nApartment" as Apart
+participant "house:\nHouse" as House
+participant "photographList" as PhotoList
+
+
+activate ADM
+
+        ADM -> UI : asks to create a new request
+
+        activate UI
+
+'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+            'create CTRL
+            UI -> CTRL** : create
+
+            UI -> CTRL : getRequestCategories()
+            activate CTRL
+
+                CTRL -> Rep : getInstance()
+                activate Rep
+
+                    Rep --> CTRL: repositories
+                deactivate Rep
+
+                CTRL -> PLAT : getRequestCategoryRepository()
+                activate PLAT
+
+                    PLAT --> CTRL: requestCategoryRepository
+                deactivate PLAT
+
+                CTRL -> TaskCategoryRepository : getRequestCategories()
+                activate TaskCategoryRepository
+
+                    TaskCategoryRepository --> CTRL : requestCategoryList
+                deactivate TaskCategoryRepository
+
+                CTRL --> UI : requestCategoryList
+            deactivate CTRL
+
+            UI --> ADM : shows type of request list
+        deactivate UI
+
+    ADM -> UI : selects a type of property
+    activate UI
+
+    UI -> CTRL : create a request type
+        activate CTRL
+
+    CTRL --> Br : create a request type
+    activate Br
+
+    Br -> Req : create
+    activate Req
+
+    Req --> Br : request
+    deactivate Req
+
+    Br -> Br : add Request
+
+    deactivate Br
+
+
+    UI -> CTRL : get a property type
+
+    CTRL -> Rep : get Instance
+    activate Rep
+
+    Rep --> CTRL: repositories
+    deactivate Rep
+
+    CTRL -> PLAT : Get Property- Type repository
+    activate PLAT
+
+    PLAT --> CTRL : PropertyTypeRepository
+    deactivate PLAT
+
+    CTRL -> ProType :get property type
+    activate ProType
+
+    ProType --> CTRL : Property Type
+    deactivate ProType
+
+    CTRL --> UI : propert Type List
+    deactivate CTRL
+
+        UI --> ADM : shows list of property type
+    deactivate Br
+    deactivate UI
+
+    ADM -> UI : selects type of property
+    activate UI
+
+        UI -> CTRL : create propertyb
+        activate CTRL
+
+        CTRL --> Req :selects Property Type
+        activate Req
+        deactivate Req
+        deactivate CTRL
+
+
+
+        UI --> ADM : request data( the area in m2, the location, the distance from the city centre)
+    deactivate UI
+
+    ADM -> UI : type request
+    activate UI
+
+        UI -> CTRL : create property( area, location, distance of center, photograph)
+
+        CTRL -> Req : create property( area, location, distance of center, photograph)
+    activate Req
+
+    Req -> Prop : create
+    activate Prop
+
+    Prop -> Req:  property
+    Req -> Req :add property
+    deactivate Prop
+    deactivate Req
+
+    UI --> ADM :  request data (photograph)
+    deactivate UI
+
+    ADM -> UI : type request data
+    activate UI
+
+    UI -> CTRL : create Photograph
+
+
+
+            CTRL -> Prop: creates Photograph
+    loop 1 photo or more and less than 30
+
+    activate Prop
+
+
+    Prop -> PhotoList :  add photograph to PhotoList
+    activate PhotoList
+    deactivate Prop
+    deactivate PhotoList
+    end
+
+    alt Request ia a Land
+    UI-->ADM : request data (contract duration)
+    deactivate UI
+
+    ADM -> UI :
+    activate UI
+    UI-> CTRL :
+    activate CTRL
+    CTRL -> Req : set contract duration
+    deactivate CTRL
+
+    alt Property Apartment or House
+
+        UI--> ADM : request data(number od bedrooms, number\nof bathrooms, number of parking \nspaces and available equipment)
+     deactivate UI
+
+     ADM -> UI : type request all data
+     activate UI
+     UI-> CTRL : create Apartment(bedromoms, bathrooms, parking spaces and equipment)
+     activate CTRL
+     CTRL -> Req : create Apartment(bedromoms, bathrooms, parking spaces and equipment)
+     activate Req
+    deactivate CTRL
+
+    Req -> Apart : create
+    activate Apart
+    Apart --> Req : apartment
+    deactivate Apart
+    Req-> Req : add Property(apartment)
+     deactivate Req
+
+
+    alt Property is a House
+    UI --> ADM : request data (e existence of a basement, an inhabitable loft, and sun exposure)
+    deactivate UI
+    ADM-> UI : submits data
+    activate UI
+    UI-> CTRL : create house (e existence of a basement, an inhabitable loft, and sun exposure)
+    activate CTRL
+    CTRL -> Req : create house (e existence of a basement, an inhabitable loft, and sun exposure)
+    activate Req
+    Req -> House : create
+    activate House
+    House --> Req:
+    deactivate House
+    Req -> Req :add Property (house)
+    deactivate Req
+    deactivate CTRL
+    end
+    end
+
+
+    UI -> CTRL : get Branch
+    activate CTRL
+    CTRL-> Rep : get Instance
+    activate Rep
+    Rep --> CTRL :repositories
+    deactivate Rep
+
+    CTRL -> PLAT : get Branch
+    activate PLAT
+    PLAT--> CTRL : branch Repositories
+    deactivate PLAT
+    CTRL -> BrRep : get Branch List
+    activate BrRep
+    BrRep -> CTRL : branch list
+    deactivate BrRep
+    CTRL --> UI : branch list
+ deactivate CTRL
+ UI --> ADM : shows branch list
+
+ deactivate UI
+
+    ADM -> UI : selects branch
+    activate UI
+    UI --> Br : get Agent List(colect Branch)
+    activate Br
+    loop For each employee
+    Br-> Agent : has an agent
+    alt true
+    Br-> AgList :add agent to the list
+    activate AgList
+    AgList --> Br : agent list
+    deactivate AgList
+    end
+    end
+    Br --> CTRL : Agent List
+    deactivate Br
+    CTRL --> UI : agent List
+    UI --> ADM : shows agent List
+    deactivate UI
+    ADM -> UI : selects agent
+    activate UI
+    UI --> ADM : shows all the data related to the request
+    deactivate UI
+    ADM -> UI : submits data
+    activate UI
+    UI -> CTRL : set date
+    activate CTRL
+    deactivate CTRL
+    CTRL -> Req : set date(current date)
+    activate Req
+    deactivate Req
+    UI -> CTRL : set state
+    activate CTRL
+    deactivate CTRL
+    CTRL -> Req : set state (current state)
+    activate Req
+    deactivate Req
+    UI --> ADM : display operation
+    deactivate UI
+    deactivate ADM
+
+
+
+@enduml
