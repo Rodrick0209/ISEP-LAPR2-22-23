@@ -30,10 +30,6 @@ activate ADM
 
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
-
             UI -> CTRL : getRequestCategories()
             activate CTRL
 
@@ -49,10 +45,10 @@ activate ADM
                     PLAT --> CTRL: requestCategoryRepository
                 deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : getRequestCategories()
+                CTRL -> TaskCategoryRepository : getRequestTypeRepository()
                 activate TaskCategoryRepository
 
-                    TaskCategoryRepository --> CTRL : requestCategoryList
+                    TaskCategoryRepository --> CTRL : requestTypeList
                 deactivate TaskCategoryRepository
 
                 CTRL --> UI : requestCategoryList
@@ -70,7 +66,7 @@ activate ADM
     CTRL --> Br : create a request type
     activate Br
 
-    Br -> Req : create
+    Br -> Req** : create
     activate Req
 
     Req --> Br : request
@@ -111,7 +107,7 @@ activate ADM
     ADM -> UI : selects type of property
     activate UI
 
-        UI -> CTRL : create propertyb
+        UI -> CTRL : create property
         activate CTRL
 
         CTRL --> Req :selects Property Type
@@ -132,7 +128,7 @@ activate ADM
         CTRL -> Req : create property( area, location, distance of center, photograph)
     activate Req
 
-    Req -> Prop : create
+    Req -> Prop**: create
     activate Prop
 
     Prop -> Req:  property
@@ -162,18 +158,20 @@ activate ADM
     deactivate PhotoList
     end
 
-    alt Request ia a Land
+    opt Request ia a Land
     UI-->ADM : request data (contract duration)
     deactivate UI
 
-    ADM -> UI :
+    opt Rent a Property
+    ADM -> UI : type requested data
     activate UI
-    UI-> CTRL :
+    UI-> CTRL : set Contract Duration and price
     activate CTRL
-    CTRL -> Req : set contract duration
+    CTRL -> Req : set contract duration and price
     deactivate CTRL
+    end
 
-    alt Property Apartment or House
+    opt Property Apartment or House
 
         UI--> ADM : request data(number od bedrooms, number\nof bathrooms, number of parking \nspaces and available equipment)
      deactivate UI
@@ -186,7 +184,7 @@ activate ADM
      activate Req
     deactivate CTRL
 
-    Req -> Apart : create
+    Req -> Apart** : create
     activate Apart
     Apart --> Req : apartment
     deactivate Apart
@@ -194,7 +192,7 @@ activate ADM
      deactivate Req
 
 
-    alt Property is a House
+    opt Property is a House
     UI --> ADM : request data (e existence of a basement, an inhabitable loft, and sun exposure)
     deactivate UI
     ADM-> UI : submits data
@@ -203,7 +201,7 @@ activate ADM
     activate CTRL
     CTRL -> Req : create house (e existence of a basement, an inhabitable loft, and sun exposure)
     activate Req
-    Req -> House : create
+    Req -> House** : create
     activate House
     House --> Req:
     deactivate House
@@ -241,6 +239,9 @@ activate ADM
     activate Br
     loop For each employee
     Br-> Agent : has an agent
+    activate Agent
+    Agent --> Br : true / false
+    deactivate Agent
     alt true
     Br-> AgList :add agent to the list
     activate AgList

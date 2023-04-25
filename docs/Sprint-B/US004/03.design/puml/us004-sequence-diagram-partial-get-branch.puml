@@ -1,0 +1,29 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":CreateRequestUI" as UI
+participant ":CreateTaskController" as CTRL
+participant ":Repositories" as Rep
+participant "repositories\n:Repositories" as PLAT
+participant "branchRepository:\nBranchRepository" as BrRep
+
+UI -> CTRL : get Branch
+    activate CTRL
+    CTRL-> Rep : get Instance
+    activate Rep
+    Rep --> CTRL :repositories
+    deactivate Rep
+
+    CTRL -> PLAT : get Branch
+    activate PLAT
+    PLAT--> CTRL : branch Repositories
+    deactivate PLAT
+    CTRL -> BrRep : get Branch List
+    activate BrRep
+    BrRep --> CTRL : branch list
+    deactivate BrRep
+    CTRL --> UI : branch list
+
+@enduml
