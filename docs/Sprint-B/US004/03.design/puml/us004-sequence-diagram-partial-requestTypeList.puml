@@ -9,7 +9,7 @@ participant ":Repositories" as Rep
 participant "repositories\n:Repositories" as PLAT
 participant "RequestTypeRepository:\nRequestTypeRepository" as TaskCategoryRepository
 
-
+autonumber 3
 CTRL -> Rep : getInstance()
                 activate Rep
 
