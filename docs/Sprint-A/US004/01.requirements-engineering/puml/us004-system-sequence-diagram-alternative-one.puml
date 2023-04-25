@@ -32,6 +32,11 @@ activate Employee
         System --> Employee : request data
     deactivate System
 
+
+alt Property
+
+   Employee -> System : the area in m2, the location,\nthe distance from the city centre, the\nrequested price and one or more photographs
+    activate System
 alt House or apartment
 
     Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces \n and the avaiable equipment) and the existence \n of a central heating and/or air conditioning
@@ -39,7 +44,7 @@ alt House or apartment
 
 alt only house
 
-      activate System
+
 
             System --> Employee : shows basement options
       deactivate System
@@ -58,6 +63,7 @@ alt only house
             System --> Employee :shows sun exposure list
 
       Employee -> System :selects option
+end
 end
 end
 
