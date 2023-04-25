@@ -1,19 +1,15 @@
 package pt.ipp.isep.dei.esoft.project.ui;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
-import pt.ipp.isep.dei.esoft.project.domain.Organization;
-import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.OrganizationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
+import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 
 public class Bootstrap implements Runnable {
 
     //Add some task categories to the repository as bootstrap
     public void run() {
-        addTaskCategories();
+        addRoles();
+        addAgencies();
         addOrganization();
         addUsers();
     }
@@ -23,23 +19,27 @@ public class Bootstrap implements Runnable {
         //get organization repository
         OrganizationRepository organizationRepository = Repositories.getInstance().getOrganizationRepository();
         Organization organization = new Organization("This Company");
-        organization.addEmployee(new Employee("admin@this.app"));
-        organization.addEmployee(new Employee("employee@this.app"));
         organizationRepository.add(organization);
     }
 
-    private void addTaskCategories() {
-        //TODO: add bootstrap Task Categories here
+    private void addAgencies() {
+        //TODO: add bootstrap Agencies here
 
-        //get task category repository
-        TaskCategoryRepository taskCategoryRepository = Repositories.getInstance().getTaskCategoryRepository();
-        taskCategoryRepository.add(new TaskCategory("Analysis"));
-        taskCategoryRepository.add(new TaskCategory("Design"));
-        taskCategoryRepository.add(new TaskCategory("Implementation"));
-        taskCategoryRepository.add(new TaskCategory("Development"));
-        taskCategoryRepository.add(new TaskCategory("Testing"));
-        taskCategoryRepository.add(new TaskCategory("Deployment"));
-        taskCategoryRepository.add(new TaskCategory("Maintenance"));
+        //get agency repository
+        AgencyRepository agencyRepository = Repositories.getInstance().getAgencyRepository();
+        agencyRepository.add(new Agency("Agency1"));
+        agencyRepository.add(new Agency("Agency2"));
+        agencyRepository.add(new Agency("Agency3"));
+    }
+
+    private void addRoles() {
+        //TODO: add bootstrap Roles here
+
+        //get agency repository
+        RoleRepository roleRepository = Repositories.getInstance().getRoleRepository();
+        roleRepository.add(new Role("Role1"));
+        roleRepository.add(new Role("Role2"));
+        roleRepository.add(new Role("Role3"));
     }
 
     private void addUsers() {

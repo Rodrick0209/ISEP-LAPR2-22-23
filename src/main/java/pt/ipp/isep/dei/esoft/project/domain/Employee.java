@@ -3,16 +3,27 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 public class Employee {
+    private final String name;
     private final String email;
-    private String name;
-    private String position;
-    private String phone;
+    private final int ccNumber;
+    private final int taxNumber;
+    private final String address;
+    private final Role role;
+    private final Agency agency;
+    private final Administrator administrator;
 
-    public Employee(String email) {
+
+    public Employee(String name, String email, int ccNumber, int taxNumber, String address, Role role, Agency agency, Administrator administrator){
+        this.name = name;
         this.email = email;
+        this.ccNumber = ccNumber;
+        this.taxNumber = taxNumber;
+        this.address = address;
+        this.role = role;
+        this.agency = agency;
+        this.administrator = administrator;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -21,25 +32,14 @@ public class Employee {
             return false;
         }
         Employee employee = (Employee) o;
-        return email.equals(employee.email);
+        return administrator.equals(employee.administrator);
     }
 
-    @Override
     public int hashCode() {
-        return Objects.hash(email);
+        return Objects.hash(administrator);
     }
 
-    public boolean hasEmail(String email) {
-        return this.email.equals(email);
-    }
-
-
-    /**
-     * Clone method.
-     *
-     * @return A clone of the current instance.
-     */
     public Employee clone() {
-        return new Employee(this.email);
+        return new Employee(this.name, this.email, this.ccNumber, this.taxNumber, this.address, this.role, this.agency, this.administrator);
     }
 }
