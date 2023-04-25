@@ -33,16 +33,20 @@ activate Employee
     deactivate System
 
 
-alt Property
+opt Property (land or house or apartment)
 
    Employee -> System : the area in m2, the location,\nthe distance from the city centre, the\nrequested price and one or more photographs
     activate System
-alt House or apartment
+
+    loop photos
+    Employee -> System : add photos to the list(more than one and less than 30)
+    end
+opt House or apartment
 
     Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces \n and the avaiable equipment) and the existence \n of a central heating and/or air conditioning
 
 
-alt only house
+opt only house
 
 
 
@@ -50,6 +54,8 @@ alt only house
       deactivate System
 
       Employee -> System : selects option
+
+
 
       activate System
 
@@ -77,10 +83,25 @@ end
      activate System
 
         System --> Employee : shows all the data related to the request
+
+
+
+     alt rent a property
+        System --> Employee : asks for the contract duration and the price (per month))
      deactivate System
+        Employee -> System : submits data
+        activate System
+     else       sell a property
+        System --> Employee : asks for property price
+        deactivate System
+        Employee -> System : submits data
+        activate System
 
+     end
+
+     System --> Employee: shows requested data
+     deactivate System
      Employee -> System : confirm data
-
      activate System
 
             System --> Employee : display operation sucess
