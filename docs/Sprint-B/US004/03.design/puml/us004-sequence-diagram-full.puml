@@ -165,9 +165,9 @@ activate ADM
     opt Rent a Property
     ADM -> UI : type requested data
     activate UI
-    UI-> CTRL : set Contract Duration
+    UI-> CTRL : set Contract Duration and price
     activate CTRL
-    CTRL -> Req : set contract duration
+    CTRL -> Req : set contract duration and price
     deactivate CTRL
     end
 
