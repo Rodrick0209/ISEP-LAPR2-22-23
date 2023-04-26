@@ -10,6 +10,7 @@ participant "repositories\n:Repositories" as PLAT
 participant "RequestTypeRepository:\nRequestTypeRepository" as TaskCategoryRepository
 
 autonumber 3
+activate CTRL
 CTRL -> Rep : getInstance()
                 activate Rep
 

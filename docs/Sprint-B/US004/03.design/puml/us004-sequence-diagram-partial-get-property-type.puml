@@ -13,9 +13,12 @@ participant "repositories\n:Repositories" as PLAT
 participant "PropertyTypeRepository" as ProType
 
 autonumber 17
+activate UI
 UI -> CTRL : get a property type
 
+activate CTRL
     CTRL -> Rep : get Instance
+
     activate Rep
 
     Rep --> CTRL: repositories
