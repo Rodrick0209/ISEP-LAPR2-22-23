@@ -9,6 +9,7 @@ participant ":Repositories" as Rep
 participant "repositories\n:Repositories" as PLAT
 participant "branchRepository:\nBranchRepository" as BrRep
 
+activate UI
 UI -> CTRL : get Branch
     activate CTRL
     CTRL-> Rep : get Instance
@@ -24,6 +25,6 @@ UI -> CTRL : get Branch
     activate BrRep
     BrRep --> CTRL : branch list
     deactivate BrRep
-    CTRL --> UI : branch list
-
+     CTRL --> UI : branch list
+    deactivate CTRL
 @enduml
