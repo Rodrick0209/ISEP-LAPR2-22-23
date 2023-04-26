@@ -1,0 +1,107 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class ApplicationSession
+{
+    + static getInstance()
+    + getCurrentSession()
+}
+
+class UserSession
+{
+    + getUserEmail()
+}
+
+class Agent {
+    - email
+}
+
+class Announcement {
+    - String description
+    - Integer commission
+
+    + Announcement(property, description, commission, createdAndPublishedBy)
+}
+
+class Property {
+    - String description
+
+    + Property(description)
+}
+
+class Organization {
+    - String description
+
+    - addAnnouncement(announcement)
+    - validateAnnouncement(announcement)
+    + anyAgentHasEmail(email)
+    + Organization(description)
+    + createAnnouncement(property, description, commission, agent)
+    - getAgentByEmail(email)
+
+'  +saveAnnouncement(announcement)
+}
+
+class PropertyRepository {
+    + getPropertyByLocation(location)
+}
+
+class OrganizationRepository {
+    + getOrganizationByAgentEmail(email)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getPropertyRepository()
+    + getOrganizationRepository()
+}
+
+class CreateAnnouncementController {
+    + CreateAnnouncementController(organizationRepository, propertyRepository)
+    + getProperties()
+    + createAnnouncement(propertyLocation, description, commission)
+    - getPropertyByLocation(propertyLocation)
+    - getAgentFromSession()
+}
+
+class CreateAnnouncementUI {
+}
+
+Repositories -> Repositories : instance
+ApplicationSession -> ApplicationSession : instance
+
+CreateAnnouncementUI .> CreateAnnouncementController
+
+CreateAnnouncementController .> Repositories : repositories
+
+
+CreateAnnouncementController .> Property
+CreateAnnouncementController ..> OrganizationRepository : OrganizationRepository
+CreateAnnouncementController ..> PropertyRepository : PropertyRepository
+
+Repositories -> "1" OrganizationRepository
+Repositories -> "1" PropertyRepository
+
+OrganizationRepository --> "*" Organization
+ApplicationSession --> "1" UserSession : userSession
+
+CreateAnnouncementController ..> "1" Organization : organization
+CreateAnnouncementController ..> ApplicationSession
+CreateAnnouncementController ..> UserSession
+Announcement "*" --> "1" Property : property
+PropertyRepository "1" --> "*" Property : property
+Organization "1" --> "*" Announcement : creates and publishes
+Announcement --> Agent : createdAndPublishedBy
+
+Organization --> "*" Agent : employs
+
+@enduml

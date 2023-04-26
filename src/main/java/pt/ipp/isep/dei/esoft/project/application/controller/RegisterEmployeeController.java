@@ -79,8 +79,8 @@ public class RegisterEmployeeController {
         return new Administrator(email.getEmail());
     }
 
-    private Agency getAgencyByName(String agencyName){
-        return getAgencyRepository().getAgencyByName(agencyName);
+    private Agency getAgencyByName(int agencyID){
+        return getAgencyRepository().getAgencyByID(agencyID);
     }
 
     private Role getRoleByName(String roleName){

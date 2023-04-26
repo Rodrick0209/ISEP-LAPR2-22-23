@@ -11,6 +11,11 @@ public class OrganizationRepository {
 
     List<Organization> organizations = new ArrayList<>();
 
+    /**
+     *
+     * @param administrator administrator of organization
+     * @return organization
+     */
     public Optional<Organization> getOrganizationByAdministrator(Administrator administrator) {
 
         Optional<Organization> returnOrganization = Optional.empty();

@@ -9,8 +9,8 @@ import java.util.Optional;
 public class AgencyRepository {
     private final List<Agency> agencies = new ArrayList<>();
 
-    public Agency getAgencyByName(String agencyName){
-        Agency newAgency = new Agency(agencyName);
+    public Agency getAgencyByID(int agencyID){
+        Agency newAgency = new Agency(agencyID);
         Agency agency = null;
         if(agencies.contains(newAgency)){
             agency = agencies.get(agencies.indexOf(newAgency));

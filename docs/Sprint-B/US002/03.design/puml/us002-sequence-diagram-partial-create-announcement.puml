@@ -7,7 +7,7 @@ participant "organization\n:Organization" as ORG
 participant "task\n:Task" as TAREFA
 
 autonumber 16
--> ORG: createTask(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee )
+-> ORG: createAnnouncement(property, description,\ncomission, technicalDescription,\nduration, cost, taskCategory, employee )
 
 autonumber 16.1
 activate ORG

@@ -27,9 +27,6 @@ public class Bootstrap implements Runnable {
 
         //get agency repository
         AgencyRepository agencyRepository = Repositories.getInstance().getAgencyRepository();
-        agencyRepository.add(new Agency("Agency1"));
-        agencyRepository.add(new Agency("Agency2"));
-        agencyRepository.add(new Agency("Agency3"));
     }
 
     private void addRoles() {

@@ -84,43 +84,96 @@ public class RegisterEmployeeUI implements Runnable {
         employeeAddress = requestEmployeeAddress();
     }
 
+    /**
+     *
+     * @return input
+     */
     private String requestEmployeeName() {
-        System.out.println("Employee Name: ");
-        return sc.nextLine();
+        String input;
+        do{
+            System.out.println("Employee Name: ");
+            input = sc.nextLine().trim();
+            if (input.isEmpty()) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(input.isEmpty());
+        return input;
     }
 
+    /**
+     *
+     * @return input
+     */
     private String requestEmployeeEmail() {
-        System.out.println("Employee Email: ");
-        return sc.nextLine();
+        String input;
+        do{
+            System.out.println("Employee Email: ");
+            input = sc.nextLine().trim();
+            if (!input.contains("@")) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(!input.contains("@"));
+        return input;
     }
 
+    /**
+     *
+     * @return input
+     */
     private int requestEmployeeCCNumber() {
-        while (true) {
-            try {
-                System.out.println("Employee CC Number: ");
-                return sc.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid Number. Please enter a valid number.");
-            }
-        }
-    }
-
-    private int requestEmployeeTaxNumber() {
-        while(true) {
-            try {
+        boolean valid = false;
+        int input = 0;
+        do{
+            try{
                 System.out.println("Employee Tax Number: ");
-                return sc.nextInt();
-            } catch (InputMismatchException e) {
+                input = sc.nextInt();
+                valid = true;
+            } catch (InputMismatchException e){
                 System.out.println("Invalid Number. Please enter a valid number.");
             }
-        }
+        }while(!valid);
+        return input;
     }
 
+    /**
+     *
+     * @return input
+     */
+    private int requestEmployeeTaxNumber() {
+        boolean valid = false;
+        int input = 0;
+        do{
+            try{
+                System.out.println("Employee Tax Number: ");
+                input = sc.nextInt();
+                valid = true;
+            } catch (InputMismatchException e){
+                System.out.println("Invalid Number. Please enter a valid number.");
+            }
+        }while(!valid);
+        return input;
+    }
+
+    /**
+     *
+     * @return input
+     */
     private String requestEmployeeAddress() {
-        System.out.println("Employee Address: ");
-        return sc.nextLine();
+        String input;
+        do{
+            System.out.println("Employee Address: ");
+            input = sc.nextLine().trim();
+            if (input.isEmpty()) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(input.isEmpty());
+        return input;
     }
 
+    /**
+     *
+     * @return role
+     */
     private String displayAndSelectRole() {
         List<Role> roles = controller.getRoles();
         int answer = -1;
@@ -134,6 +187,10 @@ public class RegisterEmployeeUI implements Runnable {
         return roles.get(answer - 1).getName();
     }
 
+    /**
+     *
+     * @param roles list of roles
+     */
     private void displayRoleOptions(List<Role> roles) {
         int i = 1;
         for (Role role : roles) {
@@ -142,6 +199,10 @@ public class RegisterEmployeeUI implements Runnable {
         }
     }
 
+    /**
+     *
+     * @return agency
+     */
     private String displayAndSelectAgency() {
         List<Agency> agencies = controller.getAgencies();
         int answer = -1;
@@ -155,6 +216,10 @@ public class RegisterEmployeeUI implements Runnable {
         return agencies.get(answer - 1).getName();
     }
 
+    /**
+     *
+     * @param agencies list of agencies
+     */
     private void displayAgencyOptions(List<Agency> agencies) {
         int i = 1;
         for (Agency agency : agencies) {

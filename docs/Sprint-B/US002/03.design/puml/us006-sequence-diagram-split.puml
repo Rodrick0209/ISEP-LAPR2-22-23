@@ -6,51 +6,57 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
+actor "Real Estate Agent" as ADM
+participant ":PublishAnnouncementUI" as UI
+participant ":PublishAnnouncementUIController" as CTRL
 participant "organization\n:Organization" as ORG
 
 activate ADM
 
-    ADM -> UI : asks to create a new task
+    ADM -> UI : asks to publish a new announcement
 
     activate UI
 
         UI -> CTRL** : create
-        UI -> CTRL : getTaskCategories()
+        UI -> CTRL : getProperties()
         ref over CTRL
-            Get Task Category List
+            Get Property List
 
         end ref
 
         activate CTRL
 
-            CTRL --> UI : taskCategoryList
+            CTRL --> UI : propertyList
         deactivate CTRL
 
-        UI --> ADM : shows task category list and asks to sleect one
+        UI --> ADM : shows property list and asks to select one
     deactivate UI
 
-    ADM -> UI : selects a task category
+    ADM -> UI : selects a property
     activate UI
 
         UI --> ADM : requests data
     deactivate UI
 
-    ADM -> UI : types requested data (reference, description,\ninformal description, technical description,\nduration, cost)
+    ADM -> UI : types announcement data (description)
     activate UI
 
-        UI --> ADM : shows selected category and requested data
+        UI --> ADM : requests commission
     deactivate UI
+
+    ADM -> UI : sets commission
+    activate UI
+
+        UI ---> ADM : shows selected and typed data
+        deactivate UI
 
     ADM -> UI : submits data
     activate UI
 
-        UI -> CTRL : createTask(reference, description, informalDescription,\ntechnicalDescription,duration, cost, taskCategoryDescription)
+        UI -> CTRL : createAnnouncement(property..., description, commission)
         activate CTRL
 
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
+            CTRL -> CTRL : getPropertyByDescription(taskCategoryDescription)
             activate CTRL
 
                 ref over CTRL

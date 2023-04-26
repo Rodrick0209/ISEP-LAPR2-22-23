@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 003 - Register a store 
 
 # 4. Tests 
 
@@ -6,7 +6,7 @@
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
+		Employee instance = new Employee(null, null, null, null, null, null, null);
 	}
 	
 
