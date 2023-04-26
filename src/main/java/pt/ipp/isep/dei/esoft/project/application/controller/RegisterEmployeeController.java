@@ -60,8 +60,8 @@ public class RegisterEmployeeController {
     }
 
 
-    public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String roleName, String agencyName){
-        Agency agency = getAgencyByName(agencyName);
+    public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String roleName, int agencyID){
+        Agency agency = getAgencyByID(agencyID);
         Role role = getRoleByName(roleName);
 
         Administrator administrator = getAdministratorFromSession();
@@ -79,7 +79,7 @@ public class RegisterEmployeeController {
         return new Administrator(email.getEmail());
     }
 
-    private Agency getAgencyByName(int agencyID){
+    private Agency getAgencyByID(int agencyID){
         return getAgencyRepository().getAgencyByID(agencyID);
     }
 

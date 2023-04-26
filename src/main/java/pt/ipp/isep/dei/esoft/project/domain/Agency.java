@@ -36,7 +36,9 @@ public class Agency {
 
     public int getID(){return id;}
 
+    public String getDesignation() {return designation;}
+
     public int hashCode() { return Objects.hash(id); }
 
-    public Agency clone (){ return new Agency(this.id); }
+    public Agency clone(){ return new Agency(this.id); }
 }

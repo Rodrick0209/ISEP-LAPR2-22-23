@@ -19,7 +19,7 @@ public class RegisterEmployeeUI implements Runnable {
     private int employeeTaxNumber;
     private String employeeAddress;
     private String employeeRoleName;
-    private String employeeAgencyName;
+    private int employeeAgencyID;
 
     private RegisterEmployeeController getController() {
         return controller;
@@ -31,13 +31,13 @@ public class RegisterEmployeeUI implements Runnable {
         requestData();
 
         employeeRoleName = displayAndSelectRole();
-        employeeAgencyName = displayAndSelectAgency();
+        employeeAgencyID = displayAndSelectAgency();
 
         submitOrNot();
     }
 
     private void submitData() {
-        Optional<Employee> employee = getController().createEmployee(employeeName, employeeEmail, employeeCCNumber, employeeTaxNumber, employeeAddress, employeeAgencyName, employeeRoleName);
+        Optional<Employee> employee = getController().createEmployee(employeeName, employeeEmail, employeeCCNumber, employeeTaxNumber, employeeAddress, employeeRoleName, employeeAgencyID);
 
         if (employee.isPresent()) {
             System.out.println("Employee successfully registered!");
@@ -73,7 +73,7 @@ public class RegisterEmployeeUI implements Runnable {
         System.out.println("Employee Tax Number: " + employeeTaxNumber);
         System.out.println("Employee Address: " + employeeAddress);
         System.out.println("Employee Role: " + employeeRoleName);
-        System.out.println("Employee Agency: " + employeeAgencyName);
+        System.out.println("Employee Agency ID: " + employeeAgencyID);
         System.out.println();
     }
     private void requestData() {
@@ -201,9 +201,9 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      *
-     * @return agency
+     * @return agency ID
      */
-    private String displayAndSelectAgency() {
+    private int displayAndSelectAgency() {
         List<Agency> agencies = controller.getAgencies();
         int answer = -1;
 
@@ -212,18 +212,18 @@ public class RegisterEmployeeUI implements Runnable {
             System.out.println("Select a Agency: ");
             answer = sc.nextInt();
         }
-
-        return agencies.get(answer - 1).getName();
+        return agencies.get(answer - 1).getID();
     }
+
 
     /**
      *
-     * @param agencies list of agencies
+     * @param agencies list of agencies by designation and ID
      */
     private void displayAgencyOptions(List<Agency> agencies) {
         int i = 1;
         for (Agency agency : agencies) {
-            System.out.println(i + ". " + agency.getName());
+            System.out.println(i + ". " + agency.getDesignation() + " - " + agency.getID());
             i++;
         }
     }
