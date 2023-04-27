@@ -15,8 +15,9 @@ class Property {
 }
 
 class PropertiesList {
-    -amount of properties
+    -amount of propertes
 
+    + getPropreties()
     + addProperty()
     + removeProperty()
     + searchProperty()
@@ -42,6 +43,7 @@ class System {
     + validateUser()
     + registerUser()
     + registerAccess()
+    + loadProperties()
 }
 
 Property -> PropertiesList
