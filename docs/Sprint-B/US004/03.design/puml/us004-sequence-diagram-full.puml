@@ -62,7 +62,7 @@ activate ADM
                     TaskCategoryRepository --> CTRL : requestTypeList
                 deactivate TaskCategoryRepository
 
-                CTRL --> UI : requestCategoryList
+                CTRL --> UI : requestTypeList
             deactivate CTRL
 
             UI --> ADM : shows type of request list
@@ -224,7 +224,7 @@ activate ADM
     end
 
 
-    UI -> CTRL : get Branch
+    UI -> CTRL : get Agency
     activate CTRL
     CTRL-> Rep : get Instance
     activate Rep
@@ -235,7 +235,7 @@ activate ADM
     activate PLAT
     PLAT--> CTRL : agencyRepositories
     deactivate PLAT
-    CTRL -> AgencyRep : getBranchList
+    CTRL -> AgencyRep : getAgencyList
     activate AgencyRep
     AgencyRep -> CTRL : agencylist
     deactivate AgencyRep
