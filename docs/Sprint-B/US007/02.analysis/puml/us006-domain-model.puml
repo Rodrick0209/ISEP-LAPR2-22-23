@@ -12,42 +12,17 @@ hide methods
 
 title Domain Model
 
-class Platform {
-  -description
-}
-
-class Organization {
-    name
-    vatNumber
-    acts
-    phoneNumber
-    email
-}
-
-class Task {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
-}
-
-class Category {
-    description
-}
-
-class Employee {
-    name
-    email
-    position
-    phone
-}
-
 class User {
     name
+    citizen_card_number
+    tax_number
     email
+    telephone_number
     password
+}
+
+class Role {
+    description
 }
 
 Platform "1" -- "*" Organization : has registered >
