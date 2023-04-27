@@ -1,0 +1,45 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "User" as User
+participant ":System" as System
+
+activate User
+
+    User -> System : asks to be registered in the system
+    activate System
+
+        System --> User : requests data
+    deactivate System
+
+    User -> System : types requested data (name, citizen's card number, tax number, email address, telephone number)
+    activate System
+
+        System --> User : asks the user to select a role (owner, buyer, renter)
+        deactivate System
+
+    User -> System : selects an option
+        activate System
+
+        System --> User : asks if user wants to create password or get it by email
+    deactivate System
+
+    User -> System : selects an option
+    activate System
+
+        System --> User : shows selected categories
+    deactivate System
+
+    User -> System : submits data
+    activate System
+
+        System --> User : displays operation success
+    deactivate System
+
+@enduml
