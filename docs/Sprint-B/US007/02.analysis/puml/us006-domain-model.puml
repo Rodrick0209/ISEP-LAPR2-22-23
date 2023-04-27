@@ -12,6 +12,10 @@ hide methods
 
 title Domain Model
 
+class Organization{
+    description
+}
+
 class User {
     name
     citizen_card_number
@@ -25,12 +29,6 @@ class Role {
     description
 }
 
-Platform "1" -- "*" Organization : has registered >
-Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
+Organization "1" - "0..*" User : has >
+User "*" - "1" Role: cataloged by >
 @enduml
