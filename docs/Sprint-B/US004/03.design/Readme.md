@@ -51,24 +51,20 @@ This diagram shows the same sequence of interactions between the classes involve
 
 It uses interaction ocurrence.
 
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
+![Sequence Diagram - split](svg/us004-sequence-diagram-split.svg)
+**Request Type List**
 
-**Get Task Category List Partial SD**
+![Sequence Diagram - Partial - Request Type List](svg/us004-sequence-diagram-partial-requestTypeList.svg)
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
+**Get Agency**
 
-**Get Task Category Object**
+![Sequence Diagram - Partial - Get Agency](svg/us004-sequence-diagram-partial-get-agency.svg)
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us004-sequence-diagram-partial-requestTypeList.svg)
+**Get Property Type**
 
-**Get Employee**
+![Sequence Diagram - Partial - Get Property Type](svg/us004-sequence-diagram-partial-get-property-type.svg)
 
-![Sequence Diagram - Partial - Get Employee](svg/us004-sequence-diagram-partial-get-property-type.svg)
-
-**Create Task**
-
-![Sequence Diagram - Partial - Create Task](svg/us004-sequence-diagram-partial-get-branch.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us004-class-diagram.svg)
