@@ -1,12 +1,12 @@
-# US 006 - To create a Task 
+# US 004 - Submit a Request
 
 # 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check that it is not possible to submit a request class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
+		Submit request = new Request(null, null, null, null, null, null, null);
 	}
 	
 
@@ -28,11 +28,11 @@
 ## Class CreateTaskController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription,
+public Task createRequest(String reference, String description, String informalDescription,
 								 String technicalDescription, Integer duration, Double cost,
-								 String taskCategoryDescription) {
+								 String RequestDescription) {
 
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
+	RequestCategory requestCategory = getRequestCategoryByDescription(requestCategoryDescription);
 
 	Employee employee = getEmployeeFromSession();
 	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);

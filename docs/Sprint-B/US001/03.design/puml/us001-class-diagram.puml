@@ -15,8 +15,9 @@ class Property {
 }
 
 class PropertiesList {
-    -amount of properties
+    -amount of propertes
 
+    + getPropreties()
     + addProperty()
     + removeProperty()
     + searchProperty()
@@ -39,9 +40,16 @@ class DisplayOfProperties {
 }
 
 class System {
+    + createFilter()
+    + searchPropertiesByFilter()
     + validateUser()
     + registerUser()
     + registerAccess()
+    + loadProperties()
+}
+
+class Filter {
+    + defineCriteria()
 }
 
 Property -> PropertiesList
@@ -51,6 +59,7 @@ System -> Property
 System -> PropertiesList
 System -> User
 System -> DisplayOfProperties
+System -> Filter
 
 
 

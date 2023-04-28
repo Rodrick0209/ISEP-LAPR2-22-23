@@ -11,9 +11,9 @@
 | 			  		        | 	... instantiating a Store?                   | Company                 | Creator (Rule 1): in the DM, Company has a Store. |
 | 			  		        | ... knowing the user using the system?        | UserSession             | IE: cf. A&A component documentation. |
 | 			  		        | 							                                       | Company                 | IE: knows/has its own System Administratores |
-| 			  		        | 							                                       | SystemAdministrator     | IE: knows its own data (e.g. email) |               |                                               |                         |                                                                                                               |
+| 			  		        | 							                                       | SystemAdministrator     | IE: knows its own data (e.g. email) |            
 | Step 2  		     | 			                                           |                         |           |
-| Step 3         | ...saving the inputted data?                        | Store                   | IE: object created in step 1 has its own data. |
+| Step 3         | ...saving the inputted data?                  | Store                   | IE: object created in step 1 has its own data. |
 | Step 4         |                                               |                         |           |
 | Step 5  		     | 	... validating all data (local validation)?  | Store                   | IE: owns its data. | 
 | 			  		        | 	... validating all data (global validation)? | Company                 | IE: knows all stores. | 

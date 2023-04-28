@@ -1,72 +1,221 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-class ApplicationPOT
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+
+
+skinparam classAttributeIconSize 0
+
+
+
+
+
+
+class Employee {
+    - String name
+    - String email
+    - int phoneNumber
+    - int id
+    - String address
+
+    +getAddress(street, zip_code, state, district, city)
+}
+
+class Request {
+    - String status
+    - String beginDate
+    - String endDate
+
+    + Request(agency, agent)
+    + createProperty(area, location, distanceFromTheCityCentre)
+    + createApartment(area, location, distanceFromTheCityCentre, \nnumberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, avaliableEquipement)
+    + createHouse(area, location, distanceFromTheCityCentre, numberOfBedrooms, numberOfBathrooms, \nnumberOfParkingSpaces, avaliableEquipement, existenceOfABasement, inhabitableLoft, sunExpousere)
+    + createOwner(name, email, phoneNumber, createPassport(taxNumber))
+}
+
+
+class Agency {
+    - String name
+    - String vatNumber
+    - String website
+    - String phone
+    - String email
+    - String address
+    - String manager
+
+    - addAnnouncementrequest(announcementrequest)
+    - validateAnnouncementrequest(announcementrequest)
+    + anyEmployeeHasEmail(email)
+    + getAddress(street, zip_code, state, district, city)
+    + Agency(name, vatNumber, webSite, phone, email, address, manager)
+    - getEmployeeByEmail(email)
+
+}
+
+
+class locationsRepository {
+    + getLocation(location)
+}
+
+class AgencyRepository {
+    + getOrganizationByEmployeeEmail(email)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getPropertyTypeRepository()
+    + getAgencyRepository()
+    + getLocationRepository()
+}
+
+class CreateRequestController {
+    + CreateRequestController(agencyRepository, locationsRepository, typeOfPropertyRepository)
+    + createRequest(status, beginDate, endDate, the area in m2, location, \ndistance from the city centre and one or more photos)
+    + CreateSale(price)
+    + CreateRent(mountlyRent, contractDuration)
+    - getTypeOfProperty(typeOfProperty)
+    - getEmployeeFromSession()
+}
+
+note top of CreateRequestController
+    - userEmail is obtained
+    from the user session
+    - categoryDescription
+    is retrieved from selected data
+end note
+
+note top of locationsRepository
+    - used for displaying
+    the location of the property
+end note
+
+class Owner{
+    - String name
+    - String email
+    - int phoneNumber
+
+    + createRequest(status, beginDate, endDate)
+}
+
+class Property{
+    - int area
+    - String location
+    - String distanceFromTheCityCentre
+
+    + createAddress(streetm zip_code, state, district(opt), city)
+    + addPhoto(url)
+    + addPhotoList(photography)
+}
+
+class Sale{
+    - float price
+}
+
+class Rent{
+    - float mounthlyRent
+    - int contractDuration
+}
+
+class Apartment{
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int numberOfParkingSpaces
+    - boolean avaliableEquipement
+
+    + getAvaliableEquipement()
+}
+
+class House{
+    - boolean existenceOfABasement
+    - boolean inhabitableLoft
+    - String sunExpousere
+}
+
+class Address{
+    - String street
+    - int zip_code
+}
+
+class PhotographyList{
+    - String photography
+}
+
+class TypeOfProperty{
+    - String typeOfProperty
+}
+
+class PropertyTypeRepository{
+    + getTypeOfProperty()
+}
+
+class Agent
 {
-  +static getInstance()
-  +getCurrentSession()
+    -String name
+    -int passport number
 }
 
-class UserSession
+
+class AvaliableEquipement{
+    - boolean centralHeating
+    - boolean airConditioning
+    - String other
+}
+
+class CreateRequestController
 {
-  +getUserEmail()
+    +createRequestController(requestTypeRepository, porpertyTypeRepository, agencyRepository)
 }
 
-class Task {
-  -String reference
-  -String designation
-  -String informalDescription
-  -String technicalDescription
-  -Integer duration
-  -Double cost
-  +Task(ref,designation,informalDesc,technicalDesc,duration,cost,cat)
-}
+Repositories --> Repositories : instance
+Repositories ---> "1" AgencyRepository
+Repositories ---> "1" PropertyTypeRepository
 
-class Category {
-  -String id
-  -String description
-}
 
-class Organization {
-  -String name
-  -String VatNumber
-  -String website
-  -String phone
-  -String email
-  +Organization(name, VatNumber, webSite, phone, email, postalAddress, manager)
-  +createTask(ref,designation,informalDesc,technicalDesc,duration,cost,cat)
-  +saveTask(task)
-  -addTask(task)
-  -validateTask(task)
-}
+Repositories --> "1" locationsRepository
 
-class Platform {
-  -String designation
-  +getCategories()
-  +getCategoryById(catId)
-  +getOrganizationByUserEmail(email)
-}
+CreateRequestController ..> Repositories : repositories
+CreateRequestController ..> Request
+CreateRequestController ..> AgencyRepository : agencyRepository
+CreateRequestController ..> locationsRepository : locationsRepository
+CreateRequestController ..> "1" Agency : agency
 
-class CreateTaskController {
-  +getCategories()
-  +createTask(ref,designation,informalDesc,technicalDesc,duration,cost,categoryId)
-  +saveTask()
-}
 
-class CreateTaskUI {
+AgencyRepository --> "*" Agency
 
-}
 
-CreateTaskUI ..> CreateTaskController
-CreateTaskController ..> Platform
-CreateTaskController ..> Category
-CreateTaskController ..> Task
-CreateTaskController ..> Organization
-CreateTaskController ..> ApplicationPOT
-CreateTaskController ..> UserSession
-Task "*" -> "1" Category : classified in
-Platform "1" --> "*" Category : defines
-Organization "1" --> "*" Task : owns
+
+locationsRepository "1" --> "*" Property : location
+
+Employee --> Request : handles
+
+Request ---> Owner : createdBy
+Request --- Property : of >
+Request --- Agency : assigns >
+
+Apartment  <|- House
+
+Property <|-- Apartment
+Property -- "1" Address : located at >
+Property - "1..30" PhotographyList : has >
+Property -- TypeOfProperty : has >
+
+PropertyTypeRepository "1" --> "*" TypeOfProperty : typeOfProperty
+
+Agency -> "contract" Agent
+
+
+Sale --|> Property
+
+Rent -|> Property
+
+AvaliableEquipement -|> Apartment
+
+
+
 
 
 @enduml

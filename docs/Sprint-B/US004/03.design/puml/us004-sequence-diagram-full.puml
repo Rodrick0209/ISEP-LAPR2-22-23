@@ -62,7 +62,7 @@ activate ADM
                     TaskCategoryRepository --> CTRL : requestTypeList
                 deactivate TaskCategoryRepository
 
-                CTRL --> UI : requestCategoryList
+                CTRL --> UI : requestTypeList
             deactivate CTRL
 
             UI --> ADM : shows type of request list
@@ -224,7 +224,7 @@ activate ADM
     end
 
 
-    UI -> CTRL : get Branch
+    UI -> CTRL : get Agency
     activate CTRL
     CTRL-> Rep : get Instance
     activate Rep
@@ -235,19 +235,19 @@ activate ADM
     activate PLAT
     PLAT--> CTRL : agencyRepositories
     deactivate PLAT
-    CTRL -> AgencyRep : getBranchList
+    CTRL -> AgencyRep : getAgencyList
     activate AgencyRep
     AgencyRep -> CTRL : agencylist
     deactivate AgencyRep
     CTRL --> UI : agencylist
  deactivate CTRL
- UI --> ADM : shows branch list
+ UI --> ADM : shows agency list
 
  deactivate UI
 
-    ADM -> UI : selects branch
+    ADM -> UI : selects agency
     activate UI
-    UI --> Br : get Agent List(colect Branch)
+    UI --> Br : get Agent List(colect Agency)
     activate Br
     loop For each employee
     Br-> Agent : has an agent
