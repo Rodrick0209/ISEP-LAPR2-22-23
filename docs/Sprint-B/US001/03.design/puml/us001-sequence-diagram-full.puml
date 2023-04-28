@@ -9,6 +9,7 @@ actor "User\n(unregistered)" as ADM
 participant ":System" as System
 participant ":PropertiesList" as List
 participant ":DisplayOfProperties" as Display
+participant ":Filter" as Filter
 
 
 activate ADM
@@ -30,6 +31,54 @@ activate ADM
             deactivate Display
 
         System -> ADM : display de information
+        deactivate System
+
+
+
+        ADM -> System : selects
+        activate System
+
+            System -> Filter : createFilter()
+            activate Filter
+
+            Filter -> System : defineCriteria()
+            deactivate Filter
+
+            System -> List : searchPropertiesByFilter()
+            activate List
+
+            List -> System : getPropreties()
+            deactivate List
+
+        System -> ADM : pass the information
+        deactivate System
+
+
+
+        ADM -> System : pass the credentials
+        activate System
+
+        System -> System : validateUser()
+
+        System -> ADM : return validation value
+        deactivate System
+
+
+
+        ADM -> System
+        activate System
+
+            System -> Display : display()
+            activate Display
+
+            Display -> System : checks if properties are valid
+
+            alt valid properties
+                System -> Display : display properties in the interface
+            else invalid properties
+                System -> Display : displays error message on the interface
+            end
+
         deactivate System
 
 deactivate ADM
