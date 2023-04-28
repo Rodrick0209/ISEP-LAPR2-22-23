@@ -54,9 +54,7 @@ class Agency {
 }
 
 
-class locationsRepository {
-    + getLocation(location)
-}
+
 
 class AgencyRepository {
     + getOrganizationByEmployeeEmail(email)
@@ -79,17 +77,7 @@ class CreateRequestController {
     - getEmployeeFromSession()
 }
 
-note top of CreateRequestController
-    - userEmail is obtained
-    from the user session
-    - categoryDescription
-    is retrieved from selected data
-end note
 
-note top of locationsRepository
-    - used for displaying
-    the location of the property
-end note
 
 class Owner{
     - String name
@@ -191,7 +179,6 @@ locationsRepository "1" --> "*" Property : location
 Employee --> Request : handles
 
 Request ---> Owner : createdBy
-Request --- Property : of >
 Request --- Agency : assigns >
 
 Apartment  <|- House
