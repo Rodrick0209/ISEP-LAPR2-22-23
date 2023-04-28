@@ -8,28 +8,27 @@ autonumber
 actor "User\n(unregistered)" as ADM
 participant ":System" as System
 participant ":PropertiesList" as List
-participant ":DisplayOfProperties" as Display
+participant ":Filter" as Filter
 
 
 activate ADM
 
-        ADM -> System : request list of properties
+        ADM -> System : selects
         activate System
 
-            System -> List : loadProperties()
+            System -> Filter : createFilter()
+            activate Filter
+
+            Filter -> System : defineCriteria()
+            deactivate Filter
+
+            System -> List : searchPropertiesByFilter()
             activate List
 
             List -> System : getPropreties()
             deactivate List
 
-            System -> Display : display()
-            activate Display
-
-            Display -> System : pass the information
-
-            deactivate Display
-
-        System -> ADM : display de information
+        System -> ADM : pass the information
         deactivate System
 
 deactivate ADM

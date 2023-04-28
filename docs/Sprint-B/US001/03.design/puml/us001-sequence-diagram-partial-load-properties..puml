@@ -8,12 +8,10 @@ autonumber
 actor "User\n(unregistered)" as ADM
 participant ":System" as System
 participant ":PropertiesList" as List
-participant ":DisplayOfProperties" as Display
-
 
 activate ADM
 
-        ADM -> System : request list of properties
+        ADM -> System : selects
         activate System
 
             System -> List : loadProperties()
@@ -22,14 +20,7 @@ activate ADM
             List -> System : getPropreties()
             deactivate List
 
-            System -> Display : display()
-            activate Display
-
-            Display -> System : pass the information
-
-            deactivate Display
-
-        System -> ADM : display de information
+        System -> ADM
         deactivate System
 
 deactivate ADM
