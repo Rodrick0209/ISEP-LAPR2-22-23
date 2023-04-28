@@ -38,21 +38,29 @@ class Request {
 
 
 class Agency {
-    - String name
-    - String vatNumber
-    - String website
-    - String phone
-    - String email
-    - String address
-    - String manager
+        - Integer id
+        - String designation
+        - String location
+        - String emailAddress
+        - String phoneNumber
 
-    - addAnnouncementrequest(announcementrequest)
-    - validateAnnouncementrequest(announcementrequest)
-    + anyEmployeeHasEmail(email)
-    + getAddress(street, zip_code, state, district, city)
-    + Agency(name, vatNumber, webSite, phone, email, address, manager)
-    - getEmployeeByEmail(email)
+        + Agency(id, designation, \nlocation, emailAddress, \nphoneNumber, registeredBy)
+}
 
+class Organization{
+    - String description
+    - addAgency(store)
+    - validateAgency(store)
+    + registerAgency(id, designation, location, \nemailAddress, phoneNumber)
+     '+ saveAgency(agency)
+    + Organization(description)
+    - getAdministratorByEmail(email)
+    - addAnnouncement(announcement)
+    - validateAnnouncement(announcement)
+    + anyAgentHasEmail(email)
+    + createAnnouncement(property, description, commission, agent)
+    - getAgentByEmail(email)
+    - addNewUser(email, name, role)
 }
 
 
@@ -60,7 +68,7 @@ class locationsRepository {
     + getLocation(location)
 }
 
-class AgencyRepository {
+class OrganizationRepository {
     + getOrganizationByEmployeeEmail(email)
 }
 
@@ -152,12 +160,6 @@ class PropertyTypeRepository{
     + getTypeOfProperty()
 }
 
-class Agent
-{
-    -String name
-    -int passport number
-}
-
 
 class AvaliableEquipement{
     - boolean centralHeating
@@ -170,8 +172,123 @@ class CreateRequestController
     +createRequestController(requestTypeRepository, porpertyTypeRepository, agencyRepository)
 }
 
+class PropertyRepository{
+    +getPropertyByLocation(location)
+}
+
+class User {
+    - name
+    - email
+    - password
+    - phone
+}
+
+class DisplayOfProperties {
+    + display()
+    + orderByPrice()
+    + searchByName()
+    + displayProperty()
+    + showDetailsProperty()
+
+}
+
+class System {
+    + createFilter()
+    + searchPropertiesByFilter()
+    + validateUser()
+    + registerUser()
+    + registerAccess()
+    + loadProperties()
+}
+
+class Filter {
+    + defineCriteria()
+}
+
+class Agent {
+    - name
+    - ccNumber
+    - taxNumber
+    - address
+    - email
+    - phoneNumber
+}
+
+class Announcement {
+    - String description
+    - Integer commission
+
+    + Announcement(property, description, commission, createdAndPublishedBy)
+}
+
+class CreateAnnouncementController {
+    + CreateAnnouncementController(organizationRepository, propertyRepository)
+    + getProperties()
+    + createAnnouncement(propertyLocation, description, commission)
+    - getPropertyByLocation(propertyLocation)
+    - getAgentFromSession()
+}
+
+class CreateAnnouncementUI {
+}
+
+class Administrator{
+    - name
+    - ccNumber
+    - taxNumber
+    - address
+    - email
+    - phoneNumber
+}
+
+class RegisterAgencyController{
+    + RegisterAgencyController(organizationRepository)
+    + registerStore(id, designation, location, \nemailAddress, phoneNumber)
+    - getAdministratorFromSession()
+}
+
+class "Unregistered User" as UU
+
+class ":RegistrationUI" as UI {
+    +register(name: String, email: String, password: String, role: String, passwordPreference: String): void
+}
+
+class ":RegistrationController" as CTRL {
+    -generatePassword(): String
+    -validateUserCredentials(name: String, email: String, citizen_card_number: String, tax_number: String, password: String, role: String, passwordPreference: String): boolean
+    +register(name: String, email: String, password: String, role: String, passwordPreference: String): void
+}
+
+class ":Repositories" as RepositorySingleton {
+    +getInstance(): Repositories
+    +getUserCredentialsRepository(): UserCredentialsRepository
+    +getUserDataRepository(): UserDataRepository
+}
+
+class "repositories\n:Repositories" as PLAT {
+    +addUserCredentials(userCredentials: UserCredentials): void
+    +addUserData(userData: UserData): void
+}
+
+class "userCredentials\n:UserCredentials" as USERCRED {
+    +createUserCredentials(email: String, password: String, role: String): UserCredentials
+}
+
+class "userData\n:UserData" as USERDATA {
+    +createUserData(email: String, name: String, role: String, citizen_card_number: String, tax_number: String): UserData
+}
+
+class "userCredentialsRepository:\nUserCredentialsRepository" as UserCredentialsRepository {
+    +addUserCredentials(userCredentials: UserCredentials): void
+}
+
+class "userDataRepository:\nUserDataRepository" as UserDataRepository {
+    +addUserData(userData: UserData): void
+}
+
+
 Repositories --> Repositories : instance
-Repositories ---> "1" AgencyRepository
+Repositories ---> "1" OrganizationRepository
 Repositories ---> "1" PropertyTypeRepository
 
 
@@ -179,12 +296,12 @@ Repositories --> "1" locationsRepository
 
 CreateRequestController ..> Repositories : repositories
 CreateRequestController ..> Request
-CreateRequestController ..> AgencyRepository : agencyRepository
+CreateRequestController ..> OrganizationRepository : organizationRepository
 CreateRequestController ..> locationsRepository : locationsRepository
-CreateRequestController ..> "1" Agency : agency
+CreateRequestController ..> "1" Organization : organization
 
 
-AgencyRepository --> "*" Agency
+OrganizationRepository --> "*" Organization
 
 
 
@@ -214,8 +331,67 @@ Rent -|> Property
 
 AvaliableEquipement -|> Apartment
 
+RegisterAgencyController .> Repositories : repositories
 
 
+RegisterAgencyController ..> OrganizationRepository : organizationRepository
+OrganizationRepository "1" --> "*" Organization : organization
+ApplicationSession --> "1" UserSession : userSession
+
+RegisterAgencyController ..> "1" Organization : organization
+RegisterAgencyController ..> ApplicationSession
+RegisterAgencyController ..> UserSession
+Agency --> Administrator : registeredBy
+Organization "1" --> "*" Agency : has
+Administrator "1" --> "*" Organization : administrates
+
+Property --> PropertyRepository
+PropertyRepository --> DisplayOfProperties
+User --> DisplayOfProperties
+System --> Property
+System --> PropertyRepository
+System --> User
+System --> DisplayOfProperties
+System --> Filter
+
+
+CreateAnnouncementUI .> CreateAnnouncementController
+
+CreateAnnouncementController .> Repositories : repositories
+
+
+CreateAnnouncementController .> Property
+CreateAnnouncementController ..> OrganizationRepository : OrganizationRepository
+CreateAnnouncementController ..> PropertyRepository : PropertyRepository
+
+
+CreateAnnouncementController ..> "1" Organization : organization
+CreateAnnouncementController ..> ApplicationSession
+CreateAnnouncementController ..> UserSession
+Announcement "*" --> "1" Property : property
+PropertyRepository "1" --> "*" Property : property
+Organization "1" --> "*" Announcement : creates and publishes
+Announcement --> Agent : createdAndPublishedBy
+
+Organization --> "*" Agent : has
+
+
+UU --> UI: requests to register
+UI --> UU: asks for name, email, password,\nselect role and password preference
+UU --> UI: provides name, email, password,\nselect role and password preference
+UI --> CTRL: register(name, email, password,\nrole, passwordPreference)
+CTRL --> CTRL: validateUserCredentials(name, email, citizen_card_number, tax_number, password, role, passwordPreference)
+CTRL --> CTRL: generatePassword() if passwordPreference is "system-generated"
+CTRL --> USERCRED: createUserCredentials(email, password, role)
+CTRL --> UserDataRepository: createUserData(email, name, role, citizen_card_number, tax_number)
+CTRL --> RepositorySingleton: getInstance()
+CTRL --> PLAT: getUserCredentialsRepository()
+CTRL --> PLAT: getUserDataRepository()
+CTRL --> userCredentialsRepository: addUserCredentials(userCredentials)
+CTRL --> userDataRepository: addUserData(userData)
+CTRL --> Organization: addNewUser(email, name, role)
+CTRL --> UI: success
+UI --> UU: shows success message
 
 
 @enduml

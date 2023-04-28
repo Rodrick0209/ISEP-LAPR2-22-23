@@ -30,13 +30,13 @@ class Agency {
     + Store(id, designation, \nlocation, emailAddress, \nphoneNumber, registeredBy)
 }
 
-class Company {
+class Organization {
     - String description
-    - addStore(store)
-    - validateStore(store)
-    + registerStore(id, designation, location, \nemailAddress, phoneNumber)
-    '+ saveStore(store)
-    + Company(description)
+    - addAgency(store)
+    - validateAgency(store)
+    + registerAgency(id, designation, location, \nemailAddress, phoneNumber)
+    '+ saveAgency(agency)
+    + Organization(description)
     - getAdministratorByEmail(email)
 }
 
@@ -46,14 +46,14 @@ class Repositories {
     + getCompanyRepository()
 }
 
-class RegisterStoreController {
-    + RegisterStoreController(companyRepository)
+class RegisterAgencyController {
+    + RegisterAgencyController(organizationRepository)
     + registerStore(id, designation, location, \nemailAddress, phoneNumber)
     - getAdministratorFromSession()
 }
 
-class CompanyRepository{
-    +getCompanyByUserEmail(email)
+class OrganizationRepository{
+    +getOrganizationByAdministrator(administrator)
 }
 
 class Administrator{
@@ -68,22 +68,22 @@ class Administrator{
 Repositories -> Repositories : instance
 ApplicationSession -> ApplicationSession : instance
 
-RegisterStoreUI .> RegisterStoreController
+RegisterStoreUI .> RegisterAgencyController
 
-RegisterStoreController .> Repositories : repositories
+RegisterAgencyController .> Repositories : repositories
 
-Repositories -> "1" CompanyRepository
+Repositories -> "1" OrganizationRepository
 
-RegisterStoreController ..> CompanyRepository : companyRepository
-CompanyRepository "1" --> "*" Company : company
+RegisterAgencyController ..> OrganizationRepository : companyRepository
+OrganizationRepository "1" --> "*" Organization : company
 ApplicationSession --> "1" UserSession : userSession
 
-RegisterStoreController ..> "1" Company : company
-RegisterStoreController ..> ApplicationSession
-RegisterStoreController ..> UserSession
+RegisterAgencyController ..> "1" Organization : company
+RegisterAgencyController ..> ApplicationSession
+RegisterAgencyController ..> UserSession
 Store --> Administrator : registeredBy
-Company "1" --> "*" Agency : has
-Administrator "1" --> "*" Company : administrates
+Organization "1" --> "*" Agency : has
+Administrator "1" --> "*" Organization : administrates
 
 
 
