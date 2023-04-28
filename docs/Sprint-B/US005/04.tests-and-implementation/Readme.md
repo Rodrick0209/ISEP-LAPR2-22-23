@@ -1,4 +1,4 @@
-# US 005 - To register a store
++# US 005 - To register a store
 
 # 4. Tests 
 

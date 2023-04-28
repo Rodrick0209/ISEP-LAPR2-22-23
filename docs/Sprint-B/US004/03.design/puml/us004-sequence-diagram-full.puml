@@ -241,13 +241,13 @@ activate ADM
     deactivate AgencyRep
     CTRL --> UI : agencylist
  deactivate CTRL
- UI --> ADM : shows branch list
+ UI --> ADM : shows agency list
 
  deactivate UI
 
-    ADM -> UI : selects branch
+    ADM -> UI : selects agency
     activate UI
-    UI --> Br : get Agent List(colect Branch)
+    UI --> Br : get Agent List(colect Agency)
     activate Br
     loop For each employee
     Br-> Agent : has an agent
