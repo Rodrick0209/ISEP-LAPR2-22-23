@@ -20,6 +20,9 @@ public class Bootstrap implements Runnable {
         OrganizationRepository organizationRepository = Repositories.getInstance().getOrganizationRepository();
         Organization organization = new Organization("This Company");
         organizationRepository.add(organization);
+        organization.addEmployee(new Employee("admin@this.app"));
+        organization.addEmployee(new Employee("agent@this.app"));
+
     }
 
     private void addAgencies() {
@@ -27,6 +30,7 @@ public class Bootstrap implements Runnable {
 
         //get agency repository
         AgencyRepository agencyRepository = Repositories.getInstance().getAgencyRepository();
+        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street, F"))
     }
 
     private void addRoles() {
@@ -34,23 +38,19 @@ public class Bootstrap implements Runnable {
 
         //get agency repository
         RoleRepository roleRepository = Repositories.getInstance().getRoleRepository();
-        roleRepository.add(new Role("Role1"));
-        roleRepository.add(new Role("Role2"));
-        roleRepository.add(new Role("Role3"));
+        roleRepository.add(new Role("Agent"));
     }
 
     private void addUsers() {
         //TODO: add Authentication users here: should be created for each user in the organization
         AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
         authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
-        authenticationRepository.addUserRole(AuthenticationController.ROLE_EMPLOYEE,
-                AuthenticationController.ROLE_EMPLOYEE);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_AGENT, AuthenticationController.ROLE_AGENT);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
 
-        authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin",
-                AuthenticationController.ROLE_ADMIN);
-
-        authenticationRepository.addUserWithRole("Employee", "employee@this.app", "pwd",
-                AuthenticationController.ROLE_EMPLOYEE);
+        authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN);
+        authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);
+        authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
     }
 
 

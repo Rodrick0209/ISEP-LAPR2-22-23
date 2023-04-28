@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Administrator;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 
 import java.util.ArrayList;
@@ -11,17 +11,18 @@ public class OrganizationRepository {
 
     List<Organization> organizations = new ArrayList<>();
 
+
     /**
      *
-     * @param administrator administrator of organization
+     * @param employee employee
      * @return organization
      */
-    public Optional<Organization> getOrganizationByAdministrator(Administrator administrator) {
+    public Optional<Organization> getOrganizationByEmployee(Employee employee) {
 
         Optional<Organization> returnOrganization = Optional.empty();
 
         for (Organization organization : organizations) {
-            if (organization.administrates(administrator)) {
+            if (organization.employs(employee)) {
                 returnOrganization = Optional.of(organization);
             }
         }
@@ -29,12 +30,12 @@ public class OrganizationRepository {
         return returnOrganization;
     }
 
-    public Optional<Organization> getOrganizationByAdministratorEmail(String email) {
+    public Optional<Organization> getOrganizationByEmployeeEmail(String email) {
 
         Optional<Organization> returnOrganization = Optional.empty();
 
         for (Organization organization : organizations) {
-            if (organization.administratorHasEmail(email)) {
+            if (organization.employeeHasEmail(email)) {
                 returnOrganization = Optional.of(organization);
             }
         }

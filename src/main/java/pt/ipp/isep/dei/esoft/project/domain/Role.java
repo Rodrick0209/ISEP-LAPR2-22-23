@@ -23,4 +23,8 @@ public class Role {
     public int hashCode(){ return Objects.hashCode(name); }
 
     public Role clone() { return new Role(this.name); }
+
+    public String toString() {
+        return String.format("%s", this.name);
+    }
 }

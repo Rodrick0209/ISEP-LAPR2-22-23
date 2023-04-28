@@ -76,9 +76,9 @@ public class Utils {
         String input;
         do {
             input = Utils.readLineFromConsole("\n" + message + "\n");
-        } while (!input.equalsIgnoreCase("s") && !input.equalsIgnoreCase("n"));
+        } while (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("no"));
 
-        return input.equalsIgnoreCase("s");
+        return input.equalsIgnoreCase("yes");
     }
 
     static public Object showAndSelectOne(List list, String header) {
@@ -101,7 +101,7 @@ public class Utils {
             System.out.println(index + ". " + o.toString());
         }
         System.out.println();
-        System.out.println("0 - Cancel");
+        System.out.println("0. Cancel");
     }
 
     static public Object selectsObject(List list) {
@@ -127,7 +127,11 @@ public class Utils {
             try {
                 value = Integer.valueOf(input);
             } catch (NumberFormatException ex) {
+                System.out.println("Invalid Option. Please try again.");
                 value = -1;
+            }
+            if (value < 0 || value > list.size()){
+                System.out.println("Invalid Option. Please try again.");
             }
         } while (value < 0 || value > list.size());
 

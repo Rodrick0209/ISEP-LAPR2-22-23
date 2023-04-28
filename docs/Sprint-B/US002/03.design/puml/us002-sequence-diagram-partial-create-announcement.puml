@@ -4,20 +4,20 @@ skinparam packageStyle rectangle
 skinparam shadowing false
 
 participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "announcement\n:Announcement" as ANNOUNCE
 
-autonumber 16
--> ORG: createAnnouncement(property, description,\ncomission, technicalDescription,\nduration, cost, taskCategory, employee )
+autonumber 18
+-> ORG: createAnnouncement(property, \ndescription, commission, agent)
 
-autonumber 16.1
+autonumber 18.1
 activate ORG
-    group Create Task
+    group Create Announcement
 
-        ORG -> TAREFA**: create(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-        ORG -> ORG: addTask (task)
+        ORG -> ANNOUNCE**: create(property, description, \ncommission, agent)
+        ORG -> ORG: addAnnouncement(announcement)
 
         activate ORG
-            ORG -> ORG: validateTask(task)
+            ORG -> ORG: validateAnnouncement(announcement)
             activate ORG
                 ORG --> ORG
             deactivate ORG
@@ -26,8 +26,8 @@ activate ORG
         deactivate ORG
     end
 
-    autonumber 17
-    <-- ORG : task
+    autonumber 19
+    <-- ORG : announcement
 deactivate ORG
 
 

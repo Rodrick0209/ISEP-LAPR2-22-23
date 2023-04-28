@@ -1,22 +1,12 @@
-# US 003 - Register a store 
+# US 003 - Register a Employee
 
 # 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Employee class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Employee instance = new Employee(null, null, null, null, null, null, null);
-	}
-	
-
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
-
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
+		Employee instance = new Employee(null, null, null, null, null, null, null, null);
 	}
 
 
@@ -25,22 +15,21 @@
 # 5. Construction (Implementation)
 
 
-## Class CreateTaskController 
+## Class RegisterEmployeeController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription,
-								 String technicalDescription, Integer duration, Double cost,
-								 String taskCategoryDescription) {
+public Employee createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, int AgencyID, String roleName) {
 
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
+	Agency agency = getAgencyByID(agencyID);
+    Role role = getRoleByName(roleName)
 
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
+	Employee administrator = getEmployeeFromSession();
+	Organization organization = getOrganizationRepository().getOrganizationByEmployee(administrator);
 
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, 
-			duration, cost,taskCategory, employee);
+	newEmployee = organization.createEmployee(name, email, ccNumber, taxNumber, 
+			address, agency, role);
     
-	return newTask;
+	return newEmployee;
 }
 ```
 
@@ -48,31 +37,26 @@ public Task createTask(String reference, String description, String informalDesc
 ## Class Organization
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                     String technicalDescription, Integer duration, Double cost,
-                                     TaskCategory taskCategory, Employee employee) {
+public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Agency agency, Role role)
     
-        Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                taskCategory, employee);
+        Employee employee = new Employee(name, email, ccNumber, taxNumber, address, phoneNumber, agent, role);
 
-        addTask(task);
+        addEmployee(employee);
         
-        return task;
+        return employee;
     }
 ```
 
 # 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+* A new option on the Administrator menu options was added.
 
-* Some demo purposes some tasks are bootstrapped while system starts.
+* Some demo purposes some employees are bootstrapped while system starts.
 
 
 # 7. Observations
 
-Platform and Organization classes are getting too many responsibilities due to IE pattern and, therefore, they are becoming huge and harder to maintain. 
-
-Is there any way to avoid this to happen?
+n/a
 
 
 

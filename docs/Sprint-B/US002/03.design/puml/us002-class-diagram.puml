@@ -21,7 +21,12 @@ class UserSession
 }
 
 class Agent {
+    - name
+    - ccNumber
+    - taxNumber
+    - address
     - email
+    - phoneNumber
 }
 
 class Announcement {
@@ -32,9 +37,22 @@ class Announcement {
 }
 
 class Property {
-    - String description
+    - area
+    - location
+    - distanceFromTheCityCentre
+}
 
-    + Property(description)
+class Apartment{
+    - numberOfBedrooms
+    - numberOfBathrooms
+    - numberOfParkingSpaces
+    - avaliableEquipement
+}
+
+class House{
+    - existenceOfABasement
+    - inhabitableLoft
+    - sunExpousure
 }
 
 class Organization {
@@ -102,6 +120,9 @@ PropertyRepository "1" --> "*" Property : property
 Organization "1" --> "*" Announcement : creates and publishes
 Announcement --> Agent : createdAndPublishedBy
 
-Organization --> "*" Agent : employs
+Organization --> "*" Agent : has
+
+Property <|-- Apartment
+Apartment <|-- House
 
 @enduml

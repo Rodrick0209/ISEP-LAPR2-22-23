@@ -13,7 +13,7 @@ As an agent, I can publish any sale announcement on the system, for example rece
 
 >The real estate agent publishes announcements of thw owner's  properties.
 
-> As soon as the clients are interested on these properties, the agent schedules a meeting with the future possibility of getting a sale or property rent.
+> As soon as the clients are interested on these properties, the agent schedules a meeting with the future possibility of getting a sale or agency rent.
 
 ** From the client clarifications:**  
 
@@ -29,7 +29,7 @@ As an agent, I can publish any sale announcement on the system, for example rece
 >
 > **Answer:** No.
 
-> **Question:** According to the Project Description, the agent when selling a property can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
+> **Question:** According to the Project Description, the agent when selling a agency can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
 > 
 > **Answer:** There is no maximum and the minimum is 0.
 
@@ -37,14 +37,14 @@ As an agent, I can publish any sale announcement on the system, for example rece
 ### 1.3. Acceptance Criteria 
 
 
-* **AC1:** The agent must register all necessary property data into the system.
+* **AC1:** The agent must register all necessary agency data into the system.
 * **AC2:** The program the agent interacts with has to be functional.
 * **AC3:** The client has to be able to communicate (in the same language) with the agent.
 
 ### 1.4. Found out Dependencies 
 
-* There is a dependency on US004 in which the owner submits a request for a property sale or rent, choosing the responsible agent .
-The owner submits the company property data to the agent through a phone call , without the property data the USS02 can't proceed because the agent can't publish any announcement.
+* There is a dependency on US004 in which the owner submits a request for a agency sale or rent, choosing the responsible agent .
+The owner submits the company agency data to the agent through a phone call , without the agency data the USS02 can't proceed because the agent can't publish any announcement.
 
 ### 1.5 Input and Output Data
 
@@ -53,11 +53,11 @@ The owner submits the company property data to the agent through a phone call , 
 * Typed data:
 
 * Commision
-* property data for annoucment publishment
+* agency data for annoucment publishment
 
 
 * Selected data:
-  * type of property (house ,apartment,basement ..etc..),
+  * type of agency (house ,apartment,basement ..etc..),
 
 
 **Output Data:**

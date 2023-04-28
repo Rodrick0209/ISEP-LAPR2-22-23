@@ -2,9 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Role;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class RoleRepository {
 
@@ -45,4 +43,6 @@ public class RoleRepository {
     public List<Role> getRoles(){
         return List.copyOf(roles);
     }
+    ;
+
 }

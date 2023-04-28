@@ -2,20 +2,20 @@
 
 # 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Store class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Agency class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Store instance = new Store(null, null, null, null, null, null, null);
+		Agency instance = new Agency(null, null, null, null, null, null, null);
 	}
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Store class with a designation containing more than forty chars - AC1. 
+**Test 2:** Check that it is not possible to create an instance of the Agency class with a designation containing more than forty chars - AC1. 
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureReferenceMeetsAC1() {
 		
-		Store instance = new Store("15030", "Store Desgnation Company Made by System Administrator", "Alaska", "Anchorage School", "71 Bourbon Street, EAST Seattle", "abcd@isep.ipp.pt", "457-9384");
+		Agency instance = new Agency("15030", "Store Desgnation Company Made by System Administrator", "Alaska", "Anchorage School", "71 Bourbon Street, EAST Seattle", "abcd@isep.ipp.pt", "457-9384");
 	}
 
 
@@ -24,44 +24,42 @@
 # 5. Construction (Implementation)
 
 
-## Class RegisterStoreController 
+## Class RegisterAgencyController 
 
 ```java
-public Company registerStore(int id, String designation, String location, String emailAddress, String phoneNumber) {
-        Administrator administrator = getAdministratorFromSession();
-        Company company = getCompanyRepository().getCompanyByAdministrator(administrator);
+public Organization createAgency(int id, String designation, String location, String emailAddress, String phoneNumber) {
+        Employee administrator = getAdministratorFromSession();
+        Organization organization = getOrganizationRepository().getOrganizationByAdministrator(administrator);
 
-        newStore = company.registerStore(id, designation, location, emailAddress, phoneNumber, administrator);
+        newAgency = organization.createAgency(id, designation, location, emailAddress, phoneNumber, administrator);
 
-        return newStore;
+        return newAgency;
         }
 ```
 
 
-## Class Company
+## Class Organization
 
 ```java
-public Optional<Store> registerStore (Integer id, String designation, String location, String emailAddress, String phoneNumber, Administrator administrator){
-        Store store = new Store(id, designation, location, emailAddress, phoneNumber, administrator);
+public Optional<Agency> createAgency (Integer id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
+        Agency agency = new Agency(id, designation, location, emailAddress, phoneNumber, administrator);
 
-        addStore(store);
+        addAgency(agency);
 
-        return store;
+        return agency;
         }
 ```
 
 # 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+* A new option on the Administrator menu options was added.
 
 * Some demo purposes some tasks are bootstrapped while system starts.
 
 
 # 7. Observations
 
-Platform and Organization classes are getting too many responsibilities due to IE pattern and, therefore, they are becoming huge and harder to maintain. 
-
-Is there any way to avoid this to happen?
+n/a
 
 
 

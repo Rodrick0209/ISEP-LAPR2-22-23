@@ -7,6 +7,8 @@ public class Repositories {
     AgencyRepository agencyRepository = new AgencyRepository();
     RoleRepository roleRepository = new RoleRepository();
 
+    PropertyRepository propertyRepository = new PropertyRepository();
+
     AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
     private Repositories() {
@@ -26,4 +28,6 @@ public class Repositories {
     }
 
     public AuthenticationRepository getAuthenticationRepository() { return authenticationRepository; }
+
+    public PropertyRepository getPropertyRepository() { return propertyRepository; }
 }

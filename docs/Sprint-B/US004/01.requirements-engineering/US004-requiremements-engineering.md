@@ -5,7 +5,7 @@
 
 ### 1.1. User Story Description
 
-As an owner, I intend to submit a request for listing a property sale or rent,
+As an owner, I intend to submit a request for listing a agency sale or rent,
 choosing the responsible agent.
 
 ### 1.2. Customer Specifications and Clarifications 
@@ -13,7 +13,7 @@ choosing the responsible agent.
 
 **From the specifications document:**
 
->	The owner provides property characteristics and the requested price and sends the request to an agent
+>	The owner provides agency characteristics and the requested price and sends the request to an agent
 
 >	The agent sets the commission and publishes the offer in the system. The commission can be a fixed amount or a percentage.
 
@@ -30,12 +30,12 @@ choosing the responsible agent.
 > **Answer:** No, he doesn't.
 
 
-> **Question:** When renting, does the owner have any space to clarify any prohibitions or obligations with the property?
+> **Question:** When renting, does the owner have any space to clarify any prohibitions or obligations with the agency?
 >
 > **Answer:** No, he doesn't.
 
 
-> **Question:** In the case of listing a land property, shall the owner refer if there is a building permit already approved?
+> **Question:** In the case of listing a land agency, shall the owner refer if there is a building permit already approved?
 >
 > **Answer:** No, he doesn't.
 
@@ -43,8 +43,8 @@ choosing the responsible agent.
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required property's characteristics must be filled in.
-* **AC2:** The owner needs to select the type of property ( house, apartment or land).
+* **AC1:** All required agency's characteristics must be filled in.
+* **AC2:** The owner needs to select the type of agency ( house, apartment or land).
 * **AC3:** The agent needs to register the information and publish it, so it is visible to all clients that visit and use the application
 
 
@@ -75,7 +75,7 @@ choosing the responsible agent.
 
 **Output Data:**
 
-* List of property or land that satisfy the requirements
+* List of agency or land that satisfy the requirements
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)

@@ -13,6 +13,7 @@ participant "currentSession\n:UserSession" as SESSAO
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
 participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
+participant "employee:\nEmployee" as EMP
 participant "organization\n:Organization" as ORG
 
 autonumber 14
@@ -20,7 +21,7 @@ autonumber 14
 autonumber 14.1
 activate CTRL
 
-    group Get Employee
+    group Get Agent
         CTRL -> _APP: getInstance()
         activate _APP
             _APP -> CTRL: appSession
@@ -48,7 +49,7 @@ activate CTRL
         activate OrganizationRepository
 
             loop [for each organization
-                OrganizationRepository -> ORG : anyAgentHasEmail(email)
+                OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
                 activate ORG
 
                      ORG --> OrganizationRepository : true/false
@@ -59,11 +60,12 @@ activate CTRL
 
         deactivate OrganizationRepository
 
-        CTRL -> ORG: getAgentByEmail(email)
+        CTRL -> ORG: getEmployeeByEmail(email)
         activate ORG
 
-            ORG --> CTRL : agent
+            ORG --> CTRL : employee
         deactivate ORG
+
     end
     autonumber 15
     <-- CTRL : agent

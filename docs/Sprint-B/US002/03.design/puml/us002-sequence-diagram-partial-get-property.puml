@@ -6,15 +6,15 @@ skinparam shadowing false
 participant ":PublishAnnouncementController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "propertyRepository:\nPropertyRepository" as TaskCategoryRepository
+participant "propertyRepository:\nPropertyRepository" as PropertyRepository
 
-autonumber 12
--> CTRL : getTaskCByDescription(taskCategoryDescription)
+autonumber 14
+-> CTRL : getPropertyByLocation(propertyLocation)
 
-autonumber 12.1
+autonumber 14.1
 
 activate CTRL
-    group Get Task Category
+    group Get Property
         CTRL -> RepositorySingleton : getInstance()
         activate RepositorySingleton
 
@@ -27,16 +27,16 @@ activate CTRL
             PLAT -> CTRL : propertyRepository
         deactivate PLAT
 
-        CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-        activate TaskCategoryRepository
+        CTRL -> PropertyRepository : getLocationByLocation(propertyLocation)
+        activate PropertyRepository
 
-            TaskCategoryRepository --> CTRL : property
-        deactivate TaskCategoryRepository
+            PropertyRepository --> CTRL : propertyList
+        deactivate PropertyRepository
 
     end group
 
-    autonumber 13
-    <-- CTRL : taskCategory
+    autonumber 15
+    <-- CTRL : propertyList
 
 deactivate CTRL
 

@@ -60,23 +60,23 @@ public class RegisterEmployeeController {
     }
 
 
-    public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String roleName, int agencyID){
+    public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, String roleName, int agencyID){
         Agency agency = getAgencyByID(agencyID);
         Role role = getRoleByName(roleName);
 
-        Administrator administrator = getAdministratorFromSession();
-        Optional<Organization> organization = getOrganizationRepository().getOrganizationByAdministrator(administrator);
+        Employee administrator = getAdministratorFromSession();
+        Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(administrator);
 
         Optional<Employee> newEmployee = Optional.empty();
         if(organization.isPresent()){
-            newEmployee = organization.get().createEmployee(name, email, ccNumber, taxNumber, address, role, agency, administrator);
+            newEmployee = organization.get().createEmployee(name, email, ccNumber, taxNumber, address, phoneNumber, role, agency, administrator);
         }
         return newEmployee;
     }
 
-    private Administrator getAdministratorFromSession() {
+    private Employee getAdministratorFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
-        return new Administrator(email.getEmail());
+        return new Employee(email.getEmail());
     }
 
     private Agency getAgencyByID(int agencyID){

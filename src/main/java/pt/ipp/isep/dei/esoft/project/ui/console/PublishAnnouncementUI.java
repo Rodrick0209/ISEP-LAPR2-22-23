@@ -1,31 +1,24 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeController;
 import pt.ipp.isep.dei.esoft.project.domain.Agency;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Role;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
-public class RegisterEmployeeUI implements Runnable {
-
-    public RegisterEmployeeUI(){
+public class PublishAnnouncementUI implements Runnable {
+    public PublishAnnouncementUI(){
 
     }
-    private final RegisterEmployeeController controller = new RegisterEmployeeController();
-    private String employeeName;
-    private String employeeEmail;
-    private int employeeCCNumber;
-    private int employeeTaxNumber;
-    private String employeeAddress;
-    private String employeePhoneNumber;
-    private String employeeRoleName;
-    private int employeeAgencyID;
 
+    private final PublishAnnouncementController controller = new PublishAnnouncementController();
+
+    private String announcementPropertyLocation;
+    private String announcementDescription;
     private RegisterEmployeeController getController() {
         return controller;
     }
@@ -42,7 +35,7 @@ public class RegisterEmployeeUI implements Runnable {
     }
 
     private void submitData() {
-        Optional<Employee> employee = getController().createEmployee(employeeName, employeeEmail, employeeCCNumber, employeeTaxNumber, employeeAddress, employeePhoneNumber, employeeRoleName, employeeAgencyID);
+        Optional<Announcement> announcement = getController().createEmployee();
 
         if (employee.isPresent()) {
             System.out.println("Employee successfully registered!");
@@ -183,4 +176,5 @@ public class RegisterEmployeeUI implements Runnable {
         return agencies.get(answer).getID();
     }
 
+}
 }

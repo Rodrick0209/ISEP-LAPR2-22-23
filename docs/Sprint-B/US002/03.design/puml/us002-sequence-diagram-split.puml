@@ -53,44 +53,44 @@ activate ADM
     ADM -> UI : submits data
     activate UI
 
-        UI -> CTRL : createAnnouncement(property..., description, commission)
+        UI -> CTRL : createAnnouncement(propertyLocation, description, commission)
         activate CTRL
 
-            CTRL -> CTRL : getPropertyByDescription(taskCategoryDescription)
+            CTRL -> CTRL : getPropertyByLocation(propertyLocation)
             activate CTRL
 
                 ref over CTRL
-                    Get Task Category Object
+                    Get Property
 
                 end ref
 
-                CTRL --> CTRL : taskCategory
+                CTRL --> CTRL : property
             deactivate CTRL
 
-            CTRL -> CTRL : getEmployeeFromSession()
+            CTRL -> CTRL : getAgentFromSession()
             activate CTRL
 
                 ref over CTRL
-                    Get Employee
+                    Get Agent
 
                 end ref
-                CTRL -> CTRL : employee
+                CTRL -> CTRL : agent
             deactivate CTRL
 
-            CTRL -> ORG: createTask(reference, description, informalDescription,\ntechnicalDescription, duration, cost, taskCategory, employee)
+            CTRL -> ORG: createAnnouncement(property, \ndescription, commission, agent)
             activate ORG
 
                 ref over ORG
-                    Create Task
+                    Create Announcement
 
                 end
 
-                ORG --> CTRL : task
+                ORG --> CTRL : announcement
             deactivate ORG
 
-            CTRL --> UI: task
+            CTRL --> UI: announcement
             deactivate CTRL
-            UI --> ADM: displays operation success
+            UI --> ADM: informs the agent when the \nannouncment has been published
     deactivate UI
 
 deactivate ADM

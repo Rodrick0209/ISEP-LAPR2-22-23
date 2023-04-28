@@ -3,8 +3,8 @@
 ## Functionality
 
 * The agent should be able to review advertisement requests, register information, publish offers visible to all clients, record visits to properties and indicate whether they think a deal will take place.
-* The client should be able to sort the list of properties by type of property, number of bedrooms, by price and by location.
-* The client should also be able to ask for a visit to the property and the agent need to confirm and schedule the visit.
+* The client should be able to sort the list of properties by type of agency, number of bedrooms, by price and by location.
+* The client should also be able to ask for a visit to the agency and the agent need to confirm and schedule the visit.
 * The system administrator needs to insert every relevant data about the employees and each store.
 * To use the application, the user must be authenticated with a password of seven alphanumeric characters, including three capital letters and two digits.
 
@@ -35,7 +35,7 @@
 
 * The software should be easy and cheap to maintain.
 * The software should have some updates to that could improve the app when necessary.
-* The app should have a contact ( email ,fax,phone number or any other for of communication) from the company to its clients have contact with it when they are unable to submit the characteristics of the property.
+* The app should have a contact ( email ,fax,phone number or any other for of communication) from the company to its clients have contact with it when they are unable to submit the characteristics of the agency.
 
 
 ### Design Constraints

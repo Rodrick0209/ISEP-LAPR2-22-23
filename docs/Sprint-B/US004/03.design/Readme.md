@@ -63,7 +63,7 @@ It uses interaction ocurrence.
 
 **Get Employee**
 
-![Sequence Diagram - Partial - Get Employee](svg/us004-sequence-diagram-partial-get-property-type.svg)
+![Sequence Diagram - Partial - Get Employee](svg/us004-sequence-diagram-partial-get-agency-type.svg)
 
 **Create Task**
 

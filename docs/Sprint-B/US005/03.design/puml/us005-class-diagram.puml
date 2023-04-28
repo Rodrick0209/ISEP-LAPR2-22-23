@@ -20,7 +20,7 @@ class UserSession
     + getUserEmail()
 }
 
-class Store {
+class Agency {
     - Integer id
     - String designation
     - String location
@@ -57,9 +57,12 @@ class CompanyRepository{
 }
 
 class Administrator{
--name
--email
--password
+    - name
+    - ccNumber
+    - taxNumber
+    - address
+    - email
+    - phoneNumber
 }
 
 Repositories -> Repositories : instance
@@ -79,7 +82,7 @@ RegisterStoreController ..> "1" Company : company
 RegisterStoreController ..> ApplicationSession
 RegisterStoreController ..> UserSession
 Store --> Administrator : registeredBy
-Company "1" --> "*" Store : has
+Company "1" --> "*" Agency : has
 Administrator "1" --> "*" Company : administrates
 
 
