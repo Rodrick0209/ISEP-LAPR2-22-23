@@ -11,6 +11,8 @@ public class Repositories {
 
     AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
+    PropertyTypeRepository propertyTypeRepository = new PropertyTypeRepository();
+
     private Repositories() {
     }
 
@@ -30,4 +32,8 @@ public class Repositories {
     public AuthenticationRepository getAuthenticationRepository() { return authenticationRepository; }
 
     public PropertyRepository getPropertyRepository() { return propertyRepository; }
+
+    public PropertyTypeRepository getPropertyTypeRepository() {
+        return propertyTypeRepository;
+    }
 }
