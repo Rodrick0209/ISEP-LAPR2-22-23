@@ -14,6 +14,20 @@ public class Organization {
 
     List<Announcement> announcements = new ArrayList<>();
 
+
+    /**
+     *
+     * @param name the name inputted
+     * @param email the email inputted
+     * @param ccNumber the cc number inputted
+     * @param taxNumber the tax number inputted
+     * @param address the address inputted
+     * @param phoneNumber the phone number inputted
+     * @param role the role selected
+     * @param agency the agency selected
+     * @param administrator the administrator from session
+     * @return employee registered on a list
+     */
     public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator) {
         Optional<Employee> optionalValue = Optional.empty();
 
@@ -25,6 +39,14 @@ public class Organization {
         return optionalValue;
     }
 
+    /**
+     *
+     * @param property the property selected
+     * @param description the description inputted
+     * @param commission the commission inputted
+     * @param agent the agent from session
+     * @return announcement created on a list
+     */
     public Optional<Announcement> createAnnouncement(Property property, String description, double commission, Employee agent){
         Optional<Announcement> optionalValue = Optional.empty();
 
@@ -36,6 +58,16 @@ public class Organization {
         return optionalValue;
     }
 
+    /**
+     *
+     * @param id the id inputted
+     * @param designation the designation inputted
+     * @param location the location inputted
+     * @param emailAddress the email address inputted
+     * @param phoneNumber the phone number inputted
+     * @param administrator the administrator from session
+     * @return agency registered on a list
+     */
     public Optional<Agency> createAgency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator) {
         Optional<Agency> optionalValue = Optional.empty();
 
@@ -47,10 +79,20 @@ public class Organization {
         return optionalValue;
     }
 
+    /**
+     *
+     * @param employee the employee registered/added
+     * @return if the employee is contained in the list of employees of the organization
+     */
     public boolean employs(Employee employee){
         return employees.contains(employee);
     }
 
+    /**
+     *
+     * @param email the email inputted
+     * @return if the employee registered/added has this email
+     */
     public boolean employeeHasEmail(String email) {
         boolean result = false;
         for(Employee employee : employees ) {
@@ -81,6 +123,12 @@ public class Organization {
     }
 
     //add employee to organization
+
+    /**
+     *
+     * @param employee the employee registered/added
+     * @return if the employee is added in the list of employees
+     */
     public boolean addEmployee(Employee employee) {
         boolean success = false;
         if (validateEmployee(employee)) {
@@ -89,6 +137,11 @@ public class Organization {
         return success;
     }
 
+    /**
+     *
+     * @param announcement the announcement created/added
+     * @return if the announcement is added in the list of announcements
+     */
     public boolean addAnnouncement(Announcement announcement) {
         boolean success = false;
         if (validateAnnouncement(announcement)) {
@@ -97,6 +150,11 @@ public class Organization {
         return success;
     }
 
+    /**
+     *
+     * @param agency the agency registered/added
+     * @return if the agency is added in the list of agencies
+     */
     public boolean addAgency(Agency agency) {
         boolean success = false;
         if(validateAgency(agency)) {
@@ -106,23 +164,65 @@ public class Organization {
         }
 
 
+    /**
+     *
+     * @param employee the employee registered/added
+     * @return if employee registered is valid
+     */
     private boolean validateEmployee(Employee employee) {
         return employeesDoNotContain(employee);
     }
 
+    /**
+     *
+     * @param employee the employee registered/added
+     * @return if employee registered is not contained on the list of employees
+     */
     private boolean employeesDoNotContain(Employee employee) {
         return !employees.contains(employee);
     }
 
+
+    /**
+     *
+     * @param announcement the announcement created/added
+     * @return if announcement created is valid
+     */
     private boolean validateAnnouncement(Announcement announcement){ return announcementDoNotContain(announcement);}
 
+    /**
+     *
+     * @param announcement the announcement created/added
+     * @return if announcement created is not contained on the list of announcements
+     */
     private boolean announcementDoNotContain(Announcement announcement){ return !announcements.contains(announcement);}
 
-    private boolean validateAgency(Agency agency) { return agenciesDoNotContain(agency); }
+    /**
+     *
+     * @param agency the agency registered/added
+     * @return if agency registered is valid
+     */
+    private boolean validateAgency(Agency agency) { return agenciesDoNotContain(agency) && agencyDesignationNotHaveMoreThan40Chars(agency); }
 
+    /**
+     *
+     * @param agency the agency registered/added
+     * @return if agency registered is not contained on the list of agencies
+     */
     private boolean agenciesDoNotContain(Agency agency) { return !agencies.contains(agency);}
 
-    //Clone organization
+    /**
+     *
+     * @param agency the agency registered/added
+     * @return if agency registered does not have its designation longer than 40 characters
+     */
+    private boolean agencyDesignationNotHaveMoreThan40Chars(Agency agency) { return !(agency.getDesignation().replace(" ", "").length() > 40);}
+
+
+    /**
+     *
+     * @return clone of organization
+     */
     public Organization clone() {
         Organization clone = new Organization(this.description);
         for (Agency in : this.agencies){

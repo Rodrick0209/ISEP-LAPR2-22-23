@@ -53,7 +53,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     private void submitOrNot() {
         showData();
-        boolean answer = Utils.confirm("Submit Data?");
+        boolean answer = Utils.confirm("Submit Data? (type yes or no)");
         if(answer){
             submitData();
         } else run();
@@ -81,7 +81,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      *
-     * @return input
+     * @return input of employee name
      */
     private String requestEmployeeName() {
         String input;
@@ -96,7 +96,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      *
-     * @return input
+     * @return input of employee email
      */
     private String requestEmployeeEmail() {
         String input;
@@ -111,7 +111,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      *
-     * @return input
+     * @return input of employee cc number
      */
     private int requestEmployeeCCNumber() {
         int input = 0;
@@ -129,7 +129,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      *
-     * @return input
+     * @return input of employee tax number
      */
     private int requestEmployeeTaxNumber() {
         int input = 0;
@@ -147,7 +147,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     /**
      *
-     * @return input
+     * @return input of employee address
      */
     private String requestEmployeeAddress() {
         String input;
@@ -160,6 +160,10 @@ public class RegisterEmployeeUI implements Runnable {
         return input;
     }
 
+    /**
+     *
+     * @return input of employee phone number
+     */
     private String requestEmployeePhoneNumber() {
         String input;
         do{
@@ -171,12 +175,20 @@ public class RegisterEmployeeUI implements Runnable {
         return input;
     }
 
+    /**
+     *
+     * @return selected role from displayed role list
+     */
     private String displayAndSelectRole() {
         List<Role> roles = controller.getRoles();
         int answer = Utils.showAndSelectIndex(roles, "Roles");
         return roles.get(answer).getName();
     }
 
+    /**
+     *
+     * @return selected agency from displayed agency list
+     */
     private int displayAndSelectAgency() {
         List<Agency> agencies = controller.getAgencies();
         int answer = Utils.showAndSelectIndex(agencies, "Agencies");

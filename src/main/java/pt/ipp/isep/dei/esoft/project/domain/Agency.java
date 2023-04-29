@@ -42,8 +42,14 @@ public class Agency {
     public int hashCode() { return Objects.hash(id); }
 
     public String toString(){
-        return String.format("Agency nº%d Name: %s%n Location: %s%n Email Address: %s%n Phone Number: %s%n", this.id, this.designation, this.location, this.emailAddress, this.phoneNumber);
+        return String.format("Agency nº%d%n" +
+                "Name: %s%n" +
+                "Location: %s%n" +
+                "Email Address: %s%n" +
+                "Phone Number: %s%n"
+                , this.id, this.designation, this.location, this.emailAddress, this.phoneNumber);
     }
 
     public Agency clone(){ return new Agency(this.id, this.designation, this.location, this.emailAddress, this.phoneNumber, this.administrator); }
+
 }
