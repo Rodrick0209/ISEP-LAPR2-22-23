@@ -48,8 +48,8 @@ public class PublishAnnouncementController {
         return propertyRepository;
     }
 
-    public Optional<Announcement> createAnnouncement(String propertyLocation, String description, double commission){
-        Property property = getPropertyByLocation(propertyLocation);
+    public Optional<Announcement> createAnnouncement(Location location, String description, int commission){
+        Property property = getPropertyByLocation(location);
 
         Employee agent = getAgentFromSession();
         Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(agent);
@@ -61,13 +61,8 @@ public class PublishAnnouncementController {
         return newAnnouncement;
     }
 
-    private Property getPropertyByLocation(String propertyLocation) {
-        return getPropertyRepository().getPropertyByLocation(propertyLocation);
-    }
-
-    public List<Property> getProperties(){
-        PropertyRepository propertyRepository = getPropertyRepository();
-        return propertyRepository.getProperties();
+    private Property getPropertyByLocation(Location location) {
+        return getPropertyRepository().getPropertyByLocation(location);
     }
 
     private Employee getAgentFromSession() {
