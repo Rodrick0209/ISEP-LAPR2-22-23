@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.esoft.project.repository.PropertyRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
+import java.util.List;
 import java.util.Optional;
 
 public class PublishAnnouncementController {
@@ -69,4 +70,6 @@ public class PublishAnnouncementController {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new Employee(email.getEmail());
     }
+
+    public List<Property> getProperties(){return getPropertyRepository().getProperties();}
 }

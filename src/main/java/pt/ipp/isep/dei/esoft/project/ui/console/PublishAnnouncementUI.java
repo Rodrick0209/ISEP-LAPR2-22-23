@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.domain.Location;
+import pt.ipp.isep.dei.esoft.project.domain.Property;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.Optional;
@@ -14,9 +16,9 @@ public class PublishAnnouncementUI implements Runnable {
 
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
 
-    private String announcementPropertyLocation;
+    private Location announcementPropertyLocation;
     private String announcementDescription;
-    private double commission;
+    private int commission;
     private PublishAnnouncementController getController() {
         return controller;
     }
@@ -80,12 +82,12 @@ public class PublishAnnouncementUI implements Runnable {
      *
      * @return input of commission
      */
-    private double requestCommission() {
-        double input = 0;
+    private int requestCommission() {
+        int input = 0;
         boolean valid = false;
         do{
             try {
-                input = Utils.readDoubleFromConsole("Commission: ");
+                input = Utils.readIntegerFromConsole("Commission: ");
                 valid = true;
             } catch (NullPointerException e) {
                 System.out.println("Invalid Number. Please enter a valid number.");
@@ -99,9 +101,9 @@ public class PublishAnnouncementUI implements Runnable {
      *
      * @return selected property from displayed property list
      */
-    private String displayAndSelectProperty() {
+    private Location displayAndSelectProperty() {
         List<Property> properties = controller.getProperties();
-        int answer = Utils.showAndSelectIndex(properties, "Roles");
+        int answer = Utils.showAndSelectIndex(properties, "Properties");
         return properties.get(answer).getLocation();
     }
 

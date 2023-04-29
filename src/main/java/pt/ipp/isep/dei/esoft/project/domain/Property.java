@@ -31,6 +31,10 @@ public class Property {
         this.area = area;
         this.distance = distance;
     }
+
+    public Property(Location location) {
+        this.location = location;
+    }
       public double getArea() {
         return area;
     }
@@ -65,4 +69,8 @@ public class Property {
         this.location = location;
         this.distance = distance;
     }
+
+    public Property clone() {return new Property(this.area, this.location, this.distance, this.photos);}
+
+    public Location getLocation() {return location;}
 }
