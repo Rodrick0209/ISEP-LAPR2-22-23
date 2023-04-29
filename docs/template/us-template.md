@@ -7,7 +7,7 @@ e.g., US006 - Create a Task
 
 ### 1.1. User Story Description
 
-As an owner, I intend to submit a request for listing a property sale or rent,
+As an owner, I intend to submit a request for listing a agency sale or rent,
 choosing the responsible agent.
 
 ### 1.2. Customer Specifications and Clarifications 

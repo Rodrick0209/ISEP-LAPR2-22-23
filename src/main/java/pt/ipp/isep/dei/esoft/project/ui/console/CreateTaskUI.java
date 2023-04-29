@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.console;
+/*package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateTaskController;
 import pt.ipp.isep.dei.esoft.project.domain.Task;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * Create Task UI (console). This option is only available for administrators for demonstration purposes.
  */
-public class CreateTaskUI implements Runnable {
+/*public class CreateTaskUI implements Runnable {
 
     private final CreateTaskController controller = new CreateTaskController();
     private String taskReference;
@@ -135,3 +135,4 @@ public class CreateTaskUI implements Runnable {
         }
     }
 }
+*/

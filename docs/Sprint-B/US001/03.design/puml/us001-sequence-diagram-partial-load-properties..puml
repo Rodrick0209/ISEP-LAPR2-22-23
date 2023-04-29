@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "User\n(unregistered)" as ADM
+participant ":System" as System
+participant ":PropertiesList" as List
+
+activate ADM
+
+        ADM -> System : selects
+        activate System
+
+            System -> List : loadProperties()
+            activate List
+
+            List -> System : getPropreties()
+            deactivate List
+
+        System -> ADM
+        deactivate System
+
+deactivate ADM
+
+@enduml

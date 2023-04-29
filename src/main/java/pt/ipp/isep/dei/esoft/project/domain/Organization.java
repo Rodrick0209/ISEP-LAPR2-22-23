@@ -6,112 +6,54 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Organization {
-    private final String vatNumber;
+
+    private final String description;
     List<Employee> employees = new ArrayList<>();
-    List<Task> tasks = new ArrayList<>();
-    private String name;
-    private String website;
-    private String phone;
-    private String email;
 
-    /**
-     * This method is the constructor of the organization.
-     *
-     * @param vatNumber The vat number of the organization. This is the identity of the organization, therefore it
-     *                  cannot be changed.
-     */
-    public Organization(String vatNumber) {
-        this.vatNumber = vatNumber;
-    }
+    List<Agency> agencies = new ArrayList<>();
 
-    /**
-     * This method checks if an employee works for the organization.
-     *
-     * @param employee The employee to be checked.
-     * @return True if the employee works for the organization.
-     */
-    public boolean employs(Employee employee) {
-        return employees.contains(employee);
-    }
+    List<Announcement> announcements = new ArrayList<>();
 
-    /**
-     * This method creates a new task.
-     *
-     * @param reference            The reference of the task to be created.
-     * @param description          The description of the task to be created.
-     * @param informalDescription  The informal description of the task to be created.
-     * @param technicalDescription The technical description of the task to be created.
-     * @param duration             The duration of the task to be created.
-     * @param cost                 The cost of the task to be created.
-     * @param taskCategory         The task category of the task to be created.
-     * @param employee             The employee of the task to be created.
-     * @return
-     */
-    public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                     String technicalDescription, Integer duration, Double cost,
-                                     TaskCategory taskCategory, Employee employee) {
+    public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator) {
+        Optional<Employee> optionalValue = Optional.empty();
 
-        //TODO: we could also check if the employee works for the organization before proceeding
-        //checkIfEmployeeWorksForOrganization(employee);
+        Employee employee = new Employee(name, email, ccNumber, taxNumber, address, phoneNumber, role, agency, administrator);
 
-        // When a Task is added, it should fail if the Task already exists in the list of Tasks.
-        // In order to not return null if the operation fails, we use the Optional class.
-        Optional<Task> optionalValue = Optional.empty();
-
-        Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                taskCategory, employee);
-
-        if (addTask(task)) {
-            optionalValue = Optional.of(task);
+        if (addEmployee(employee)) {
+            optionalValue = Optional.of(employee);
         }
         return optionalValue;
     }
 
-    /**
-     * This method adds a task to the list of tasks.
-     *
-     * @param task The task to be added.
-     * @return True if the task was added successfully.
-     */
-    private boolean addTask(Task task) {
-        boolean success = false;
-        if (validate(task)) {
-            // A clone of the task is added to the list of tasks, to avoid side effects and outside manipulation.
-            success = tasks.add(task.clone());
+    public Optional<Announcement> createAnnouncement(Property property, String description, double commission, Employee agent){
+        Optional<Announcement> optionalValue = Optional.empty();
+
+        Announcement announcement = new Announcement(property, description, commission, agent);
+
+        if(addAnnouncement(announcement)) {
+            optionalValue = Optional.of(announcement);
         }
-        return success;
-
+        return optionalValue;
     }
 
-    /**
-     * This method validates the task, checking for duplicates.
-     *
-     * @param task The task to be validated.
-     * @return True if the task is valid.
-     */
-    private boolean validate(Task task) {
-        return tasksDoNotContain(task);
+    public Optional<Agency> createAgency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator) {
+        Optional<Agency> optionalValue = Optional.empty();
+
+        Agency agency = new Agency(id, designation, location, emailAddress, phoneNumber, administrator);
+
+        if(addAgency(agency)){
+            optionalValue = Optional.of(agency);
+        }
+        return optionalValue;
     }
 
-    /**
-     * This method checks if the task is already in the list of tasks.
-     *
-     * @param task The task to be checked.
-     * @return True if the task is not in the list of tasks.
-     */
-    private boolean tasksDoNotContain(Task task) {
-        return !tasks.contains(task);
+    public boolean employs(Employee employee){
+        return employees.contains(employee);
     }
 
-    /**
-     * This methos checks if the organization has an employee with the given email.
-     *
-     * @param email The email to be checked.
-     * @return True if the organization has an employee with the given email.
-     */
-    public boolean anyEmployeeHasEmail(String email) {
+    public boolean employeeHasEmail(String email) {
         boolean result = false;
-        for (Employee employee : employees) {
+        for(Employee employee : employees ) {
             if (employee.hasEmail(email)) {
                 result = true;
             }
@@ -119,7 +61,10 @@ public class Organization {
         return result;
     }
 
-    @Override
+    public Organization(String description){
+        this.description = description;
+    }
+
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -128,12 +73,11 @@ public class Organization {
             return false;
         }
         Organization that = (Organization) o;
-        return vatNumber.equals(that.vatNumber);
+        return description.equals(that.description);
     }
 
-    @Override
     public int hashCode() {
-        return Objects.hash(vatNumber);
+        return Objects.hash(description);
     }
 
     //add employee to organization
@@ -145,6 +89,23 @@ public class Organization {
         return success;
     }
 
+    public boolean addAnnouncement(Announcement announcement) {
+        boolean success = false;
+        if (validateAnnouncement(announcement)) {
+            success = announcements.add(announcement);
+        }
+        return success;
+    }
+
+    public boolean addAgency(Agency agency) {
+        boolean success = false;
+        if(validateAgency(agency)) {
+            success = agencies.add(agency);
+        }
+        return success;
+        }
+
+
     private boolean validateEmployee(Employee employee) {
         return employeesDoNotContain(employee);
     }
@@ -153,24 +114,26 @@ public class Organization {
         return !employees.contains(employee);
     }
 
+    private boolean validateAnnouncement(Announcement announcement){ return announcementDoNotContain(announcement);}
+
+    private boolean announcementDoNotContain(Announcement announcement){ return !announcements.contains(announcement);}
+
+    private boolean validateAgency(Agency agency) { return agenciesDoNotContain(agency); }
+
+    private boolean agenciesDoNotContain(Agency agency) { return !agencies.contains(agency);}
+
     //Clone organization
     public Organization clone() {
-        Organization clone = new Organization(this.vatNumber);
-        clone.name = (this.name);
-        clone.website = (this.website);
-        clone.phone = (this.phone);
-        clone.email = (this.email);
-
+        Organization clone = new Organization(this.description);
+        for (Agency in : this.agencies){
+            clone.agencies.add(in.clone());
+        }
+        for (Announcement in: this.announcements){
+            clone.announcements.add(in.clone());
+        }
         for (Employee in : this.employees) {
             clone.employees.add(in.clone());
         }
-
-
-        for (Task in : this.tasks) {
-            clone.tasks.add(in.clone());
-        }
-
-
         return clone;
     }
 }

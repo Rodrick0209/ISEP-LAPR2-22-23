@@ -9,126 +9,89 @@ autonumber
 actor "System Administrator" as ADM
 participant ":RegisterStoreUI" as UI
 participant ":RegisterStoreController" as CTRL
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSION
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "locationRepository:\nLocationRepository" as LocationRepository
+participant "companyRepository:\nCompanyRepository" as CompanyRepository
 participant "company\n:Company" as Company
 participant "store\n:Store" as Store
 
 activate ADM
-ADM -> UI : asks to register a new store
+
+    ADM -> UI : asks to register a new store
     activate UI
 
         UI -> CTRL** : register
         UI --> ADM: requests data
         deactivate UI
 
-    ADM -> UI : types requested data (id, designation, \nport number, zip code, e-mail address, \nand contact telephone number)
-        activate UI
-
-UI -> CTRL : getStates()
-    activate CTRL
-CTRL -> RepositorySingleton : getInstance()
-            activate RepositorySingleton
-
-                RepositorySingleton --> CTRL: repositories
-            deactivate RepositorySingleton
-
-            CTRL -> PLAT : getLocationRepository()
-            activate PLAT
-
-                PLAT --> CTRL: locationRepository
-            deactivate PLAT
-
-            CTRL -> LocationRepository : getStates()
-            activate LocationRepository
-
-                LocationRepository --> CTRL : stateList
-            deactivate LocationRepository
-
-
-
-
-            CTRL --> UI : stateList
-            deactivate CTRL
-            UI --> ADM : shows state list
+    ADM -> UI : types requested data (id, designation, location, \nemail address and contact telephone number)
+    activate UI
+        UI --> ADM : shows typed data
         deactivate UI
-
-    ADM -> UI : selects state
-    activate UI
-
-    UI -> CTRL : getDistricts(state)
-    activate CTRL
-    CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
-
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
-
-                CTRL -> PLAT : getLocationRepository()
-                activate PLAT
-
-                    PLAT --> CTRL: locationRepository
-                deactivate PLAT
-
-                CTRL -> LocationRepository : getDistricts(state)
-                activate LocationRepository
-
-                    LocationRepository --> CTRL : districtList
-                deactivate LocationRepository
-
-
-
-
-                CTRL --> UI : districtList
-                deactivate CTRL
-                UI --> ADM : shows district list
-            deactivate UI
-    ADM -> UI: selects district
-    activate UI
-
-    UI -> CTRL : getCities(state, district)
-    activate CTRL
-
-
-    CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
-
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
-
-                CTRL -> PLAT : getLocationRepository()
-                activate PLAT
-
-                    PLAT --> CTRL: locationRepository
-                deactivate PLAT
-
-                CTRL -> LocationRepository : getCities(state, district)
-                activate LocationRepository
-
-                    LocationRepository --> CTRL : cityList
-                deactivate LocationRepository
-
-                        CTRL --> UI : cityList
-                        deactivate CTRL
-                        UI --> ADM : shows city list
-                    deactivate UI
-    ADM -> UI: selects city
-    activate UI
-
-        UI --> ADM : shows data
-    deactivate UI
 
     ADM -> UI : submits data
     activate UI
 
-        UI -> CTRL : registerStore(id, designation, state, district, city, \nportNumber, zipCode, emailAddress, telephoneNumber)
+        UI -> CTRL : registerStore(id, designation, location, \nemailAddress, phoneNumber)
         activate CTRL
 
+            CTRL -> CTRL: getAdministratorFromSession()
+            activate CTRL
 
-            CTRL -> Company: registerStore(id, designation, state, district, city, \nportNumber, zipCode, emailAddress, telephoneNumber)
+                    CTRL -> _APP: getInstance()
+                    activate _APP
+                    _APP -> CTRL: appSession
+                    deactivate _APP
+
+                    CTRL -> APP: getCurrentSession()
+                    activate APP
+
+                        APP --> CTRL: currentSession
+                        deactivate APP
+
+                            CTRL -> SESSION: email = getUserEmail()
+                            activate SESSION
+
+                                SESSION --> CTRL: email
+                                deactivate SESSION
+
+                                CTRL -> PLAT: getCompanyRepository(email)
+                                activate PLAT
+
+                                    PLAT --> CTRL: companyRepository
+                                    deactivate PLAT
+
+                            CTRL -> CompanyRepository: getCompanyByUserEmail(email)
+                            activate CompanyRepository
+
+                                loop [for each company
+                                CompanyRepository -> Company : anyAdministratorHasEmail(email)
+                                activate Company
+
+                                    Company --> CompanyRepository : true/false
+                                    deactivate Company
+                                end
+
+                CompanyRepository --> CTRL : company
+
+                deactivate CompanyRepository
+
+                  CTRL -> Company: getAdministratorByEmail(email)
+                  activate Company
+
+                Company --> CTRL : administrator
+                deactivate Company
+
+            CTRL --> CTRL: administrator
+            deactivate CTRL
+
+            CTRL -> Company: registerStore(id, designation, location, emailAddress, phoneNumber, administrator)
             activate Company
-            Company -> Store**: register(id, designation, state, district, \ncity, portNumber, zipCode, \nemailAddress, telephoneNumber)
+
+                    Company -> Store**: registerStore(id, designation, location, \nemailAddress, phoneNumber, administrator)
                         Company -> Company: addStore(store)
                         deactivate Store
                     activate Company
@@ -140,7 +103,6 @@ CTRL -> RepositorySingleton : getInstance()
                         Company --> Company
                     deactivate Company
 
-
                 Company --> CTRL : store
             deactivate Company
 
@@ -148,7 +110,7 @@ CTRL -> RepositorySingleton : getInstance()
             deactivate CTRL
             UI --> ADM: Shows operation success
     deactivate UI
-        
+
 deactivate ADM
 
 @enduml

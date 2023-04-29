@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 001 - To display listed properties (unregistered user)
 
 # 4. Tests 
 

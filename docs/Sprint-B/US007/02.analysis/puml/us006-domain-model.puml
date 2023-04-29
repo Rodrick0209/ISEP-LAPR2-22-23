@@ -12,50 +12,23 @@ hide methods
 
 title Domain Model
 
-class Platform {
-  -description
-}
-
-class Organization {
-    name
-    vatNumber
-    acts
-    phoneNumber
-    email
-}
-
-class Task {
-    reference
+class Organization{
     description
-    informalDesc
-    technicalDesc
-    duration
-    cost
-}
-
-class Category {
-    description
-}
-
-class Employee {
-    name
-    email
-    position
-    phone
 }
 
 class User {
     name
+    citizen_card_number
+    tax_number
     email
+    telephone_number
     password
 }
 
-Platform "1" -- "*" Organization : has registered >
-Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
+class Role {
+    description
+}
+
+Organization "1" - "0..*" User : has >
+User "*" - "1" Role: cataloged by >
 @enduml

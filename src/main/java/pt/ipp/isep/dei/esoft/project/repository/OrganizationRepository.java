@@ -11,6 +11,12 @@ public class OrganizationRepository {
 
     List<Organization> organizations = new ArrayList<>();
 
+
+    /**
+     *
+     * @param employee employee
+     * @return organization
+     */
     public Optional<Organization> getOrganizationByEmployee(Employee employee) {
 
         Optional<Organization> returnOrganization = Optional.empty();
@@ -29,7 +35,7 @@ public class OrganizationRepository {
         Optional<Organization> returnOrganization = Optional.empty();
 
         for (Organization organization : organizations) {
-            if (organization.anyEmployeeHasEmail(email)) {
+            if (organization.employeeHasEmail(email)) {
                 returnOrganization = Optional.of(organization);
             }
         }
@@ -56,8 +62,6 @@ public class OrganizationRepository {
     }
 
     private boolean validateOrganization(Organization organization) {
-        boolean isValid = !organizations.contains(organization);
-
-        return isValid;
+        return !organizations.contains(organization);
     }
 }

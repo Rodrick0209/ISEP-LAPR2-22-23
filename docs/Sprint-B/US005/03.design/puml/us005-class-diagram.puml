@@ -9,65 +9,82 @@ skinparam classAttributeIconSize 0
 
 'left to right direction
 
+class ApplicationSession
+{
+    + static getInstance()
+    + getCurrentSession()
+}
 
-class Store {
+class UserSession
+{
+    + getUserEmail()
+}
+
+class Agency {
     - Integer id
     - String designation
-    - Integer portNumber
-    - Integer zipCode
+    - String location
     - String emailAddress
     - String phoneNumber
 
-    + store(id, designation, state, district,\ncity, emailAddress, telephoneNumber)
+    + Store(id, designation, \nlocation, emailAddress, \nphoneNumber, registeredBy)
 }
 
-class Company {
-    - addStore(store)
-    - validateStore(store)
-    + registerStore(id, designation, state, district,city, \nportNumber, zipCode, emailAddress, telephoneNumber)
-
-'  +saveStore(store)
+class Organization {
+    - String description
+    - addAgency(store)
+    - validateAgency(store)
+    + registerAgency(id, designation, location, \nemailAddress, phoneNumber)
+    '+ saveAgency(agency)
+    + Organization(description)
+    - getAdministratorByEmail(email)
 }
-
-class LocationRepository {
-}
-
 
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
-    + getLocationRepository()
+    + getCompanyRepository()
 }
 
-class RegisterStoreController {
-    + RegisterStoreController(locationRepository)
-    + getStates()
-    + getDistricts(state)
-    + getCities(state, district)
-    + registerStore(id, designation, \nstate, district, city, portNumber, \nzipCode, emailAddres, phoneNumber )
+class RegisterAgencyController {
+    + RegisterAgencyController(organizationRepository)
+    + registerStore(id, designation, location, \nemailAddress, phoneNumber)
+    - getAdministratorFromSession()
 }
 
+class OrganizationRepository{
+    +getOrganizationByAdministrator(administrator)
+}
 
-note bottom of LocationRepository
-    - used for displaying
-    the state, district
-    and city lists
-end note
-
+class Administrator{
+    - name
+    - ccNumber
+    - taxNumber
+    - address
+    - email
+    - phoneNumber
+}
 
 Repositories -> Repositories : instance
+ApplicationSession -> ApplicationSession : instance
 
-RegisterStoreUI .> RegisterStoreController
+RegisterStoreUI .> RegisterAgencyController
 
-RegisterStoreController .> Repositories : repositories
+RegisterAgencyController .> Repositories : repositories
 
-Repositories -> "1" LocationRepository
+Repositories -> "1" OrganizationRepository
 
-RegisterStoreController ..> LocationRepository : LocationRepository
+RegisterAgencyController ..> OrganizationRepository : companyRepository
+OrganizationRepository "1" --> "*" Organization : company
+ApplicationSession --> "1" UserSession : userSession
 
+RegisterAgencyController ..> "1" Organization : company
+RegisterAgencyController ..> ApplicationSession
+RegisterAgencyController ..> UserSession
+Store --> Administrator : registeredBy
+Organization "1" --> "*" Agency : has
+Administrator "1" --> "*" Organization : administrates
 
-RegisterStoreController ..> "1" Company : company
-Company "1" --> "*" Store : has
 
 
 @enduml

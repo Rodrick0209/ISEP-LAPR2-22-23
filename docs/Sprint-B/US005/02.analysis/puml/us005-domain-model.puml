@@ -12,11 +12,7 @@ hide methods
 class Store {
     id
     designation
-    state
-    district
-    city
-    portNumber
-    zipCode
+    location
     emailAddress
     phoneNumber
 }
@@ -33,8 +29,8 @@ class User {
 
 SystemAdministrator "1" -- "1" Company : has >
 SystemAdministrator "1" - "*" Store : registers >
-StoreManager "1" -- "1" Store : manages >
-StoreNetworkManager "1" -- "1.." Store : manages >
+Store "1..*" -- "1" StoreManager : managed by >
 SystemAdministrator "1" -- "1" User : is >
+StoreManager "1" -- "1" User : is >
 
 @enduml

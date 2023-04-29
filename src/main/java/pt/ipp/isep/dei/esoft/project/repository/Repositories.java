@@ -3,8 +3,12 @@ package pt.ipp.isep.dei.esoft.project.repository;
 public class Repositories {
 
     private static final Repositories instance = new Repositories();
-    TaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
     OrganizationRepository organizationRepository = new OrganizationRepository();
+    AgencyRepository agencyRepository = new AgencyRepository();
+    RoleRepository roleRepository = new RoleRepository();
+
+    PropertyRepository propertyRepository = new PropertyRepository();
+
     AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
     private Repositories() {
@@ -13,18 +17,17 @@ public class Repositories {
     public static Repositories getInstance() {
         return instance;
     }
+    public OrganizationRepository getOrganizationRepository(){ return organizationRepository; }
 
-    public OrganizationRepository getOrganizationRepository() {
-        return organizationRepository;
+    public AgencyRepository getAgencyRepository() {
+        return agencyRepository;
     }
 
-    public TaskCategoryRepository getTaskCategoryRepository() {
-        return taskCategoryRepository;
+    public RoleRepository getRoleRepository() {
+        return roleRepository;
     }
 
-    public AuthenticationRepository getAuthenticationRepository() {
-        return authenticationRepository;
-    }
+    public AuthenticationRepository getAuthenticationRepository() { return authenticationRepository; }
 
-
+    public PropertyRepository getPropertyRepository() { return propertyRepository; }
 }

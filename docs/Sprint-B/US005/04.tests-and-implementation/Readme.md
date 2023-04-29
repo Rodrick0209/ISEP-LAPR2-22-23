@@ -1,21 +1,21 @@
-# US 006 - To create a Task 
++# US 005 - To register a store
 
 # 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check that it is not possible to create an instance of the Agency class with null values. 
 
 	@Test(expected = IllegalArgumentException.class)
 		public void ensureNullIsNotAllowed() {
-		Store instance = new Store(null, null, null, null, null, null, null);
+		Agency instance = new Agency(null, null, null, null, null, null, null);
 	}
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Check that it is not possible to create an instance of the Agency class with a designation containing more than forty chars - AC1. 
 
 	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
+		public void ensureReferenceMeetsAC1() {
 		
-		Store instance = new Store("15030", "Store Designation", "Alaska", "Anchorage School", "Anchorage", 294, 56729, "457-9384");
+		Agency instance = new Agency("15030", "Store Desgnation Company Made by System Administrator", "Alaska", "Anchorage School", "71 Bourbon Street, EAST Seattle", "abcd@isep.ipp.pt", "457-9384");
 	}
 
 
@@ -24,54 +24,42 @@
 # 5. Construction (Implementation)
 
 
-## Class CreateTaskController 
+## Class RegisterAgencyController 
 
 ```java
-public Store createStore(int id, String designation, String informalDescription,
-								 String technicalDescription, Integer duration, Double cost,
-								 String taskCategoryDescription) {
+public Organization createAgency(int id, String designation, String location, String emailAddress, String phoneNumber) {
+        Employee administrator = getAdministratorFromSession();
+        Organization organization = getOrganizationRepository().getOrganizationByAdministrator(administrator);
 
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
+        newAgency = organization.createAgency(id, designation, location, emailAddress, phoneNumber, administrator);
 
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, 
-			duration, cost,taskCategory, employee);
-    
-	return newTask;
-}
+        return newAgency;
+        }
 ```
 
 
 ## Class Organization
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                     String technicalDescription, Integer duration, Double cost,
-                                     TaskCategory taskCategory, Employee employee) {
-    
-        Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                taskCategory, employee);
+public Optional<Agency> createAgency (Integer id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
+        Agency agency = new Agency(id, designation, location, emailAddress, phoneNumber, administrator);
 
-        addTask(task);
-        
-        return task;
-    }
+        addAgency(agency);
+
+        return agency;
+        }
 ```
 
 # 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+* A new option on the Administrator menu options was added.
 
 * Some demo purposes some tasks are bootstrapped while system starts.
 
 
 # 7. Observations
 
-Platform and Organization classes are getting too many responsibilities due to IE pattern and, therefore, they are becoming huge and harder to maintain. 
-
-Is there any way to avoid this to happen?
+n/a
 
 
 

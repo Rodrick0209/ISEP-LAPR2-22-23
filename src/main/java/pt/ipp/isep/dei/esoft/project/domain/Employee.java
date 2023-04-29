@@ -3,16 +3,32 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 
 public class Employee {
-    private final String email;
     private String name;
-    private String position;
-    private String phone;
+    private final String email;
+    private int ccNumber;
+    private int taxNumber;
+    private String address;
+    private String phoneNumber;
+    private Role role;
+    private Agency agency;
+    private Employee administrator;
 
-    public Employee(String email) {
+    public Employee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator){
+        this.name = name;
+        this.email = email;
+        this.ccNumber = ccNumber;
+        this.taxNumber = taxNumber;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.agency = agency;
+        this.administrator = administrator;
+    }
+
+    public Employee(String email){
         this.email = email;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -24,22 +40,13 @@ public class Employee {
         return email.equals(employee.email);
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(email);
     }
 
-    public boolean hasEmail(String email) {
-        return this.email.equals(email);
-    }
+    public boolean hasEmail(String email) { return email.equalsIgnoreCase(this.email); }
 
-
-    /**
-     * Clone method.
-     *
-     * @return A clone of the current instance.
-     */
     public Employee clone() {
-        return new Employee(this.email);
+        return new Employee(this.name, this.email, this.ccNumber, this.taxNumber, this.address, this.phoneNumber, this.role, this.agency, this.administrator);
     }
 }

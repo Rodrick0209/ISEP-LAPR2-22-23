@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "User\n(unregistered)" as ADM
+participant ":System" as System
+participant ":DisplayOfProperties" as Display
+
+activate ADM
+
+        ADM -> System
+        activate System
+
+            System -> Display : display()
+            activate Display
+
+            Display -> System : checks if properties are valid
+
+            alt valid properties
+                System -> Display : display properties in the interface
+            else invalid properties
+                System -> Display : displays error message on the interface
+            end
+
+        deactivate System
+
+deactivate ADM
+
+@enduml

@@ -32,7 +32,7 @@ class Property {
 }
 
 class Announcement {
-     property description
+    description
     comission
   }
 

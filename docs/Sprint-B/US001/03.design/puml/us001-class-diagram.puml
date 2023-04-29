@@ -1,0 +1,68 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+'skinparam linetype polyline
+
+
+skinparam classAttributeIconSize 0
+
+class Property {
+    -name
+    -address
+    -price
+    -description
+}
+
+class PropertiesList {
+    -amount of propertes
+
+    + getPropreties()
+    + addProperty()
+    + removeProperty()
+    + searchProperty()
+}
+
+class User {
+    - name
+    - email
+    - password
+    - phone
+}
+
+class DisplayOfProperties {
+    + display()
+    + orderByPrice()
+    + searchByName()
+    + displayProperty()
+    + showDetailsProperty()
+
+}
+
+class System {
+    + createFilter()
+    + searchPropertiesByFilter()
+    + validateUser()
+    + registerUser()
+    + registerAccess()
+    + loadProperties()
+}
+
+class Filter {
+    + defineCriteria()
+}
+
+Property -> PropertiesList
+PropertiesList -> DisplayOfProperties
+User -> DisplayOfProperties
+System -> Property
+System -> PropertiesList
+System -> User
+System -> DisplayOfProperties
+System -> Filter
+
+
+
+
+
+@enduml
