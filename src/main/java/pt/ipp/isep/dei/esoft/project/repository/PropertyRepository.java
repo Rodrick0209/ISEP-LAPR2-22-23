@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Location;
 import pt.ipp.isep.dei.esoft.project.domain.Property;
 
 import java.util.ArrayList;
@@ -10,15 +9,10 @@ import java.util.Optional;
 public class PropertyRepository {
     private final List<Property> properties = new ArrayList<>();
 
-    /**
-     *
-     * @param location the property location inputted
-     * @return the property by his location
-     */
-    public Property getPropertyByLocation(Location location){
-        Property newProperty = new Property(location);
+    public Property getPropertyByLocation(String propertyLocation){
+        Property newProperty = new Property(propertyLocation);
         Property property = null;
-        if(properties.contains(newProperty)){
+        if(properties.contains(property)){
             property = properties.get(properties.indexOf(newProperty));
         }
         if(property == null){
@@ -27,11 +21,6 @@ public class PropertyRepository {
         return property;
     }
 
-    /**
-     *
-     * @param property the property registered/added
-     * @return the list of property added
-     */
     public Optional<Property> add(Property property){
 
         Optional<Property> newProperty = Optional.empty();
@@ -48,18 +37,11 @@ public class PropertyRepository {
         return newProperty;
     }
 
-    /**
-     *
-     * @param property the property registered/added
-     * @return if the property is already contained on the property list
-     */
     private boolean validateProperty(Property property){return !properties.contains(property);}
 
-    /**
-     *
-     * @return a copy of the list of properties
-     */
     public List<Property> getProperties() {
         return List.copyOf(properties);
     }
 }
+
+
