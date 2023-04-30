@@ -10,8 +10,8 @@ import java.util.Optional;
 
 public class RegisterEmployeeController {
     private OrganizationRepository organizationRepository;
-    private RoleRepository roleRepository;
     private AgencyRepository agencyRepository;
+    private RoleRepository roleRepository;
     private AuthenticationRepository authenticationRepository;
 
     public RegisterEmployeeController(){
@@ -23,8 +23,8 @@ public class RegisterEmployeeController {
 
     public RegisterEmployeeController(OrganizationRepository organizationRepository, RoleRepository roleRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository){
         this.organizationRepository = organizationRepository;
-        this.agencyRepository = agencyRepository;
         this.roleRepository = roleRepository;
+        this.agencyRepository = agencyRepository;
         this.authenticationRepository = authenticationRepository;
     }
 

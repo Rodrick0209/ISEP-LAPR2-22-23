@@ -70,7 +70,7 @@ public class Property {
         this.distance = distance;
     }
 
-    public Property clone() {return new Property(this.area, this.location, this.distance, this.photos);}
+    public Property clone() {return new Property(this.location);}
 
     public Location getLocation() {return location;}
 }

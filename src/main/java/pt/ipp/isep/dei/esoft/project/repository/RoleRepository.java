@@ -11,7 +11,7 @@ public class RoleRepository {
     public Role getRoleByName(String roleName){
         Role newRole = new Role(roleName);
         Role role = null;
-        if(roles.contains(role)){
+        if(roles.contains(newRole)){
             role = roles.get(roles.indexOf(newRole));
         }
         if(role == null){
@@ -43,6 +43,5 @@ public class RoleRepository {
     public List<Role> getRoles(){
         return List.copyOf(roles);
     }
-    ;
 
 }

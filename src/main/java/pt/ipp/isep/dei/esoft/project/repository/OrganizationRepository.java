@@ -40,7 +40,7 @@ public class OrganizationRepository {
         Optional<Organization> returnOrganization = Optional.empty();
 
         for (Organization organization : organizations) {
-            if (organization.employeeHasEmail(email)) {
+            if (organization.anyEmployeeHasEmail(email)) {
                 returnOrganization = Optional.of(organization);
             }
         }

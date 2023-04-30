@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 
 import java.util.Optional;
@@ -12,7 +13,7 @@ class OrganizationRepositoryTest {
     @Test
     void testAddOrganization() {
         OrganizationRepository organizationRepository = new OrganizationRepository();
-        Organization organization = new Organization("123456789");
+        Organization organization = new Organization("Organization Description");
 
         Optional<Organization> returnOrganization = organizationRepository.add(organization);
 
@@ -22,8 +23,8 @@ class OrganizationRepositoryTest {
     @Test
     void ensureGetOrganizationByEmployeeWorks() {
         OrganizationRepository organizationRepository = new OrganizationRepository();
-        Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
+        Organization organization = new Organization("Organization Description");
+        Employee employee = new Employee("employee@this.app");
         organization.addEmployee(employee);
         organizationRepository.add(organization);
 
@@ -35,12 +36,12 @@ class OrganizationRepositoryTest {
     @Test
     void ensureGetOrganizationByEmployeeFails() {
         OrganizationRepository organizationRepository = new OrganizationRepository();
-        Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
+        Organization organization = new Organization("Organization Description");
+        Employee employee = new Employee("employee@this.app");
         organization.addEmployee(employee);
         organizationRepository.add(organization);
 
-        Employee employee2 = new Employee("jane.doe@this.company.com");
+        Employee employee2 = new Employee("employee1@this.app");
         Optional<Organization> result = organizationRepository.getOrganizationByEmployee(employee2);
 
         assertTrue(result.isEmpty());
@@ -49,13 +50,13 @@ class OrganizationRepositoryTest {
     @Test
     void ensureGetOrganizationByEmailWorks() {
         OrganizationRepository organizationRepository = new OrganizationRepository();
-        Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
+        Organization organization = new Organization("Organization Description");
+        Employee employee = new Employee("employee@this.app");
         organization.addEmployee(employee);
         organizationRepository.add(organization);
 
         Optional<Organization> result =
-                organizationRepository.getOrganizationByEmployeeEmail("john.doe@this.company.com");
+                organizationRepository.getOrganizationByEmployeeEmail("employee@this.app");
 
         assertEquals(organization, result.get());
     }
@@ -63,14 +64,14 @@ class OrganizationRepositoryTest {
     @Test
     void ensureAddOrganizationWorks() {
         OrganizationRepository organizationRepository = new OrganizationRepository();
-        Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
+        Organization organization = new Organization("Organization Description");
+        Employee employee = new Employee("employee@this.app");
         organization.addEmployee(employee);
 
         organizationRepository.add(organization);
 
         Optional<Organization> returnOrganization =
-                organizationRepository.getOrganizationByEmployeeEmail("john.doe@this" + ".company.com");
+                organizationRepository.getOrganizationByEmployeeEmail("employee@this.app");
 
         //Assert
         //Make sure both represents the same object
@@ -82,8 +83,8 @@ class OrganizationRepositoryTest {
     @Test
     void ensureAddOrganizationDuplicateFails() {
         OrganizationRepository organizationRepository = new OrganizationRepository();
-        Organization organization = new Organization("123456789");
-        Employee employee = new Employee("john.doe@this.company.com");
+        Organization organization = new Organization("Organization Description");
+        Employee employee = new Employee("employee@this.app");
         organization.addEmployee(employee);
         organizationRepository.add(organization);
 

@@ -19,9 +19,21 @@ class RepositoriesTest {
     }
 
     @Test
-    void testGetTaskCategoryRepository() {
+    void testGetRoleRepository() {
         Repositories instance = Repositories.getInstance();
-        assertNotNull(instance.getTaskCategoryRepository());
+        assertNotNull(instance.getRoleRepository());
+    }
+
+    @Test
+    void testGetAgencyRepository(){
+        Repositories instance = Repositories.getInstance();
+        assertNotNull(instance.getAgencyRepository());
+    }
+
+    @Test
+    void testGetPropertyRepository(){
+        Repositories instance = Repositories.getInstance();
+        assertNotNull(instance.getPropertyRepository());
     }
 
 

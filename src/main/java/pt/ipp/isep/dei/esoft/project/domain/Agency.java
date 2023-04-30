@@ -15,13 +15,42 @@ public class Agency {
         this.id = id;
     }
 
+
     public Agency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
         this.id = id;
-        this.designation = designation;
+        if(designation.replace(" ", "").length() > 40){
+            throw new IllegalArgumentException("Agency Designation is longer than 40 characters");
+        } else {
+            this.designation = designation;
+        }
         this.location = location;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
+        if(!emailAddress.contains("@")){
+            throw new IllegalArgumentException("Invalid email address");
+        } else {
+            this.emailAddress = emailAddress;
+        }
+        if(!phoneNumber.contains("(") && !phoneNumber.contains(")") && !phoneNumber.contains("-")){
+            throw new IllegalArgumentException("Invalid Phone Number");
+        } else {
+            this.phoneNumber = phoneNumber;
+        }
         this.administrator = administrator;
+    }
+
+    public Agency(int id, String designation, String location, String emailAddress, String phoneNumber){
+        this.id = id;
+        if(designation.replace(" ", "").length() > 40){
+            throw new IllegalArgumentException("Agency Designation is longer than 40 characters");
+        } else {
+            this.designation = designation;
+        }
+        this.location = location;
+        if(!emailAddress.contains("@")){
+            throw new IllegalArgumentException("Invalid email address");
+        } else {
+            this.emailAddress = emailAddress;
+        }
+            this.phoneNumber = phoneNumber;
     }
 
     public boolean equals(Object o){
@@ -50,6 +79,6 @@ public class Agency {
                 , this.id, this.designation, this.location, this.emailAddress, this.phoneNumber);
     }
 
-    public Agency clone(){ return new Agency(this.id, this.designation, this.location, this.emailAddress, this.phoneNumber, this.administrator); }
+    public Agency clone(){ return new Agency(this.id); }
 
 }

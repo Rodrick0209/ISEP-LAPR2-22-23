@@ -93,7 +93,7 @@ public class Organization {
      * @param email the email inputted
      * @return if the employee registered/added has this email
      */
-    public boolean employeeHasEmail(String email) {
+    public boolean anyEmployeeHasEmail(String email) {
         boolean result = false;
         for(Employee employee : employees ) {
             if (employee.hasEmail(email)) {
@@ -202,7 +202,7 @@ public class Organization {
      * @param agency the agency registered/added
      * @return if agency registered is valid
      */
-    private boolean validateAgency(Agency agency) { return agenciesDoNotContain(agency) && agencyDesignationNotHaveMoreThan40Chars(agency); }
+    private boolean validateAgency(Agency agency) { return agenciesDoNotContain(agency); }
 
     /**
      *
@@ -210,14 +210,6 @@ public class Organization {
      * @return if agency registered is not contained on the list of agencies
      */
     private boolean agenciesDoNotContain(Agency agency) { return !agencies.contains(agency);}
-
-    /**
-     *
-     * @param agency the agency registered/added
-     * @return if agency registered does not have its designation longer than 40 characters
-     */
-    private boolean agencyDesignationNotHaveMoreThan40Chars(Agency agency) { return !(agency.getDesignation().replace(" ", "").length() > 40);}
-
 
     /**
      *
