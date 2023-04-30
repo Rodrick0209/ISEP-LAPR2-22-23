@@ -54,6 +54,9 @@ public class CreateRequestUI implements Runnable {
 
 
     private String answer = "yes";
+
+
+    CreateRequestController controller = new CreateRequestController();
     public void run() {
             // Property Type data verification:
             requestType = Utils.readLineFromConsole("Choose a type: sell or rent");

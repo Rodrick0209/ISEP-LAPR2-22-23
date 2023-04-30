@@ -138,8 +138,8 @@ class OrganizationTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement Description", 123, agent);
         assertTrue(organization.addAnnouncement(announcement));
@@ -165,8 +165,8 @@ class OrganizationTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 123, agent);
         assertTrue(organization.addAnnouncement(announcement));
@@ -180,8 +180,8 @@ class OrganizationTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
         organization.addEmployee(agent);
         Agency agency = new Agency(123);
         organization.addAgency(agency);
@@ -229,8 +229,8 @@ class OrganizationTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement expected = new Announcement(property, "Announcement Description", 1234, agent);
         Optional<Announcement> announcement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);
@@ -246,8 +246,8 @@ class OrganizationTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Optional<Announcement> announcement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);
         Optional<Announcement> duplicateAnnouncement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);

@@ -18,17 +18,14 @@ public class Property {
     /**
      * Instantiates a new Property.
      *
-     * @param area     the area
      * @param location the location
-     * @param distance the distance
-     * @param photos   the photos
      */
-    public Property(double area,Location  location , double distance,List<String> photos){
+    public Property(Location  location){
        if(area<=0){
            throw new IllegalArgumentException("Area must be greater than 0.");
        }
        if(location==null){
-           throw new IllegalArgumentException("Adress must not be null.");
+           throw new NullPointerException("Adress must not be null.");
        }
         if(distance<=0){
             throw new IllegalArgumentException("Distance from the city center must be greater than 0.");
@@ -129,4 +126,7 @@ public class Property {
      * @return the location
      */
     public Location getLocation() {return location;}
+
+    public void setPhotos(Object o) {
+    }
 }
