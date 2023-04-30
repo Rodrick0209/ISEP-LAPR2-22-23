@@ -55,16 +55,6 @@ activate ADM
 
 
 
-        ADM -> System : pass the credentials
-        activate System
-
-        System -> System : validateUser()
-
-        System -> ADM : return validation value
-        deactivate System
-
-
-
         ADM -> System
         activate System
 

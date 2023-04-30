@@ -20,7 +20,6 @@ class PropertiesList {
     + getPropreties()
     + addProperty()
     + removeProperty()
-    + searchProperty()
 }
 
 class User {
@@ -42,10 +41,6 @@ class DisplayOfProperties {
 class System {
     + createFilter()
     + searchPropertiesByFilter()
-    + validateUser()
-    + registerUser()
-    + registerAccess()
-    + loadProperties()
 }
 
 class Filter {
