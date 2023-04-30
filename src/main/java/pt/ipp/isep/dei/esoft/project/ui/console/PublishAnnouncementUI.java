@@ -10,10 +10,6 @@ import java.util.Optional;
 import java.util.List;
 
 public class PublishAnnouncementUI implements Runnable {
-    public PublishAnnouncementUI(){
-
-    }
-
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
 
     private Location announcementPropertyLocation;

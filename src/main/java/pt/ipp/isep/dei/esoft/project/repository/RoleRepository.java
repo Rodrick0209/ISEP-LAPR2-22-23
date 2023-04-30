@@ -14,9 +14,6 @@ public class RoleRepository {
         if(roles.contains(role)){
             role = roles.get(roles.indexOf(newRole));
         }
-        if(role == null){
-            throw new IllegalArgumentException("Role not found");
-        }
         return role;
     }
 

@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterAgencyController;
 import pt.ipp.isep.dei.esoft.project.domain.Agency;
-import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.Optional;
