@@ -29,10 +29,10 @@ public class Property {
        if(location==null){
            throw new NullPointerException("Adress must not be null.");
        }
-        if(this.distance <=0){
+        if(distance<=0){
             throw new IllegalArgumentException("Distance from the city center must be greater than 0.");
         }
-        if (this.photos == null){
+        if (photos == null){
             throw new IllegalArgumentException("Is necesssary more than 0 photos");
         }
 
@@ -54,6 +54,9 @@ public class Property {
      *
      * @param location the property location
      */
+    public Property(Location location) {
+        this.location = location;
+    }
 
     /**
      * Gets area.
@@ -117,7 +120,7 @@ public class Property {
         this.distance = distance;
     }
 
-    public Property clone() {return new Property(area, distance, photos);}
+    public Property clone() {return new Property(this.location);}
 
     /**
      * Gets location.
