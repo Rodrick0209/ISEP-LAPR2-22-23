@@ -5,6 +5,11 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Tomás Gonçalves 1220917@isep.ipp.pt
+ *
+ * return All property detail in the request.
+ */
 public class CreateRequestUI implements Runnable {
 
     private String requestType;
@@ -23,9 +28,9 @@ public class CreateRequestUI implements Runnable {
 
     private String avaiableEquipment;
 
-    private String existBasement;
+    private boolean existBasement;
 
-    private String inhabitableLoft;
+    private boolean inhabitableLoft;
 
     private String sunExposure;
 
@@ -41,9 +46,10 @@ public class CreateRequestUI implements Runnable {
 
     private float price;
     private float rentprice;
+    private int n=0;
 
 
-    private String answer;
+    private String answer = "yes";
     public void run() {
             // Property Type data verification:
             requestType = Utils.readLineFromConsole("Choose a type: sell or rent");
@@ -54,11 +60,12 @@ public class CreateRequestUI implements Runnable {
                     do {
                         photos.add(Utils.readLineFromConsole("photo URL"));
                         answer = Utils.readLineFromConsole("Do you want more photos?");
-                    }while (answer == "yes");
+                        n++;
+                    } while (answer.equals("yes") & n <= 30);
 
-                    propertyType = Utils.readLineFromConsole("Property Type(land, apartment or house:");
+                    propertyType = Utils.readLineFromConsole("Property Type(land, apartment or house):");
                     switch (propertyType) {
-                        case "land" :
+                        case "land":
                             area = Utils.readIntegerFromConsole("Area in squad meters");
                             street = Utils.readLineFromConsole("Street");
                             city = Utils.readLineFromConsole("City");
@@ -84,11 +91,11 @@ public class CreateRequestUI implements Runnable {
                             n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
                             n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
                             n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment");
+                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment(central heating and/or air conditioning)");
                             System.out.println();
                             System.out.println("Request Type: " + requestType);
                             System.out.println("Property Type: " + propertyType);
-                            System.out.println("Price: " + price +"$");
+                            System.out.println("Price: " + price + "$");
                             System.out.println("Area: " + area + "m2");
                             System.out.println("Location: " + street + "," + city + "," + district + "," + state + "," + zipCode);
                             System.out.println("Distance: " + distance + "km");
@@ -98,26 +105,27 @@ public class CreateRequestUI implements Runnable {
                             System.out.println("Avaiable equipment: " + avaiableEquipment);
                             break;
 
-                        case "house":  area = Utils.readIntegerFromConsole("Area in squad meters");
+                        case "house":
+                            area = Utils.readIntegerFromConsole("Area in squad meters");
                             street = Utils.readLineFromConsole("Street");
                             city = Utils.readLineFromConsole("City");
                             district = Utils.readLineFromConsole("District");
                             state = Utils.readLineFromConsole("State");
-                            zipCode =Utils.readIntegerFromConsole("Zipcode");
+                            zipCode = Utils.readIntegerFromConsole("Zipcode");
                             distance = Utils.readIntegerFromConsole("Distance from the city center");
                             n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
                             n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
                             n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment");
-                            existBasement = Utils.readLineFromConsole("Has a basement?");
-                            inhabitableLoft = Utils.readLineFromConsole("Has a inhabitable loft?");
-                            sunExposure = Utils.readLineFromConsole("Direction of the sun exposure");
+                            avaiableEquipment = Utils.readLineFromConsole("Name of the equipment(central heating and/or air conditioning)");
+                            existBasement = Boolean.parseBoolean(Utils.readLineFromConsole("Has a basement?(true or false)"));
+                            inhabitableLoft = Boolean.parseBoolean(Utils.readLineFromConsole("Has a inhabitable loft?(true or false)"));
+                            sunExposure = Utils.readLineFromConsole("Direction of the sun exposure(N , S , W or E ):");
                             System.out.println();
                             System.out.println("Request Type: " + requestType);
                             System.out.println("Property Type: " + propertyType);
                             System.out.println("Price: " + price + "$");
-                            System.out.println("Area: " + area+ "m2");
-                            System.out.println("Location: " + street + "," + city + "," + district + "," + state +"," + zipCode);
+                            System.out.println("Area: " + area + "m2");
+                            System.out.println("Location: " + street + "," + city + "," + district + "," + state + "," + zipCode);
                             System.out.println("Distance: " + distance + "km");
                             System.out.println("Number of bedrooms: " + n_bedrooms);
                             System.out.println("Number of bathrooms: " + n_bathrooms);
@@ -127,6 +135,7 @@ public class CreateRequestUI implements Runnable {
                             System.out.println("Existence of an inhabitable loft: " + inhabitableLoft);
                             System.out.println("Sun exposure: " + sunExposure);
                             System.out.println();
+                            break;
 
                     }
                     break;
@@ -135,14 +144,14 @@ public class CreateRequestUI implements Runnable {
                     contractDuraction = Utils.readIntegerFromConsole("Contract duraction in months:");
                     rentprice = Utils.readIntegerFromConsole("Rent price:");
 
-            }
-                do {
+                    do {
                         photos.add(Utils.readLineFromConsole("photo URL"));
                         answer = Utils.readLineFromConsole("Do you want more photos?");
-                    }while (answer == "yes");
+                        n++;
+                    }while (answer.equals("yes") & n<=30);
 
-                propertyType = Utils.readLineFromConsole("Property Type(land, apartment or house:");
-                switch (propertyType) {
+                    propertyType = Utils.readLineFromConsole("Property Type(land, apartment or house):");
+                    switch (propertyType) {
                         case "land" :
                             area = Utils.readIntegerFromConsole("Area in squad meters");
                             street = Utils.readLineFromConsole("Street");
@@ -170,7 +179,7 @@ public class CreateRequestUI implements Runnable {
                             n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
                             n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
                             n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment");
+                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment(central heating and/or air conditioning): ");
                             System.out.println();
                             System.out.println("Request Type: " + requestType);
                             System.out.println("Property Type: " + propertyType);
@@ -195,10 +204,10 @@ public class CreateRequestUI implements Runnable {
                             n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
                             n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
                             n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment");
-                            existBasement = Utils.readLineFromConsole("Has a basement?");
-                            inhabitableLoft = Utils.readLineFromConsole("Has a inhabitable loft?");
-                            sunExposure = Utils.readLineFromConsole("Direction of the sun exposure");
+                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment(central heating and/or air conditioning):");
+                            existBasement = Boolean.parseBoolean(Utils.readLineFromConsole("Has a basement?(true or false"));
+                            inhabitableLoft = Boolean.parseBoolean(Utils.readLineFromConsole("Has a inhabitable loft?(true or false)"));
+                            sunExposure = Utils.readLineFromConsole("Direction of the sun exposure( N,S , W or E)");
                             System.out.println();
                             System.out.println("Request Type: " + requestType);
                             System.out.println("Property Type: " + propertyType);
@@ -217,7 +226,8 @@ public class CreateRequestUI implements Runnable {
                             System.out.println();
 
                     }
-    }
 
+            }
+    }
 }
 
