@@ -11,7 +11,7 @@ public class Agency {
     private String phoneNumber;
     private Employee administrator;
 
-    public Agency(int id){
+    public Agency(int id, String agency_name, String s){
         this.id = id;
     }
 
@@ -35,6 +35,10 @@ public class Agency {
             this.phoneNumber = phoneNumber;
         }
         this.administrator = administrator;
+    }
+
+    public Agency(int agencyID, String agency_name, String s, int id) {
+        this.id = id;
     }
 
     public boolean equals(Object o){
@@ -63,6 +67,6 @@ public class Agency {
                 , this.id, this.designation, this.location, this.emailAddress, this.phoneNumber);
     }
 
-    public Agency clone(){ return new Agency(this.id); }
+    public Agency clone(){ return new Agency(this.id, "Agency Name", "Power Street, F"); }
 
 }

@@ -127,7 +127,7 @@ class OrganizationTest {
     @Test
     void ensureAddDuplicateAgencyFails() {
         Organization organization = new Organization("Organization Description");
-        Agency agency = new Agency(123);
+        Agency agency = new Agency(123, "Agency Name", "Power Street, F");
         assertTrue(organization.addAgency(agency));
         assertFalse(organization.addAgency(agency));
     }
@@ -139,7 +139,7 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement Description", 123, agent);
         assertTrue(organization.addAnnouncement(announcement));
@@ -155,7 +155,7 @@ class OrganizationTest {
     @Test
     void ensureAddAgencyWorks() {
         Organization organization = new Organization("Organization Description");
-        Agency agency = new Agency(123);
+        Agency agency = new Agency(123, "Agency Name", "Power Street, F");
         assertTrue(organization.addAgency(agency));
     }
 
@@ -166,7 +166,7 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 123, agent);
         assertTrue(organization.addAnnouncement(announcement));
@@ -181,9 +181,9 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
         organization.addEmployee(agent);
-        Agency agency = new Agency(123);
+        Agency agency = new Agency(123, "Agency Name", "Power Street, F");
         organization.addAgency(agency);
         Announcement announcement = new Announcement(property, "Announcement Description", 123, agent);
         organization.addAnnouncement(announcement);
@@ -200,7 +200,7 @@ class OrganizationTest {
         Organization organization = new Organization("Organization Description");
         Employee administrator = new Employee("admin@this.app");
         Role role = new Role("Role");
-        Agency agency = new Agency(123);
+        Agency agency = new Agency(123, "Agency Name", "Power Street, F");
 
         Employee expected = new Employee("Employee Name", "employee@this.app", 123, 123, "Employee Address", "(456) 643-3456", role, agency, administrator);
         Optional<Employee> employee = organization.createEmployee("Employee Name", "employee@this.app", 123, 123, "Employee Address", "(456) 643-3456", role, agency, administrator);
@@ -215,7 +215,7 @@ class OrganizationTest {
         Organization organization = new Organization("Organization Description");
         Employee administrator = new Employee("admin@this.app");
         Role role = new Role("Role");
-        Agency agency = new Agency(123);
+        Agency agency = new Agency(123, "Agency Name", "Power Street, F");
 
         Optional<Employee> employee = organization.createEmployee("Employee Name", "employee@this.app", 123, 123, "Employee Address", "(456) 643-3456", role, agency, administrator);
         Optional<Employee> duplicateEmployee = organization.createEmployee("Employee Name", "employee@this.app", 123, 123, "Employee Address", "(456) 643-3456", role, agency, administrator);
@@ -230,7 +230,7 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement expected = new Announcement(property, "Announcement Description", 1234, agent);
         Optional<Announcement> announcement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);
@@ -247,7 +247,7 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Optional<Announcement> announcement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);
         Optional<Announcement> duplicateAnnouncement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);

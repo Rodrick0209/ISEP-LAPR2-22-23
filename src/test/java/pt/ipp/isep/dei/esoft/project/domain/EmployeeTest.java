@@ -9,7 +9,7 @@ class EmployeeTest {
     @Test
     void ensureCreateEmployeeWorks(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -18,7 +18,7 @@ class EmployeeTest {
     @Test
     void ensureEmployeeEmailValid(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         assertThrows(IllegalArgumentException.class, () -> new Employee("Employee Name", "employee.this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator));
@@ -27,7 +27,7 @@ class EmployeeTest {
     @Test
     void testEqualsSameObject(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -37,7 +37,7 @@ class EmployeeTest {
     @Test
     void testEqualsDifferentClass(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -47,7 +47,7 @@ class EmployeeTest {
     @Test
     void testEqualsNull(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -57,7 +57,7 @@ class EmployeeTest {
     @Test
     void testEqualsDifferentObject(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -69,7 +69,7 @@ class EmployeeTest {
     @Test
     void testEqualsSameObjectDifferentEmail(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -81,7 +81,7 @@ class EmployeeTest {
     @Test
     void testEqualsSameObjectSameEmail(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -93,7 +93,7 @@ class EmployeeTest {
     @Test
     void testHashCodeSameObject(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -103,7 +103,7 @@ class EmployeeTest {
     @Test
     void testHashCodeDifferentObject(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -114,7 +114,7 @@ class EmployeeTest {
     @Test
     void testHasEmailWorks(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -125,7 +125,7 @@ class EmployeeTest {
     @Test
     void testHasEmailFails(){
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);
@@ -136,7 +136,7 @@ class EmployeeTest {
     @Test
     void ensureCloneWorks() {
         Role role = new Role("Role");
-        Agency agency = new Agency(124);
+        Agency agency = new Agency(124, "Agency Name", "Power Street, F");
         Employee administrator = new Employee("admin@this.app");
 
         Employee employee = new Employee("Employee Name", "employee@this.app", 1234, 1234, "Employee address", "(557) 543-2356", role, agency, administrator);

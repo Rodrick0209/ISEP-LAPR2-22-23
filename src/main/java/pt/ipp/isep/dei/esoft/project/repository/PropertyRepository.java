@@ -19,7 +19,10 @@ public class PropertyRepository {
      * @return the property
      */
     public Property getPropertyByLocation(String propertyLocation){
-        Property newProperty = new Property(propertyLocation);
+        double area=0;
+        double distance=0;
+        List<String> photos = null;
+        Property newProperty = new Property(area, distance, photos);
         Property property = null;
         if(properties.contains(property)){
             property = properties.get(properties.indexOf(newProperty));

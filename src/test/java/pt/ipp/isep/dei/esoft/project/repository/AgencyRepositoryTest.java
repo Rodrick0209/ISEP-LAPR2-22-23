@@ -27,7 +27,7 @@ class AgencyRepositoryTest {
     void ensureNewAgencySuccessfullyAdded(){
         AgencyRepository agencyRepository = new AgencyRepository();
         int agencyID = 123;
-        Agency agency = new Agency(agencyID);
+        Agency agency = new Agency(agencyID, "Agency Name", "Power Street, F");
         agencyRepository.add(agency);
     }
 
@@ -35,7 +35,7 @@ class AgencyRepositoryTest {
     void ensureGetAgencyForExistingAgency(){
         AgencyRepository agencyRepository = new AgencyRepository();
         int agencyID = 123;
-        Agency agency = new Agency(agencyID);
+        Agency agency = new Agency(agencyID, "Agency Name", "Power Street, F");
         agencyRepository.add(agency);
         Agency agency1 = agencyRepository.getAgencyByID(agencyID);
         assertEquals(agency, agency1);
@@ -45,7 +45,7 @@ class AgencyRepositoryTest {
     void ensureGetAgencyFailsForNonExistingAgency(){
         AgencyRepository agencyRepository = new AgencyRepository();
         int agencyID = 123;
-        Agency agency = new Agency(agencyID);
+        Agency agency = new Agency(agencyID, "Agency Name", "Power Street, F");
         agencyRepository.add(agency);
         int agencyID1 = 1234;
         assertThrows(IllegalArgumentException.class, () -> agencyRepository.getAgencyByID(agencyID1));
@@ -55,17 +55,17 @@ class AgencyRepositoryTest {
     void ensureGetAgenciesReturnsAnImmutableList(){
         AgencyRepository agencyRepository = new AgencyRepository();
         int agencyID = 123;
-        Agency agency = new Agency(agencyID);
+        Agency agency = new Agency(agencyID, "Agency Name", "Power Street, F");
         agencyRepository.add(agency);
 
-        assertThrows(UnsupportedOperationException.class, () -> agencyRepository.getAgencies().add(new Agency(1234)));
+        assertThrows(UnsupportedOperationException.class, () -> agencyRepository.getAgencies().add(new Agency(1234, "Agency Name", "Power Street, F")));
     }
 
     @Test
     void ensureGetAgenciesReturnsTheCorrectList(){
         AgencyRepository agencyRepository = new AgencyRepository();
         int agencyID = 123;
-        Agency agency = new Agency(agencyID);
+        Agency agency = new Agency(agencyID, "Agency Name", "Power Street, F");
         agencyRepository.add(agency);
         int expectedSize = 1;
 
@@ -78,7 +78,7 @@ class AgencyRepositoryTest {
     @Test
     void ensureAddingDuplicateAgencyFails(){
         AgencyRepository agencyRepository = new AgencyRepository();
-        Agency agency = new Agency(123);
+        Agency agency = new Agency(123, "Agency Name", "Power Street, F");
         agencyRepository.add(agency);
 
         Optional<Agency> duplicateAgency = agencyRepository.add(agency);
@@ -89,8 +89,8 @@ class AgencyRepositoryTest {
     @Test
     void ensureAddingDifferentAgenciesWorks(){
         AgencyRepository agencyRepository = new AgencyRepository();
-        Agency agency = new Agency(123);
-        Agency agency1 = new Agency(1234);
+        Agency agency = new Agency(123, "Agency Name", "Power Street, F");
+        Agency agency1 = new Agency(1234, "Agency Name", "Power Street, F");
         agencyRepository.add(agency);
 
         Optional<Agency> result = agencyRepository.add(agency1);

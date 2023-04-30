@@ -18,19 +18,21 @@ public class Property {
     /**
      * Instantiates a new Property.
      *
-     * @param location the location
+     * @param area
+     * @param distance
+     * @param photos
      */
-    public Property(Location  location){
-       if(area<=0){
+    public Property(double area, double distance, List<String> photos){
+       if(this.area <=0){
            throw new IllegalArgumentException("Area must be greater than 0.");
        }
        if(location==null){
            throw new NullPointerException("Adress must not be null.");
        }
-        if(distance<=0){
+        if(this.distance <=0){
             throw new IllegalArgumentException("Distance from the city center must be greater than 0.");
         }
-        if (photos == null){
+        if (this.photos == null){
             throw new IllegalArgumentException("Is necesssary more than 0 photos");
         }
 
@@ -52,9 +54,6 @@ public class Property {
      *
      * @param location the property location
      */
-    public Property(Location location) {
-        this.location = location;
-    }
 
     /**
      * Gets area.
@@ -118,7 +117,7 @@ public class Property {
         this.distance = distance;
     }
 
-    public Property clone() {return new Property(this.location);}
+    public Property clone() {return new Property(area, distance, photos);}
 
     /**
      * Gets location.

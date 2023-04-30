@@ -15,7 +15,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
     }
@@ -26,7 +26,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertEquals(announcement, announcement);
@@ -38,7 +38,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertNotEquals(announcement, new Object());
@@ -50,7 +50,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertNotEquals(announcement, null);
@@ -62,7 +62,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description1", 12345, agent);
@@ -75,7 +75,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description1", 1234, agent);
@@ -88,7 +88,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description", 1234, agent);
@@ -101,7 +101,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertEquals(announcement.hashCode(), announcement.hashCode());
@@ -113,7 +113,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description1", 12345, agent);
@@ -125,7 +125,7 @@ class AnnouncementTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(location);
+        Property property = new Property(area, distance, photos);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement clone = announcement.clone();

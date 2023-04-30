@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.esoft.project.domain;
 
 public class Filter {
@@ -28,3 +29,4 @@ public class Filter {
         return true;
     }
 }
+*/
