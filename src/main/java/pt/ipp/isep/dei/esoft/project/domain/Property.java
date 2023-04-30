@@ -53,9 +53,10 @@ public class Property {
     /**
      * Instantiates a new Property.
      *
-     * @param propertyLocation the property location
+     * @param location the property location
      */
-    public Property(String propertyLocation) {
+    public Property(Location location) {
+        this.location = location;
     }
 
     /**

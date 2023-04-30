@@ -11,7 +11,7 @@ public class Agency {
     private String phoneNumber;
     private Employee administrator;
 
-    public Agency(int id, String agency_name, String s){
+    public Agency(int id){
         this.id = id;
     }
 
@@ -35,22 +35,6 @@ public class Agency {
             this.phoneNumber = phoneNumber;
         }
         this.administrator = administrator;
-    }
-
-    public Agency(int id, String designation, String location, String emailAddress, String phoneNumber){
-        this.id = id;
-        if(designation.replace(" ", "").length() > 40){
-            throw new IllegalArgumentException("Agency Designation is longer than 40 characters");
-        } else {
-            this.designation = designation;
-        }
-        this.location = location;
-        if(!emailAddress.contains("@")){
-            throw new IllegalArgumentException("Invalid email address");
-        } else {
-            this.emailAddress = emailAddress;
-        }
-            this.phoneNumber = phoneNumber;
     }
 
     public boolean equals(Object o){
