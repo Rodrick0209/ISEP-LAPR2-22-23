@@ -14,8 +14,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
     }
@@ -25,8 +25,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertEquals(announcement, announcement);
@@ -37,8 +37,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertNotEquals(announcement, new Object());
@@ -49,8 +49,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertNotEquals(announcement, null);
@@ -61,8 +61,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description1", 12345, agent);
@@ -74,8 +74,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description1", 1234, agent);
@@ -87,8 +87,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description", 1234, agent);
@@ -100,8 +100,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         assertEquals(announcement.hashCode(), announcement.hashCode());
@@ -112,8 +112,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement announcement1 = new Announcement(property, "Announcement description1", 12345, agent);
@@ -124,8 +124,8 @@ class AnnouncementTest {
         Employee agent = new Employee("agent@this.app");
         List<String> photos = new ArrayList<>();
         photos.add("abc");
-        Location location = new Location("Property Street", "Property city", "Property district", "Property state", 12345);
-        Property property = new Property(123, location, 12, photos);
+        Location location = new Location("Property Street", "Property city", "Property district");
+        Property property = new Property(location);
 
         Announcement announcement = new Announcement(property, "Announcement description", 1234, agent);
         Announcement clone = announcement.clone();
