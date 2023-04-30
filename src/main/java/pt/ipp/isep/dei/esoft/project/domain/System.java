@@ -11,7 +11,7 @@ public class System {
         return new Filter();
     }
 
-    public List<Property> searchPropertiesByFilter(Filter filter) {
+    /*public List<Property> searchPropertiesByFilter(Filter filter) {
         List<Property> properties = propertiesList.getProperties();
         List<Property> filteredProperties = new ArrayList<Property>();
 
@@ -23,4 +23,5 @@ public class System {
 
         return filteredProperties;
     }
+     */
 }

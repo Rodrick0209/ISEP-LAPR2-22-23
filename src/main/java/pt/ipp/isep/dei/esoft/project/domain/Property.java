@@ -28,7 +28,7 @@ public class Property {
            throw new IllegalArgumentException("Area must be greater than 0.");
        }
        if(location==null){
-           throw new IllegalArgumentException("Adress must not be null.");
+           throw new IllegalArgumentException("Address must not be null.");
        }
         if(distance<=0){
             throw new IllegalArgumentException("Distance from the city center must be greater than 0.");

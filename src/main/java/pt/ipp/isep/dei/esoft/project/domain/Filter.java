@@ -18,7 +18,7 @@ public class Filter {
         this.maxPrice = maxPrice;
     }
 
-    public boolean matches(Property property) {
+   /* public boolean matches(Property property) {
         if (!property.getName().contains(name)) {
             return false;
         }
@@ -27,4 +27,5 @@ public class Filter {
         }
         return true;
     }
+    */
 }

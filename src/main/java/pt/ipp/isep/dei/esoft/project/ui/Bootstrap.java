@@ -30,7 +30,7 @@ public class Bootstrap implements Runnable {
 
         //get agency repository
         AgencyRepository agencyRepository = Repositories.getInstance().getAgencyRepository();
-        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "abc@gmail.com", "(567) 456-2345"));
+        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "abc@gmail.com", "(567) 456-2345", new Employee("admin@this.app")));
     }
 
     private void addRoles() {

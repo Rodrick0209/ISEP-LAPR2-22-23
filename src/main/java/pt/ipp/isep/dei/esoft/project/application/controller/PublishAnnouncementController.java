@@ -63,7 +63,7 @@ public class PublishAnnouncementController {
     }
 
     private Property getPropertyByLocation(Location location) {
-        return getPropertyRepository().getPropertyByLocation(String.valueOf(location));
+        return getPropertyRepository().getPropertyByLocation(location);
     }
 
     private Employee getAgentFromSession() {
