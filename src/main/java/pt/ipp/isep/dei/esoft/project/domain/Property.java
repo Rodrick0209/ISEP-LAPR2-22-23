@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.Objects;
 import java.util.List;
 
+/**
+ * The type Property.
+ */
 public class Property {
 
     private double area;
@@ -12,6 +15,14 @@ public class Property {
 
     private List<String> photos;
 
+    /**
+     * Instantiates a new Property.
+     *
+     * @param area     the area
+     * @param location the location
+     * @param distance the distance
+     * @param photos   the photos
+     */
     public Property(double area,Location  location , double distance,List<String> photos){
        if(area<=0){
            throw new IllegalArgumentException("Area must be greater than 0.");
@@ -27,26 +38,58 @@ public class Property {
         }
 
     }
+
+    /**
+     * Instantiates a new Property.
+     *
+     * @param area     the area
+     * @param distance the distance
+     */
     public Property(int area, int distance) {
         this.area = area;
         this.distance = distance;
     }
 
+    /**
+     * Instantiates a new Property.
+     *
+     * @param propertyLocation the property location
+     */
     public Property(String propertyLocation) {
     }
 
+    /**
+     * Gets area.
+     *
+     * @return the area
+     */
     public double getArea() {
         return area;
     }
 
+    /**
+     * Sets area.
+     *
+     * @param area the area
+     */
     public void setArea(int area) {
         this.area = area;
     }
 
+    /**
+     * Sets distance.
+     *
+     * @param distance the distance
+     */
     public void setDistance(int distance) {
         this.distance = distance;
     }
 
+    /**
+     * Gets distance.
+     *
+     * @return the distance
+     */
     public double getDistance() {
         return distance;
     }
@@ -64,6 +107,13 @@ public class Property {
         return Objects.hash(area, location, distance, photos);
     }
 
+    /**
+     * Instantiates a new Property.
+     *
+     * @param area     the area
+     * @param location the location
+     * @param distance the distance
+     */
     public Property(int area, Location location, int  distance) {
         this.area = area;
         this.location = location;
@@ -72,5 +122,10 @@ public class Property {
 
     public Property clone() {return new Property(this.location);}
 
+    /**
+     * Gets location.
+     *
+     * @return the location
+     */
     public Location getLocation() {return location;}
 }

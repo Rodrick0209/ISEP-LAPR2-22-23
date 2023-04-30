@@ -6,9 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Property repository.
+ */
 public class PropertyRepository {
     private final List<Property> properties = new ArrayList<>();
 
+    /**
+     * Get property by location property.
+     *
+     * @param propertyLocation the property location
+     * @return the property
+     */
     public Property getPropertyByLocation(String propertyLocation){
         Property newProperty = new Property(propertyLocation);
         Property property = null;
@@ -21,6 +30,12 @@ public class PropertyRepository {
         return property;
     }
 
+    /**
+     * Add optional.
+     *
+     * @param property the property
+     * @return the optional
+     */
     public Optional<Property> add(Property property){
 
         Optional<Property> newProperty = Optional.empty();
@@ -39,6 +54,11 @@ public class PropertyRepository {
 
     private boolean validateProperty(Property property){return !properties.contains(property);}
 
+    /**
+     * Gets properties.
+     *
+     * @return the properties
+     */
     public List<Property> getProperties() {
         return List.copyOf(properties);
     }

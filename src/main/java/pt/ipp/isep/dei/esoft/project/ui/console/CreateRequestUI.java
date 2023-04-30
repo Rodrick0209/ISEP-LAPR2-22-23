@@ -1,17 +1,21 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * @author Tomás Gonçalves 1220917@isep.ipp.pt
- *
- * return All property detail in the request.
+ * The type Create request ui.
  */
 public class CreateRequestUI implements Runnable {
 
+    /**
+     * The Request controller.
+     */
+    CreateRequestController requestController;
     private String requestType;
 
     private String propertyType;

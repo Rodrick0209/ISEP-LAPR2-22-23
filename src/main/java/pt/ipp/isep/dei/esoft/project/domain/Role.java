@@ -2,9 +2,17 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
+/**
+ * The type Role.
+ */
 public class Role {
     private final String name;
 
+    /**
+     * Instantiates a new Role.
+     *
+     * @param name the name
+     */
     public Role(String name){ this.name = name; }
 
     public boolean equals(Object o){
@@ -18,6 +26,11 @@ public class Role {
         return name.equalsIgnoreCase(that.name);
     }
 
+    /**
+     * Get name string.
+     *
+     * @return the string
+     */
     public String getName(){ return name; }
 
     public int hashCode(){ return Objects.hashCode(name); }

@@ -4,10 +4,19 @@ import pt.ipp.isep.dei.esoft.project.domain.Role;
 
 import java.util.*;
 
+/**
+ * The type Role repository.
+ */
 public class RoleRepository {
 
     private final List<Role> roles = new ArrayList<>();
 
+    /**
+     * Get role by name role.
+     *
+     * @param roleName the role name
+     * @return the role
+     */
     public Role getRoleByName(String roleName){
         Role newRole = new Role(roleName);
         Role role = null;
@@ -17,6 +26,12 @@ public class RoleRepository {
         return role;
     }
 
+    /**
+     * Add optional.
+     *
+     * @param role the role
+     * @return the optional
+     */
     public Optional<Role> add(Role role){
 
         Optional<Role> newRole = Optional.empty();
@@ -37,6 +52,11 @@ public class RoleRepository {
         return (!roles.contains(role));
     }
 
+    /**
+     * Get roles list.
+     *
+     * @return the list
+     */
     public List<Role> getRoles(){
         return List.copyOf(roles);
     }
