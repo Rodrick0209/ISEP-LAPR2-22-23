@@ -32,10 +32,10 @@ public class Property {
         this.distance = distance;
     }
 
-    public Property(Location location) {
-        this.location = location;
+    public Property(String propertyLocation) {
     }
-      public double getArea() {
+
+    public double getArea() {
         return area;
     }
 

@@ -15,7 +15,7 @@ public class AgencyRepository {
      * @return agency by the agencyID
      */
     public Agency getAgencyByID(int agencyID){
-        Agency newAgency = new Agency(agencyID);
+        Agency newAgency = new Agency(agencyID, "Agency Name", "Power Street, F");
         Agency agency = null;
         if(agencies.contains(newAgency)){
             agency = agencies.get(agencies.indexOf(newAgency));
