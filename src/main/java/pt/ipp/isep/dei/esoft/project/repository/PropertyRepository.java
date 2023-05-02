@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Location;
 import pt.ipp.isep.dei.esoft.project.domain.Property;
 
 import java.util.ArrayList;
@@ -15,14 +16,11 @@ public class PropertyRepository {
     /**
      * Get property by location property.
      *
-     * @param propertyLocation the property location
+     * @param location the property location
      * @return the property
      */
-    public Property getPropertyByLocation(String propertyLocation){
-        double area=0;
-        double distance=0;
-        List<String> photos = null;
-        Property newProperty = new Property(area, distance, photos);
+    public Property getPropertyByLocation(Location location){
+        Property newProperty = new Property(location);
         Property property = null;
         if(properties.contains(property)){
             property = properties.get(properties.indexOf(newProperty));
