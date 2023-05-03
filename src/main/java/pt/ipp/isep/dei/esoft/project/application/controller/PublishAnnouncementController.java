@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.esoft.project.repository.PropertyRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
+import java.util.List;
 import java.util.Optional;
 
 public class PublishAnnouncementController {
@@ -48,8 +49,8 @@ public class PublishAnnouncementController {
         return propertyRepository;
     }
 
-    public Optional<Announcement> createAnnouncement(String propertyLocation, String description, int commission){
-        Property property = getPropertyByLocation(propertyLocation);
+    public Optional<Announcement> createAnnouncement(Location location, String description, int commission){
+        Property property = getPropertyByLocation(location);
 
         Employee agent = getAgentFromSession();
         Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(agent);
@@ -61,12 +62,14 @@ public class PublishAnnouncementController {
         return newAnnouncement;
     }
 
-    private Property getPropertyByLocation(String propertyLocation) {
-        return getPropertyRepository().getPropertyByLocation(propertyLocation);
+    private Property getPropertyByLocation(Location location) {
+        return getPropertyRepository().getPropertyByLocation(location);
     }
 
     private Employee getAgentFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new Employee(email.getEmail());
     }
+
+    public List<Property> getProperties(){return getPropertyRepository().getProperties();}
 }

@@ -13,8 +13,6 @@ participant ":Repositories" as Rep
 
 participant "repositories\n:Repositories" as PLAT
 participant "RequestTypeRepository:\nRequestTypeRepository" as TaskCategoryRepository
-participant ":ApplicationSession" as AppS
-participant "appSession:\nApplicationSession" as AppSession
 participant "PropertyTypeRepository:\nPropertyTypeRepository" as ProType
 participant "agency:\nAgency" as Br
 participant "agencyRepository:\nAgencyRepository" as AgencyRep

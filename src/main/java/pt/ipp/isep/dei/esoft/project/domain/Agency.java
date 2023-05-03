@@ -11,17 +11,34 @@ public class Agency {
     private String phoneNumber;
     private Employee administrator;
 
-    public Agency(int id){
+    public Agency(int id, String agency_name, String s){
         this.id = id;
     }
 
+
     public Agency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
         this.id = id;
-        this.designation = designation;
+        if(designation.replace(" ", "").length() > 40){
+            throw new IllegalArgumentException("Agency Designation is longer than 40 characters");
+        } else {
+            this.designation = designation;
+        }
         this.location = location;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
+        if(!emailAddress.contains("@")){
+            throw new IllegalArgumentException("Invalid email address");
+        } else {
+            this.emailAddress = emailAddress;
+        }
+        if(!phoneNumber.contains("(") && !phoneNumber.contains(")") && !phoneNumber.contains("-")){
+            throw new IllegalArgumentException("Invalid Phone Number");
+        } else {
+            this.phoneNumber = phoneNumber;
+        }
         this.administrator = administrator;
+    }
+
+    public Agency(int agencyID, String agency_name, String s, int id) {
+        this.id = id;
     }
 
     public boolean equals(Object o){
@@ -42,8 +59,14 @@ public class Agency {
     public int hashCode() { return Objects.hash(id); }
 
     public String toString(){
-        return String.format("Agency nº%d Name: %s%n Location: %s%n Email Address: %s%n Phone Number: %s%n", this.id, this.designation, this.location, this.emailAddress, this.phoneNumber);
+        return String.format("Agency nº%d%n" +
+                "Name: %s%n" +
+                "Location: %s%n" +
+                "Email Address: %s%n" +
+                "Phone Number: %s%n"
+                , this.id, this.designation, this.location, this.emailAddress, this.phoneNumber);
     }
 
-    public Agency clone(){ return new Agency(this.id, this.designation, this.location, this.emailAddress, this.phoneNumber, this.administrator); }
+    public Agency clone(){ return new Agency(this.id, "Agency Name", "Power Street, F"); }
+
 }

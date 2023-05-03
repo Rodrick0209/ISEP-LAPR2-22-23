@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "System Administrator" as Administrator
+participant ":System" as System
+
+activate Administrator
+
+    Administrator -> System : asks to import information
+    activate System
+
+        System --> Administrator : requests file
+    deactivate System
+
+    Administrator -> System : sends file
+    activate System
+
+        System --> Administrator : shows operation success
+    deactivate System
+
+
+@enduml

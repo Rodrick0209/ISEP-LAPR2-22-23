@@ -14,8 +14,8 @@ public class OrganizationRepository {
 
     /**
      *
-     * @param employee employee
-     * @return organization
+     * @param employee the employee registered/added
+     * @return the organization where this employee has
      */
     public Optional<Organization> getOrganizationByEmployee(Employee employee) {
 
@@ -30,12 +30,17 @@ public class OrganizationRepository {
         return returnOrganization;
     }
 
+    /**
+     *
+     * @param email the employee email
+     * @return the organization where this employee email is registered/added
+     */
     public Optional<Organization> getOrganizationByEmployeeEmail(String email) {
 
         Optional<Organization> returnOrganization = Optional.empty();
 
         for (Organization organization : organizations) {
-            if (organization.employeeHasEmail(email)) {
+            if (organization.anyEmployeeHasEmail(email)) {
                 returnOrganization = Optional.of(organization);
             }
         }
@@ -43,6 +48,11 @@ public class OrganizationRepository {
         return returnOrganization;
     }
 
+    /**
+     *
+     * @param organization the organization registered/added
+     * @return list of organization added
+     */
     public Optional<Organization> add(Organization organization) {
 
         Optional<Organization> newOrganization = Optional.empty();
@@ -61,6 +71,11 @@ public class OrganizationRepository {
 
     }
 
+    /**
+     *
+     * @param organization the organization registered/added
+     * @return if the organization is already contained on the organization list
+     */
     private boolean validateOrganization(Organization organization) {
         return !organizations.contains(organization);
     }
