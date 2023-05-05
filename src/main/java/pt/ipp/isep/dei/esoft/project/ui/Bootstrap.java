@@ -12,6 +12,7 @@ public class Bootstrap implements Runnable {
         addAgencies();
         addOrganization();
         addUsers();
+        addProperties();
     }
 
     private void addOrganization() {
@@ -19,11 +20,12 @@ public class Bootstrap implements Runnable {
         //get organization repository
         OrganizationRepository organizationRepository = Repositories.getInstance().getOrganizationRepository();
         Organization organization = new Organization("This Company");
-        organizationRepository.add(organization);
         organization.addEmployee(new Employee("admin@this.app"));
         organization.addEmployee(new Employee("agent@this.app"));
+        organizationRepository.add(organization);
 
     }
+    
 
     private void addAgencies() {
         //TODO: add bootstrap Agencies here
@@ -34,6 +36,16 @@ public class Bootstrap implements Runnable {
         Agency agency = new Agency(123123,"Agency","s",12312);
         Employee employee = new Employee("employee@this.app");
         agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "abc@gmail.com", "(567) 456-2345",new Employee( "name", "admin@this.app", 1212434, 123124, "address", "phoneNumber", owner,  agency,  employee)));
+        agencyRepository.add(new Agency ( 1244, "Agency Name","Tower Street","abc@gmail.com","(334) 459-9874",new Employee("name","agent@this.app",1220403,123453,"adress","phonenumber",owner,agency,employee)));
+    }
+    private void addProperties(){
+       // TODO: add boostrap Properties
+    
+    // get agency Proprety
+    
+    PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
+    propertyRepository.add(new Property(6363.0,new Location("TOP G street","bucharest","bucharest","buchasrest",12345),304.0));
+
     }
 
     private void addRoles() {

@@ -22,8 +22,13 @@ public class PropertyRepository {
     public Property getPropertyByLocation(Location location){
         Property newProperty = new Property(location);
         Property property = null;
-        if(properties.contains(property)){
+        /*if(properties.contains(newProperty)){
             property = properties.get(properties.indexOf(newProperty));
+        }*/
+        for (Property p : properties){
+            if (p.getLocation() == location){
+                property = p;
+            }
         }
         if(property == null){
             throw new IllegalArgumentException("Property not found");

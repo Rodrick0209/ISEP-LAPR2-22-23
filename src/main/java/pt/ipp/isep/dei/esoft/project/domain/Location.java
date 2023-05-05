@@ -26,7 +26,12 @@ public class Location {
         this.city = city;
         this.district = district;
         this.state = state;
-        this.zipCode = zipCode;
+        if(zipCode < 10000 || zipCode > 99999){
+            throw new IllegalArgumentException("Invalid zip code");
+        }else{
+            this.zipCode = zipCode;
+        }
+
     }
 
     /**
@@ -133,13 +138,13 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Adress{" +
-                "street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", district='" + district + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode=" + zipCode +
-                '}';
+        return String.format (
+                "Street: %s%n" +
+                "City: %s%n" +
+                        "District: %s%n" +
+                "State: %s%n"+
+                "ZipCode: %d",street,city,district,state,zipCode);
+
     }
 
 }

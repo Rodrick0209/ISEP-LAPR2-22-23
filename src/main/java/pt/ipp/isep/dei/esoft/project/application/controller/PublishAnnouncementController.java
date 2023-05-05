@@ -67,6 +67,8 @@ public class PublishAnnouncementController {
     }
 
     private Employee getAgentFromSession() {
+        /*public Employee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator){
+         */
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new Employee(email.getEmail());
     }

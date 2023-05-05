@@ -15,6 +15,7 @@ public class Property {
 
     private List<String> photos;
 
+
     /**
      * Instantiates a new Property.
      *
@@ -22,17 +23,14 @@ public class Property {
      * @param distance
      * @param photos
      */
-    public Property(double area, double distance, List<String> photos){
-       if(this.area <=0){
-           throw new IllegalArgumentException("Area must be greater than 0.");
-       }
-       if(location==null){
-           throw new NullPointerException("Adress must not be null.");
-       }
-        if(distance<=0){
+    public Property(double area, double distance, List<String> photos) {
+        if (area <= 0) {
+            throw new IllegalArgumentException("Area must be greater than 0.");
+        }
+        if (distance <= 0) {
             throw new IllegalArgumentException("Distance from the city center must be greater than 0.");
         }
-        if (photos == null){
+        if (photos == null) {
             throw new IllegalArgumentException("Is necesssary more than 0 photos");
         }
 
@@ -114,21 +112,34 @@ public class Property {
      * @param location the location
      * @param distance the distance
      */
-    public Property(int area, Location location, int  distance) {
+    public Property(double area, Location location, double distance) {
         this.area = area;
+        if (location == null) {
+            throw new NullPointerException("Invalid address. This must not be null.");
+        }
         this.location = location;
         this.distance = distance;
     }
 
-    public Property clone() {return new Property(this.location);}
+    public Property clone() {
+        return new Property(this.area, this.location, this.distance);
+    }
 
     /**
      * Gets location.
      *
      * @return the location
      */
-    public Location getLocation() {return location;}
+    public Location getLocation() {
+        return location;
+    }
 
     public void setPhotos(Object o) {
+    }
+
+    public String toString() {
+        return String.format("Area: %.2f%n" +
+                "%s%n" +
+                "Distance from City Centre: %.2f%n", area, location.toString(), distance);
     }
 }
