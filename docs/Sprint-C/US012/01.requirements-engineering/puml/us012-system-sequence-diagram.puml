@@ -12,7 +12,7 @@ participant ":System" as System
 
 activate Administrator
 
-    Administrator -> System : asks to import information
+    Administrator -> System : asks to import information \nfrom a legacy system
     activate System
 
         System --> Administrator : requests file
