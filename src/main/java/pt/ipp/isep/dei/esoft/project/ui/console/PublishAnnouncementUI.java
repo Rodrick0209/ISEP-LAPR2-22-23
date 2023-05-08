@@ -20,7 +20,7 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     public void run() {
-        System.out.println("Publish Announcement");
+        System.out.println("\nSelect the properties\n");
 
         announcementPropertyLocation = displayAndSelectProperty();
         requestData();
