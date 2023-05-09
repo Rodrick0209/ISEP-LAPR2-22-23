@@ -20,7 +20,7 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     public void run() {
-        System.out.println("\nSelect the properties\n");
+        System.out.println("Select the properties\n");
 
         announcementPropertyLocation = displayAndSelectProperty();
         requestData();
@@ -32,7 +32,7 @@ public class PublishAnnouncementUI implements Runnable {
         Optional<Announcement> announcement = getController().createAnnouncement(announcementPropertyLocation, announcementDescription, commission);
 
         if (announcement.isPresent()) {
-            System.out.println("Announcement successfully published!");
+            System.out.println("Announcement has been successfully published!");
         } else {
             System.out.println("Announcement not published!");
         }
@@ -99,7 +99,7 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private Location displayAndSelectProperty() {
         List<Property> properties = controller.getProperties();
-        int answer = Utils.showAndSelectIndex(properties, "Properties");
+        int answer = Utils.showAndSelectIndex(properties, "Properties:\n");
         return properties.get(answer).getLocation();
     }
 

@@ -17,11 +17,11 @@ participant "System" as System
 
 activate Agent
 
-Agent -> System :asks to insert property information
+Agent -> System : requests to publish an announcment
 
 activate System
 
-    System --> Agent: request property data
+    System --> Agent: asks for property data
     deactivate System
 
 
@@ -34,7 +34,7 @@ activate System
    Agent-> System:sends comission
 
    activate System
-System --> Agent : informs the agent when the announcment has been published
+System --> Agent : informs the agent the announcment  has been published
 
 
 

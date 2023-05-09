@@ -11,7 +11,7 @@ As an agent, I can publish any sale announcement on the system, for example rece
 
 **From the specifications document:**
 
->The real estate agent publishes announcements of thw owner's  properties.
+>The real estate agent publishes announcements of the owner's  properties.
 
 > As soon as the clients are interested on these properties, the agent schedules a meeting with the future possibility of getting a sale or agency rent.
 
@@ -36,10 +36,7 @@ As an agent, I can publish any sale announcement on the system, for example rece
 
 ### 1.3. Acceptance Criteria 
 
-
-* **AC1:** The agent must register all necessary agency data into the system.
-* **AC2:** The program the agent interacts with has to be functional.
-* **AC3:** The client has to be able to communicate (in the same language) with the agent.
+Acceptencre criterias were not mentioned on this user story description.
 
 ### 1.4. Found out Dependencies 
 
@@ -50,19 +47,18 @@ The owner submits the company agency data to the agent through a phone call , wi
 
 **Input Data:**
 
-* Typed data:
+- Id/email
+- Password
 
-* Commision
-* agency data for annoucment publishment
-
-
-* Selected data:
-  * type of agency (house ,apartment,basement ..etc..),
+*After login*
+- Selection of the property 
+- Announcment descrition
+- Comission
 
 
 **Output Data:**
-
 * (In)Success of the operation
+* Announcment display
 
 ### 1.6. System Sequence Diagram (SSD)
 

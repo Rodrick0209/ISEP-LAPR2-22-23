@@ -1,4 +1,5 @@
-# US 006 - To create a Task 
+# US 008 - To see the announcment requests and select a request in order to than publish an announcment
+
 
 ## 2. Analysis
 
