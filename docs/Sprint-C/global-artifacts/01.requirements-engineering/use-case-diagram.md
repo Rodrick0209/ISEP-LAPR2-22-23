@@ -22,5 +22,6 @@ link as suggested below.**
 | US 003 | [Register a new employee](../../us003/US003-menu.md)   | 
 | US 004 | [Submit a request](../../us004/US004-menu.md)          |
 | US 005 | [Register a store](../../us005/US005-menu.md)          |
+| US 008 | [Register a store](../../us008/US008-menu.md)          |
 
 

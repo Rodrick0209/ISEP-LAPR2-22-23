@@ -1,4 +1,6 @@
-# US 008 - To see the announcment requests and select a request in order to than publish an announcment.
+# US 008 - To select a request and publish an announcement.
+
+
 
 ## 1. Requirements Engineering
 
@@ -21,19 +23,22 @@ so that I can post the announcement.
 
 **From the client clarifications:** //so falta isto + 1.7
 
-> **Question:** How does the agent determine whether it is a fixed commission or a percentage commission?
->
-> **Answer:** The agent should choose the type of commission and enter the value.
+> **Question:** Regarding US008, can the agent decline an announcement request?
+> 
+>**Answer**: Yes. The agent must include a message justifying the rejection.
 
-> **Question:** Is the phone call the only way the agent can receive the sale announcement? Or he can receive them via e-mail/letter/etc
->
-> **Answer:** For now this is the only way.
+> **Question:** When displaying the property announcement requests in the system to the agent besides them being ordered from most recent to oldest is there a need to display the specific day where the requests were published? 
+> 
+> **Answer:** The list of property announcement requests should be sorted by the date they were created, with the most recent requests appearing first. The system should show the date when the property announcement requests was made.
 
-> **Question:** Can an Agent work in more than 1 store (Multiple stores)?
->
-> **Answer:** No.
 
-> **Question:** According to the Project Description, the agent when selling a agency can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
+
+
+> **Question:** Can the agent select multiple requests at the same time?
+> 
+>**Answer:** No.The agent can only post one announcement at a time.
+
+> **Question:** According to the Project Description, the agent when selling an agency can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
 >
 > **Answer:** There is no maximum and the minimum is 0.
 
@@ -70,7 +75,7 @@ so that I can post the announcement.
 * Announcment dispplay
 * (In)Success of the operation
 
-### 1.6. System Sequence Diagram (SSD)
+### 1.6. System Sequence Diagram (SSD) (not displays for a reason?)
 
 ![us008-system-sequence-diagram-alternative-one.puml](svg/us008-system-sequence-diagram-alternative-one.svg)
 
