@@ -28,6 +28,43 @@ class Agency {
     phoneNumber
 }
 
+class Owner {
+    name
+    email
+    ccNumber
+    taxNumber
+    emailAddress
+    phoneNumber
+}
+
+class Property  {
+    type
+    area
+    location
+    distanceFromCityCentre
+    requestedPrice
+    price
+    photos
+}
+
+class Apartment{
+    numberOfBedrooms
+    numberOfBathrooms
+    numberOfParkingSpaces
+    centralHeating
+    airConditioning
+}
+
+class House{
+    numberOfBedrooms
+    numberOfBathrooms
+    numberOfParkingSpaces
+    centralHeating
+    airConditioning
+    inhabitableLoft
+    sunExposure
+}
+
 class SystemAdministrator {
     name
     email
@@ -40,5 +77,9 @@ class SystemAdministrator {
 Organization "1" - "*" Agency : has >
 Organization "1" -- "1" SystemAdministrator : has >
 SystemAdministrator "1" -- "1" Information: imports >
-Information "1" -- "1..*" Agency: contains >
+Information "1" -- "*" Agency: contains >
+Information "1" -- "*" Owner: contains >
+Owner "1" -- "*" Property: owns >
+Property "1"-D-> "1..*" House :  can be a
+Property "1    "-U-> "1..* " Apartment :  can be an
 @enduml
