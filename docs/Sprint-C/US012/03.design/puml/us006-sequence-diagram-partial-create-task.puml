@@ -4,23 +4,33 @@ skinparam packageStyle rectangle
 skinparam shadowing false
 
 participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
+participant "owner:\n:Owner" as Owner
+participant "fileReader\n:FileReader" as TAREFA
 
 autonumber 16
--> ORG: createTask(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee )
+-> ORG: readFile(file, administrator)
 
 autonumber 16.1
 activate ORG
-    group Create Task
+    group Read File
 
-        ORG -> TAREFA**: create(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-        ORG -> ORG: addTask (task)
+        ORG -> TAREFA**: readFile(file, administrator)
 
         activate ORG
-            ORG -> ORG: validateTask(task)
-            activate ORG
-                ORG --> ORG
-            deactivate ORG
+        activate Owner
+            TAREFA -> TAREFA: FileReader(file, administrator)
+            activate TAREFA
+                TAREFA --> Owner
+                deactivate TAREFA
+                    Owner -> Owner: createOwner(name, ccNumber, taxNumber, emailAddress, phoneNumber)
+                    activate Owner
+            Owner --> Owner
+            deactivate Owner
+            activate TAREFA
+                TAREFA --> ORG
+                deactivate TAREFA
+                    ORG -> ORG: createProperty(type, area, distanceFromCityCentre, photos)
+
 
             ORG --> ORG
         deactivate ORG
