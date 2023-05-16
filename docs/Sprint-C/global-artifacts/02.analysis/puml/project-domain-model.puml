@@ -20,6 +20,10 @@ email_address
 contact
 employeeRole
 }
+class Agent{
+id/email
+password
+}
 
 class SystemAdministrator{
 }
