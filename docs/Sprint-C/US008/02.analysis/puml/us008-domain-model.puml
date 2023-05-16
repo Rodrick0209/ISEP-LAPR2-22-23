@@ -1,61 +1,62 @@
-@startuml
+  @startuml
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-left to right direction
+'left to right direction
 
 skinparam classAttributeIconSize 0
 
 hide circle
 hide methods
 
-title Domain Model
+'title Domain Model
 
-class Platform {
-  -description
+'class Platform {
+'  -description
+'}
+
+class Agent {
+id/email
+password
 }
 
-class Organization {
-    name
-    vatNumber
-    acts
-    phoneNumber
-    email
+class  RequestList{
+date
+property
 }
 
-class Task {
-    reference
+
+class Owner {
+}
+class Location{
+street
+city
+state
+zip code
+}
+
+class Property {
+   area
+   location
+    distance_from_the_city_center
+}
+
+class Announcement {
+  property
     description
-    informalDesc
-    technicalDesc
-    duration
-    cost
-}
+    comission
+  }
 
-class Category {
-    description
-}
+Agent "1..*" -- "1" Agency : works for  >
+Owner "1" -- "1" RequestList: request a property announcment to >
+Agent "1" -- "1" RequestList: selects a request from >
+Property "1"-- "1"Announcement: is needed for  >
+Property "1"-- "1"RequestList: is needed for  >
+Owner "1" -- "1..*" Property : owns a >
+Location "1"--"1" Property : is needed for>
 
-class Employee {
-    name
-    email
-    position
-    phone
-}
+Agent "1" -- "1..*" Announcement : publishes an >
 
-class User {
-    name
-    email
-    password
-}
 
-Platform "1" -- "*" Organization : has registered >
-Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
 @enduml

@@ -17,23 +17,23 @@ hide methods
 '}
 
 class Agent {
+id/email
+password
 }
 
 class Owner {
 }
 
 class Property {
-    type
-    location
-    area
-    amount_of_sun_exposure
-    number_of_bedrooms
-    number_of_bathrooms
+   area
+   location
+    distance_from_the_city_center
 }
 
 class Announcement {
     description
     comission
+    property
   }
 
 Owner "1" -- "1" Agent : selects >
