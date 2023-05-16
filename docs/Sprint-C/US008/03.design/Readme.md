@@ -1,4 +1,4 @@
-# US 008 - To select a request and publish an announcement.
+# US 008 - To select a request and publish an announcement
 
 ## 3. Design - User Story Realization 
 

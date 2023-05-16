@@ -52,6 +52,7 @@ so that I can post the announcement.
 
 * There is a dependency to US004 since the agent receives a request from the owner trhough a
  phone call, or the application itself. Once he receives that request ,he than can validate the data, choose and announce it.
+* It also has a dependency on the US002 because the user story is a further extention ,with more features( ex: see the request list) of it.
 
 ### 1.5 Input and Output Data
 
