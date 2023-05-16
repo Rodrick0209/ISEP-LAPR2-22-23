@@ -37,7 +37,7 @@ activate Employee
         System --> Employee : shows data
     deactivate System
 
-opt request is valid and registered
+opt the  request is valid and registered
 
      Employee -> System : submit data
         activate System
@@ -55,7 +55,7 @@ loop if the requests don't overlap each other
             System --> Employee : shows data
         deactivate System
 
-opt request is valid and registered
+opt  the request is valid and registered
 
      Employee -> System : submit data
         activate System
