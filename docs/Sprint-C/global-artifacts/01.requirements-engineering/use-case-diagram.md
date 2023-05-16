@@ -15,13 +15,13 @@ link as suggested below.**
 
 # Use Cases / User Stories
 
-| UC/US  | Description                                            |                   
-|:-------|:-------------------------------------------------------|
-| US 001 | [Display listed properties](../../us001/US001-menu.md) |
-| US 002 | [Publish an announcement ](../../us002/US002-menu.md)  |
-| US 003 | [Register a new employee](../../us003/US003-menu.md)   | 
-| US 004 | [Submit a request](../../us004/US004-menu.md)          |
-| US 005 | [Register a store](../../us005/US005-menu.md)          |
-| US 008 | [Register a store](../../us008/US008-menu.md)          |
+| UC/US  | Description                                        |                   
+|:-------|:---------------------------------------------------|
+| US 008 | [Display listed properties](../../US008/Readme.md) |
+| US 009 | [Publish an announcement ](../../US009/Readme.md)  |
+| US 010 | [Register a new employee](../../US010/Readme.md)   | 
+| US 011 | [Submit a request](../../US011/Readme.md)          |
+| US 012 | [Register a store](../../US012/Readme.md)          |
+| US 013 | [Register a store](../../US013/Readme.md)          |
 
 

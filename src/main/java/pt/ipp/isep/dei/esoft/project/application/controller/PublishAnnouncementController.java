@@ -16,7 +16,9 @@ public class PublishAnnouncementController {
     private PropertyRepository propertyRepository;
 
     public PublishAnnouncementController() {
-
+        getOrganizationRepository();
+        getAuthenticationRepository();
+        getPropertyRepository();
     }
 
     public PublishAnnouncementController(OrganizationRepository organizationRepository, AuthenticationRepository authenticationRepository, PropertyRepository propertyRepository){
