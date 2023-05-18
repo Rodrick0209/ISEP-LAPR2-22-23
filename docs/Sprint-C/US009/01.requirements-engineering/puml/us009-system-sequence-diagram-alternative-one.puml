@@ -3,7 +3,7 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-title System Sequence Diagram (SSD) - Alternative One
+title System Sequence Diagram (SSD)
 
 autonumber
 
@@ -12,11 +12,6 @@ participant ":System" as System
 
 activate Employee
 
-    Employee -> System : asks to create a new request
-    activate System
-
-        System --> Employee : requests data
-    deactivate System
 
     Employee -> System : request a list of available properties
     activate System
@@ -46,8 +41,8 @@ opt the  request is valid and registered
     deactivate System
 end
 
-loop if the requests don't overlap each other
-
+opt if the requests don't overlap each other
+loop
     Employee -> System : made a request for visit a property \n(selects an available property, client's name,\n phone number, preferred date and time slot)
         activate System
 
@@ -62,6 +57,8 @@ opt  the request is valid and registered
 
         System --> Employee : shows a success message
     deactivate System
+
+end
 end
 end
 
