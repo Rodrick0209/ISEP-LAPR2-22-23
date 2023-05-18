@@ -42,7 +42,7 @@ opt the  request is valid and registered
 end
 
 opt if the requests don't overlap each other
-loop
+loop  if the requests don't overlap each other
     Employee -> System : made a request for visit a property \n(selects an available property, client's name,\n phone number, preferred date and time slot)
         activate System
 

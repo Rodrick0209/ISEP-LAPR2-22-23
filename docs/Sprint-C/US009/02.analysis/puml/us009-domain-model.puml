@@ -1,0 +1,54 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+
+class Owner {
+    name
+    phoneNumber
+}
+
+class System {
+    message
+}
+
+class Requests {
+    property
+    client's name
+    phoneNumber
+    date
+    time slot
+}
+
+class ListProperties{
+    properties
+}
+
+class Agent {
+    name
+    email
+    ccNumber
+    taxNumber
+    address
+    phoneNumber
+    role
+    agency
+
+}
+
+Owner "1" -- "0..*" Requests : requests  >
+Requests "0..*" -- "1" Agent :  are received by the >
+System "1" -- "1" ListProperties : has a >
+System "1" -- "0..*" Owner : send a message to the >
+Agent "1" -- "1" System : submits requests in the  >
+@enduml
