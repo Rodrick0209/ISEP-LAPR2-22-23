@@ -1,4 +1,5 @@
-# US 006 - To create a Task 
+# US 008 - To select a request and publish an announcement
+
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 
