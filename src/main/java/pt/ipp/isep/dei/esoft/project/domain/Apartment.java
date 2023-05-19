@@ -25,8 +25,8 @@ public class Apartment extends Property {
      * @param n_parkingSpaces the n parking spaces
      * @param avaiableEquip   the avaiable equip
      */
-    public Apartment(double area, Location location, double distance, List<String> photos,int n_bedrooms,int n_bathrooms, int n_parkingSpaces,String avaiableEquip) {
-        super(area, distance, photos);
+    public Apartment(double area, String location, double distance, Owner owner, List<String> photos,int n_bedrooms,int n_bathrooms, int n_parkingSpaces,String avaiableEquip) {
+        super(area, location, distance, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;

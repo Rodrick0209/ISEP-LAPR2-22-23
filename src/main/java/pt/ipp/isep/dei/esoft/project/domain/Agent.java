@@ -29,7 +29,11 @@ public class Agent{
      */
     public Agent(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Role role, Agency agency){
         this.name = name;
-        this.email = email;
+        if(!email.contains("@")){
+            throw new IllegalArgumentException("Invalid email address");
+        } else {
+            this.email = email;
+        }
         this.ccNumber = ccNumber;
         this.taxNumber = taxNumber;
         this.address = address;
@@ -44,7 +48,11 @@ public class Agent{
      * @param email the email
      */
     public Agent(String email){
-        this.email = email;
+        if(!email.contains("@")){
+            throw new IllegalArgumentException("Invalid email address");
+        } else {
+            this.email = email;
+        }
     }
 
     public boolean equals(Object o) {
@@ -70,7 +78,7 @@ public class Agent{
      */
     public boolean hasEmail(String email) { return email.equalsIgnoreCase(this.email); }
 
-    public Employee clone() {
+    public Agent clone() {
         return new Agent(this.name, this.email, this.ccNumber, this.taxNumber, this.address, this.phoneNumber, this.role, this.agency ).clone();
     }
 }

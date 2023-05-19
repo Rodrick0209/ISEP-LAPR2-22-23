@@ -24,7 +24,7 @@ public class House extends Apartment {
      * @param n_parkingSpaces the n parking spaces
      * @param avaiableEquip   the avaiable equip
      */
-    public House(double area, Location location, double distance, List<String> photos,int n_bedrooms,int n_bathrooms, int n_parkingSpaces,String avaiableEquip){
+    public House(String typeName, double area, String location, double distance, List<String> photos,int n_bedrooms,int n_bathrooms, int n_parkingSpaces,String avaiableEquip){
         super( area,location,distance,  photos,n_bedrooms,n_bathrooms,  n_parkingSpaces,avaiableEquip);
         this.existBasement = existBasement;
         this.existinhabitableLoft = existinhabitableLoft;

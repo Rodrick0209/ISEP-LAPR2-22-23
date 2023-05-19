@@ -78,6 +78,7 @@ Organization "1" - "*" Agency : has >
 Organization "1" -- "1" SystemAdministrator : has >
 SystemAdministrator "1" -- "1" Information: imports >
 Information "1" -- "*" Agency: contains >
+Information "1" -- "*" Property: contains >
 Information "1" -- "*" Owner: contains >
 Owner "1" -- "*" Property: owns >
 Property "1"-D-> "1..*" House :  can be a

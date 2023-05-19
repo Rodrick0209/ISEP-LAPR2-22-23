@@ -34,6 +34,8 @@ public class Repositories {
      */
     PropertyTypeRepository propertyTypeRepository = new PropertyTypeRepository();
 
+    OwnerRepository ownerRepository = new OwnerRepository();
+
     private Repositories() {
     }
 
@@ -93,4 +95,6 @@ public class Repositories {
     public PropertyTypeRepository getPropertyTypeRepository() {
         return propertyTypeRepository;
     }
+
+    public OwnerRepository getOwnerRepository() { return ownerRepository; }
 }

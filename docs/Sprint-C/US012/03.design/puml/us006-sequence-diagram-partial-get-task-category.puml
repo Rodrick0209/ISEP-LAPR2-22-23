@@ -9,17 +9,18 @@ participant "repositories\n:Repositories" as PLAT
 participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
 
 autonumber 12
--> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
+-> CTRL : readFile(fileName)
 
 autonumber 12.1
 
 activate CTRL
-    group Get Task Category
-        CTRL -> RepositorySingleton : getInstance()
-        activate RepositorySingleton
+    group Read File
+        CTRL -> CTRL : readFile(fileName)
+        activate CTRL
 
-            RepositorySingleton --> CTRL: repositories
-        deactivate RepositorySingleton
+        CTRL -> Owner : insertInformationAboutOwner(ownerName, ownerCCNumber, ownerTaxNumber, ownerCCNumber, taxNumber,)
+        activate CTRL
+            Owner -> Owner: addOwner(name, ccNumber, taxNumber, emailAddres, phoneNumber)
 
         CTRL -> PLAT : getTaskCategoryRepository()
         activate PLAT

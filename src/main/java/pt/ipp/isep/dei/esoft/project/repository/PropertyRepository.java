@@ -19,14 +19,10 @@ public class PropertyRepository {
      * @param location the property location
      * @return the property
      */
-    public Property getPropertyByLocation(Location location){
-        Property newProperty = new Property(location);
+    public Property getPropertyByLocation(String location){
         Property property = null;
-        /*if(properties.contains(newProperty)){
-            property = properties.get(properties.indexOf(newProperty));
-        }*/
         for (Property p : properties){
-            if (p.getLocation() == location){
+            if (p.getLocation().equalsIgnoreCase(location)){
                 property = p;
             }
         }

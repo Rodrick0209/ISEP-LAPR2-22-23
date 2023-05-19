@@ -12,7 +12,7 @@ import java.util.List;
 public class PublishAnnouncementUI implements Runnable {
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
 
-    private Location announcementPropertyLocation;
+    private String announcementPropertyLocation;
     private String announcementDescription;
     private int commission;
     private PublishAnnouncementController getController() {
@@ -97,7 +97,7 @@ public class PublishAnnouncementUI implements Runnable {
      *
      * @return selected property from displayed property list
      */
-    private Location displayAndSelectProperty() {
+    private String displayAndSelectProperty() {
         List<Property> properties = controller.getProperties();
         int answer = Utils.showAndSelectIndex(properties, "Properties:\n");
         return properties.get(answer).getLocation();

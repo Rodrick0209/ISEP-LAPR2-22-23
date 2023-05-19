@@ -8,12 +8,15 @@ import java.util.List;
  */
 public class Property {
 
+    private String type;
     private double area;
-    private Location location;
+    private String location;
 
     private double distance;
 
     private List<String> photos;
+
+    private Owner owner;
 
 
     /**
@@ -52,9 +55,11 @@ public class Property {
      *
      * @param location the property location
      */
-    public Property(Location location) {
+    public Property(String location) {
         this.location = location;
     }
+
+
 
     /**
      * Gets area.
@@ -112,17 +117,19 @@ public class Property {
      * @param location the location
      * @param distance the distance
      */
-    public Property(double area, Location location, double distance) {
+    public Property(String type, double area, String location, double distance, Owner owner) {
+        this.type = type;
         this.area = area;
         if (location == null) {
             throw new NullPointerException("Invalid address. This must not be null.");
         }
         this.location = location;
         this.distance = distance;
+        this.owner = owner;
     }
 
     public Property clone() {
-        return new Property(this.area, this.location, this.distance);
+        return new Property(this.type, this.area, this.location, this.distance, this.owner);
     }
 
     /**
@@ -130,7 +137,7 @@ public class Property {
      *
      * @return the location
      */
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
@@ -138,8 +145,9 @@ public class Property {
     }
 
     public String toString() {
-        return String.format("Area: %.2f%n" +
-                "%s%n" +
-                "Distance from City Centre: %.2f%n", area, location.toString(), distance);
+        return String.format("Type: %s%n" +
+                "Area: %.2f%n" +
+                "Location: %s%n" +
+                "Distance from City Centre: %.2f%n", type, area, location, distance);
     }
 }
