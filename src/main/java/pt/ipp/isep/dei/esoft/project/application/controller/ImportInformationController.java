@@ -66,7 +66,8 @@ public class ImportInformationController implements FileReader {
         return ownerRepository;
     }
 
-    public void readFile(String fileName) {
+    public boolean readFile(String fileName) {
+        boolean operationSuccess = false;
         try {
             Scanner sc = new Scanner(new File(fileName));
             if (!fileName.contains(".csv")) {
@@ -84,12 +85,14 @@ public class ImportInformationController implements FileReader {
                 insertInformationAboutProperty(information);
                 insertInformationAboutAgency(information);
             }
-            sc.close();
         }
+            sc.close();
+            operationSuccess = true;
         }
         catch (FileNotFoundException e) {
             System.out.println("File not Found");
         }
+        return operationSuccess;
     }
 
     public void insertInformationAboutProperty(String[] information) {
@@ -106,44 +109,25 @@ public class ImportInformationController implements FileReader {
                 int apartmentNumberOfBedrooms = Integer.parseInt(information[10]);
                 int apartmentNumberOfBathrooms = Integer.parseInt(information[11]);
                 int apartmentNumberParkingSpaces = Integer.parseInt(information[12]);
-                createApartment(propertyTypeName, propertyArea, propertyLocation, propertyDistanceFromCityCenter, apartmentNumberOfBedrooms, apartmentNumberOfBathrooms, apartmentNumberParkingSpaces);
+                String apartmentCentralHeatingChar = information[13];
+                boolean apartmentCentralHeating = apartmentCentralHeatingChar.equalsIgnoreCase("Y");
+                String apartmentAirConditioningChar = information[14];
+                boolean apartmentAirConditioning = apartmentAirConditioningChar.equalsIgnoreCase("Y");
+                createApartment(propertyTypeName, propertyArea, propertyLocation, propertyDistanceFromCityCenter, apartmentNumberOfBedrooms, apartmentNumberOfBathrooms, apartmentNumberParkingSpaces, apartmentCentralHeating, apartmentAirConditioning, ownerEmailAddress);
             case "house":
                 int houseNumberOfBedrooms = Integer.parseInt(information[10]);
                 int houseNumberOfBathrooms = Integer.parseInt(information[11]);
                 int houseNumberParkingSpaces = Integer.parseInt(information[12]);
-                char houseCentralHeatingChar = information[13].charAt(0);
-                boolean houseCentralHeating;
-                switch (houseCentralHeatingChar){
-                    case 'Y':
-                        houseCentralHeating = true;
-                    case 'N':
-                        houseCentralHeating = false;
-                }
-                char houseAirConditioningChar = information[14].charAt(0);
-                boolean houseAirConditioning;
-                switch (houseAirConditioningChar){
-                    case 'Y':
-                        houseAirConditioning = true;
-                    case 'N':
-                        houseAirConditioning = false;
-                }
-                char houseExistenceOfAnBasementChar = information[15].charAt(0);
-                boolean houseExistenceOfAnBasement;
-                switch (houseExistenceOfAnBasementChar){
-                    case 'Y':
-                        houseExistenceOfAnBasement = true;
-                    case 'N':
-                        houseExistenceOfAnBasement = false;
-                }
-                char houseInhabitableLoftChar = information[16].charAt(0);
-                boolean houseInhabitableLoft;
-                switch (houseInhabitableLoftChar){
-                    case 'Y':
-                        houseInhabitableLoft = true;
-                    case 'N':
-                        houseInhabitableLoft = false;
-                }
+                String houseCentralHeatingChar = information[13];
+                boolean houseCentralHeating = houseCentralHeatingChar.equalsIgnoreCase("Y");
+                String houseAirConditioningChar = information[14];
+                boolean houseAirConditioning = houseAirConditioningChar.equalsIgnoreCase("Y");
+                String houseExistenceOfAnBasementChar = information[15];
+                boolean houseExistenceOfAnBasement = houseExistenceOfAnBasementChar.equalsIgnoreCase("Y");
+                String houseInhabitableLoftChar = information[16];
+                boolean houseInhabitableLoft = houseInhabitableLoftChar.equalsIgnoreCase("Y");
                 String houseSunExposure = information[17];
+                createHouse(propertyTypeName, propertyArea, propertyLocation, propertyDistanceFromCityCenter, houseNumberOfBedrooms, houseNumberOfBathrooms, houseNumberParkingSpaces, houseCentralHeating, houseAirConditioning, houseExistenceOfAnBasement, houseInhabitableLoft, houseSunExposure, ownerEmailAddress);
         }
     }
 
@@ -162,29 +146,29 @@ public class ImportInformationController implements FileReader {
         return Optional.of(new Property(typeName, area, location, distanceFromCityCentre, owner));
     }
 
-    public Optional<House> createHouse(String typeName, double area, Location location, int distanceFromCityCentre, String ownerEmailAddress){
-        Owner owner = getOwnerRepository().getOwnerByEmail(emailAddress);
-        return Optional.of(new House())
+    public Optional<House> createHouse(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, String ownerEmailAddress){
+        Owner owner = getOwnerRepository().getOwnerByEmail(ownerEmailAddress);
+        return Optional.of(new House(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure));
     }
 
-    public Optional<Apartment> createApartment(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, String ownerEmailAddress){
+    public Optional<Apartment> createApartment(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, boolean centralHeating, boolean airConditioning, String ownerEmailAddress){
         Owner owner = getOwnerRepository().getOwnerByEmail(ownerEmailAddress);
-
+        return Optional.of(new Apartment(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning));
     }
 
     public Optional<Announcement> insertInformationAboutAnnouncement(String[] information){
-
+        String announcementDescription = information[]
     }
-    public Optional<Agency> insertInformationAboutAgency(String[] information){
+    public void insertInformationAboutAgency(String[] information){
         int agencyID = Integer.parseInt(information[22]);
         String agencyName = information[23];
         String agencyLocation = information[24];
         String agencyPhoneNumber = information[25];
         String agencyEmailAddress = information[26];
-        return createAgency(agencyID, agencyName, agencyLocation, agencyEmailAddress, agencyPhoneNumber);
+        createAgency(agencyID, agencyName, agencyLocation, agencyEmailAddress, agencyPhoneNumber);
     }
 
-    public Optional<Announcement> insertInformationAboutAnnouncement(String[] information){
+    public void insertInformationAboutAnnouncement(String[] information){
 
     }
 

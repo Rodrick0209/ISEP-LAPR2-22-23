@@ -117,7 +117,19 @@ public class Property {
      * @param location the location
      * @param distance the distance
      */
-    public Property(String type, double area, String location, double distance, Owner owner) {
+    public Property(String type, double area, String location, double distance, List<String> photos, Owner owner) {
+        this.type = type;
+        this.area = area;
+        if (location == null) {
+            throw new NullPointerException("Invalid address. This must not be null.");
+        }
+        this.location = location;
+        this.distance = distance;
+        this.photos = photos;
+        this.owner = owner;
+    }
+
+    public Property(String type, double area, String location, double distance, Owner owner){
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -129,7 +141,7 @@ public class Property {
     }
 
     public Property clone() {
-        return new Property(this.type, this.area, this.location, this.distance, this.owner);
+        return new Property(this.type, this.area, this.location, this.distance, this.photos, this.owner);
     }
 
     /**

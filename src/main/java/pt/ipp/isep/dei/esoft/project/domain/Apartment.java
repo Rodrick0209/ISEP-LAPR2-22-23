@@ -13,6 +13,9 @@ public class Apartment extends Property {
     private int n_parkingSpaces;
     private String avaiableEquip;
 
+    private final boolean centralHeating;
+    private final boolean airConditioning;
+
     /**
      * Instantiates a new Apartment.
      *
@@ -23,14 +26,24 @@ public class Apartment extends Property {
      * @param n_bedrooms      the n bedrooms
      * @param n_bathrooms     the n bathrooms
      * @param n_parkingSpaces the n parking spaces
-     * @param avaiableEquip   the avaiable equip
      */
-    public Apartment(double area, String location, double distance, Owner owner, List<String> photos,int n_bedrooms,int n_bathrooms, int n_parkingSpaces,String avaiableEquip) {
-        super(area, location, distance, owner);
+
+    public Apartment(String typeName, double area, String location, double distance, List<String> photos, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(typeName, area, location, distance, photos, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
-        this.avaiableEquip = avaiableEquip;
+        this.centralHeating = centralHeating;
+        this.airConditioning = airConditioning;
+    }
+
+    public Apartment(String typeName, double area, String location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(typeName, area, location, distance, owner);
+        this.n_bedrooms = n_bedrooms;
+        this.n_bathrooms = n_bathrooms;
+        this.n_parkingSpaces = n_parkingSpaces;
+        this.centralHeating = centralHeating;
+        this.airConditioning = airConditioning;
     }
 
     /**
@@ -118,4 +131,13 @@ public class Apartment extends Property {
     public int hashCode() {
         return Objects.hash(super.hashCode(), n_bedrooms, n_bathrooms, n_parkingSpaces, avaiableEquip);
     }
+
+    public boolean getCentralHeating() {
+        return centralHeating;
+    }
+
+    public boolean getAirConditioning() {
+        return airConditioning;
+    }
 }
+

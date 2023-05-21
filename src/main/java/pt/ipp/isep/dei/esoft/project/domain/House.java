@@ -18,14 +18,20 @@ public class House extends Apartment {
      * @param area            the area
      * @param location        the location
      * @param distance        the distance
-     * @param photos          the photos
      * @param n_bedrooms      the n bedrooms
      * @param n_bathrooms     the n bathrooms
      * @param n_parkingSpaces the n parking spaces
      * @param avaiableEquip   the avaiable equip
      */
-    public House(String typeName, double area, String location, double distance, List<String> photos,int n_bedrooms,int n_bathrooms, int n_parkingSpaces,String avaiableEquip){
-        super( area,location,distance,  photos,n_bedrooms,n_bathrooms,  n_parkingSpaces,avaiableEquip);
+    public House(String typeName, double area, String location, double distance, List<String> photos, Owner owner, int n_bedrooms,int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure){
+        super(typeName, area,location,distance, owner, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating,  airConditioning);
+        this.existBasement = existBasement;
+        this.existinhabitableLoft = existinhabitableLoft;
+        this.sunExposure = sunExposure;
+    }
+
+    public House(String typeName, double area, String location, double distance, Owner owner, int n_bedrooms,int n_bathrooms, int n_parkingSpaces,boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure){
+        super(typeName, area,location,distance, owner, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating, airConditioning);
         this.existBasement = existBasement;
         this.existinhabitableLoft = existinhabitableLoft;
         this.sunExposure = sunExposure;
