@@ -7,65 +7,85 @@ autonumber
 
 'hide footbox
 actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
+participant ":CreateRequestUI" as UI
+participant ":CreateRequestController" as CTRL
+participant ":Repositories" as Rep
 participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant "requestTypeRepository:\nRequestTypeRepository" as RequestTypeRepository
 participant ":ApplicationSession" as _APP
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as SESSAO
 participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
 participant "organization\n:Organization" as ORG
 participant "task\n:Task" as TAREFA
+participant "PropertiesRepository:\npropertiesRepository" as PropRep
+
 
 activate ADM
 
-        ADM -> UI : asks to create a new task
+        ADM -> UI : asks to create a new request
+
 
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
-
-            UI -> CTRL : getTaskCategories()
+            UI -> CTRL : getRequestCategories()
             activate CTRL
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+                CTRL -> Rep : getInstance()
+                activate Rep
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+                    Rep --> CTRL: repositories
+                deactivate Rep
 
-                CTRL -> PLAT : getTaskCategoryRepository()
+                CTRL -> PLAT : getRequestCategoryRepository()
                 activate PLAT
 
-                    PLAT --> CTRL: taskCategoryRepository
+                    PLAT --> CTRL: requestCategoryRepository
                 deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : getTaskCategories()
-                activate TaskCategoryRepository
+                CTRL -> RequestTypeRepository : getRequestTypeRepository()
+                activate RequestTypeRepository
 
-                    TaskCategoryRepository --> CTRL : taskCategoryList
-                deactivate TaskCategoryRepository
+                    RequestTypeRepository --> CTRL : requestTypeList
+                deactivate RequestTypeRepository
 
-                CTRL --> UI : taskCategoryList
+                CTRL --> UI : requestTypeList
             deactivate CTRL
 
-            UI --> ADM : shows task category list\n and asks to sleect one
+            UI --> ADM : shows type of request list
         deactivate UI
 
-    ADM -> UI : selects a task category
+    ADM -> UI : get a property
     activate UI
 
-        UI --> ADM : requests data
-    deactivate UI
+        UI -> CTRL : get a property
+        activate CTRL
+        CTRL-> Rep : get Instance
+                activate Rep
+                Rep --> CTRL :repositories
+                deactivate Rep
 
-    ADM -> UI : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
+        CTRL -> PLAT : getProperty
+                activate PLAT
+                PLAT--> CTRL : propertiesRepositories
+                deactivate PLAT
+
+        CTRL -> PropRep : getPropertyList
+        activate PropRep
+        PropRep --> CTRL: propertylist
+        deactivate PropRep
+
+        CTRL --> UI : propertylist
+        deactivate CTRL
+
+        UI --> ADM : shows property list
+        deactivate UI
+
+
+    ADM -> UI :  selects property
     activate UI
 
-        UI --> ADM : shows selected category and requested data
+        UI --> ADM : shows selected property
     deactivate UI
 
     ADM -> UI : submits data

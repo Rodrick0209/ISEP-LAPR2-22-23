@@ -18,11 +18,8 @@ class Owner {
     phoneNumber
 }
 
-class System {
-    message
-}
 
-class Requests {
+class Message {
     property
     client's name
     phoneNumber
@@ -30,9 +27,7 @@ class Requests {
     time slot
 }
 
-class ListProperties{
-    properties
-}
+
 
 class Agent {
     name
@@ -43,12 +38,21 @@ class Agent {
     phoneNumber
     role
     agency
-
 }
 
-Owner "1" -- "0..*" Requests : requests  >
-Requests "0..*" -- "1" Agent :  are received by the >
-System "1" -- "1" ListProperties : has a >
-System "1" -- "0..*" Owner : send a message to the >
-Agent "1" -- "1" System : submits requests in the  >
+class Property{
+}
+
+class SucessMessage {
+
+}
+Owner "1" -- "0..*" Message: send  >
+Message "0..*" -- "1" Agent :  are received by the >
+Agent "1" -- "1" Owner : book a visit with the >
+Message "1" -- "1" Property : to visit a property
+Agent "1" -- "1" Property : reserve a >
+Agent "1" -- "1" SucessMessage : send a >
+SucessMessage "1" -- "1" Owner : if the request is accepted >
+
+
 @enduml

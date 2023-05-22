@@ -13,18 +13,11 @@ participant ":System" as System
 activate Employee
 
 
-    Employee -> System : request a list of available properties
+    Employee -> System : request a list of available properties sorted\n from the most recent entries to the oldest
     activate System
 
         System --> Employee : shows the list of available properties
     deactivate System
-
-    Employee -> System : asks to sort from the most recent entries to the oldest
-    activate System
-
-        System --> Employee : shows sorted list
-    deactivate System
-
 
     Employee -> System : made a request for visit a property \n(selects an available property, client's name,\n phone number, preferred date and time slot)
     activate System
@@ -41,7 +34,7 @@ opt the  request is valid and registered
     deactivate System
 end
 
-opt if the requests don't overlap each other
+
 loop  if the requests don't overlap each other
     Employee -> System : made a request for visit a property \n(selects an available property, client's name,\n phone number, preferred date and time slot)
         activate System
@@ -58,7 +51,7 @@ opt  the request is valid and registered
         System --> Employee : shows a success message
     deactivate System
 
-end
+
 end
 end
 
