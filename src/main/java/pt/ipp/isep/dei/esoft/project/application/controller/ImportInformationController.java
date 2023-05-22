@@ -83,6 +83,7 @@ public class ImportInformationController implements FileReader {
                 int systemID = Integer.parseInt(information[0]);
                 insertInformationAboutOwner(information);
                 insertInformationAboutProperty(information);
+                insertInformationAboutAnnouncement(information);
                 insertInformationAboutAgency(information);
             }
         }
@@ -104,7 +105,7 @@ public class ImportInformationController implements FileReader {
         int propertyDistanceFromCityCenter = Integer.parseInt(information[9]);
         switch(propertyTypeName){
             case "land":
-                createLand(propertyTypeName, propertyArea, propertyLocation, propertyDistanceFromCityCenter, ownerEmailAddress);
+                Optional<Property> land = createLand(propertyTypeName, propertyArea, propertyLocation, propertyDistanceFromCityCenter, ownerEmailAddress);
             case "apartment":
                 int apartmentNumberOfBedrooms = Integer.parseInt(information[10]);
                 int apartmentNumberOfBathrooms = Integer.parseInt(information[11]);
@@ -131,41 +132,66 @@ public class ImportInformationController implements FileReader {
         }
     }
 
+    public Optional<Apartment> insertInformationAboutApartment(String[] information){
+        Owner owner = insertInformationAboutOwner(information);
+        int apartmentNumberOfBedrooms = Integer.parseInt(information[10]);
+        int apartmentNumberOfBathrooms = Integer.parseInt(information[11]);
+        int apartmentNumberParkingSpaces = Integer.parseInt(information[12]);
+        String apartmentCentralHeatingChar = information[13];
+        boolean apartmentCentralHeating = apartmentCentralHeatingChar.equalsIgnoreCase("Y");
+        String apartmentAirConditioningChar = information[14];
+        boolean apartmentAirConditioning = apartmentAirConditioningChar.equalsIgnoreCase("Y");
+        createApartment(propertyTypeName, propertyArea, propertyLocation, propertyDistanceFromCityCenter, apartmentNumberOfBedrooms, apartmentNumberOfBathrooms, apartmentNumberParkingSpaces, apartmentCentralHeating, apartmentAirConditioning, ownerEmailAddress);
+    }
+
+    public Optional<House> insertInformationAboutHouse(String[] information){
+
+    }
     public Owner insertInformationAboutOwner(String[] information) {
         String ownerName = information[1];
         int ownerCCNumber = Integer.parseInt(information[2]);
         String ownerTaxNumber = information[3];
         String ownerEmailAddress = information[4];
         String ownerPhoneNumber = information[5];
-        return new Owner(ownerName, ownerCCNumber, ownerTaxNumber, ownerEmailAddress, ownerPhoneNumber););
+        return new Owner(ownerName, ownerCCNumber, ownerTaxNumber, ownerEmailAddress, ownerPhoneNumber);
     }
 
 
     public Optional<Property> createLand(String typeName, double area, String location, int distanceFromCityCentre, String ownerEmailAddress){
         Owner owner = getOwnerRepository().getOwnerByEmail(ownerEmailAddress);
-        return Optional.of(new Property(typeName, area, location, distanceFromCityCentre, owner));
+        Optional<Property> newLand = Optional.empty();
+        if(owner != null){
+            newLand = Optional.of(new Property(typeName, area, location, distanceFromCityCentre, owner));
+        }
+        return newLand;
     }
 
-    public Optional<House> createHouse(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, String ownerEmailAddress){
-        Owner owner = getOwnerRepository().getOwnerByEmail(ownerEmailAddress);
-        return Optional.of(new House(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure));
+    public Optional<House> createHouse(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, Owner owner){
+        Optional<House> newHouse = Optional.empty();
+        if(owner != null) {
+            newHouse = Optional.of(new House(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure))
+        }
+        return newHouse;
     }
 
-    public Optional<Apartment> createApartment(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, boolean centralHeating, boolean airConditioning, String ownerEmailAddress){
-        Owner owner = getOwnerRepository().getOwnerByEmail(ownerEmailAddress);
-        return Optional.of(new Apartment(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning));
+    public Optional<Apartment> createApartment(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, boolean centralHeating, boolean airConditioning, Owner owner){
+        Optional<Apartment> newApartment = Optional.empty();
+        if(owner != null){
+            newApartment = Optional.of(new Apartment(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning));
+        }
+        return newApartment;
     }
 
     public Optional<Announcement> insertInformationAboutAnnouncement(String[] information){
         String announcementDescription = information[]
     }
-    public void insertInformationAboutAgency(String[] information){
+    public Optional<Agency> insertInformationAboutAgency(String[] information){
         int agencyID = Integer.parseInt(information[22]);
         String agencyName = information[23];
         String agencyLocation = information[24];
         String agencyPhoneNumber = information[25];
         String agencyEmailAddress = information[26];
-        createAgency(agencyID, agencyName, agencyLocation, agencyEmailAddress, agencyPhoneNumber);
+        return createAgency(agencyID, agencyName, agencyLocation, agencyEmailAddress, agencyPhoneNumber);
     }
 
     public void insertInformationAboutAnnouncement(String[] information){

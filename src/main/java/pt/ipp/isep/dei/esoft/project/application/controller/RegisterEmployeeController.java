@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 
@@ -93,5 +94,11 @@ public class RegisterEmployeeController {
 
     public List<Role> getRoles(){
         return getRoleRepository().getRoles();
+    }
+
+    public boolean addUserWithRole(String name,String email, String pwd, String roleId){
+        AuthenticationRepository authenticationRepository = getAuthenticationRepository();
+        AuthFacade authenticationFacade = authenticationRepository.getAuthenticationFacade();
+        return authenticationFacade.addUserWithRole(name, email, pwd, roleId);
     }
 }

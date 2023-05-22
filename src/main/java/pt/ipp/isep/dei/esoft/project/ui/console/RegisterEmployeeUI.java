@@ -49,6 +49,7 @@ public class RegisterEmployeeUI implements Runnable {
         }
     }
 
+
     private void submitOrNot() {
         showData();
         boolean answer = Utils.confirm("Submit Data? (type yes or no)");
