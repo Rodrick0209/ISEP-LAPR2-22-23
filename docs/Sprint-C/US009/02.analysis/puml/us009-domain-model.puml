@@ -43,16 +43,13 @@ class Agent {
 class Property{
 }
 
-class SucessMessage {
 
-}
 Owner "1" -- "0..*" Message: send  >
 Message "0..*" -- "1" Agent :  are received by the >
 Agent "1" -- "1" Owner : book a visit with the >
-Message "1" -- "1" Property : to visit a property
+Message "1" -- "1" Property : to visit a property >
 Agent "1" -- "1" Property : reserve a >
-Agent "1" -- "1" SucessMessage : send a >
-SucessMessage "1" -- "1" Owner : if the request is accepted >
+Agent "1" -- "1" Owner : send a message >
 
 
 @enduml

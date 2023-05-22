@@ -11,52 +11,14 @@ participant ":CreateRequestUI" as UI
 participant ":CreateRequestController" as CTRL
 participant ":Repositories" as Rep
 participant "repositories\n:Repositories" as PLAT
-participant "requestTypeRepository:\nRequestTypeRepository" as RequestTypeRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
-participant "PropertiesRepository:\npropertiesRepository" as PropRep
-
+participant "PropertyRepository:\npropertyRepository" as PropRep
+participant "OwnerRepository:\n ownerRepository" as OwnRep
+participant "ResponseRepository:\nresponseRepository" as RespRep
 
 activate ADM
 
-        ADM -> UI : asks to create a new request
-
-
+        ADM -> UI : asks to shcedule a visit
         activate UI
-
-            UI -> CTRL : getRequestCategories()
-            activate CTRL
-
-                CTRL -> Rep : getInstance()
-                activate Rep
-
-                    Rep --> CTRL: repositories
-                deactivate Rep
-
-                CTRL -> PLAT : getRequestCategoryRepository()
-                activate PLAT
-
-                    PLAT --> CTRL: requestCategoryRepository
-                deactivate PLAT
-
-                CTRL -> RequestTypeRepository : getRequestTypeRepository()
-                activate RequestTypeRepository
-
-                    RequestTypeRepository --> CTRL : requestTypeList
-                deactivate RequestTypeRepository
-
-                CTRL --> UI : requestTypeList
-            deactivate CTRL
-
-            UI --> ADM : shows type of request list
-        deactivate UI
-
-    ADM -> UI : get a property
-    activate UI
 
         UI -> CTRL : get a property
         activate CTRL
@@ -85,116 +47,78 @@ activate ADM
     ADM -> UI :  selects property
     activate UI
 
-        UI --> ADM : shows selected property
+    UI -> CTRL : getPersonByUserSession()
+    activate CTRL
+
+    CTRL -> OwnRep : getPersonByUserSession()
+    activate OwnRep
+
+    OwnRep --> CTRL : returns person
+    deactivate OwnRep
+
+    CTRL --> UI : returns person
+    deactivate CTRL
+
+    UI -> UI : save name and phone number of the user (owner)
+
+    UI --> ADM : asks for date
     deactivate UI
 
-    ADM -> UI : submits data
+    ADM -> UI :  submits date
     activate UI
 
-        UI -> CTRL : createTask(reference,\ndescription,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
-        activate CTRL
-
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
-            activate CTRL
-
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
-
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
-
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
-
-                    PLAT -> CTRL : taskCategoryRepository
-                deactivate PLAT
-
-                CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-                activate TaskCategoryRepository
-
-                    TaskCategoryRepository --> CTRL : taskCategory
-                deactivate TaskCategoryRepository
-                    CTRL --> CTRL : taskCategory
-            deactivate CTRL
-
-            |||
-            CTRL -> CTRL : getEmployeeFromSession()
-            activate CTRL
-
-                CTRL -> _APP: getInstance()
-                activate _APP
-                    _APP -> CTRL: appSession
-                deactivate _APP
-
-
-                CTRL -> APP: getCurrentSession()
-                activate APP
-
-                    APP --> CTRL: currentSession
-                deactivate APP
-
-                CTRL -> SESSAO: email = getUserEmail()
-                activate SESSAO
-
-                    SESSAO --> CTRL: email
-                deactivate SESSAO
-
-
-                CTRL -> PLAT: getOrganizationRepository(email)
-                activate PLAT
-
-                    PLAT --> CTRL: organizationRepository
-                deactivate PLAT
-
-
-                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
-                activate OrganizationRepository
-
-                    loop [for each organization
-                        OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                        activate ORG
-
-                             ORG --> OrganizationRepository : true/false
-                        deactivate ORG
-                    end
-                    OrganizationRepository --> CTRL : organization
-                deactivate OrganizationRepository
-
-                CTRL -> ORG: getEmployeeByEmail(email)
-                activate ORG
-
-                    ORG --> CTRL : employee
-                deactivate ORG
-
-                CTRL --> CTRL : employee
-            deactivate CTRL
-
-            |||
-            CTRL -> ORG: createTask(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
-            activate ORG
-
-                ORG -> TAREFA**: create(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-                ORG -> ORG: addTask (task)
-
-
-                activate ORG
-                    ORG -> ORG: validateTask(task)
-                    activate ORG
-                        ORG --> ORG
-                    deactivate ORG
-
-                    ORG --> ORG
-                deactivate ORG
-
-                ORG --> CTRL : task
-
-            deactivate ORG
-
-            CTRL --> UI: task
-            deactivate CTRL
-            UI --> ADM: displays operation success
+    UI -->ADM : asks for time slot
     deactivate UI
 
-deactivate ADM
+    ADM -> UI : submits time slot
+    activate UI
+
+    UI -> CTRL : checkVisitValid()
+        activate CTRL
+
+    CTRL -> RespRep :  checkVisitValid()
+    activate RespRep
+
+    RespRep --> CTRL : return True or False
+    deactivate RespRep
+
+    CTRL --> UI : return True or False
+    deactivate CTRL
+loop while the answer is false - date and/or time slot are invalid
+
+opt date is invalid
+ UI --> ADM : asks for another date
+end
+
+opt time slot is invalid
+UI --> ADM : asks for another time slot
+end
+ UI -> CTRL : checkVisitValid()
+        activate CTRL
+
+    CTRL -> RespRep :  checkVisitValid()
+    activate RespRep
+
+    RespRep --> CTRL : return True or False
+    deactivate RespRep
+
+    CTRL --> UI : return True or False
+    deactivate CTRL
+
+end
+
+opt TRUE - date and time slot are valid
+
+        UI-> CTRL : addMessage()
+        activate CTRL
+
+        CTRL -> RespRep : addMessage()
+        deactivate CTRL
+
+        UI --> ADM  : shows valid message
+
+    end
+
+
 
 @enduml
