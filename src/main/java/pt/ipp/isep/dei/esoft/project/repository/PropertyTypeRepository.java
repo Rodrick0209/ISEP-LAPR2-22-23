@@ -18,8 +18,18 @@ public class PropertyTypeRepository {
      * @param example1 the example 1
      */
     public void addPropertyTypes(PropertyType example1) {
-            propertyTypeArrayList.add(example1);
+        propertyTypeArrayList.add(example1);
+    }
+
+    public PropertyType getPropertyTypeByName(String propertyTypeName){
+        PropertyType propertyType = null;
+        for(PropertyType p: propertyTypeArrayList){
+            if(p.getName().equalsIgnoreCase(propertyTypeName)){
+                propertyType = p;
+            }
         }
+        return propertyType;
+    }
 
     /**
      * Gets property type list.

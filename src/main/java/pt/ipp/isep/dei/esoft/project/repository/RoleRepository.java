@@ -18,10 +18,11 @@ public class RoleRepository {
      * @return the role
      */
     public Role getRoleByName(String roleName){
-        Role newRole = new Role(roleName);
         Role role = null;
-        if(roles.contains(newRole)){
-            role = roles.get(roles.indexOf(newRole));
+        for(Role r: roles){
+            if(r.getName().equalsIgnoreCase(roleName)){
+                role = r;
+            }
         }
         return role;
     }

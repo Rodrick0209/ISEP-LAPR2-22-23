@@ -2,5 +2,5 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 public interface FileWriter {
 
-    boolean writeFile(String fileName);
+    void writeFile(String role, String email, String pwd);
 }

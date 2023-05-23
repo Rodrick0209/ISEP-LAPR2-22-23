@@ -36,6 +36,8 @@ public class Repositories {
 
     OwnerRepository ownerRepository = new OwnerRepository();
 
+    EmployeeRepository employeeRepository = new EmployeeRepository();
+
     private Repositories() {
     }
 
@@ -97,4 +99,6 @@ public class Repositories {
     }
 
     public OwnerRepository getOwnerRepository() { return ownerRepository; }
+
+    public EmployeeRepository getEmployeeRepository() { return employeeRepository; }
 }

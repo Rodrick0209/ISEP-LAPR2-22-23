@@ -3,14 +3,15 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.AnnouncementRequest;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The type Annoucements request repository.
  */
-public class AnnoucementsRequestRepository {
+public class AnnouncementsRequestRepository {
 
-    private List<Announcement> announcementsRequest;
+    private List<Announcement> announcementsRequest = new ArrayList<>();
 
     /**
      * Add announcement request announcement request.

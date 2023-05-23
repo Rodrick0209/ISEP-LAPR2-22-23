@@ -185,13 +185,13 @@ public class ImportInformationController implements FileReader {
     public Optional<Announcement> insertInformationAboutAnnouncement(String[] information){
         String announcementDescription = information[]
     }
-    public Optional<Agency> insertInformationAboutAgency(String[] information){
+    public void insertInformationAboutAgency(String[] information){
         int agencyID = Integer.parseInt(information[22]);
         String agencyName = information[23];
         String agencyLocation = information[24];
         String agencyPhoneNumber = information[25];
         String agencyEmailAddress = information[26];
-        return createAgency(agencyID, agencyName, agencyLocation, agencyEmailAddress, agencyPhoneNumber);
+        createAgency(agencyID, agencyName, agencyLocation, agencyEmailAddress, agencyPhoneNumber);
     }
 
     public void insertInformationAboutAnnouncement(String[] information){

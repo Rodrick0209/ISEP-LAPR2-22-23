@@ -10,7 +10,6 @@ public class OwnerRepository {
     private final List<Owner> owners = new ArrayList<>();
 
     public Owner getOwnerByEmail(String ownerEmailAddress){
-        Owner newOwner = new Owner(ownerEmailAddress);
         Owner owner = null;
         for(Owner o : owners) {
             if(o.getEmailAddress().equalsIgnoreCase(ownerEmailAddress)){

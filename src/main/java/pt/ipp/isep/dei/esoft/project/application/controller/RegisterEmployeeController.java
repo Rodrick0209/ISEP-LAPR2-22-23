@@ -6,10 +6,12 @@ import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
-public class RegisterEmployeeController {
+public class RegisterEmployeeController implements FileWriter{
     private OrganizationRepository organizationRepository;
     private AgencyRepository agencyRepository;
     private RoleRepository roleRepository;
@@ -100,5 +102,19 @@ public class RegisterEmployeeController {
         AuthenticationRepository authenticationRepository = getAuthenticationRepository();
         AuthFacade authenticationFacade = authenticationRepository.getAuthenticationFacade();
         return authenticationFacade.addUserWithRole(name, email, pwd, roleId);
+    }
+
+    public void writeFile(String role, String email, String pwd) {
+        String fileName = "password.txt";
+        try {
+            PrintWriter pw = new PrintWriter(fileName);
+            pw.printf("Role: %s%n" +
+                    "Email: %s%n" +
+                    "Password: %s%n", role, email, pwd);
+            pw.println();
+            pw.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
     }
 }

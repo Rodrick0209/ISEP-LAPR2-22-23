@@ -69,6 +69,8 @@ public class Employee {
         return email.equals(employee.email);
     }
 
+    public String getEmail() { return email;}
+
     public int hashCode() {
         return Objects.hash(email);
     }
