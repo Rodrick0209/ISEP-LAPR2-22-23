@@ -1,0 +1,52 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+
+class Employee{
+name
+citizen_card_number
+tax_number
+address
+email_address
+contact
+employeeRole
+}
+
+class NetworkManager{
+}
+
+class Agency{
+ID
+designation
+location
+local_manager
+phone_number
+email
+}
+
+class Property {
+    type
+    area
+    location
+    distance_from_the_city_centre
+    requested_price
+    photos
+    }
+
+NetworkManager "1" -- "1" Employee : is >
+NetworkManager "1" -- "1..*" Agency : manages >
+Agency "1" --> "1..*" Property : lists >
+Employee "*" -- "1" Agency : is assigned to >
+
+@enduml
