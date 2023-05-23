@@ -1,4 +1,4 @@
-# US 006 - To submit a request
+# US 013 - List all employees working in every store 
 
 ## 1. Requirements Engineering
 
@@ -6,8 +6,8 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
-
+As a network manager, I want to list all employees working in every store
+of the network
 
 
 ### 1.2. Customer Specifications and Clarifications 
@@ -15,37 +15,37 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the specifications document:**
 
->	Each task is characterized by having a unique reference per organization, a designation, an informal and a technical description, an estimated duration and cost as well as the its classifying task category. 
-
-
->	As long as it is not published, access to the task is exclusive to the employees of the respective organization. 
-
+>	Each store in the network has a store manager and the set of stores is managed by a store network
+manager. The main functions of a store manager are to monitor and streamline the branch with the
+aim of getting to know better the business carried out and to analyse and evaluate the performance
+of employees
 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
->  
-> **Answer:** Duration is estimated in days.
+> **Question:** Do you want a list where the header is ID, the name of the store, and the total number of listings that the store has?
+>
+> **Answer:** Yes.
 
 
-> **Question:** Monetary data is expressed in any particular currency?
->  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
+> **Question:** And the alphabetical list of employees of that store repeated from the store with the most property listings to the one with the least property listings.
+>
+> **Answer:** The answer to this question is to read carefully the acceptance criteria for this US and discuss them with your team...
 
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:** The list of employees should be alphabetically sorted and grouped by store.
+* **AC2:** Stores should be sorted according to their property listings, from the one with more listings to the one with less listings.
+* **AC3:** Each store should state how many property listings it has.
 
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
+* There is a dependency to "US003 REgister a new employee" since at least one employee must exist to be listed.
+* There is a dependency to "US005 Register a new store" since at least one store must exist to be listed.
 
 
 ### 1.5 Input and Output Data
@@ -54,21 +54,15 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* none
 	
 * Selected data:
-	* Classifying task category 
+	* Menu option to list all employees 
 
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* List of all employees of the network, grouped by store.
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -76,11 +70,8 @@ As an organization employee, I want to create a new task in order to be further 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us013-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
