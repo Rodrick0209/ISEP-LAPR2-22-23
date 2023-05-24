@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Property {
 
-    private PropertyType type;
+    private String type;
     private double area;
     private String location;
 

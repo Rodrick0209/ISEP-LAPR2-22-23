@@ -1,0 +1,66 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "propertyRepository\n:propertyRepository" as PropertyRepository
+participant "land\n:Land" as Land
+participant "apartment\n:Apartment" as Apartment
+participant "house\n:House" as House
+
+autonumber 10
+group Create Property
+activate PropertyRepository
+opt land
+-> PropertyRepository : createLand(propertyType, area, location, distanceFromCityCentre, owner)
+
+   PropertyRepository -> Land**: createLand(propertyType, area, \nlocation, distanceFromCityCentre, owner)
+               PropertyRepository -> PropertyRepository: addLand(land)
+               deactivate Land
+           activate PropertyRepository
+               PropertyRepository -> PropertyRepository: validateLand(land)
+               activate PropertyRepository
+                   PropertyRepository --> PropertyRepository
+               deactivate PropertyRepository
+
+               PropertyRepository --> PropertyRepository
+           deactivate PropertyRepository
+
+    <-- PropertyRepository : land
+    end
+    opt apartment
+    -> PropertyRepository : createApartment(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, owner)
+    PropertyRepository -> Apartment**: createApartment(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, owner)
+                   PropertyRepository -> PropertyRepository: addApartment(apartment)
+                   deactivate Apartment
+               activate PropertyRepository
+                   PropertyRepository -> PropertyRepository: validateApartment(Apartment)
+                   activate PropertyRepository
+                       PropertyRepository --> PropertyRepository
+                   deactivate PropertyRepository
+
+                   PropertyRepository --> PropertyRepository
+               deactivate PropertyRepository
+
+        <-- PropertyRepository : apartment
+    end
+
+    opt house
+    -> PropertyRepository : createHouse(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, existenceOfAnBasement, \ninhabitableLoft, sunExposure, owner)
+        PropertyRepository -> House**: createHouse(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, \ninhabitableLoft, sunExposure, owner)
+                       PropertyRepository -> PropertyRepository: addHouse(house)
+                       deactivate House
+                   activate PropertyRepository
+                       PropertyRepository -> PropertyRepository: validateHouse(House)
+                       activate PropertyRepository
+                           PropertyRepository --> PropertyRepository
+                       deactivate PropertyRepository
+
+                       PropertyRepository --> PropertyRepository
+                   deactivate PropertyRepository
+
+            <-- PropertyRepository : house
+    end
+    deactivate PropertyRepository
+end
+@enduml

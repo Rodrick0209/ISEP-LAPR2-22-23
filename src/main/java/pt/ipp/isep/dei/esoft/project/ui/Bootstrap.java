@@ -44,7 +44,7 @@ public class Bootstrap implements Runnable {
     // get agency Proprety
     
     PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-    propertyRepository.add(new Property(6363.0,new Location("TOP G street","bucharest","bucharest","buchasrest",12345),304.0));
+    propertyRepository.add(new Property("House", 123, "Lol Street", 23, new Owner("owner@this.app")));
 
     }
 

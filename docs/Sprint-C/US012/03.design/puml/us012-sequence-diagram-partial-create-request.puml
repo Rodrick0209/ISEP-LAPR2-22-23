@@ -1,0 +1,65 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "requestRepository\n:RequestRepository" as RequestRepository
+participant "request\n:Request" as Request
+
+autonumber 10.1
+group Create Request
+activate RequestRepository
+
+opt sale
+autonumber 10.1
+opt land
+-> RequestRepository: createSaleLandRequest(land, \nrequestedPrice, typeOfBusiness, owner)
+
+        RequestRepository -> Request**: createSaleLandRequest(land, \nrequestedPrice, typeOfBusiness, owner)
+end
+opt apartment
+-> RequestRepository: createSaleApartmentRequest(apartment, \nrequestedPrice, typeOfBusiness, owner)
+
+        RequestRepository -> Request** : createSaleApartmentRequest(apartment, \nrequestedPrice, typeOfBusiness, owner)
+end
+opt House
+-> RequestRepository: createSaleHouseRequest(house, \nrequestedPrice, typeOfBusiness, owner)
+
+        RequestRepository -> Request** : createSaleHouseRequest(house, \nrequestPrice, typeOfBusiness, owner)
+end
+            RequestRepository -> RequestRepository: addSaleRequest(saleRequest)
+            deactivate Request
+        activate RequestRepository
+            RequestRepository -> RequestRepository: validateSaleRequest(saleRequest)
+            activate RequestRepository
+                RequestRepository --> RequestRepository
+            deactivate RequestRepository
+
+            RequestRepository --> RequestRepository
+        deactivate RequestRepository
+
+    autonumber 11
+    <-- RequestRepository : request
+    end
+
+opt rent
+autonumber 10.1
+-> RequestRepository: createRentRequest(property, requestedPrice, \ntypeOfBusiness, contractDuration, owner)
+    RequestRepository -> Request**: createRentRequest(property, requestedPrice, \ntypeOfBusiness, contractDuration owner)
+                RequestRepository -> RequestRepository: addRentRequest(rentRequest)
+                deactivate Request
+            activate RequestRepository
+                RequestRepository -> RequestRepository: validateRentRequest(rentRequest)
+                activate RequestRepository
+                    RequestRepository --> RequestRepository
+                deactivate RequestRepository
+
+                RequestRepository --> RequestRepository
+            deactivate RequestRepository
+
+        autonumber 11
+        <-- RequestRepository : request
+        end
+deactivate RequestRepository
+
+@enduml

@@ -6,28 +6,35 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
+actor "System Administrator" as ADM
+participant ":ImportInformationUI" as UI
+participant ":ImportInformationController" as CTRL
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant "PropertyRepository:\nPropertyRepository" as PropertyRepository
 participant ":ApplicationSession" as _APP
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
 participant "task\n:Task" as TAREFA
 
 activate ADM
 
-        ADM -> UI : asks to create a new task
-
+        ADM -> UI : asks to import information \nfrom a legacy system
         activate UI
 
-'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
-            'create CTRL
-            UI -> CTRL** : create
+        UI --> ADM : requests data
+        deactivate UI
+
+        ADM -> UI: types requested data(fileName)
+        activate UI
+
+        UI --> ADM: shows typed data and asks to confirm
+        deactivate UI
+
+        ADM -> UI: confirms typed data
+        activate UI
+            create CTRL
+            UI -> CTRL** : readFile(fileName)
 
             UI -> CTRL : getTaskCategories()
             activate CTRL

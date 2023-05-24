@@ -3,32 +3,32 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant "organization\n:Organization" as Organization
+participant "agencyRepository\n:AgencyRepository" as AgencyRepository
 participant "agency\n:Agency" as Agency
 
 autonumber 10
--> Organization: createAgency(id, designation, location, \nemailAddress, telephoneNumber, administrator)
+-> AgencyRepository: createAgency(id, designation, location, \nemailAddress, telephoneNumber, administrator)
 
 autonumber 10.1
-activate Organization
+activate AgencyRepository
     group Create Agency
 
-        Organization -> Agency**: createAgency(id, designation, location, \nemailAddress, telephoneNumber, administrator)
-            Organization -> Organization: addAgency(agency)
+        AgencyRepository -> Agency**: createAgency(id, designation, location, \nemailAddress, telephoneNumber, administrator)
+            AgencyRepository -> AgencyRepository: addAgency(agency)
             deactivate Agency
-        activate Organization
-            Organization -> Organization: validateAgency(agency)
-            activate Organization
-                Organization --> Organization
-            deactivate Organization
+        activate AgencyRepository
+            AgencyRepository -> AgencyRepository: validateAgency(agency)
+            activate AgencyRepository
+                AgencyRepository --> AgencyRepository
+            deactivate AgencyRepository
 
-            Organization --> Organization
-        deactivate Organization
+            AgencyRepository --> AgencyRepository
+        deactivate AgencyRepository
     end
 
     autonumber 11
-    <-- Organization : agency
-deactivate Organization
+    <-- AgencyRepository : agency
+deactivate AgencyRepository
 
 
 @enduml
