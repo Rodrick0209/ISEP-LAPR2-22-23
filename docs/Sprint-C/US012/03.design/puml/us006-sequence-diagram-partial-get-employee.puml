@@ -6,17 +6,16 @@ skinparam shadowing false
 
 
 'hide footbox
-participant ":CreateTaskController" as CTRL
+participant ":ImportInformationController" as CTRL
 participant ":ApplicationSession" as _APP
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as SESSAO
 participant ":Repositories" as RepositorySingleton
 participant "repositories\n:Repositories" as PLAT
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
+participant "employeeRepository:\nEmployeeRepository" as EmployeeRepository
 
 autonumber 14
--> CTRL : getEmployeeFromSession()
+-> CTRL : getAdministratorFromSession()
 autonumber 14.1
 activate CTRL
 
@@ -38,32 +37,17 @@ activate CTRL
             SESSAO --> CTRL: email
         deactivate SESSAO
 
-        CTRL -> PLAT: getOrganizationRepository(email)
+        CTRL -> PLAT: getEmployeeRepository(email)
         activate PLAT
 
-            PLAT --> CTRL: organizationRepository
+            PLAT --> CTRL: employeeRepository
         deactivate PLAT
 
-        CTRL -> OrganizationRepository: getOrganizationByUserEmail(email)
-        activate OrganizationRepository
+        CTRL -> EmployeeRepository: getAdministratorByEmail(email)
+        activate EmployeeRepository
 
-            loop [for each organization
-                OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                activate ORG
-
-                     ORG --> OrganizationRepository : true/false
-                deactivate ORG
-            end
-
-            OrganizationRepository --> CTRL : organization
-
-        deactivate OrganizationRepository
-
-        CTRL -> ORG: getEmployeeByEmail(email)
-        activate ORG
-
-            ORG --> CTRL : employee
-        deactivate ORG
+            Employee --> CTRL : administrator
+        deactivate EmployeeRepository
     end
     autonumber 15
     <-- CTRL : employee

@@ -7,7 +7,7 @@ participant "announcementRepository\n:AnnouncementRepository" as AnnouncementRep
 participant "announcement\n:Announcement" as Announcement
 
 autonumber 10
--> AnnouncementRepository: createAnnouncement(request, price, commission, dateOfAnnouncementRequest, dateOfSale)
+-> AnnouncementRepository: createAnnouncement(information)
 
 autonumber 10.1
 activate AnnouncementRepository
