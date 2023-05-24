@@ -20,14 +20,16 @@ id/email
 password
 }
 
-class  RequestList{
+class  AgentRequestList{
+request
+
+}
+class Request{
 date
 property
 }
 
 
-class Owner {
-}
 class Location{
 street
 city
@@ -44,16 +46,18 @@ class Property {
 class Announcement {
   property
     description
-    comission
+           type_of_comission
+           comissionValue
   }
 
 Agent "1..*" -- "1" Agency : works for  >
-Owner "1" -- "1" RequestList: request a property announcment to >
-Agent "1" -- "1" RequestList: selects a request from >
-Property "1"-- "1"Announcement: is needed for  >
-Property "1"-- "1"RequestList: is needed for  >
-Owner "1" -- "1..*" Property : owns a >
-Location "1"--"1" Property : is needed for>
+Agent "1..*" -- "1..*" Request : receives a  >
+Agent "1..*" -- "1" AgentRequestList: selects a request from >
+Property "1"-- "1..*"Announcement: is needed for  >
+Property "1"-- "1"Request: is needed for  >
+Request "1..*"-- "1"AgentRequestList: is needed for  >
+Request "1"-- "1"Announcement: converts to  >
+Location "1"--"1" Property : is needed for >
 
 Agent "1" -- "1..*" Announcement : publishes an >
 

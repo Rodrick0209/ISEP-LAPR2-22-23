@@ -26,18 +26,23 @@ password
 }
 
 class SystemAdministrator{
+id/email
+password
 }
 
-class EmployeeRole{
-description
+class Land{
+type
+area
+location
+distance_from_the_city_centre
+requested_price
+photos
+
 }
 
-class Company{
-description
-}
 
 class Agency{
-ID
+Id
 designation
 location
 local_manager
@@ -45,23 +50,11 @@ phone_number
 email
 }
 
-class User{
-name
-email
+class UnregisteredUser{
+id/email
 password
 }
 
-class Store {
-    id
-    designation
-    state
-    district
-    city
-    port_number
-    zip_code
-    email_address
-    phone_number
-}
 
 class Property {
     type
@@ -73,8 +66,10 @@ class Property {
     }
 
 class Announcement {
-        description
-        comission
+       property
+         description
+            type_of_comission
+           comissionValue
       }
 
 class Apartment{
@@ -96,34 +91,66 @@ class House{
     existence_of_sun_exposure
 }
 
-class Database {
-    proprety_table
-    user_table
+
+class  AgentRequestList{
+request
+
+}
+class Request{
+date
+property
 }
 
-UnregisteredUser "1" - "0..*" PropertyController : request >
-PropertyController "1." -- "*" Database : request >
-PropertyController "1." -- "*" Database : sends necessary information to <
-PropertyController "*" -- "1"  Property : contains >
-Agent "1" -- "1..*" Announcement : publishes >
-Agency "1" -- "1..*" Agent : has >
-SystemAdministrator "1" -- "*" Employee : registers >
-Employee "*" -- "1" Agency : is assigned to >
-Employee "1" -- "1" EmployeeRole :  has >
-SystemAdministrator "1" -- "*" EmployeeRole : defines >
-Owner "1" -- "1..*" Property : owns >
-Property "1" -- "*" House :  can be >
-Property "1" -- "*" Apartment :  can be >
-Owner "1" -- "1" Agent : selects >
-SystemAdministrator "1" - "*" Store : registers >
-StoreManager "1" -- "1" Store : manages >
-StoreNetworkManager "1" -- "*" Store : manages >
-Store "1" -- "1" Agency : is >
-Company "1" -- "1..*" Agency : has >
-Company "1" -- "1" SystemAdministrator : has >
-SystemAdministrator "1" -- "1" User : is >
-Employee "1" -- "1" User : is >
-Agent "1" -- "1" User : is >
-Owner "1" -- "1" User : is >
+
+class Location{
+street
+city
+state
+zip code
+}
+
+class Owner{
+id/email
+password
+}
+
+
+
+
+
+Agent "1..*" -- "1..*" Request : receives a  >
+Agent "1..*" -- "1" AgentRequestList: selects a request from >
+Property "1"-- "1..*"Announcement: is needed for  >
+Property "1"-- "1"Request: is needed for  >
+Request "1..*"-- "1"AgentRequestList: is needed for  >
+Request "1..*"-- "1..*"Announcement: converts to  >
+Location "1"--"1" Property : is needed for >
+
+Agent "1" -- "1..*" Announcement : publishes an >
+
+Agent "1" -- "1..*" Announcement : publishes an >
+Agent "1..*" -- "1..*" Agency : works for >
+SystemAdministrator "1" -- "*" Employee : registers an >
+
+SystemAdministrator "1" -- "*" Employee : defines the role for >
+Owner "1" -- "1..*" Property : owns a >
+Property "1" -- "1" House :  can be a >
+Property "1" -- "1" Apartment :  can be a >
+Property "1" -- "1" Land :  can be a >
+UnregisteredUser "1..*" -- "1..*" Agent :  can be an >
+UnregisteredUser "1..*" -- "1::*" Owner :  can be an >
+UnregisteredUser "1..*" -- "1..*" Employee :  can be an >
+UnregisteredUser "1..*" -- "1..*" SystemAdministrator :  can be a >
+
+
+
+
+Owner "1" -- "1..*" Agent : selects an  >
+
+AgencyManager "1" -- "1" Agency : manages >
+AgencyNetworkManager "1" -- "1..*" Agency : manages >
+
+
+
 
 @enduml

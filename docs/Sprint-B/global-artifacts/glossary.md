@@ -16,13 +16,13 @@
 | **Loft**                  | A space at the top of a building under the roof used for storing things and usually entered by a ladder.                                                                                  |
 | **Property**              | A physical space or area ( house , apartment ,basement ...etc..) belonging to one or more persons.                                                                                        |
 | **Real Estate Agent**     | An employee of a real estate company responsible for carrying out tasks such as contacting costumers and registering properties.                                                          |
-| **Real Estate**           | A agency consisting of land or Buildings.                                                                                                                                               |
+| **Real Estate**           | A agency consisting of land or Buildings.                                                                                                                                                 |
 | **Request**               | The act of asking for something.                                                                                                                                                          |
 | **Store Manager**         | Employee who is responsible for one individual store, who has duties such as monitoring and streamlining the branch, as well as analysing and evaluating the performance of employees.    |
 | **Store Network Manager** | Employee who runs daily analysis of the performance of each one of the company's branches and the global behavior of the network.                                                         |
 | **System Administrator**  | The one responsible for registering all employees and branches of the network and preparing the system in order to facilitate the insertion of advertisements and use of the application. |
 | **Tax Number**            | A form of personal identification that is essential for purchasing goods or services, entering into contracts, opening bank accounts, etc.                                                |
-| **Zip Code**              | A postal code that indicates your agency location consisting of five or nine digits.                                                                                                    |                                    
+| **Zip Code**              | A postal code that indicates your agency location consisting of five or nine digits.                                                                                                      |                                    
 
 
 
