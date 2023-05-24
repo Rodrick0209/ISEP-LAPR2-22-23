@@ -1,4 +1,4 @@
-# US 009 - Visit a property
+# US 009 - Request a visit a property
 
 ## 2. Analysis
 

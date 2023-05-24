@@ -24,6 +24,9 @@ employeeRole
 class SystemAdministrator{
 }
 
+class NetworkManager{
+}
+
 class EmployeeRole{
 description
 }
@@ -116,5 +119,8 @@ SystemAdministrator "1" -- "1" User : is >
 Employee "1" -- "1" User : is >
 Agent "1" -- "1" User : is >
 Owner "1" -- "1" User : is >
-
+NetworkManager "1" -- "1" User : is >
+NetworkManager "1" -- "1" Employee : is >
+NetworkManager "1" -- "1..*" Store : manages >
+Agency "1" --> "1..*" Property : lists >
 @enduml

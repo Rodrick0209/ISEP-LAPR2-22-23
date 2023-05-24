@@ -2,6 +2,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
+/**
+ * The type Owner.
+ */
 public class Owner {
     private String name;
     private int ccNumber;
@@ -9,6 +12,15 @@ public class Owner {
     private final String emailAddress;
     private String phoneNumber;
 
+    /**
+     * Instantiates a new Owner.
+     *
+     * @param name         the name
+     * @param ccNumber     the cc number
+     * @param taxNumber    the tax number
+     * @param emailAddress the email address
+     * @param phoneNumber  the phone number
+     */
     public Owner(String name, int ccNumber, String taxNumber, String emailAddress, String phoneNumber) {
         this.name = name;
         this.ccNumber = ccNumber;
@@ -21,6 +33,11 @@ public class Owner {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Instantiates a new Owner.
+     *
+     * @param emailAddress the email address
+     */
     public Owner(String emailAddress) {
         if (!emailAddress.contains("@")) {
             throw new IllegalArgumentException("Invalid email address");
@@ -29,6 +46,11 @@ public class Owner {
         }
     }
 
+    /**
+     * Get email address string.
+     *
+     * @return the string
+     */
     public String getEmailAddress(){ return emailAddress; }
 
     public boolean equals(Object o) {

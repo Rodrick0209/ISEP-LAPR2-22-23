@@ -43,7 +43,7 @@ opt Property (land or house or apartment)
 
 opt House or apartment
 
-    Employee -> System : types of data (numbers of bedrooms, bathrooms and parking spaces \n and the avaiable equipment) and the existence \n of a central heating and/or air conditioning
+    Employee -> System : types of data (numbers of bedrooms, bathrooms and parking\n spaces  and the exisence  of a central heating and/or air conditioning
 
 
 opt only house

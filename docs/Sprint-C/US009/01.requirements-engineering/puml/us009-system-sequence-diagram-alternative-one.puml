@@ -46,7 +46,7 @@ opt requests overlap each other
     System --> Employee : send a message to choose another data
     deactivate System
 
-    Employee -> System : types a different time slot
+    Employee -> System : types a different time slot / date
     activate System
 
     System --> Employee : asks to confirm data
