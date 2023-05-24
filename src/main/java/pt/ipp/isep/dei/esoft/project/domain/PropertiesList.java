@@ -4,10 +4,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 
+/**
+ * The type Properties list.
+ */
 public class PropertiesList {
 
     private final List<Property> properties = new ArrayList<>();
 
+    /**
+     * Gets properties.
+     *
+     * @return the properties
+     */
     public List<Property> getProperties() {
         return properties;
     }

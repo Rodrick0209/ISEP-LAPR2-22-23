@@ -26,7 +26,7 @@ public class Property {
      * @param distance
      * @param photos
      */
-    public Property(double area, double distance, List<String> photos) {
+    public Property(double area, Location distance, double photos) {
         if (area <= 0) {
             throw new IllegalArgumentException("Area must be greater than 0.");
         }

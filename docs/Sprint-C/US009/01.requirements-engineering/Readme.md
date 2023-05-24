@@ -1,4 +1,4 @@
-# US 006 - To submit a request
+# US 009 - Request a visit to a property
 
 ## 1. Requirements Engineering
 

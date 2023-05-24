@@ -14,6 +14,7 @@ participant "repositories\n:Repositories" as PLAT
 participant "PropertyRepository:\npropertyRepository" as PropRep
 participant "OwnerRepository:\n ownerRepository" as OwnRep
 participant "ResponseRepository:\nresponseRepository" as RespRep
+participant "VisitRepository:\n visitRpository" as VisRep
 
 activate ADM
 
@@ -21,24 +22,24 @@ activate ADM
         activate UI
 
         UI -> CTRL : get a property
-        activate CTRL
-        CTRL-> Rep : get Instance
-                activate Rep
-                Rep --> CTRL :repositories
-                deactivate Rep
+                               activate CTRL
+                               CTRL-> Rep : get Instance
+                                       activate Rep
+                               Rep --> CTRL :repositories
+                                       deactivate Rep
 
-        CTRL -> PLAT : getProperty
-                activate PLAT
-                PLAT--> CTRL : propertiesRepositories
-                deactivate PLAT
+                           CTRL -> PLAT : getPropertyRepository
+                                       activate PLAT
+                                       PLAT--> CTRL : propertiesRepositories
+                                       deactivate PLAT
 
-        CTRL -> PropRep : getPropertyList
-        activate PropRep
-        PropRep --> CTRL: propertylist
-        deactivate PropRep
+                               CTRL -> PropRep : getPropertyList
+                               activate PropRep
+                               PropRep --> CTRL: propertylist
+                               deactivate PropRep
 
-        CTRL --> UI : propertylist
-        deactivate CTRL
+                               CTRL --> UI : propertylist
+                               deactivate CTRL
 
         UI --> ADM : shows property list
         deactivate UI
@@ -88,10 +89,14 @@ loop while the answer is false - date and/or time slot are invalid
 
 opt date is invalid
  UI --> ADM : asks for another date
+
+ ADM -> UI : submit new date
 end
 
 opt time slot is invalid
 UI --> ADM : asks for another time slot
+
+ADM -> UI : submit new time slot
 end
  UI -> CTRL : checkVisitValid()
         activate CTRL
@@ -109,15 +114,31 @@ end
 
 opt TRUE - date and time slot are valid
 
-        UI-> CTRL : addMessage()
+        ADM -> UI : confirms data
+
+        UI -> CTRL : save visit data
         activate CTRL
+        CTRL -> VisRep : save visit data
+
+
+        UI-> CTRL : addMessage()
+
 
         CTRL -> RespRep : addMessage()
+
+        activate RespRep
+
+        RespRep --> CTRL: valid message
+        deactivate RespRep
+
+        CTRL --> UI: valid message
         deactivate CTRL
 
         UI --> ADM  : shows valid message
+        deactivate UI
+        deactivate ADM
 
-    end
+end
 
 
 
