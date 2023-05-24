@@ -16,12 +16,23 @@ participant "System" as System
 
 
 activate Agent
+activate System
+
+System --> Agent : requests login
+deactivate System
+Agent -> System : inserts loign data (id/email , password )
+activate System
+
+System --> Agent: displays agent menu
+deactivate
 
 Agent -> System : requests to see property announcment requests
 
-activate System
 
-    System --> Agent: displays the announcments request list
+
+
+activate System
+    System --> Agent: displays the announcments request list sorted by the date they were created, with the most recent requests appearing first.
     deactivate System
 
 

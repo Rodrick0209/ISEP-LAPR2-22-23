@@ -170,7 +170,7 @@ public class ImportInformationController implements FileReader {
     public Optional<House> createHouse(String typeName, double area, String location, int distanceFromCityCentre, int numberOfBedrooms, int numberOfBathrooms, int numberParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, Owner owner){
         Optional<House> newHouse = Optional.empty();
         if(owner != null) {
-            newHouse = Optional.of(new House(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure))
+            newHouse = Optional.of(new House(typeName, area, location, distanceFromCityCentre, owner, numberOfBedrooms, numberOfBathrooms, numberParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure));
         }
         return newHouse;
     }
@@ -184,7 +184,7 @@ public class ImportInformationController implements FileReader {
     }
 
     public Optional<Announcement> insertInformationAboutAnnouncement(String[] information){
-        String announcementDescription = information[]
+       String announcementDescription = information[]
     }
     public void insertInformationAboutAgency(String[] information){
         int agencyID = Integer.parseInt(information[22]);
