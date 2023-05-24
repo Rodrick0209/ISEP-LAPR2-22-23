@@ -57,8 +57,8 @@ The owner submits the company agency data to the agent through a phone call , wi
 
 
 **Output Data:**
-* (In)Success of the operation
 * Announcment display
+* Announcment Statement display (publhsed/not published)
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -66,4 +66,4 @@ The owner submits the company agency data to the agent through a phone call , wi
 
 ### 1.7 Other Relevant Remarks
 
-* It is important to know that a person can play different roles on these user stories ,a client and a store manager can also be an agents for example.
+* It is important to know that a person can play different roles on these user stories ,a client and a store manager can also be agents for example.
