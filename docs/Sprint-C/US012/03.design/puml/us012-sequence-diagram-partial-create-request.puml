@@ -12,18 +12,18 @@ activate RequestRepository
 
 opt sale
 autonumber 10.1
+-> RequestRepository: createSaleRequest(information)
 opt land
--> RequestRepository: createSaleLandRequest(land, \nrequestedPrice, typeOfBusiness, owner)
 
         RequestRepository -> Request**: createSaleLandRequest(land, \nrequestedPrice, typeOfBusiness, owner)
 end
+autonumber 10.2
 opt apartment
--> RequestRepository: createSaleApartmentRequest(apartment, \nrequestedPrice, typeOfBusiness, owner)
 
         RequestRepository -> Request** : createSaleApartmentRequest(apartment, \nrequestedPrice, typeOfBusiness, owner)
 end
+autonumber 10.2
 opt House
--> RequestRepository: createSaleHouseRequest(house, \nrequestedPrice, typeOfBusiness, owner)
 
         RequestRepository -> Request** : createSaleHouseRequest(house, \nrequestPrice, typeOfBusiness, owner)
 end
@@ -37,15 +37,25 @@ end
 
             RequestRepository --> RequestRepository
         deactivate RequestRepository
-
-    autonumber 11
-    <-- RequestRepository : request
     end
 
 opt rent
 autonumber 10.1
--> RequestRepository: createRentRequest(property, requestedPrice, \ntypeOfBusiness, contractDuration, owner)
-    RequestRepository -> Request**: createRentRequest(property, requestedPrice, \ntypeOfBusiness, contractDuration owner)
+-> RequestRepository: createRentRequest(information)
+opt land
+
+        RequestRepository -> Request**: createSaleLandRequest(land, \nrequestedPrice, typeOfBusiness, owner)
+end
+autonumber 10.2
+opt apartment
+
+        RequestRepository -> Request** : createSaleApartmentRequest(apartment, \nrequestedPrice, typeOfBusiness, owner)
+end
+autonumber 10.2
+opt House
+
+        RequestRepository -> Request** : createSaleHouseRequest(house, \nrequestPrice, typeOfBusiness, owner)
+end
                 RequestRepository -> RequestRepository: addRentRequest(rentRequest)
                 deactivate Request
             activate RequestRepository
@@ -57,9 +67,9 @@ autonumber 10.1
                 RequestRepository --> RequestRepository
             deactivate RequestRepository
 
+        end
         autonumber 11
         <-- RequestRepository : request
-        end
 deactivate RequestRepository
 
 @enduml

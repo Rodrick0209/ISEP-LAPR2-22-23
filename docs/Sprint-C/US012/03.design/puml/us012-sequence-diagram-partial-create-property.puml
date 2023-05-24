@@ -12,7 +12,7 @@ autonumber 10
 group Create Property
 activate PropertyRepository
 opt land
--> PropertyRepository : createLand(propertyType, area, location, distanceFromCityCentre, owner)
+-> PropertyRepository : createLand(information)
 
    PropertyRepository -> Land**: createLand(propertyType, area, \nlocation, distanceFromCityCentre, owner)
                PropertyRepository -> PropertyRepository: addLand(land)
@@ -29,7 +29,7 @@ opt land
     <-- PropertyRepository : land
     end
     opt apartment
-    -> PropertyRepository : createApartment(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, owner)
+    -> PropertyRepository : createApartment(information)
     PropertyRepository -> Apartment**: createApartment(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, owner)
                    PropertyRepository -> PropertyRepository: addApartment(apartment)
                    deactivate Apartment
@@ -46,7 +46,7 @@ opt land
     end
 
     opt house
-    -> PropertyRepository : createHouse(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, existenceOfAnBasement, \ninhabitableLoft, sunExposure, owner)
+    -> PropertyRepository : createHouse(information)
         PropertyRepository -> House**: createHouse(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, \ninhabitableLoft, sunExposure, owner)
                        PropertyRepository -> PropertyRepository: addHouse(house)
                        deactivate House
