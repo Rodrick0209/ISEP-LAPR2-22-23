@@ -6,33 +6,43 @@ import java.util.Objects;
 /**
  * The type House.
  */
-public class House extends Apartment implements Property{
+public class House extends Property{
 
     private boolean existBasement;
     private boolean existinhabitableLoft;
     private String sunExposure;
 
-    /**
-     * Instantiates a new House.
-     *
-     * @param area            the area
-     * @param location        the location
-     * @param distance        the distance
-     * @param n_bedrooms      the n bedrooms
-     * @param n_bathrooms     the n bathrooms
-     * @param n_parkingSpaces the n parking spaces
-     * @param centralHeating  the central heating
-     * @param airConditioning the air conditioning
-     */
-    public House(String typeName, double area, String location, double distance, List<String> photos, Owner owner, int n_bedrooms,int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure){
-        super(typeName, area,location,distance, owner, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating,  airConditioning);
+
+    public House(double area, double distance, List<String> photos, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
+        super(area, distance, photos);
         this.existBasement = existBasement;
         this.existinhabitableLoft = existinhabitableLoft;
         this.sunExposure = sunExposure;
     }
 
-    public House(String typeName, double area, String location, double distance, Owner owner, int n_bedrooms,int n_bathrooms, int n_parkingSpaces,boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure){
-        super(typeName, area,location,distance, owner, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating, airConditioning);
+    public House(int area, int distance, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
+        super(area, distance);
+        this.existBasement = existBasement;
+        this.existinhabitableLoft = existinhabitableLoft;
+        this.sunExposure = sunExposure;
+    }
+
+    public House(String location, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
+        super(location);
+        this.existBasement = existBasement;
+        this.existinhabitableLoft = existinhabitableLoft;
+        this.sunExposure = sunExposure;
+    }
+
+    public House(String type, double area, String location, double distance, List<String> photos, Owner owner, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
+        super(type, area, location, distance, photos, owner);
+        this.existBasement = existBasement;
+        this.existinhabitableLoft = existinhabitableLoft;
+        this.sunExposure = sunExposure;
+    }
+
+    public House(String type, double area, String location, double distance, Owner owner, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
+        super(type, area, location, distance, owner);
         this.existBasement = existBasement;
         this.existinhabitableLoft = existinhabitableLoft;
         this.sunExposure = sunExposure;

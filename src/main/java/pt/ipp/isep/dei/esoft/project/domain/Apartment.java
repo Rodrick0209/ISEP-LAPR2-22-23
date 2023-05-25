@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * The type Apartment.
  */
-public class Apartment extends Land implements Property{
+public class Apartment extends Property {
 
     private int n_bedrooms;
     private int n_bathrooms;
