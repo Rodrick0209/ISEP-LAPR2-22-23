@@ -18,6 +18,7 @@ UI -> CTRL : get a property
                 Rep --> CTRL :repositories
                 deactivate Rep
 
+
         CTRL -> PLAT : getProperty
                 activate PLAT
                 PLAT--> CTRL : propertiesRepositories

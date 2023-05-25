@@ -14,6 +14,7 @@ class Owner {
     -int phoneNumber
 }
 
+
 class Property{
     - int area
     - String location

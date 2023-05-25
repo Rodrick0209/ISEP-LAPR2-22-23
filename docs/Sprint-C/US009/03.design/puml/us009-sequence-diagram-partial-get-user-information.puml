@@ -22,5 +22,6 @@ UI -> CTRL : getPersonByUserSession()
     CTRL --> UI : returns person
     deactivate CTRL
 
+
     UI -> UI : save name and phone number of the user (owner)
 @enduml

@@ -18,6 +18,7 @@ participant "VisitRepository:\n visitRpository" as VisRep
 
 activate ADM
 
+
         ADM -> UI : asks to shcedule a visit
         activate UI
 
