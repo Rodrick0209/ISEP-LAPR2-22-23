@@ -13,6 +13,7 @@ public class Bootstrap implements Runnable {
         addOrganization();
         addUsers();
         addProperties();
+        addTypeBusiness();
     }
 
     private void addOrganization() {
@@ -44,7 +45,7 @@ public class Bootstrap implements Runnable {
     // get agency Proprety
     
     PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-    propertyRepository.add(new Property("House", 123, "Lol Street", 23, new Owner("owner@this.app")));
+    propertyRepository.add(new Land("House", 123, "Lol Street", 23, new Owner("owner@this.app")));
 
     }
 
@@ -66,6 +67,13 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN);
         authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
+    }
+
+    private void addTypeBusiness(){
+        TypeBusinessRepository typeBusinessRepository = Repositories.getInstance().getTypeBusinessRepository();
+
+        typeBusinessRepository.add(new TypeBusiness("Sell"));
+        typeBusinessRepository.add(new TypeBusiness("Rent"));
     }
 
 

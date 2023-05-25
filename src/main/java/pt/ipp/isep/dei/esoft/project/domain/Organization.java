@@ -41,16 +41,16 @@ public class Organization {
 
     /**
      *
-     * @param property the property selected
+     * @param land the property selected
      * @param description the description inputted
      * @param commission the commission inputted
      * @param agent the agent from session
      * @return announcement created on a list
      */
-    public Optional<Announcement> createAnnouncement(Property property, String description, double commission, Employee agent){
+    public Optional<Announcement> createAnnouncement(Property land, String description, double commission, Employee agent){
         Optional<Announcement> optionalValue = Optional.empty();
 
-        Announcement announcement = new Announcement(property, description, commission, agent);
+        Announcement announcement = new Announcement(land, description, commission, agent);
 
         if(addAnnouncement(announcement)) {
             optionalValue = Optional.of(announcement);

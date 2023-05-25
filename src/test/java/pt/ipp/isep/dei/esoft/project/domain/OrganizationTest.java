@@ -139,9 +139,9 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(area, distance, photos);
+        Land land = new Land(area, distance, photos);
 
-        Announcement announcement = new Announcement(property, "Announcement Description", 123, agent);
+        Announcement announcement = new Announcement(land, "Announcement Description", 123, agent);
         assertTrue(organization.addAnnouncement(announcement));
         assertFalse(organization.addAnnouncement(announcement));
     }
@@ -166,9 +166,9 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(area, distance, photos);
+        Land land = new Land(area, distance, photos);
 
-        Announcement announcement = new Announcement(property, "Announcement description", 123, agent);
+        Announcement announcement = new Announcement(land, "Announcement description", 123, agent);
         assertTrue(organization.addAnnouncement(announcement));
     }
 
@@ -181,16 +181,16 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(area, distance, photos);
+        Land land = new Land(area, distance, photos);
         organization.addEmployee(agent);
         Agency agency = new Agency(123, "Agency Name", "Power Street, F");
         organization.addAgency(agency);
-        Announcement announcement = new Announcement(property, "Announcement Description", 123, agent);
+        Announcement announcement = new Announcement(land, "Announcement Description", 123, agent);
         organization.addAnnouncement(announcement);
         Role role = new Role("Role");
         organization.createEmployee("Employee Name", "employee@this.app", 123, 123, "Employee Address", "(567) 643-3457", role, agency, administrator);
         organization.createAgency(123, "Agency Name", "Agency Location", "agency@this.app", "(563) 642-4621", administrator );
-        organization.createAnnouncement(property, "Announcement Description", 123, agent);
+        organization.createAnnouncement(land, "Announcement Description", 123, agent);
         Organization clone = organization.clone();
         assertEquals(organization, clone);
     }
@@ -230,10 +230,10 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(area, distance, photos);
+        Land land = new Land(area, distance, photos);
 
-        Announcement expected = new Announcement(property, "Announcement Description", 1234, agent);
-        Optional<Announcement> announcement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);
+        Announcement expected = new Announcement(land, "Announcement Description", 1234, agent);
+        Optional<Announcement> announcement = organization.createAnnouncement(land, "Announcement Description", 1234, agent);
 
         assertNotNull(announcement);
         assertTrue(announcement.isPresent());
@@ -247,10 +247,10 @@ class OrganizationTest {
         List<String> photos = new ArrayList<>();
         photos.add("abc");
         Location location = new Location("Property Street", "Property city", "Property district");
-        Property property = new Property(area, distance, photos);
+        Land land = new Land(area, distance, photos);
 
-        Optional<Announcement> announcement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);
-        Optional<Announcement> duplicateAnnouncement = organization.createAnnouncement(property, "Announcement Description", 1234, agent);
+        Optional<Announcement> announcement = organization.createAnnouncement(land, "Announcement Description", 1234, agent);
+        Optional<Announcement> duplicateAnnouncement = organization.createAnnouncement(land, "Announcement Description", 1234, agent);
 
         assertTrue(duplicateAnnouncement.isEmpty());
     }

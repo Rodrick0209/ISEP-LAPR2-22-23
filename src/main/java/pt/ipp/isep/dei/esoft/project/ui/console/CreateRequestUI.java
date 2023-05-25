@@ -1,5 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
+import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.repository.TypeBusinessRepository;
+import pt.ipp.isep.dei.esoft.project.ui.console.authorization.AuthenticationUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestController;
 
@@ -15,7 +19,7 @@ public class CreateRequestUI implements Runnable {
     /**
      * The Request controller.
      */
-    CreateRequestController requestController;
+    CreateRequestController controller = new CreateRequestController();
     private String requestType;
 
     private String propertyType;
@@ -48,14 +52,41 @@ public class CreateRequestUI implements Runnable {
 
     private int contractDuraction;
 
-    private float price;
+    private int price;
     private float rentprice;
     private int n=0;
 
 
     private String answer = "yes";
 
+    public void  Run() {
 
+    }
+/*List<MenuItem> options = new ArrayList<MenuItem>();
+        options.add(new MenuItem("Sell", (Runnable) new TypeBusinessRepository()));
+        options.add(new MenuItem("Rent", (Runnable) new TypeBusinessRepository()));
+        int option = 0;
+        do {
+            option = Utils.showAndSelectIndex(options, "\n\nType of Request:");
+
+            if ((option >= 0) && (option < options.size())) {
+                options.get(option).run();
+            }
+        } while (option != -1);
+
+        if (("1".equals(options))) {
+            Sell sell = new Sell();
+        }
+        if ("2".equals(option)) {
+            Rent rent = new Rent();
+
+        } else {
+            System.out.println("Insert a valid number");
+        }
+        */
+
+
+    /*
     CreateRequestController controller = new CreateRequestController();
     public void run() {
             // Property Type data verification:
@@ -235,6 +266,59 @@ public class CreateRequestUI implements Runnable {
                     }
 
             }
+    }*/
+
+
+    @Override
+    public void run() {
+        System.out.println("Create a request");
+        requestType = displayAndSelectTypeBusiness();
+        if (requestType == "1"){
+            requestData1();
+        }
+        if (requestType == "2"){
+
+        }
+
     }
+
+    private String displayAndSelectTypeBusiness() {
+        List<TypeBusiness> typeBusiness = controller.getTypeBusiness();
+        int answer = Utils.showAndSelectIndex(typeBusiness, "Type of business");
+        return typeBusiness.get(answer).getName();
+
+
+
+    }
+
+    public void requestData1(){
+        price = requestPrice();
+        propertyType = requestPropertyType();
+
+    }
+
+    private String requestPropertyType() {
+        String input=null;
+            List<PropertyType> options = controller.getPropertyType();
+        int answer = Utils.showAndSelectIndex(options, "Type of business");
+        return options.get(answer).getName();
+
+    }
+
+    private int requestPrice(){
+        int input=0;
+        boolean valid = false;
+        do {
+            try{
+                input = Utils.readIntegerFromConsole("Price of property: ");
+                valid = true;
+            }catch (NullPointerException e){
+                System.out.println("Invalid price. Please enter a valid price.");
+            }
+        }while (!valid);
+        return input;
+    }
+
+
 }
 

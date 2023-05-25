@@ -52,14 +52,14 @@ public class PublishAnnouncementController {
     }
 
     public Optional<Announcement> createAnnouncement(String propertyLocation, String description, int commission){
-        Property property = getPropertyByLocation(propertyLocation);
+        Property land = getPropertyByLocation(propertyLocation);
 
         Employee agent = getAgentFromSession();
         Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(agent);
 
         Optional<Announcement> newAnnouncement = Optional.empty();
         if(organization.isPresent()){
-            newAnnouncement = organization.get().createAnnouncement(property, description, commission, agent);
+            newAnnouncement = organization.get().createAnnouncement(land, description, commission, agent);
         }
         return newAnnouncement;
     }

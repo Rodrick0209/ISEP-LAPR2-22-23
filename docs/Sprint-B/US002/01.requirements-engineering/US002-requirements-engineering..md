@@ -51,7 +51,7 @@ The owner submits the company agency data to the agent through a phone call , wi
 - Password
 
 *After login*
-- Selection of the property 
+- Selection of the land 
 - Announcment descrition
 - Comission
 

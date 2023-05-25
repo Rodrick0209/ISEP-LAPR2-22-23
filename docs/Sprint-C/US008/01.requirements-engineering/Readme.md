@@ -7,7 +7,7 @@
 
 ### 1.1. User Story Description
 
-As an agent, I intend to see the list of property announcement requests made to myself,
+As an agent, I intend to see the list of land announcement requests made to myself,
 so that I can post the announcement.
 
 
@@ -16,7 +16,7 @@ so that I can post the announcement.
 
 **From the specifications document:**
 
-> The real estate agent reviews property requests submitted by owner and selects one to accept. 
+> The real estate agent reviews land requests submitted by owner and selects one to accept. 
 
 > As soon as the request is accepted he can than publish the announcment linked to the request. 
 
@@ -27,9 +27,9 @@ so that I can post the announcement.
 > 
 >**Answer**: Yes. The agent must include a message justifying the rejection.
 
-> **Question:** When displaying the property announcement requests in the system to the agent besides them being ordered from most recent to oldest is there a need to display the specific day where the requests were published? 
+> **Question:** When displaying the land announcement requests in the system to the agent besides them being ordered from most recent to oldest is there a need to display the specific day where the requests were published? 
 > 
-> **Answer:** The list of property announcement requests should be sorted by the date they were created, with the most recent requests appearing first. The system should show the date when the property announcement requests was made.
+> **Answer:** The list of land announcement requests should be sorted by the date they were created, with the most recent requests appearing first. The system should show the date when the land announcement requests was made.
 
 
 > **Question:** Can the agent select multiple requests at the same time?
@@ -43,7 +43,7 @@ so that I can post the announcement.
 
 ### 1.3. Acceptance Criteria
 
-* **AC1:** The list of property announcement request should be sorted by the date they were created, with the most recent requests appearing first.
+* **AC1:** The list of land announcement request should be sorted by the date they were created, with the most recent requests appearing first.
 * **AC2:** An announcement is posted when a request is accepted. The list of requests should be refreshed, and that request should not be shown again.
 
 

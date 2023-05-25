@@ -9,23 +9,23 @@ import java.util.ArrayList;
  */
 public class PropertiesList {
 
-    private final List<Property> properties = new ArrayList<>();
+    private final List<Land> properties = new ArrayList<>();
 
     /**
      * Gets properties.
      *
      * @return the properties
      */
-    public List<Property> getProperties() {
+    public List<Land> getProperties() {
         return properties;
     }
 
-    private void addProperty(Property property) {
-        properties.add(property);
+    private void addProperty(Land land) {
+        properties.add(land);
     }
 
-    private void removeProperty(Property property) {
-        properties.remove(property);
+    private void removeProperty(Land land) {
+        properties.remove(land);
     }
 
 }

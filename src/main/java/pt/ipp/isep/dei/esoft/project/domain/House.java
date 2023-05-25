@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * The type House.
  */
-public class House extends Apartment {
+public class House extends Apartment implements Property{
 
     private boolean existBasement;
     private boolean existinhabitableLoft;
@@ -21,7 +21,8 @@ public class House extends Apartment {
      * @param n_bedrooms      the n bedrooms
      * @param n_bathrooms     the n bathrooms
      * @param n_parkingSpaces the n parking spaces
-     * @param avaiableEquip   the avaiable equip
+     * @param centralHeating  the central heating
+     * @param airConditioning the air conditioning
      */
     public House(String typeName, double area, String location, double distance, List<String> photos, Owner owner, int n_bedrooms,int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure){
         super(typeName, area,location,distance, owner, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating,  airConditioning);

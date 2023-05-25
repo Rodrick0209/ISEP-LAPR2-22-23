@@ -6,20 +6,19 @@ import java.util.Objects;
  * The type Announcement request.
  */
 public class AnnouncementRequest {
-
-    private Property property;
+    private Land land;
     private double price;
     private String type;
 
     /**
      * Instantiates a new Announcement request.
      *
-     * @param property the property
+     * @param land the property
      * @param price    the price
      * @param type     the type
      */
-    public AnnouncementRequest(Property property, double price, String type) {
-        this.property = property;
+    public AnnouncementRequest(Land land, double price, String type) {
+        this.land = land;
         this.price = price;
         this.type = type;
     }
@@ -27,7 +26,7 @@ public class AnnouncementRequest {
     @Override
     public String toString() {
         return "AnnoucementRequest{" +
-                "property=" + property +
+                "property=" + land +
                 ", price=" + price +
                 ", type='" + type + '\'' +
                 '}';
@@ -38,17 +37,17 @@ public class AnnouncementRequest {
      *
      * @return the property
      */
-    public Property getProperty() {
-        return property;
+    public Land getProperty() {
+        return land;
     }
 
     /**
      * Sets property.
      *
-     * @param property the property
+     * @param land the property
      */
-    public void setProperty(Property property) {
-        this.property = property;
+    public void setProperty(Land land) {
+        this.land = land;
     }
 
     /**
@@ -92,11 +91,11 @@ public class AnnouncementRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnouncementRequest that = (AnnouncementRequest) o;
-        return Double.compare(that.price, price) == 0 && property.equals(that.property) && type.equals(that.type);
+        return Double.compare(that.price, price) == 0 && land.equals(that.land) && type.equals(that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(property, price, type);
+        return Objects.hash(land, price, type);
     }
 }

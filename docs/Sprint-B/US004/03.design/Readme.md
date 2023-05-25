@@ -14,18 +14,18 @@
 | 			  		                                | 							                                           | Agency                  | IE: knows/has its own Agents                                                                                  |
 | 			  		                                | 							                                           | Agent                   | IE: knows its own data (e.g. email)                                                                           |
 |                                        | ... creating a request?                           | Owner                   | IE: knows the house information                                                                               |
-| Step 3  	shows type of property        | 					...creating a request for type of property?	 | Agency                  | Agency has a list of Request                                                                                  |
-|                                        | ...shows the type of property?	                   | Property                | has the list of type of property                                                                              |                                                                                        |                         |                                                                                                               |
+| Step 3  	shows type of land        | 					...creating a request for type of land?	 | Agency                  | Agency has a list of Request                                                                                  |
+|                                        | ...shows the type of land?	                   | Property                | has the list of type of land                                                                              |                                                                                        |                         |                                                                                                               |
 | Step 4 		Photos                        | 	...creating the photography list?                | CreateRequestUI         | Pure fabrication                                                                                              |
-|                                        | ...creating the property?                         | Request                 | Request has a property                                                                                        |
+|                                        | ...creating the land?                         | Request                 | Request has a land                                                                                        |
 | Step 5  	requests data	                | 	...displaying the UI for the user to input data? | CreateRequestUI         | Pure Fabrication                                                                                              |
 | Step 6  		  type requested data        | 	... saving temporarily the inputted data?        | CreateRequestUI         | Pure Fabrication                                                                                              |
 | Step 7  		show  agencies list          | 			...display the list of agencies	?			           | CreateRequestUI         | Pure Fabrication                                                                                              |              
 | Step 8      select the agency          | ...obtaining the request agency list?             | Request                 | has the agencies list                                                                                         |
 | Step 9 show  agents list               | ...display the list of agents	?                   | CreateRequestUI         | Pure Fabrication                                                                                              |
 | Step 10               selects agent    | ...obtaining the request agent list?              | Request                 | has the agents list                                                                                           |
-| Step 11  		 sell or rent               | 	... selling or renting a property?               | CreateRequestUI         | Pure Fabrication                                                                                              | 
-|                                        |                       ... selling or renting a property                            | Request                 | Request has the option to buy or sell                                                                         |
+| Step 11  		 sell or rent               | 	... selling or renting a land?               | CreateRequestUI         | Pure Fabrication                                                                                              | 
+|                                        |                       ... selling or renting a land                            | Request                 | Request has the option to buy or sell                                                                         |
 | Step 12			                             | 	... validating all data (global validation)?     | Organization            | IE: knows all its tasks.                                                                                      | 
 | 			  		                                | 	... saving the created task?                     | Organization            | IE: owns all its tasks.                                                                                       | 
 | Step 13  		                            | 	... informing operation success?                 | CreateTaskUI            | IE: is responsible for user interactions.                                                                     | 
@@ -68,7 +68,7 @@ It uses interaction ocurrence.
 
 **Get Property Type**
 
-![Sequence Diagram - Partial - Get Property Type](svg/us004-sequence-diagram-partial-get-property-type.svg)
+![Sequence Diagram - Partial - Get Property Type](svg/us004-sequence-diagram-partial-get-land-type.svg)
 
 
 ## 3.3. Class Diagram (CD)

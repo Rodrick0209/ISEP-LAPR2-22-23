@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Location;
+import pt.ipp.isep.dei.esoft.project.domain.Land;
 import pt.ipp.isep.dei.esoft.project.domain.Property;
 
 import java.util.ArrayList;
@@ -20,31 +20,31 @@ public class PropertyRepository {
      * @return the property
      */
     public Property getPropertyByLocation(String location){
-        Property property = null;
+        Property land = null;
         for (Property p : properties){
             if (p.getLocation().equalsIgnoreCase(location)){
-                property = p;
+                land = p;
             }
         }
-        if(property == null){
+        if(land == null){
             throw new IllegalArgumentException("Property not found");
         }
-        return property;
+        return land;
     }
 
     /**
      * Add optional.
      *
-     * @param property the property
+     * @param land the property
      * @return the optional
      */
-    public Optional<Property> add(Property property){
+    public Optional<Land> add(Land land){
 
-        Optional<Property> newProperty = Optional.empty();
+        Optional<Land> newProperty = Optional.empty();
         boolean operationSuccess = false;
 
-        if(validateProperty(property)){
-            newProperty = Optional.of(property.clone());
+        if(validateProperty(land)){
+            newProperty = Optional.of(land.clone());
             operationSuccess = properties.add(newProperty.get());
         }
 
@@ -54,7 +54,7 @@ public class PropertyRepository {
         return newProperty;
     }
 
-    private boolean validateProperty(Property property){return !properties.contains(property);}
+    private boolean validateProperty(Land land){return !properties.contains(land);}
 
     /**
      * Gets properties.

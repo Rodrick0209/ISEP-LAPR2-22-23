@@ -12,4 +12,4 @@
 >
 > * Agencies keep record of Property Listings.
 >
-> * With this excerpt we can we can list employees by store and the number of property listings that each store has.
+> * With this excerpt we can we can list employees by store and the number of land listings that each store has.

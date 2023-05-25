@@ -6,7 +6,7 @@ import java.util.Objects;
  * The type Announcement.
  */
 public class Announcement {
-    private final Property property;
+    private final Property land;
     private final String description;
     private final double commission;
     private final Employee agent;
@@ -14,13 +14,13 @@ public class Announcement {
     /**
      * Instantiates a new Announcement.
      *
-     * @param property    the property
+     * @param land    the property
      * @param description the description
      * @param commission  the commission
      * @param agent       the agent
      */
-    public Announcement(Property property, String description, double commission, Employee agent){
-        this.property = property;
+    public Announcement(Property land, String description, double commission, Employee agent){
+        this.land = land;
         this.description = description;
         this.commission = commission;
         this.agent = agent;
@@ -39,5 +39,5 @@ public class Announcement {
 
     public int hashCode(){ return Objects.hash(description);}
 
-    public Announcement clone() { return new Announcement(this.property, this.description, this.commission, this.agent);}
+    public Announcement clone() { return new Announcement(this.land, this.description, this.commission, this.agent);}
 }

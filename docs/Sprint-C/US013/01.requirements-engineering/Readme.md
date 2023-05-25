@@ -28,7 +28,7 @@ of employees
 > **Answer:** Yes.
 
 
-> **Question:** And the alphabetical list of employees of that store repeated from the store with the most property listings to the one with the least property listings.
+> **Question:** And the alphabetical list of employees of that store repeated from the store with the most land listings to the one with the least land listings.
 >
 > **Answer:** The answer to this question is to read carefully the acceptance criteria for this US and discuss them with your team...
 
@@ -37,8 +37,8 @@ of employees
 
 
 * **AC1:** The list of employees should be alphabetically sorted and grouped by store.
-* **AC2:** Stores should be sorted according to their property listings, from the one with more listings to the one with less listings.
-* **AC3:** Each store should state how many property listings it has.
+* **AC2:** Stores should be sorted according to their land listings, from the one with more listings to the one with less listings.
+* **AC3:** Each store should state how many land listings it has.
 
 
 ### 1.4. Found out Dependencies

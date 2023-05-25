@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 public class ShowTextUI implements Runnable{
 
     private String text;
-    public ShowTextUI(String text)
+    public ShowTextUI()
     {
         if (StringUtils.isBlank(text))
             throw new IllegalArgumentException("ShowTextUI does not support null or empty text");
