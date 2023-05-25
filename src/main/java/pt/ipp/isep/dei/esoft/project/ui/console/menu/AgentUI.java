@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
+import pt.ipp.isep.dei.esoft.project.ui.console.AgentRequestListUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -15,9 +16,8 @@ public class AgentUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI()));
-        options.add(new MenuItem("Option 1 ", new ShowTextUI()));
-        options.add(new MenuItem("Option 2 ", new ShowTextUI()));
-        options.add(new MenuItem("Option 3 ", new ShowTextUI()));
+        options.add(new MenuItem("See property requests ", new AgentRequestListUI()));
+
 
         int option = 0;
         do {
