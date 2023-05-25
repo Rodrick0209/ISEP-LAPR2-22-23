@@ -6,7 +6,7 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
+As a client, I want to leave a message to the agent to schedule a visit to a property of my interest.
 
 
 
@@ -24,29 +24,31 @@ As an organization employee, I want to create a new task in order to be further 
 
 **From the client clarifications:**
 
-> **Question:** Which is the unit of measurement used to estimate duration?
+> **Question:** Can a client send multiple time slots?
 >  
-> **Answer:** Duration is estimated in days.
+> **Answer:** Yes , the client can, as long as there is no overlap.
 
 
-> **Question:** Monetary data is expressed in any particular currency?
+> **Question:** Can the same client send multiple request to visit different properties?
 >  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
-
+> **Answer:** Yes , the client can, as long as the time slot and date do not coincide with other visits.
 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
-
+* **AC1:** . A list of available properties must be shown, sorted from the most recent
+  entries to the oldest.
+* **AC2:** The message must also include the client's name, phone number,
+  preferred date and time slot (from x hour to y hour) for the property visit.
+* **AC3:** A client may post multiple visit requests, but only if those do not overlap
+  each other.
+* **AC4:** The client must receive a success message when the request is valid and
+  registered in the system.
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
-
+* There is a dependency to "US 002 - To publish an announcement " since need to have the list of the properties.
 
 ### 1.5 Input and Output Data
 
@@ -54,30 +56,24 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* preference date; 
+	* preference time slot; 
 	
 * Selected data:
-	* Classifying task category 
+	* the property to visit
 
 
 **Output Data:**
 
-* List of existing task categories
+* message to confirm the visit
 * (In)Success of the operation
 
 ### 1.6. System Sequence Diagram (SSD)
 
-**Other alternatives might exist.**
+
 
 #### Alternative One
 
 ![System Sequence Diagram - Alternative One](svg/us009-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
-
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.
