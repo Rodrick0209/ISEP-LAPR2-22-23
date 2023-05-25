@@ -1,6 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Agency;
+import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Owner;
+import pt.ipp.isep.dei.esoft.project.domain.Property;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,25 @@ public class OwnerRepository {
             newOwner = Optional.empty();
         }
         return newOwner;
+    }
+
+    public Optional<Owner> createOwner(String name, int ccNumber, String taxNumber,String emailAddress, String phoneNumber){
+            Optional<Owner> optionalValue = Optional.empty();
+
+            Owner owner = new Owner(name, ccNumber, taxNumber, emailAddress, phoneNumber);
+
+            if(addOwner(owner)) {
+                optionalValue = Optional.of(owner);
+            }
+            return optionalValue;
+    }
+
+    public boolean addOwner(Owner owner) {
+        boolean success = false;
+        if(validateOwner(owner)) {
+            success = owners.add(owner);
+        }
+        return success;
     }
 
     private boolean validateOwner(Owner owner){return !owners.contains(owner); }

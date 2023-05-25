@@ -36,4 +36,5 @@ activate CTRL
     deactivate ProType
 
 <-- CTRL: typeOfBusiness
+deactivate CTRL
 @enduml

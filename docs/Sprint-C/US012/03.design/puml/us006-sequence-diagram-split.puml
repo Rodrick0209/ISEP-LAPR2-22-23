@@ -6,9 +6,9 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
+actor "System Administrator" as ADM
+participant ":ImportInformationUI" as UI
+participant ":ImportInformationController" as CTRL
 participant "propertyRepository\n:PropertyRepository" as PropertyRepository
 participant "requestRepository\n:RequestRepository" as RequestRepository
 participant "announcementRepository\n:AnnouncementRepository" as AnnouncementRepository
@@ -73,22 +73,28 @@ autonumber 2
 
             CTRL -> CTRL: readFile(fileName)
             activate CTRL
-            CTRL -> PropertyRepository: createProperty(information)
+            opt land
+            CTRL -> PropertyRepository: createLand(information)
             activate PropertyRepository
 
                 ref over PropertyRepository
-                    Create Property
+                    Create Land
+                    end
 
-                end
                 autonumber 5.10
-                opt land
                 PropertyRepository --> CTRL : land
+                deactivate PropertyRepository
                 end
-                autonumber 5.10
-                opt apartment
+            opt apartment
+            autonumber 5.9
+            CTRL -> PropertyRepository: createApartment(information)
+            ref over PropertyRepository
+                                Create Apartment
+                                end
                 PropertyRepository --> CTRL: apartment
-                end
                 autonumber 5.10
+                deactivate PropertyRepository
+                end
                 opt house
                 PropertyRepository --> CTRL: house
                 end

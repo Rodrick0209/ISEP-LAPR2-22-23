@@ -38,13 +38,13 @@ public class PropertyRepository {
      * @param land the property
      * @return the optional
      */
-    public Optional<Land> add(Land land){
+    public Optional<Property> add(Property property){
 
         Optional<Land> newProperty = Optional.empty();
         boolean operationSuccess = false;
 
-        if(validateProperty(land)){
-            newProperty = Optional.of(land.clone());
+        if(validateProperty(property)){
+            newProperty = Optional.of(property.clone());
             operationSuccess = properties.add(newProperty.get());
         }
 
@@ -54,7 +54,7 @@ public class PropertyRepository {
         return newProperty;
     }
 
-    private boolean validateProperty(Land land){return !properties.contains(land);}
+    private boolean validateProperty(Property property){return !properties.contains(property);}
 
     /**
      * Gets properties.

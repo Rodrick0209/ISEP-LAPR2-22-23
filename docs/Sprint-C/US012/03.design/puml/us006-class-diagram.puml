@@ -20,45 +20,32 @@ class UserSession
     + getUserEmail()
 }
 
-class Employee {
+class Administrator {
     - name
     - email
-    - position
-    - phone
+    - ccNumber
+    - taxNumber
+    - phoneNumber
+    - emailAddress
 }
 
-class Task {
-    - String reference
-    - String description
-    - String informalDescription
-    - String technicalDescription
-    - Integer duration
-    - Double cost
 
-    + Task(reference, description,\ninformalDescription, technicalDescription,\nduration, cost, createdBy, taskCategory)
+class Agency{
+    - Integer id
+    - String designation
+    - String location
+    - String phoneNumber
+    - String emailAddress
+
+    + Agency(id, designation, location, phoneNumber, emailAddress
 }
 
-class TaskCategory {
-    - String description
+class AgencyRepository {
 
-    + TaskCategory(description)
-}
+    - createAgency(id, designation, location, phoneNumber, emailAddress,
+    - addAgency(agency)
+    - validateAgency(agency)
 
-class Organization {
-    - String name
-    - String vatNumber
-    - String website
-    - String phone
-    - String email
-
-    - addTask(task)
-    - validateTask(task)
-    + anyEmployeeHasEmail(email)
-    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
-    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
-    - getEmployeeByEmail(email)
-
-'  +saveTask(task)
 }
 
 class TaskCategoryRepository {

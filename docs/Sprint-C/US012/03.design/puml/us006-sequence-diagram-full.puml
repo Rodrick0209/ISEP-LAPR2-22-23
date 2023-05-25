@@ -9,179 +9,192 @@ autonumber
 actor "System Administrator" as ADM
 participant ":ImportInformationUI" as UI
 participant ":ImportInformationController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "PropertyRepository:\nPropertyRepository" as PropertyRepository
 participant ":ApplicationSession" as _APP
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as SESSAO
-participant "task\n:Task" as TAREFA
+participant ":Repositories" as Rep
+participant "repositories\n:Repositories" as PLAT
+participant "propertyTypeRepository\n:PropertyTypeRepository" as ProType
+participant "typeOfBusinessRepository\n:TypeOfBusinessRepository" as TypeOfBusinessRepository
+participant "employeeRepository\n:EmployeeRepository" as EmployeeRepository
+participant "propertyRepository\n:PropertyRepository" as PropertyRepository
+participant "requestRepository\n:RequestRepository" as RequestRepository
+participant "announcementRepository\n:AnnouncementRepository" as AnnouncementRepository
+participant "agencyRepository\n:AgencyRepository" as AgencyRepository
 
 activate ADM
 
-        ADM -> UI : asks to import information \nfrom a legacy system
-        activate UI
+    ADM -> UI : asks to import information from a legacy system
 
-        UI --> ADM : requests data
-        deactivate UI
-
-        ADM -> UI: types requested data(fileName)
-        activate UI
-
-        UI --> ADM: shows typed data and asks to confirm
-        deactivate UI
-
-        ADM -> UI: confirms typed data
-        activate UI
-            create CTRL
-            UI -> CTRL** : readFile(fileName)
-
-            UI -> CTRL : getTaskCategories()
-            activate CTRL
-
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
-
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
-
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
-
-                    PLAT --> CTRL: taskCategoryRepository
-                deactivate PLAT
-
-                CTRL -> TaskCategoryRepository : getTaskCategories()
-                activate TaskCategoryRepository
-
-                    TaskCategoryRepository --> CTRL : taskCategoryList
-                deactivate TaskCategoryRepository
-
-                CTRL --> UI : taskCategoryList
-            deactivate CTRL
-
-            UI --> ADM : shows task category list\n and asks to sleect one
-        deactivate UI
-
-    ADM -> UI : selects a task category
+autonumber 1.1
     activate UI
 
+        UI -> CTRL** : import
+
+autonumber 2
         UI --> ADM : requests data
     deactivate UI
 
-    ADM -> UI : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
+    ADM -> UI : types requested data (fileName)
     activate UI
 
-        UI --> ADM : shows selected category and requested data
+        UI --> ADM : shows selected data and asks to confirm data
     deactivate UI
 
-    ADM -> UI : submits data
+    ADM -> UI : confirms data
     activate UI
-
-        UI -> CTRL : createTask(reference,\ndescription,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
+        autonumber 5.1
+        UI -> CTRL : readFile(fileName)
         activate CTRL
 
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
+            CTRL -> CTRL : getPropertyTypeByName(String propertyTypeName)
             activate CTRL
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+                autonumber 5.1.1
+                activate CTRL
+                    CTRL -> Rep : getInstance()
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+                    activate Rep
 
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
+                    Rep --> CTRL: repositories
+                    deactivate Rep
 
-                    PLAT -> CTRL : taskCategoryRepository
-                deactivate PLAT
+                    CTRL -> PLAT : getPropertyTypeRepository()
+                    activate PLAT
 
-                CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-                activate TaskCategoryRepository
+                    PLAT --> CTRL : propertyTypeRepository
+                    deactivate PLAT
 
-                    TaskCategoryRepository --> CTRL : taskCategory
-                deactivate TaskCategoryRepository
-                    CTRL --> CTRL : taskCategory
+                    CTRL -> ProType :getPropertyTypeByName(String propertyTypeName)
+                    activate ProType
+
+                    ProType --> CTRL : propertyType
+                    deactivate ProType
+
+                autonumber 5.2
+                CTRL --> CTRL : propertyType
             deactivate CTRL
 
-            |||
-            CTRL -> CTRL : getEmployeeFromSession()
+            CTRL -> CTRL : getTypeOfBusinessByName(String typeOfBusinessName)
+                        activate CTRL
+
+                            activate CTRL
+                                CTRL -> Rep : getInstance()
+
+                                activate Rep
+
+                                Rep --> CTRL: repositories
+                                deactivate Rep
+
+                                CTRL -> PLAT : getTypeOfBusinessRepository()
+                                activate PLAT
+
+                                PLAT --> CTRL : typeOfBusinessRepository
+                                deactivate PLAT
+
+                                CTRL -> ProType :getTypeOfBusinessByName(String typeOfBusinessName)
+                                activate ProType
+
+                                ProType --> CTRL : typeOfBusiness
+                                deactivate ProType
+
+                            <-- CTRL: typeOfBusiness
+                            deactivate CTRL
+
+                            CTRL --> CTRL : typeBusiness
+                        deactivate CTRL
+
+            CTRL -> CTRL : getAdministratorFromSession()
             activate CTRL
 
                 CTRL -> _APP: getInstance()
-                activate _APP
-                    _APP -> CTRL: appSession
-                deactivate _APP
+                        activate _APP
+                            _APP -> CTRL: appSession
+                        deactivate _APP
 
+                        CTRL -> APP: getCurrentSession()
+                        activate APP
 
-                CTRL -> APP: getCurrentSession()
-                activate APP
+                            APP --> CTRL: currentSession
+                        deactivate APP
 
-                    APP --> CTRL: currentSession
-                deactivate APP
+                        CTRL -> SESSAO: email = getUserEmail()
+                        activate SESSAO
 
-                CTRL -> SESSAO: email = getUserEmail()
-                activate SESSAO
+                            SESSAO --> CTRL: email
+                        deactivate SESSAO
 
-                    SESSAO --> CTRL: email
-                deactivate SESSAO
+                        CTRL -> PLAT: getEmployeeRepository(email)
+                        activate PLAT
 
+                            PLAT --> CTRL: employeeRepository
+                        deactivate PLAT
 
-                CTRL -> PLAT: getOrganizationRepository(email)
-                activate PLAT
+                        CTRL -> EmployeeRepository: getEmployeeByEmail(email)
+                        activate EmployeeRepository
 
-                    PLAT --> CTRL: organizationRepository
-                deactivate PLAT
+                            Employee --> CTRL : administrator
+                        deactivate EmployeeRepository
 
-
-                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
-                activate OrganizationRepository
-
-                    loop [for each organization
-                        OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                        activate ORG
-
-                             ORG --> OrganizationRepository : true/false
-                        deactivate ORG
-                    end
-                    OrganizationRepository --> CTRL : organization
-                deactivate OrganizationRepository
-
-                CTRL -> ORG: getEmployeeByEmail(email)
-                activate ORG
-
-                    ORG --> CTRL : employee
-                deactivate ORG
-
-                CTRL --> CTRL : employee
+                CTRL -> CTRL : administrator
             deactivate CTRL
 
-            |||
-            CTRL -> ORG: createTask(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
-            activate ORG
+            CTRL -> CTRL: readFile(fileName)
+            activate CTRL
+            CTRL -> PropertyRepository: createProperty(information)
+            activate PropertyRepository
 
-                ORG -> TAREFA**: create(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-                ORG -> ORG: addTask (task)
+                ref over PropertyRepository
+                    Create Property
 
+                end
+                autonumber 5.10
+                opt land
+                PropertyRepository --> CTRL : land
+                end
+                autonumber 5.10
+                opt apartment
+                PropertyRepository --> CTRL: apartment
+                end
+                autonumber 5.10
+                opt house
+                PropertyRepository --> CTRL: house
+                end
+            deactivate PropertyRepository
+            autonumber 5.11
 
-                activate ORG
-                    ORG -> ORG: validateTask(task)
-                    activate ORG
-                        ORG --> ORG
-                    deactivate ORG
+            CTRL -> RequestRepository: createRequest(information)
+            activate RequestRepository
+                ref over RequestRepository
+                                    Create Request
 
-                    ORG --> ORG
-                deactivate ORG
+                end
+                RequestRepository --> CTRL: request
+                deactivate RequestRepository
 
-                ORG --> CTRL : task
+           CTRL -> AnnouncementRepository: createAnnouncement(information)
+                       activate AnnouncementRepository
+                           ref over AnnouncementRepository
+                                               Create Announcement
 
-            deactivate ORG
+                           end
+                           AnnouncementRepository --> CTRL: announcement
+                           deactivate AnnouncementRepository
+          CTRL -> AgencyRepository: createAgency(information)
+                                 activate AgencyRepository
+                                     ref over AgencyRepository
+                                                         Create Agency
 
-            CTRL --> UI: task
-            deactivate CTRL
+                                     end
+                                     AgencyRepository --> CTRL: agency
+                                     deactivate AgencyRepository
+          CTRL --> CTRL
+          deactivate CTRL
+          CTRL --> UI
+          deactivate CTRL
+          autonumber 6
             UI --> ADM: displays operation success
     deactivate UI
 
 deactivate ADM
-
 @enduml

@@ -43,14 +43,14 @@ activate CTRL
             PLAT --> CTRL: employeeRepository
         deactivate PLAT
 
-        CTRL -> EmployeeRepository: getAdministratorByEmail(email)
+        CTRL -> EmployeeRepository: getEmployeeByEmail(email)
         activate EmployeeRepository
 
             Employee --> CTRL : administrator
         deactivate EmployeeRepository
     end
     autonumber 15
-    <-- CTRL : employee
+    <-- CTRL : administrator
 deactivate CTRL
 
 @enduml

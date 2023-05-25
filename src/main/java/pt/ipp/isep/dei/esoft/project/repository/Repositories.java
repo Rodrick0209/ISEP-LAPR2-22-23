@@ -39,6 +39,10 @@ public class Repositories {
     TypeBusinessRepository typeBusinessRepository = new TypeBusinessRepository();
     EmployeeRepository employeeRepository = new EmployeeRepository();
 
+    RequestRepository requestRepository = new RequestRepository();
+
+    AnnouncementRepository announcementRepository = new AnnouncementRepository();
+
     private Repositories() {
     }
 
@@ -107,6 +111,12 @@ public class Repositories {
         return typeBusinessRepository;
     }
 
+    public RequestRepository getRequestRepository() {
+        return requestRepository;
+    }
 
+    public AnnouncementRepository getAnnouncementRepository() {
+        return announcementRepository;
+    }
 }
 
