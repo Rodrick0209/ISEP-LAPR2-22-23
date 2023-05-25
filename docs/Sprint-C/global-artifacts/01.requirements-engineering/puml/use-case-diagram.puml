@@ -37,6 +37,15 @@ rectangle "Use Cases" as usecases{
          usecase "UC11 - To list and decide (whether to accept or decline)  real estate purchase \nand to send an email to the customer in case of acceptance" as UC11
              Agent--> UC11
 
+             usecase "UC10 - To place and submit a purchase order \n (with the respective amoount)" as UC10
+             Client --> UC10
+
+             usecase "UC9 To request a visit to a land" as UC9
+             Client --> UC9
+             usecase "UC13 To list all employes working on the current network" as UC13
+             NetworkManager --> UC13
+
+
 
  }
 
