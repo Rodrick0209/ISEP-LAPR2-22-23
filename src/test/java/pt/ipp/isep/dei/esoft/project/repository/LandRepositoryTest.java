@@ -82,7 +82,7 @@ class LandRepositoryTest {
         Land land = new Land(area, distance, photos);
         propertyRepository.add(land);
 
-        Optional<Land> duplicateProperty = propertyRepository.add(land);
+        Optional<Property> duplicateProperty = propertyRepository.add(land);
 
         assertTrue(duplicateProperty.isEmpty());
     }
@@ -94,7 +94,7 @@ class LandRepositoryTest {
         Land land1 = new Land(area, distance, photos);
         propertyRepository.add(land);
 
-        Optional<Land> result = propertyRepository.add(land1);
+        Optional<Property> result = propertyRepository.add(land1);
 
         assertEquals(land1, result.get());
     }

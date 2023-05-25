@@ -38,9 +38,9 @@ public class PropertyRepository {
      * @param land the property
      * @return the optional
      */
-    public Optional<Land> add(Land land){
+    public Optional<Property> add(Land land){
 
-        Optional<Land> newProperty = Optional.empty();
+        Optional<Property> newProperty = Optional.empty();
         boolean operationSuccess = false;
 
         if(validateProperty(land)){
