@@ -1,4 +1,4 @@
-# US 009 - Request a visit to a land
+# US 009 - To request a visit to a land
 
 ## 1. Requirements Engineering
 

@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 010 - To place and submit a purchase order (with the respective amoount)
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

@@ -19,7 +19,7 @@
 ## Class CreateTaskController 
 
 ```java
-public Announcement createAnnouncement(String propertyLocation, String description, double comission)
+public class Announcement createAnnouncement(String propertyLocation, String description, double comission)
 
 	Property location = getPropertyByLocation(propertyLocation);
 

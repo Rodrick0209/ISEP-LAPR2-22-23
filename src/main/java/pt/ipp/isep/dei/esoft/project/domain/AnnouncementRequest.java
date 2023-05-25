@@ -10,6 +10,14 @@ public class AnnouncementRequest {
     private double price;
     private String type;
 
+    public void setLand(Land land) {
+        this.land = land;
+    }
+
+    public Land getLand() {
+        return land;
+    }
+
     /**
      * Instantiates a new Announcement request.
      *
@@ -93,6 +101,7 @@ public class AnnouncementRequest {
         AnnouncementRequest that = (AnnouncementRequest) o;
         return Double.compare(that.price, price) == 0 && land.equals(that.land) && type.equals(that.type);
     }
+
 
     @Override
     public int hashCode() {

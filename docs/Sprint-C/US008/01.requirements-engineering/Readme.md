@@ -74,7 +74,7 @@ so that I can post the announcement.
 * Announcment status dispplay
 * Announcment data display
 
-### 1.6. System Sequence Diagram (SSD) (not displays for a reason?)
+### 1.6. System Sequence Diagram (SSD) 
 
 ![us008-system-sequence-diagram-alternative-one.puml](svg/us008-system-sequence-diagram-alternative-one.svg)
 

@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 011 -To list and decide (whether to accept or decline)  real estate purchase and to send an email to the customer in case of acceptance. 
 
 ## 3. Design - User Story Realization 
 

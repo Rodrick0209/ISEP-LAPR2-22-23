@@ -50,9 +50,9 @@ class Announcement {
            comissionValue
   }
 
-Agent "1..*" -- "1" Agency : works for  >
-Agent "1..*" -- "1..*" Request : receives a  >
-Agent "1..*" -- "1" AgentRequestList: selects a request from >
+Agent "1*" -- "1" Agency : works for  >
+Agent "1*" -- "1..*" Request : receives a  >
+Agent "1*" -- "1" AgentRequestList: selects a request from >
 Property "1"-- "1..*"Announcement: is needed for  >
 Property "1"-- "1"Request: is needed for  >
 Request "1..*"-- "1"AgentRequestList: is needed for  >

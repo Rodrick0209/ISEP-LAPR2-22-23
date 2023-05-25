@@ -18,6 +18,7 @@ rectangle "Use Cases" as usecases{
     usecase "UC11" as UC11
     usecase "UC10" as UC10
     usecase "UC9" as UC9
+    usecase "UC8" as UC8
     usecase "UC8 - To select a request and publish an announcement" as UC8
     Agent--> UC8
     usecase "UC4 - To submit a request" as UC4
@@ -32,6 +33,10 @@ rectangle "Use Cases" as usecases{
         UnregisteredUser --> UC1
         usecase "UC7 -  To register a new user in the system" as UC7
           UnregisteredUser --> UC7
+
+         usecase "UC11 - To list and decide (whether to accept or decline)  real estate purchase \nand to send an email to the customer in case of acceptance" as UC11
+             Agent--> UC11
+
 
  }
 

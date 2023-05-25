@@ -1,4 +1,4 @@
-# US 006 - To submit a request
+# US 011 - To list and decide (whether to accept or decline) real estate purchase and to send an email to the customer in case of acceptance
 
 ## 1. Requirements Engineering
 
@@ -6,7 +6,8 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
+As an agent,I want to list real estate purchase orders to accept or decline a purchase order for a property. 
+After accepting or declining, an email notification should be sent to the customer.
 
 
 
@@ -40,9 +41,10 @@ As an organization employee, I want to create a new task in order to be further 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
+* **AC1:** The list of purchase orders should be grouped by property. The properties should be sorted from the oldest to the most recent one. For each property, the list of purchase orders should be sorted by the amount offered, the highest offer must appear first.
+* **AC2:** For each offer, the agent must be able to accept or decline it. The action of accepting or declining an offer should trigger an email notification to the client.
+* **AC3:** When a purchase order is accepted, all the other orders should be declined, and a message sent to the client.
+* **AC4:** If a property does not contain any offers, the system should show an empty list of offers.
 
 
 ### 1.4. Found out Dependencies
