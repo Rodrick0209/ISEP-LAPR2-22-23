@@ -9,12 +9,9 @@ import java.util.List;
 public class Land extends Property {
 
 
+
     public Land(double area, double distance, List<String> photos) {
         super(area, distance, photos);
-    }
-
-    public Land(int area, int distance) {
-        super(area, distance);
     }
 
     public Land(String location) {

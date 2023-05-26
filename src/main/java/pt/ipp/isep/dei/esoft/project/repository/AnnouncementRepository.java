@@ -15,6 +15,7 @@ public class AnnouncementRepository {
 
     public Announcement getAnnouncementByPrice(int announcementPrice){
 
+        return null;
     }
 
 
