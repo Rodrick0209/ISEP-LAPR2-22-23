@@ -80,15 +80,21 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private int requestCommission() {
         int input = 0;
-        boolean valid = false;
+        boolean validCommmission = false;
         do{
-            try {
+            /*try {
                 input = Utils.readIntegerFromConsole("Commission: ");
-                valid = true;
-            } catch (NullPointerException e) {
+                validCommmission = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Number. Please enter a valid number.");
+            }*/
+            input = Utils.readIntegerFromConsole("Commission: ");
+            if(input >= 0 ){
+                validCommmission = true;
+            }else {
                 System.out.println("Invalid Number. Please enter a valid number.");
             }
-        }while(!valid);
+        }while(!validCommmission);
         return input;
     }
 

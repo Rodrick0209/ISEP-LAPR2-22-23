@@ -74,7 +74,7 @@ public class ImportInformationController implements FileReader {
     public TypeBusinessRepository getTypeOfBusinessRepository() {
         if (typeBusinessRepository == null) {
             Repositories repositories = Repositories.getInstance();
-            typeBusinessRepository = repositories.getTypeBussinessRepository();
+            //typeBusinessRepository = repositories.getTypeBussinessRepository();
         }
         return typeBusinessRepository;
     }
@@ -134,8 +134,8 @@ public class ImportInformationController implements FileReader {
                         String line = sc.nextLine();
                         String[] information = line.split(";");
                         createOwner(information);
-                        createProperty(information);
-                        createAgency(information);
+                        //createProperty(information);
+                        //createAgency(information);
                     }
                 }
                 sc.close();
@@ -144,7 +144,7 @@ public class ImportInformationController implements FileReader {
                 System.out.println("File not Found");
             }
         }
-
+//*
         public Optional<Owner> createOwner (String[] information){
             Optional<Owner> newOwner = Optional.empty();
             if(getOwnerRepository() != null) {
@@ -153,7 +153,7 @@ public class ImportInformationController implements FileReader {
             return newOwner;
         }
 
-        public Optional<Agency> createAgency (String[] information){
+        /*public Optional<Agency> createAgency (String[] information){
         Optional<Agency> newAgency = Optional.empty();
         if(getAge)
         }
@@ -215,4 +215,6 @@ public class ImportInformationController implements FileReader {
             return getRequestRepository().getRequestByPropertyLocation(propertyLocation);
         }
 }
-*/
+
+ */
+
