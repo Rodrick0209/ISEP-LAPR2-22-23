@@ -1,78 +1,52 @@
-# US 006 - To create a Task 
+# US 012 - To import information from a legacy System
 
 # 4. Tests 
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
+**Test 1:** Check that it is not possible to read a file with null values. 
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = FileNotFoundException.class)
 		public void ensureNullIsNotAllowed() {
-		Task instance = new Task(null, null, null, null, null, null, null);
+		readFile(null)
 	}
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Check that it is not possible to read a file with the fileName not in the ".csv" format - AC2. 
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = FileNotFoundException.class)
 		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
+		Scanner sc = new Scanner(new File("xxx.txt"))
 	}
 
+**Test 3:** Check that it is not possible to read a file with the headLine of the file empty - AC3.
 
-*It is also recommended to organize this content by subsections.* 
-
+    @Test(expected = FileNotFoundException.class)
+		public void ensureReferenceMeetsAC3() {
+		Scanner sc = new Scanner(new File("xxx.csv"))
+        headLine == null;
+        headLine = sc.nextLine();
+	}
+        
 # 5. Construction (Implementation)
 
 
-## Class CreateTaskController 
+## Class ImportInformationController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription,
-								 String technicalDescription, Integer duration, Double cost,
-								 String taskCategoryDescription) {
-
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
-
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
-
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, 
-			duration, cost,taskCategory, employee);
-    
-	return newTask;
-}
+public void readFile(String fileName){
+        Scanner sc = new Scanner(new File(fileName));
+        }
 ```
 
 
-## Class Organization
-
-```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                     String technicalDescription, Integer duration, Double cost,
-                                     TaskCategory taskCategory, Employee employee) {
-    
-        Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                taskCategory, employee);
-
-        addTask(task);
-        
-        return task;
-    }
-```
 
 # 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
-
-* Some demo purposes some tasks are bootstrapped while system starts.
+* A new option on the Administrator menu has been added
 
 
 # 7. Observations
 
-Platform and Organization classes are getting too many responsibilities due to IE pattern and, therefore, they are becoming huge and harder to maintain. 
-
-Is there any way to avoid this to happen?
+n/a
 
 
 

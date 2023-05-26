@@ -1,0 +1,100 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "SystemAdministrator" as SYSADM
+participant ":RegisterEmployeeUI" as UI
+participant ":EmployeeController" as CTRL
+participant ":EmployeeRepository" as EmployeeRepository
+participant ":ApplicationSession" as APP
+participant "appSession\n:ApplicationSession" as SESSION
+participant "employee\n:Employee" as EMP
+participant ":RoleRepository" as RoleRepository
+participant ":AgencyRepository" as AgencyRepository
+participant ":Organisation" as ORG
+
+activate SYSADM
+
+    SYSADM -> UI : opens Register Employee form
+    activate UI
+
+        UI -> CTRL** : create()
+        activate CTRL
+
+            CTRL -> RoleRepository : getRoles()
+            activate RoleRepository
+
+                RoleRepository --> CTRL : roles
+            deactivate RoleRepository
+
+            CTRL -> AgencyRepository : getAgencies()
+            activate AgencyRepository
+
+                AgencyRepository --> CTRL : agencies
+            deactivate AgencyRepository
+
+            CTRL -> EmployeeRepository : create()
+            activate EmployeeRepository
+
+                EmployeeRepository -> EMP : create()
+                activate EMP
+
+                    EMP --> EmployeeRepository : employee
+                deactivate EMP
+
+                EmployeeRepository --> CTRL : employee,\nroles,\nagencies
+            deactivate EmployeeRepository
+
+            CTRL --> UI : employee,\nroles,\nagencies
+        deactivate CTRL
+
+        UI --> SYSADM : shows Register Employee form,\nroles,\nagencies
+    deactivate UI
+
+    SYSADM -> UI : fills in employee information,\nrole,\nagency
+    activate UI
+
+        UI --> SYSADM : sends employee data,\nrole,\nagency
+    deactivate UI
+
+    SYSADM -> CTRL : registerEmployee(name,\nemail,\nrole,\nagency,\nstartDate)
+    activate CTRL
+
+        CTRL -> SESSION : getUserEmail()
+        activate SESSION
+
+            SESSION --> CTRL : email
+        deactivate SESSION
+
+        CTRL -> EmployeeRepository : findByEmail(email)
+        activate EmployeeRepository
+
+            EmployeeRepository --> CTRL : employee
+        deactivate EmployeeRepository
+
+        CTRL -> ORG : createEmployee(\nname, \nccnumber, \ntaxnumber, \naddress, \nrole,\nagency,\nstartDate)
+        activate ORG
+
+            ORG -> EMP : setName(name)
+            ORG -> EMP : setCCNumber(ccnumber)
+            ORG -> EMP : setTaxNumber(taxnumber)
+            ORG -> EMP : setAddress(address)
+            ORG -> EMP : setRole(role)
+            ORG -> EMP : setAgency(agency)
+            ORG -> EMP : setStartDate(startDate)
+            ORG -> ORG: validateEmployee(employee)
+            ORG -> ORG: saveEmployee(employee)
+
+            EMP --> EmployeeRepository : employee
+        deactivate ORG
+
+        EmployeeRepository --> CTRL : employee
+        CTRL --> SYSADM : displays employee registration success
+    deactivate CTRL
+
+deactivate SYSADM
+@enduml

@@ -1,0 +1,72 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+
+'hide footbox
+participant ":RegisterStoreController" as CTRL
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSION
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "companyRepository:\nCompanyRepository" as CompanyRepository
+participant "organization\n:Organization" as ORG
+
+autonumber 8
+-> CTRL : getAdministratorFromSession()
+autonumber 8.1
+activate CTRL
+
+    group Get Administrator
+        CTRL -> _APP: getInstance()
+        activate _APP
+            _APP -> CTRL: appSession
+        deactivate _APP
+
+        CTRL -> APP: getCurrentSession()
+        activate APP
+
+            APP --> CTRL: currentSession
+        deactivate APP
+
+        CTRL -> SESSION: email = getUserEmail()
+        activate SESSION
+
+            SESSION --> CTRL: email
+        deactivate SESSION
+
+        CTRL -> PLAT: getCompanyRepository(email)
+        activate PLAT
+
+            PLAT --> CTRL: companyRepository
+        deactivate PLAT
+
+        CTRL -> CompanyRepository: getCompanyByUserEmail(email)
+        activate CompanyRepository
+
+            loop [for each company
+                CompanyRepository -> ORG : anyAdministratorHasEmail(email)
+                activate ORG
+
+                     ORG --> CompanyRepository : true/false
+                deactivate ORG
+            end
+
+            CompanyRepository --> CTRL : company
+
+        deactivate CompanyRepository
+
+        CTRL -> ORG: getAdministratorByEmail(email)
+        activate ORG
+
+            ORG --> CTRL : administrator
+        deactivate ORG
+    end
+    autonumber 9
+    <-- CTRL : administrator
+deactivate CTRL
+
+@enduml

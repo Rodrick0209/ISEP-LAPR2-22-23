@@ -22,8 +22,11 @@ employeeRole
 assignedAgency
 }
 class Agent{
-id/email
-password
+name
+citizen_card_number
+tax_number
+address
+email_address
 }
 
 class SystemAdministrator{
@@ -40,7 +43,6 @@ class Agency{
 Id
 designation
 location
-local_manager
 phone_number
 email
 }
@@ -93,7 +95,6 @@ request
 }
 class Request{
 date
-property
 }
 
 
@@ -129,6 +130,14 @@ class Information {
 file
 }
 
+class PropertyType{
+name
+}
+
+class TypeOfBusiness{
+name
+}
+
 
 Agent "1..*" -- "1..*" Request : receives a  >
 Agent "1..*" -- "1" AgentRequestList: selects a request from >
@@ -159,8 +168,8 @@ UnregisteredUser "1..*" -- "1..*" SystemAdministrator :  can be a >
 
 Owner "1" -- "1..*" Agent : selects an  >
 
-AgencyManager "1" -- "1" Agency : manages >
-AgencyNetworkManager "1" -- "1..*" Agency : manages >
+Agency "1" -- "1" AgencyManager : managed by >
+Agency "*" -- "1" AgencyNetworkManager : managed by >
 
 Employee "1" -- "1" AgencyManager : can be >
 Employee "1" -- "1" AgencyNetworkManager : can be >
@@ -180,6 +189,10 @@ SystemAdministrator "1" -- "1" Information: imports >
 Information "1" -- "*" Agency: contains >
 Information "1" -- "*" Property: contains >
 Information "1" -- "*" Owner: contains >
-
+Property "1" --> "1" PropertyType : have >
+Request "1" --> "1" Property: have >
+Request "1" --> "1" TypeOfBusiness: have >
+Announcement "1" --> "1" Request: have >
+Request "1" --> "1" Agency : have >
 
 @enduml

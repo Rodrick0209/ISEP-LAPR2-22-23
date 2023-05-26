@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Agency;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,27 @@ public class AgencyRepository {
         }
         return newAgency;
     }
+
+    public Optional<Agency> createAgency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
+        Optional<Agency> optionalValue = Optional.empty();
+
+        Agency agency = new Agency(id, designation, location, emailAddress, phoneNumber, administrator);
+
+        if(addAgency(agency)){
+            optionalValue = Optional.of(agency);
+        }
+        return optionalValue;
+    }
+
+    public boolean addAgency(Agency agency) {
+        boolean success = false;
+        if(validateAgency(agency)) {
+            success = agencies.add(agency);
+        }
+        return success;
+    }
+
+
 
     /**
      *

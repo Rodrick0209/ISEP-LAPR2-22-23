@@ -1,0 +1,73 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+left to right direction
+
+class "Unregistered User" as UU
+
+class ":RegistrationUI" as UI {
+    +register(name: String, email: String, password: String, role: String, passwordPreference: String): void
+}
+
+class ":RegistrationController" as CTRL {
+    -generatePassword(): String
+    -validateUserCredentials(name: String, email: String, citizen_card_number: String, tax_number: String, password: String, role: String, passwordPreference: String): boolean
+    +register(name: String, email: String, password: String, role: String, passwordPreference: String): void
+}
+
+class ":Repositories" as RepositorySingleton {
+    +getInstance(): Repositories
+    +getUserCredentialsRepository(): UserCredentialsRepository
+    +getUserDataRepository(): UserDataRepository
+}
+
+class "repositories\n:Repositories" as PLAT {
+    +addUserCredentials(userCredentials: UserCredentials): void
+    +addUserData(userData: UserData): void
+}
+
+class "userCredentials\n:UserCredentials" as USERCRED {
+    +createUserCredentials(email: String, password: String, role: String): UserCredentials
+}
+
+class "userData\n:UserData" as USERDATA {
+    +createUserData(email: String, name: String, role: String, citizen_card_number: String, tax_number: String): UserData
+}
+
+class "userCredentialsRepository:\nUserCredentialsRepository" as UserCredentialsRepository {
+    +addUserCredentials(userCredentials: UserCredentials): void
+}
+
+class "userDataRepository:\nUserDataRepository" as UserDataRepository {
+    +addUserData(userData: UserData): void
+}
+
+class "Company" as COMPANY {
+    +addNewUser(email: String, name: String, role: String): void
+}
+
+UU -> UI: requests to register
+UI --> UU: asks for name, email, password,\nselect role and password preference
+UU -> UI: provides name, email, password,\nselect role and password preference
+UI -> CTRL: register(name, email, password,\nrole, passwordPreference)
+CTRL -> CTRL: validateUserCredentials(name, email, citizen_card_number, tax_number, password, role, passwordPreference)
+CTRL -> CTRL: generatePassword() if passwordPreference is "system-generated"
+CTRL -> USERCRED: createUserCredentials(email, password, role)
+CTRL -> UserDataRepository: createUserData(email, name, role, citizen_card_number, tax_number)
+CTRL -> RepositorySingleton: getInstance()
+CTRL -> PLAT: getUserCredentialsRepository()
+CTRL -> PLAT: getUserDataRepository()
+CTRL -> userCredentialsRepository: addUserCredentials(userCredentials)
+CTRL -> userDataRepository: addUserData(userData)
+CTRL -> COMPANY: addNewUser(email, name, role)
+CTRL --> UI: success
+UI --> UU: shows success message
+@enduml
+
+@enduml

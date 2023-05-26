@@ -1,0 +1,103 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+actor "Unregistered User" as UU
+participant ":RegistrationUI" as UI
+participant ":RegistrationController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "userCredentialsRepository:\nUserCredentialsRepository" as UserCredentialsRepository
+participant "userCredentials\n:UserCredentials" as USERCRED
+participant "userDataRepository:\nUserDataRepository" as UserDataRepository
+participant "userData\n:UserData" as USERDATA
+participant "Company" as COMPANY
+
+activate UU
+
+        UU -> UI : requests to register
+
+        activate UI
+
+            UI --> UU : asks for name, email, password,\nselect role and password preference
+
+            UU -> UI : provides name, email, password,\nselect role and password preference
+
+            UI -> CTRL : register(name, email, password,\nrole, passwordPreference)
+            activate CTRL
+
+                CTRL -> CTRL : validateUserCredentials(name, email, citizen_card_number, tax_number, password, role, passwordPreference)
+                activate CTRL
+
+                    CTRL -> CTRL : generatePassword() if passwordPreference is "system-generated"
+                    activate CTRL
+
+                        CTRL --> CTRL : password
+
+                    deactivate CTRL
+
+                    CTRL -> USERCRED : createUserCredentials(email, password, role)
+                    activate USERCRED
+
+                        USERCRED --> CTRL : userCredentials
+
+                    deactivate USERCRED
+
+                    CTRL -> UserDataRepository : createUserData(email, name, role, citizen_card_number, tax_number)
+                    activate UserDataRepository
+
+                        UserDataRepository --> CTRL : userData
+
+                    deactivate UserDataRepository
+
+                    CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                        RepositorySingleton --> CTRL : repositories
+                    deactivate RepositorySingleton
+
+                    CTRL -> PLAT : getUserCredentialsRepository()
+                    activate PLAT
+
+                        PLAT --> CTRL : userCredentialsRepository
+                    deactivate PLAT
+
+                    CTRL -> PLAT : getUserDataRepository()
+                    activate PLAT
+
+                        PLAT --> CTRL : userDataRepository
+                    deactivate PLAT
+
+                    CTRL -> userCredentialsRepository : addUserCredentials(userCredentials)
+                    activate userCredentialsRepository
+
+                        userCredentialsRepository --> CTRL : userCredentials
+
+                    deactivate userCredentialsRepository
+
+                    CTRL -> userDataRepository : addUserData(userData)
+                    activate userDataRepository
+
+                        userDataRepository --> CTRL : userData
+
+                    deactivate userDataRepository
+
+                    CTRL -> COMPANY : addNewUser(email, name, role)
+                    activate COMPANY
+
+                        COMPANY --> CTRL
+
+                    deactivate COMPANY
+
+                    CTRL --> UI : success
+            deactivate CTRL
+
+            UI --> UU : shows success message
+        deactivate UI
+
+deactivate UU
+
+@enduml

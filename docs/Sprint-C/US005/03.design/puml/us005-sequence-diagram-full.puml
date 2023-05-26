@@ -1,0 +1,116 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "System Administrator" as ADM
+participant ":RegisterStoreUI" as UI
+participant ":RegisterStoreController" as CTRL
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSION
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "companyRepository:\nCompanyRepository" as CompanyRepository
+participant "company\n:Company" as Company
+participant "store\n:Store" as Store
+
+activate ADM
+
+    ADM -> UI : asks to register a new store
+    activate UI
+
+        UI -> CTRL** : register
+        UI --> ADM: requests data
+        deactivate UI
+
+    ADM -> UI : types requested data (id, designation, location, \nemail address and contact telephone number)
+    activate UI
+        UI --> ADM : shows typed data
+        deactivate UI
+
+    ADM -> UI : submits data
+    activate UI
+
+        UI -> CTRL : registerStore(id, designation, location, \nemailAddress, phoneNumber)
+        activate CTRL
+
+            CTRL -> CTRL: getAdministratorFromSession()
+            activate CTRL
+
+                    CTRL -> _APP: getInstance()
+                    activate _APP
+                    _APP -> CTRL: appSession
+                    deactivate _APP
+
+                    CTRL -> APP: getCurrentSession()
+                    activate APP
+
+                        APP --> CTRL: currentSession
+                        deactivate APP
+
+                            CTRL -> SESSION: email = getUserEmail()
+                            activate SESSION
+
+                                SESSION --> CTRL: email
+                                deactivate SESSION
+
+                                CTRL -> PLAT: getCompanyRepository(email)
+                                activate PLAT
+
+                                    PLAT --> CTRL: companyRepository
+                                    deactivate PLAT
+
+                            CTRL -> CompanyRepository: getCompanyByUserEmail(email)
+                            activate CompanyRepository
+
+                                loop [for each company
+                                CompanyRepository -> Company : anyAdministratorHasEmail(email)
+                                activate Company
+
+                                    Company --> CompanyRepository : true/false
+                                    deactivate Company
+                                end
+
+                CompanyRepository --> CTRL : company
+
+                deactivate CompanyRepository
+
+                  CTRL -> Company: getAdministratorByEmail(email)
+                  activate Company
+
+                Company --> CTRL : administrator
+                deactivate Company
+
+            CTRL --> CTRL: administrator
+            deactivate CTRL
+
+            CTRL -> Company: registerStore(id, designation, location, emailAddress, phoneNumber, administrator)
+            activate Company
+
+                    Company -> Store**: registerStore(id, designation, location, \nemailAddress, phoneNumber, administrator)
+                        Company -> Company: addStore(store)
+                        deactivate Store
+                    activate Company
+                        Company -> Company: validateStore(store)
+                        activate Company
+                            Company --> Company
+                        deactivate Company
+
+                        Company --> Company
+                    deactivate Company
+
+                Company --> CTRL : store
+            deactivate Company
+
+            CTRL --> UI: store
+            deactivate CTRL
+            UI --> ADM: Shows operation success
+    deactivate UI
+
+deactivate ADM
+
+@enduml

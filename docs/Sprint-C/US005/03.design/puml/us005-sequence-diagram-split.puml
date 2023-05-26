@@ -1,0 +1,62 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "System Administrator" as ADM
+participant ":RegisterStoreUI" as UI
+participant ":RegisterStoreController" as CTRL
+participant "company\n:Company" as Company
+
+activate ADM
+
+    ADM -> UI : asks to register a new store
+    activate UI
+
+        UI -> CTRL** : register
+        UI --> ADM: requests data
+        deactivate UI
+
+    ADM -> UI : types requested data (id, designation, location, \nemail address and contact telephone number)
+    activate UI
+        UI --> ADM : shows typed data
+        deactivate UI
+
+    ADM -> UI : submits data
+    activate UI
+
+        UI -> CTRL : registerStore(id, designation, location, emailAddress, \ntelephoneNumber, organizationDescription)
+        activate CTRL
+
+            CTRL -> CTRL: getAdministratorFromSession()
+            activate CTRL
+
+                ref over CTRL
+                    Get Administrator
+
+                end
+            CTRL --> CTRL: administrator
+            deactivate CTRL
+
+            CTRL -> Company: registerStore(id, designation, location, \nemailAddress, telephoneNumber, administrator)
+            activate Company
+
+                ref over Company
+                    Register Store
+
+                end
+
+                Company --> CTRL : store
+            deactivate Company
+
+            CTRL --> UI: store
+            deactivate CTRL
+            UI --> ADM: Shows operation success
+    deactivate UI
+
+deactivate ADM
+
+@enduml

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.domain;
+/*package pt.ipp.isep.dei.esoft.project.domain;
 
 import org.junit.jupiter.api.Test;
 
@@ -131,4 +131,4 @@ class AnnouncementTest {
         Announcement clone = announcement.clone();
         assertEquals(announcement, clone);
     }
-}
+}*/

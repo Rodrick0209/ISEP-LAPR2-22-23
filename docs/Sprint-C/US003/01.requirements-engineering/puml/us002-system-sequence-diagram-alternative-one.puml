@@ -1,0 +1,50 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title User Story 002 - System Sequence Diagram (SSD)
+
+
+autonumber
+
+
+
+actor "Real Estate Agent" as Agent
+participant "System" as System
+
+
+
+activate Agent
+
+Agent -> System : requests to publish an announcment
+
+activate System
+
+    System --> Agent: asks for property data
+    deactivate System
+
+
+    Agent -> System :registers  all necessary property data
+
+    activate System
+
+    System--> Agent:asks for a  comission
+     deactivate System
+   Agent-> System:sends comission
+
+   activate System
+System --> Agent : informs the agent the announcment  has been published
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

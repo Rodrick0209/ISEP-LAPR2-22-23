@@ -12,52 +12,33 @@ autonumber 10
 -> PropertyRepository : createProperty(information)
 group Create Property
 activate PropertyRepository
+autonumber 10.1
 opt land
    PropertyRepository -> Land**: createLand(propertyType, area, \nlocation, distanceFromCityCentre, owner)
-               PropertyRepository -> PropertyRepository: addLand(land)
-               deactivate Land
-           activate PropertyRepository
-               PropertyRepository -> PropertyRepository: validateLand(land)
-               activate PropertyRepository
-                   PropertyRepository --> PropertyRepository
-               deactivate PropertyRepository
 
-               PropertyRepository --> PropertyRepository
-           deactivate PropertyRepository
-
-    <-- PropertyRepository : land
+    autonumber 10.1
     end
     opt apartment
     PropertyRepository -> Apartment**: createApartment(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, owner)
-                   PropertyRepository -> PropertyRepository: addApartment(apartment)
-                   deactivate Apartment
-               activate PropertyRepository
-                   PropertyRepository -> PropertyRepository: validateApartment(Apartment)
-                   activate PropertyRepository
-                       PropertyRepository --> PropertyRepository
-                   deactivate PropertyRepository
-
-                   PropertyRepository --> PropertyRepository
-               deactivate PropertyRepository
-
-        <-- PropertyRepository : apartment
     end
 
+    autonumber 10.1
     opt house
         PropertyRepository -> House**: createHouse(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, \ninhabitableLoft, sunExposure, owner)
-                       PropertyRepository -> PropertyRepository: addHouse(house)
-                       deactivate House
-                   activate PropertyRepository
-                       PropertyRepository -> PropertyRepository: validateHouse(House)
-                       activate PropertyRepository
-                           PropertyRepository --> PropertyRepository
-                       deactivate PropertyRepository
-
-                       PropertyRepository --> PropertyRepository
-                   deactivate PropertyRepository
-
-            <-- PropertyRepository : house
     end
+
+        PropertyRepository -> PropertyRepository: addProperty(property)
+        activate PropertyRepository
+            PropertyRepository -> PropertyRepository: validateProperty(property)
+            activate PropertyRepository
+
+            PropertyRepository --> PropertyRepository
+            deactivate PropertyRepository
+
+        PropertyRepository --> PropertyRepository
+        deactivate PropertyRepository
+
+    end
+        <-- PropertyRepository : property
     deactivate PropertyRepository
-end
 @enduml

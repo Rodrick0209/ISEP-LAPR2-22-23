@@ -1,0 +1,265 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class ApplicationSession
+{
+    + static getInstance()
+    + getCurrentSession()
+}
+
+class UserSession
+{
+    + getUserEmail()
+}
+
+class SystemAdministrator {
+    - name
+    - email
+    - ccNumber
+    - taxNumber
+    - phoneNumber
+    - emailAddress
+}
+
+class Agent {
+    - name
+    - email
+    - ccNumber
+    - taxNumber
+    - phoneNumber
+    - emailAddress
+}
+
+
+class Agency{
+    - Integer id
+    - String designation
+    - String location
+    - String phoneNumber
+    - String emailAddress
+
+    + Agency(id, designation, location, emailAddress, phoneNumber, administrator)
+}
+
+class Owner{
+    - String name
+    - Integer ccNumber
+    - String taxNumber
+    - String emailAddress
+    - String phoneNumber
+    + Owner(name, ccNumber, taxNumber, \nemailAddress, phoneNumber)
+}
+
+class Property{
+    - Double area
+    - String location
+    - Integer distanceFromCityCentre
+
+   +Property(propertyType, area, location, \ndistanceFromCityCentre, owner)
+
+}
+
+class PropertyType{
+    - String name
+    +PropertyType(name)
+}
+
+class Land{
++Land(propertyType, area, \nlocation, \distanceFromCityCentre)
+   }
+
+class Apartment{
+    -Integer numberOfBedrooms
+    -Integer numberOfBathrooms
+    -Integer numberOfParkingSpaces
+    -Boolean centralHeating
+    -Boolean airConditioning
+    +Apartment(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning)
+}
+
+class House{
+    -Integer numberOfBedrooms
+    -Integer numberOfBathrooms
+    -Integer numberOfParkingSpaces
+    -Boolean centralHeating
+    -Boolean airConditioning
+    -Boolean existenceOfAnBasement
+    -Boolean inhabitableLoft
+    -String sunExposure
+    +House(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, \nexistenceOfAnBasement, inhabitableLoft, sunExposure)
+    }
+
+class TypeOfBusiness{
+    - String name
+    + TypeOfBusiness(name)
+    }
+
+class PropertyRepository {
+
+    + createLand(type, area, location, distance)
+    + createApartment(type, area, location, distanceFromCityCentre, \nnumberBedrooms, numberBathrooms, \nnumberParkingSpaces, centralHeating, airConditioning)
+    + createHouse(type, area, location, distanceFromCityCentre, \nnumberBedrooms, numberBathrooms, \nnumberParkingSpaces, centralHeating, airConditioning, \nexistenceOfAnBasement, inhabitableLoft, sunExposure)
+    - addProperty(property)
+    - validateProperty(property)
+    + getPropertyByLocation(location)
+
+}
+
+class OwnerRepository {
+    + createOwner(name, ccNumber, taxNumber, emailAddress, phoneNumber)
+    - addOwner(owner)
+    - validateOwner(owner)
+    + getOwnerByEmail(emailAddress)
+}
+
+class AgencyRepository {
+    + createAgency(id, designation, location, emailAddress, phoneNumber, administrator)
+    - addAgency(agency)
+    - validateAgency(agency)
+    + getAgencyByID(id)
+}
+
+class AnnouncementRepository {
+    +createAnnouncement(request, price, dateOfRequest)
+    -addAnnouncement(announcement)
+    -validateAnnouncement(announcement)
+}
+
+class PropertyTypeRepository {
+    +getPropertyTypeByName(propertyTypeName)
+}
+
+class TypeOfBusinessRepository{
+    +getTypeOfBusinessByName(propertyTypeName)
+}
+
+class RequestRepository{
++createRequest(property, price, typeOfBusiness, agency)
+-addRequest(requesst)
+-validateRequest(request)
+}
+
+class Request {
+- Integer price
++Request(property, typeOfBusiness, price, owner)
+}
+
+class Rent {
+- Integer contractDuration
++Rent(contractDuration)
+}
+
+class Announcement {
+- Integer commission
++Announcement(request, commission)
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getAuthenticationRepository()
+    + getPropertyRepository()
+    + getAnnouncementRepository()
+    + getAgencyRepository()
+    + getOwnerRepository()
+    + getPropertyTypeRepository()
+    + getTypeOfBusinessRepository()
+    + getEmployeeRepository()
+}
+
+class ImportInformationController {
+    + ImportInformationController(propertyRepository, ownerRepository, \npropertTypeRepository, typeOfBusinessRepository, agencyRepository, \nrequestRepository, announcementRepository)
+    + readFile(fileName)
+    + createOwner(information)
+    + createProperty(information)
+    + createAgency(information)
+    + createRequest(information)
+    - getAuthenticationRepository()
+    - getPropertyRepository()
+    - getOwnerRepository()
+    - getAgencyRepository()
+    - getAnnouncementRepository()
+    - getPropertyTypeRepository()
+    - getTypeOfBusinessRepository()
+    - getAnnouncementRepository()
+    - getEmployeeRepository()
+}
+
+
+class ImportInformationUI {
+}
+
+Repositories -> Repositories : instance
+ApplicationSession -> ApplicationSession : instance
+
+ImportInformationUI .> ImportInformationController
+
+ImportInformationController .> Repositories : repositories
+
+Repositories -> "1" OwnerRepository
+Repositories --> "1" PropertyRepository
+Repositories -> "1" PropertyTypeRepository
+Repositories --> "1" TypeOfBusinessRepository
+Repositories -> "1" RequestRepository
+Repositories --> "1" AnnouncementRepository
+Repositories -> "1" AgencyRepository
+Repositories --> "1" EmployeeRepository
+Repositories -> "1" AuthenticationRepository
+
+
+ImportInformationController ..> PropertyRepository : PropertyRepository
+ImportInformationController .> OwnerRepository : OwnerRepository
+ImportInformationController ..> PropertyTypeRepository : PropertyTypeRepository
+ImportInformationController .> AnnouncementRepository : AnnouncementRepository
+ImportInformationController ..> RequestRepository : RequestRepository
+ImportInformationController .> TypeOfBusinessRepository : TypeOfBusinessRepository
+ImportInformationController ..> EmployeeRepository : EmployeeRepository
+ImportInformationController .> AgencyRepository : AgencyRepository
+ImportInformationController ..> AuthenticationRepository
+ImportInformationController .> ApplicationSession
+ImportInformationController ..> UserSession
+
+
+PropertyRepository --> "*" Property
+PropertyTypeRepository -> "*" PropertyType
+AnnouncementRepository --> "*" Announcement
+RequestRepository --> "*" Request
+TypeOfBusinessRepository --> "*" TypeOfBusiness
+EmployeeRepository -> "*" SystemAdministrator
+EmployeeRepository -> "*" Agent
+OwnerRepository --> "*" Owner
+AgencyRepository --> "*" Agency
+AuthenticationRepository --> "*" ApplicationSession
+
+ApplicationSession --> "1" UserSession : userSession
+
+PropertyRepository "*" --> "1" PropertyType : propertyType
+RequestRepository "*" --> "1" TypeOfBusiness : typeOfBusiness
+RequestRepository "*" -> "1" Property : property
+RequestRepository "*" -> "1" Agency : agency
+AnnouncementRepository "*" --> "1" Request : request
+
+Property --|> House
+Property --|> Apartment
+Property --|> Land
+
+Property "1" --> "1" PropertyType : propertyType
+Request "1" --> "1" TypeOfBusiness : typeOfBusiness
+Request "1" --> "1" Property : property
+Request "1" --> "1" Agency : agency
+
+Agency --> SystemAdministrator : createdBy
+Property --> Owner : createdBy
+Request --> Owner : createdBy
+Announcement --> Agent : createdBy
+
+
+@enduml

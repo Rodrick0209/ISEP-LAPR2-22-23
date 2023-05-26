@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "organization\n:Organization" as ORG
+participant "announcement\n:Announcement" as ANNOUNCE
+
+autonumber 18
+-> ORG: createAnnouncement(property, \ndescription, commission, agent)
+
+autonumber 18.1
+activate ORG
+    group Create Announcement
+
+        ORG -> ANNOUNCE**: create(property, description, \ncommission, agent)
+        ORG -> ORG: addAnnouncement(announcement)
+
+        activate ORG
+            ORG -> ORG: validateAnnouncement(announcement)
+            activate ORG
+                ORG --> ORG
+            deactivate ORG
+
+            ORG --> ORG
+        deactivate ORG
+    end
+
+    autonumber 19
+    <-- ORG : announcement
+deactivate ORG
+
+
+@enduml

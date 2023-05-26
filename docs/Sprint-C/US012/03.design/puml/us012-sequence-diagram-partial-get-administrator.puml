@@ -19,7 +19,7 @@ autonumber 14
 autonumber 14.1
 activate CTRL
 
-    group Get Employee
+    group Get Administrator
         CTRL -> _APP: getInstance()
         activate _APP
             _APP -> CTRL: appSession

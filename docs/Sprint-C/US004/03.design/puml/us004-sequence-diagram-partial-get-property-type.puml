@@ -1,0 +1,42 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+
+'hide footbox
+participant ":CreateRequestUI" as UI
+participant ":CreateTaskController" as CTRL
+participant ":Repositories" as Rep
+participant "repositories\n:Repositories" as PLAT
+participant "PropertyTypeRepository" as ProType
+
+autonumber 17
+activate UI
+UI -> CTRL : get a property type
+
+activate CTRL
+    CTRL -> Rep : get Instance
+
+    activate Rep
+
+    Rep --> CTRL: repositories
+    deactivate Rep
+
+    CTRL -> PLAT : Get Property- Type repository
+    activate PLAT
+
+    PLAT --> CTRL : PropertyTypeRepository
+    deactivate PLAT
+
+    CTRL -> ProType :get property type
+    activate ProType
+
+    ProType --> CTRL : Property Type
+    deactivate ProType
+
+    CTRL --> UI : propert Type List
+    deactivate CTRL
+
+@enduml
