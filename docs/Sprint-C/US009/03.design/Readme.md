@@ -6,24 +6,25 @@
 
 **SSD - Alternative 1 is adopted.**
 
-| Interaction ID | Question: Which class is responsible for...   | Answer               | Justification (with patterns)                                                                                 |
-|:--------------|:----------------------------------------------|:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		    | 	... interacting with the actor?              | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		       | 	... coordinating the US?                     | CreateTaskController | Controller                                                                                                    |
-| 			  		       | 	... instantiating a new Task?                | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		       | ... knowing the user using the system?        | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		       | 							                                       | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		       | 							                                       | Employee             | IE: knows its own data (e.g. email)                                                                           |
-|               |                                               |                      |                                                                                                               |
-| Step 2  		    | 							                                       |                      |                                                                                                               |
-| Step 3  		    | 	...saving the inputted data?                 | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		    | 	...knowing the task categories to show?      | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		    | 	... saving the selected category?            | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		    | 							                                       |                      |                                                                                                               |              
-| Step 7  		    | 	... validating all data (local validation)?  | Task                 | IE: owns its data.                                                                                            | 
-| 			  		       | 	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		       | 	... saving the created task?                 | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		    | 	... informing operation success?             | CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| Interaction ID | Question: Which class is responsible for...           | Answer                  | Justification (with patterns)                   |
+|:---------------|:------------------------------------------------------|:------------------------|:------------------------------------------------|
+| Step 1  		     | asks the list f properties?                           | Client                  | IE : Wants to see the list to choose a property |
+| 	Step 2		  		  | show the list to the client?	                         | CreateRequestUI         | Pure Fabrication                                |
+| 	Step 3		  		  | choose a property?                                    | Client                  | IE : Wants to choose the property to visit.     |
+| Step 4			  		  | request property visit data?							                   | CreateRequestController | Controller                                      |
+| 	Step 5		  		  | type property visit data?							                      | Client                  | IE: knows the data (e.g.date, time slot )       |
+| Step 6         | asks to confirm data?                                 | CreateRequestUI         | Pure Fabrication                                |
+| Step 7  		     | confirm data?							                                  |                         | IE: knows the data (e.g.date, time slot )       |
+| Step 8  		     | 	Confirm if the visit is possible?                    | CreateRequestUI         | Pure Fabrication                                |
+|                | Send a sucess mesage if the visit is possible?        | CreateRequestController | Controller                                      |
+| Step 9  		     | 	asks a new date and/or time slot in case of overlap? | CreateRequestUI         | Pure Fabrication                                |
+| Step 10  		    | 	submit new data?                                     | Client                  | IE: knows the data (e.g.date, time slot )       |
+| Step 11  		    | 	asks to confirm data? 					                          |          | Pure Fabrication                                |              
+| Step 12  		    | 	confirm data?                                        | Client                  | IE: knows the data (e.g.date, time slot )       | 
+| Step 13			  		 | 	Confirm if the visit is possible?                    | CreateRequestUI         | Pure Fabrication                                | 
+| 			  		        | 	Send a sucess mesage if the visit is possible?       | CreateRequestController            | Controller                                      | 
+| Step 14 		     | 	asks to confirm data?                                | CreateRequestUI          | Pure Fabrication                                | 
+| Step 15        |   informing operation success?                                                     |  CreateRequestUI                       | IE: is responsible for user interactions.       |
 
 ### Systematization ##
 

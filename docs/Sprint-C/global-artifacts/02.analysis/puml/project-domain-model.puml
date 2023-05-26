@@ -123,6 +123,13 @@ class State{
 stateAddress
 }
 
+class Message {
+    property
+    client's name
+    phoneNumber
+    date
+    time slot
+}
 
 
 Agent "1..*" -- "1..*" Request : receives a  >
@@ -165,5 +172,13 @@ City "1..*" -- "1" State : belongs >
 Location "*" -- "1" City
 
 Agency "1" -- "1..*" Property : lists >
+
+Agent "1" -- "1..*" Property : reservs a property >
+Agent "1" -- "1" Owner :  answer the visit request >
+Owner "1" -- "0..*" Message: send  >
+Message "0..*" -- "1" Agent :  are received by the >
+Agent "1" -- "1" Property : reserve a >
+
+
 
 @enduml

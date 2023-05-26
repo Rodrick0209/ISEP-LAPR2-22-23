@@ -1,9 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.repository.TypeBusinessRepository;
-import pt.ipp.isep.dei.esoft.project.ui.console.authorization.AuthenticationUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
+
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestController;
 
@@ -24,7 +22,7 @@ public class CreateRequestUI implements Runnable {
 
     private String propertyType;
 
-    private int area;
+    /*private int area;
 
     private int distance;
 
@@ -42,19 +40,21 @@ public class CreateRequestUI implements Runnable {
 
     private String sunExposure;
 
+
+
     private String street;
     private String city;
     private String district;
     private String state;
     private int zipCode;
-
+    */
     private List<String> photos = new ArrayList<>();
 
     private int contractDuraction;
 
     private int price;
-    private float rentprice;
-    private int n=0;
+    private int rentprice;
+
 
 
     private String answer = "yes";
@@ -278,23 +278,58 @@ public class CreateRequestUI implements Runnable {
         }
         if (requestType == "2"){
 
+            requestData2();
         }
 
     }
+
+
 
     private String displayAndSelectTypeBusiness() {
         List<TypeBusiness> typeBusiness = controller.getTypeBusiness();
         int answer = Utils.showAndSelectIndex(typeBusiness, "Type of business");
         return typeBusiness.get(answer).getName();
-
-
-
     }
 
     public void requestData1(){
         price = requestPrice();
         propertyType = requestPropertyType();
 
+    }
+
+    private void requestData2() {
+        contractDuraction = requestContractDuraction();
+        rentprice = requestRentPrice();
+        propertyType = requestPropertyType();
+    }
+
+    private int requestRentPrice() {
+        int input=0;
+        boolean valid = false;
+        do {
+            try{
+                input = Utils.readIntegerFromConsole("Rent price of property: ");
+                valid = true;
+            }catch (NullPointerException e){
+                System.out.println("Invalid rent price. Please enter a valid rent price.");
+            }
+        }while (!valid);
+        return input;
+    }
+
+
+    private int requestContractDuraction() {
+        int input=0;
+        boolean valid = false;
+        do {
+            try{
+                input = Utils.readIntegerFromConsole("Contract duration: ");
+                valid = true;
+            }catch (NullPointerException e){
+                System.out.println("Invalid contract duration. Please enter a valid contract duration.");
+            }
+        }while (!valid);
+        return input;
     }
 
     private String requestPropertyType() {
@@ -318,6 +353,8 @@ public class CreateRequestUI implements Runnable {
         }while (!valid);
         return input;
     }
+
+
 
 
 }
