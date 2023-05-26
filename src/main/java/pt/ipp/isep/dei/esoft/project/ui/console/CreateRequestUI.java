@@ -59,6 +59,10 @@ public class CreateRequestUI implements Runnable {
 
     private String answer = "yes";
 
+    public CreateRequestUI() {
+
+    }
+
     public void  Run() {
 
     }
