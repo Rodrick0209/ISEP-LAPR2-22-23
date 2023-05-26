@@ -64,6 +64,19 @@ public class PublishAnnouncementController {
         return newAnnouncement;
     }
 
+    public Optional<Announcement> createAnnouncement(String propertyLocation, String description, Commission commission){
+        Property land = getPropertyByLocation(propertyLocation);
+
+        Employee agent = getAgentFromSession();
+        Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(agent);
+
+        Optional<Announcement> newAnnouncement = Optional.empty();
+        if(organization.isPresent()){
+            newAnnouncement = organization.get().createAnnouncement(land, description, commission, agent);
+        }
+        return newAnnouncement;
+    }
+
     private Property getPropertyByLocation(String propertyLocation) {
         return getPropertyRepository().getPropertyByLocation(propertyLocation);
     }

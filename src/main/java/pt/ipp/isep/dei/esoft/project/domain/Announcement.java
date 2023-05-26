@@ -8,7 +8,10 @@ import java.util.Objects;
 public class Announcement {
     private final Property land;
     private final String description;
-    private final double commission;
+
+    private double commission = 0;
+
+    private Commission commission_v2;
     private final Employee agent;
 
     /**
@@ -23,6 +26,13 @@ public class Announcement {
         this.land = land;
         this.description = description;
         this.commission = commission;
+        this.agent = agent;
+    }
+
+    public Announcement(Property land, String description, Commission commission_v2, Employee agent) {
+        this.land = land;
+        this.description = description;
+        this.commission_v2 = commission_v2;
         this.agent = agent;
     }
 
