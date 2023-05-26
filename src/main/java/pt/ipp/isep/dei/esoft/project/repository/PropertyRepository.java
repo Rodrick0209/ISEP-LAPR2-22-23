@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Land;
 import pt.ipp.isep.dei.esoft.project.domain.Property;
 
 import java.util.ArrayList;
@@ -35,16 +34,16 @@ public class PropertyRepository {
     /**
      * Add optional.
      *
-     * @param land the property
+     * @param property the property
      * @return the optional
      */
     public Optional<Property> add(Property property){
 
-        Optional<Land> newProperty = Optional.empty();
+        Optional<Property> newProperty = Optional.empty();
         boolean operationSuccess = false;
 
         if(validateProperty(property)){
-            newProperty = Optional.of(property.clone());
+            newProperty = (Optional<Property>) Optional.of(property.clone());
             operationSuccess = properties.add(newProperty.get());
         }
 

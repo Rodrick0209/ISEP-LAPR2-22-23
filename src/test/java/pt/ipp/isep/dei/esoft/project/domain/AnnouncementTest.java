@@ -1,5 +1,5 @@
-/*package pt.ipp.isep.dei.esoft.project.domain;
-
+package pt.ipp.isep.dei.esoft.project.domain;
+/*
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

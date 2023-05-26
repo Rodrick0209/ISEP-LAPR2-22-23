@@ -277,7 +277,6 @@ public class CreateRequestUI implements Runnable {
             requestData1();
         }
         if (requestType == "2"){
-
             requestData2();
         }
 

@@ -58,6 +58,16 @@ public class Organization {
         return optionalValue;
     }
 
+    public Optional<Announcement> createAnnouncement(Property land, String description, Commission commission, Employee agent){
+        Optional<Announcement> optionalValue = Optional.empty();
+
+        Announcement announcement = new Announcement(land, description, commission, agent);
+
+        if(addAnnouncement(announcement)) {
+            optionalValue = Optional.of(announcement);
+        }
+        return optionalValue;
+    }
     /**
      *
      * @param id the id inputted

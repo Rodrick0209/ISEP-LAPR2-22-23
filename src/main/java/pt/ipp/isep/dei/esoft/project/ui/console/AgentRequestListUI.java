@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.domain.Property;
+import pt.ipp.isep.dei.esoft.project.domain.Request;
 
+import java.util.Collections;
 import java.util.List;
 
 public class AgentRequestListUI implements Runnable {
@@ -12,23 +14,12 @@ public class AgentRequestListUI implements Runnable {
                System.out.println("Please select a request:\n");//displayRequest(request));
 
     }
-    /*
-     private displayRequest(List<Request> requests){
-        if (numberOfRequests > 0){
-            while (numberOfRequests > 0){
-               
-                System.out.println(requests);
-                numberOfRequests--;
-            }
+
+     private void displayRequest(List<Request> requests){
+        int index = 1;
+        for(Request req : requests){
+            System.out.println(index + " "+ req);
+            index++;
         }
-        */
-
     }
-
-
-
-
-
-
-
-
+}
