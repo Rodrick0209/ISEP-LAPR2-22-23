@@ -27,20 +27,21 @@ public class ImportInformationController implements FileReader {
 
     public ImportInformationController() {
         getOwnerRepository();
+        getEmployeeRepository();
+        getOwnerRepository();
         getAuthenticationRepository();
-        getPropertyTypeRepository();
         getRequestRepository();
         getPropertyRepository();
-        getTypeOfBusinessRepository();
     }
 
-    public ImportInformationController(PropertyTypeRepository propertyTypeRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, PropertyRepository propertyRepository, RequestRepsitory requestRepository, AnnouncementRepository announcementRepository, AuthenticationRepository authenticationRepository, OwnerRepository ownerRepository) {
+    public ImportInformationController(PropertyTypeRepository propertyTypeRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, PropertyRepository propertyRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository, OwnerRepository ownerRepository) {
         this.propertyTypeRepository = propertyTypeRepository;
         this.typeBusinessRepository = typeBusinessRepository;
         this.employeeRepository = employeeRepository;
         this.propertyRepository = propertyRepository;
         this.requestRepository = requestRepository;
         this.announcementRepository = announcementRepository;
+        this.agencyRepository = agencyRepository;
         this.authenticationRepository = authenticationRepository;
         this.ownerRepository = ownerRepository;
     }
@@ -109,7 +110,15 @@ public class ImportInformationController implements FileReader {
             return announcementRepository;
         }
 
-        public boolean readFile(String fileName){
+        public AgencyRepository getAgencyRepository() {
+            if (agencyRepository == null) {
+                Repositories repositories = Repositories.getInstance();
+                agencyRepository = repositories.getAgencyRepository();
+            }
+            return agencyRepository;
+        }
+
+        public void readFile(String fileName){
             boolean operationSuccess = false;
             try {
                 Scanner sc = new Scanner(new File(fileName));
@@ -123,11 +132,9 @@ public class ImportInformationController implements FileReader {
                     while (sc.hasNextLine()) {
                         String line = sc.nextLine();
                         String[] information = line.split(";");
-                        int systemID = Integer.parseInt(information[0]);
-                        insertInformationAboutOwner(information);
-                        insertInformationAboutProperty(information);
-                        insertInformationAboutAnnouncement(information);
-                        insertInformationAboutAgency(information);
+                        createOwner(information);
+                        createProperty(information);
+                        createAgency(information);
                     }
                 }
                 sc.close();
@@ -135,25 +142,8 @@ public class ImportInformationController implements FileReader {
             } catch (FileNotFoundException e) {
                 System.out.println("File not Found");
             }
-            return operationSuccess;
         }
 
-
-        public Optional<Apartment> insertInformationAboutApartment (String[]information){
-            Owner owner = insertInformationAboutOwner(information);
-            int apartmentNumberOfBedrooms = Integer.parseInt(information[10]);
-            int apartmentNumberOfBathrooms = Integer.parseInt(information[11]);
-            int apartmentNumberParkingSpaces = Integer.parseInt(information[12]);
-            String apartmentCentralHeatingChar = information[13];
-            boolean apartmentCentralHeating = apartmentCentralHeatingChar.equalsIgnoreCase("Y");
-            String apartmentAirConditioningChar = information[14];
-            boolean apartmentAirConditioning = apartmentAirConditioningChar.equalsIgnoreCase("Y");
-            createApartment(propertyTypeName, propertyArea, propertyLocation, propertyDistanceFromCityCenter, apartmentNumberOfBedrooms, apartmentNumberOfBathrooms, apartmentNumberParkingSpaces, apartmentCentralHeating, apartmentAirConditioning, ownerEmailAddress);
-        }
-
-        public Optional<House> insertInformationAboutHouse (String[]information){
-
-        }
         public Optional<Owner> createOwner (String[] information){
             Optional<Owner> newOwner = Optional.empty();
             if(getOwnerRepository() != null) {
@@ -162,14 +152,49 @@ public class ImportInformationController implements FileReader {
             return newOwner;
         }
 
-        public Optional<Property> createProperty(String[] information) {
-            Optional<Property> newProperty = Optional.empty();
-            Owner owner = getOwnerRepository().getOwnerByEmail(information[4]);
-            switch(information[6]){
-                case "land":
-                    Optional<Land> createLand =
+        public Optional<Agency> createAgency (String[] information){
+        Optional<Agency> newAgency = Optional.empty();
+        if(getAge)
         }
 
+        public Optional<Property> createProperty(String[] information) {
+            Owner owner = getOwnerByEmail(information[4]);
+            Optional<Property> newProperty = Optional.empty();
+            switch (information[6]) {
+                case "land":
+                    if (getPropertyRepository() != null) {
+                        newProperty = Optional.of(getPropertyRepository().createLand());
+                    }
+                case "apartment":
+                    if (getPropertyRepository() != null) {
+                        newProperty = Optional.of(getPropertyRepository().createApartment());
+                    }
+                case "house":
+                    if (getPropertyRepository() != null) {
+                        newProperty = Optional.of(getPropertyRepository().createHouse());
+                    }
+            }
+            return newProperty;
+        }
+
+        public Optional<Request> createRequest(String[] information) {
+            Optional<Request> newRequest = Optional.empty();
+            Owner owner = getOwnerByEmail(information[4]);
+            Property property = getPropertyByLocation(information[8]);
+            if (getRequestRepository() != null) {
+                newRequest = Optional.of(getRequestRepository().createRequest());
+            }
+            return newRequest;
+        }
+
+        public Optional<Announcement> createAnnoouncement(String[] information){
+            Optional<Announcement> newAnnouncement = Optional.empty();
+            Request request = getRequestByPropertyLocation(information[4]);
+            if (getAnnouncementRepository() != null){
+                newAnnouncement = Optional.of(getAnnouncementRepository().createAnnouncement());
+            }
+            return newAnnouncement;
+        }
 
 
         private Employee getAdministratorFromSession() {
@@ -178,8 +203,14 @@ public class ImportInformationController implements FileReader {
         }
 
         private Owner getOwnerByEmail(String ownerEmailAddress){
-            OwnerRepository ownerRepository = getOwnerRepository();
-            return ownerRepository.getOwnerByEmail(ownerEmailAddress);
+            return getOwnerRepository().getOwnerByEmail(ownerEmailAddress);
         }
+
+        private Property getPropertyByLocation(String propertyLocation){
+            return getPropertyRepository().getPropertyByLocation(propertyLocation);
     }
+
+        private Request getRequestByPropertyLocation(String propertyLocation){
+            return getRequestRepository().getRequestByPropertyLocation(propertyLocation);
+        }
 }

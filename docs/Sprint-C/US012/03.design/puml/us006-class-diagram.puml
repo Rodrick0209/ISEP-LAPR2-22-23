@@ -42,25 +42,52 @@ class Agency{
 
 class AgencyRepository {
 
-    - createAgency(id, designation, location, phoneNumber, emailAddress,
+    + createAgency(id, designation, location, phoneNumber, emailAddress,
     - addAgency(agency)
     - validateAgency(agency)
+    + getAgencyByID(
 
 }
 
-class TaskCategoryRepository {
-    + getTaskCategoryByDescription(description)
+class PropertyRepository {
+
+    + createLand(type, area, location, distance)
+    + createApartment(type, area, location, distanceFromCityCentre, \nnumberBedrooms, numberBathrooms, \nnumberParkingSpaces, centralHeating, airConditioning)
+    + createHouse(type, area, location, distanceFromCityCentre, \nnumberBedrooms, numberBathrooms, \nnumberParkingSpaces, centralHeating, airConditioning, \nexistenceOfAnBasement, inhabitableLoft, sunExposure)
+    - addProperty(property)
+    - validateProperty(property)
+    + getPropertyByLocation(location)
+
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
+class OwnerRepository {
+    + createOwner(name, ccNumber, taxNumber, emailAddress, phoneNumber)
+    - addOwner(owner)
+    - validateOwner(owner)
+    + getOwnerByEmail(emailAddress)
 }
+
+class AgencyRepository {
+    + createAgency(id, designation, location, emailAddress, phoneNumber)
+    - addAgency(agency)
+    - validateAgency(agency)
+    + getAgencyByID(id)
+}
+
+class AnnouncementRepository {
+    +createAnnouncement(request, price, dateOfRequest)
+    -addAnnouncement(announcement)
+    -validateAnnouncement(announcement)
+}
+
 
 class Repositories {
     - Repositories()
     + getInstance() : Repositories
-    + getTaskCategoryRepository()
-    + getOrganizationRepository()
+    + getPropertyRepository()
+    + getAnnouncementRepository()
+    + getAgencyRepository()
+    + getOwnerRepository()
 }
 
 class CreateTaskController {
@@ -78,7 +105,7 @@ note right of CreateTaskController
     is retrieved from selected data
 end note
 
-note bottom of TaskCategoryRepository
+note bottom of OwnerRepository
     - used for displaying
     the category list
 end note
@@ -93,11 +120,11 @@ CreateTaskUI .> CreateTaskController
 
 CreateTaskController .> Repositories : repositories
 
-Repositories -> "1" TaskCategoryRepository
+Repositories -> "1" OwnerRepository
 
 CreateTaskController ..> TaskCategory
 CreateTaskController ..> OrganizationRepository : organizationRepository
-CreateTaskController ..> TaskCategoryRepository : TaskCategoryRepository
+CreateTaskController ..> OwnerRepository :OwnerRepository
 
 Repositories --> "1" OrganizationRepository
 
@@ -108,7 +135,7 @@ CreateTaskController ..> "1" Organization : organization
 CreateTaskController ..> ApplicationSession
 CreateTaskController ..> UserSession
 Task "*" --> "1" TaskCategory : taskCategory
-TaskCategoryRepository "1" --> "*" TaskCategory : taskCategory
+OwnerRepository "1" --> "*" TaskCategory : taskCategory
 Organization "1" --> "*" Task : tasks
 Task --> Employee : createdBy
 

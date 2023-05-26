@@ -12,10 +12,6 @@ hide methods
 
 title Domain Model
 
-class Organization {
-    description
-}
-
 class Information {
     file
 }
@@ -38,13 +34,13 @@ class Owner {
 }
 
 class Property  {
-    type
-    area
-    location
-    distanceFromCityCentre
-    requestedPrice
-    price
-    photos
+       type
+       area
+       location
+       distanceFromCityCentre
+       requestedPrice
+       price
+       photos
 }
 
 class Apartment{
@@ -74,8 +70,6 @@ class SystemAdministrator {
     phoneNumber
 }
 
-Organization "1" - "*" Agency : has >
-Organization "1" -- "1" SystemAdministrator : has >
 SystemAdministrator "1" -- "1" Information: imports >
 Information "1" -- "*" Agency: contains >
 Information "1" -- "*" Property: contains >
@@ -83,4 +77,5 @@ Information "1" -- "*" Owner: contains >
 Owner "1" -- "*" Property: owns >
 Property "1"-D-> "1..*" House :  can be a
 Property "1    "-U-> "1..* " Apartment :  can be an
+Property "1  "-U-> "1..* " Land :  can be an
 @enduml

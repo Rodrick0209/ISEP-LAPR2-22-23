@@ -32,12 +32,6 @@ password
 }
 
 class Land{
-type
-area
-location
-distance_from_the_city_centre
-requested_price
-photos
 
 }
 
@@ -131,6 +125,10 @@ class Message {
     time slot
 }
 
+class Information {
+file
+}
+
 
 Agent "1..*" -- "1..*" Request : receives a  >
 Agent "1..*" -- "1" AgentRequestList: selects a request from >
@@ -178,7 +176,10 @@ Agent "1" -- "1" Owner :  answer the visit request >
 Owner "1" -- "0..*" Message: send  >
 Message "0..*" -- "1" Agent :  are received by the >
 Agent "1" -- "1" Property : reserve a >
-
+SystemAdministrator "1" -- "1" Information: imports >
+Information "1" -- "*" Agency: contains >
+Information "1" -- "*" Property: contains >
+Information "1" -- "*" Owner: contains >
 
 
 @enduml
