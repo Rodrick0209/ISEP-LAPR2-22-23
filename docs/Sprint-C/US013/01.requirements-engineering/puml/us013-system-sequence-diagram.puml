@@ -7,12 +7,12 @@ title System Sequence Diagram (SSD) - Alternative One
 
 autonumber
 
-actor "Network manager" as Manager
+actor "Network Manager" as Manager
 participant ":System" as System
 
 activate Manager
 
-    Manager -> System : asks to create list all employees sorted by store
+    Manager -> System : asks to create list of all employees sorted by store
     activate System
 
         System --> Manager : displays list of all employees sorted by store

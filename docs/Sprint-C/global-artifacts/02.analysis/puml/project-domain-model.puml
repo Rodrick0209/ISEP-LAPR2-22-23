@@ -19,6 +19,7 @@ address
 email_address
 contact
 employeeRole
+assignedAgency
 }
 class Agent{
 id/email
@@ -114,7 +115,13 @@ id/email
 password
 }
 
+class City{
+cityName
+}
 
+class State{
+stateAddress
+}
 
 
 
@@ -150,7 +157,13 @@ Owner "1" -- "1..*" Agent : selects an  >
 AgencyManager "1" -- "1" Agency : manages >
 AgencyNetworkManager "1" -- "1..*" Agency : manages >
 
+Employee "1" -- "1" AgencyManager : can be >
+Employee "1" -- "1" AgencyNetworkManager : can be >
+Employee "1" -- "1" Agent : can be >
 
+City "1..*" -- "1" State : belongs >
+Location "*" -- "1" City
 
+Agency "1" -- "1..*" Property : lists >
 
 @enduml

@@ -21,9 +21,18 @@ address
 email_address
 contact
 employeeRole
+assignedAgency
 }
 
-class NetworkManager{
+class Agent{
+id/email
+password
+}
+
+class AgencyNetworkManager{
+}
+
+class AgencyManager{
 }
 
 class Agency{
@@ -44,9 +53,16 @@ class Property {
     photos
     }
 
-NetworkManager "1" -- "1" Employee : is >
-NetworkManager "1" -- "1..*" Agency : manages >
-Agency "1" --> "1..*" Property : lists >
-Employee "*" -- "1" Agency : is assigned to >
+
+AgencyManager "1" -- "1" Agency : manages >
+AgencyNetworkManager "1" -- "1..*" Agency : manages >
+
+Employee "1" -- "1" AgencyManager : can be >
+Employee "1" -- "1" AgencyNetworkManager : can be >
+Employee "1" -- "1" Agent : can be >
+
+Agency "1" -- "1..*" Property : lists >
+
+
 
 @enduml
