@@ -18,11 +18,11 @@ public class Land extends Property {
         super(location);
     }
 
-    public Land(String type, double area, String location, double distance, List<String> photos, Owner owner) {
+    public Land(PropertyType type, double area, String location, double distance, List<String> photos, Owner owner) {
         super(type, area, location, distance, photos, owner);
     }
 
-    public Land(String type, double area, String location, double distance, Owner owner) {
+    public Land(PropertyType type, double area, String location, double distance, Owner owner) {
         super(type, area, location, distance, owner);
     }
 

@@ -16,6 +16,10 @@ public class Employee {
     private Agency agency;
     private Employee administrator;
 
+    private static final String initialString = "n/a";
+
+    private static final int initialValue = 0;
+
     /**
      * Instantiates a new Employee.
      *
@@ -51,11 +55,14 @@ public class Employee {
      * @param email the email
      */
     public Employee(String email){
+        this.name = initialString;
         if(!email.contains("@")){
             throw new IllegalArgumentException("Invalid email address");
         } else {
             this.email = email;
         }
+        this.ccNumber = initialValue;
+        this.
     }
 
     public boolean equals(Object o) {

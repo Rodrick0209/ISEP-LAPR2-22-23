@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  */
 public class Property {
 
-    private String type;
+    private PropertyType type;
     private double area;
     private String location;
 
@@ -17,6 +18,8 @@ public class Property {
     private List<String> photos;
 
     private Owner owner;
+
+    private static final String initialValue = "n/a";
 
 
     /**
@@ -117,7 +120,7 @@ public class Property {
      * @param location the location
      * @param distance the distance
      */
-    public Property(String type, double area, String location, double distance, List<String> photos, Owner owner) {
+    public Property(PropertyType type, double area, String location, double distance, List<String> photos, Owner owner) {
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -129,7 +132,7 @@ public class Property {
         this.owner = owner;
     }
 
-    public Property(String type, double area, String location, double distance, Owner owner){
+    public Property(PropertyType type, double area, String location, double distance, Owner owner){
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -138,6 +141,7 @@ public class Property {
         this.location = location;
         this.distance = distance;
         this.owner = owner;
+        setPhotos(initialValue);
     }
 
     public Property clone() {

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Property;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +51,42 @@ public class PropertyRepository {
             newProperty = Optional.empty();
         }
         return newProperty;
+    }
+
+    public Optional<Property> createLand(PropertyType propertyType, double area, String location, double distance, Owner owner){
+        Optional<Property> optionalValue = Optional.empty();
+
+        Land land = new Land(propertyType, area, location, distance, owner);
+
+        if(addProperty(land)){
+            optionalValue = Optional.of(land);
+        }
+        return optionalValue;
+    }
+
+    public Optional<Property> createApartment(PropertyType propertyType, double area, String location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, Owner owner){
+        Optional<Property> optionalValue = Optional.empty();
+
+        Apartment apartment = new Apartment(propertyType, area, location, distance, owner, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, centralHeating, airConditioning);
+
+        if(addProperty(apartment)){
+            optionalValue = Optional.of(apartment);
+        }
+        return optionalValue;
+    }
+
+    public Optional<Property> createHouse(PropertyType propertyType, double area, String location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, Owner owner){
+        Optional<Property> optionalValue = Optional.empty();
+
+        House house = new House(propertyType, area, location, distance, owner, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces)
+    }
+
+    public boolean addProperty(Property property){
+        boolean success = false;
+        if(validateProperty(property)){
+            success = properties.add(property);
+        }
+        return success;
     }
 
     private boolean validateProperty(Property property){return !properties.contains(property);}

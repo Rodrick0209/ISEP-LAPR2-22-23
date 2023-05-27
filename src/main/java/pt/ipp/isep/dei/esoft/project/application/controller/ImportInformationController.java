@@ -1,4 +1,3 @@
-/*
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
@@ -26,6 +25,56 @@ public class ImportInformationController implements FileReader {
     private AuthenticationRepository authenticationRepository;
     private OwnerRepository ownerRepository;
 
+    private Optional<Owner> owner;
+
+    public Optional<Owner> getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Optional<Owner> owner) {
+        this.owner = owner;
+    }
+
+    public Optional<Property> getProperty() {
+        return property;
+    }
+
+    public void setProperty(Optional<Property> property) {
+        this.property = property;
+    }
+
+    public Optional<Agency> getAgency() {
+        return agency;
+    }
+
+    public void setAgency(Optional<Agency> agency) {
+        this.agency = agency;
+    }
+
+    public Optional<Request> getRequest() {
+        return request;
+    }
+
+    public void setRequest(Optional<Request> request) {
+        this.request = request;
+    }
+
+    public Optional<Announcement> getAnnouncement() {
+        return announcement;
+    }
+
+    public void setAnnouncement(Optional<Announcement> announcement) {
+        this.announcement = announcement;
+    }
+
+    private Optional<Property> property;
+
+    private Optional<Agency> agency;
+
+    private Optional<Request> request;
+
+    private Optional<Announcement> announcement;
+
     public ImportInformationController() {
         getOwnerRepository();
         getEmployeeRepository();
@@ -33,6 +82,8 @@ public class ImportInformationController implements FileReader {
         getAuthenticationRepository();
         getRequestRepository();
         getPropertyRepository();
+        getPropertyTypeRepository();
+        getTypeOfBusinessRepository();
     }
 
     public ImportInformationController(PropertyTypeRepository propertyTypeRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, PropertyRepository propertyRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository, OwnerRepository ownerRepository) {
@@ -74,7 +125,7 @@ public class ImportInformationController implements FileReader {
     public TypeBusinessRepository getTypeOfBusinessRepository() {
         if (typeBusinessRepository == null) {
             Repositories repositories = Repositories.getInstance();
-            //typeBusinessRepository = repositories.getTypeBussinessRepository();
+            typeBusinessRepository = repositories.getTypeBusinessRepository();
         }
         return typeBusinessRepository;
     }
@@ -120,7 +171,6 @@ public class ImportInformationController implements FileReader {
         }
 
         public void readFile(String fileName){
-            boolean operationSuccess = false;
             try {
                 Scanner sc = new Scanner(new File(fileName));
                 if (!fileName.contains(".csv")) {
@@ -133,18 +183,19 @@ public class ImportInformationController implements FileReader {
                     while (sc.hasNextLine()) {
                         String line = sc.nextLine();
                         String[] information = line.split(";");
-                        createOwner(information);
-                        //createProperty(information);
-                        //createAgency(information);
+                        owner = createOwner(information);
+                        property = createProperty(information);
+                        agency = createAgency(information);
+                        request = createRequest(information);
+                        announcement = createAnnoouncement(information);
                     }
                 }
                 sc.close();
-                operationSuccess = true;
             } catch (FileNotFoundException e) {
                 System.out.println("File not Found");
             }
         }
-//*
+
         public Optional<Owner> createOwner (String[] information){
             Optional<Owner> newOwner = Optional.empty();
             if(getOwnerRepository() != null) {
@@ -153,9 +204,13 @@ public class ImportInformationController implements FileReader {
             return newOwner;
         }
 
-        /*public Optional<Agency> createAgency (String[] information){
+    public Optional<Agency> createAgency (String[] information){
+        Employee administrator = getAdministratorFromSession();
         Optional<Agency> newAgency = Optional.empty();
-        if(getAge)
+        if(getAgencyRepository() != null){
+            newAgency = getAgencyRepository().createAgency(Integer.parseInt(information[25]), information[26], information[27], information[29], information[28], administrator);
+        }
+        return newAgency;
         }
 
         public Optional<Property> createProperty(String[] information) {
@@ -216,5 +271,4 @@ public class ImportInformationController implements FileReader {
         }
 }
 
- */
 
