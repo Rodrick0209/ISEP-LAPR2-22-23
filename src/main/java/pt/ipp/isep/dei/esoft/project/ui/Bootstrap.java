@@ -71,6 +71,8 @@ public class Bootstrap implements Runnable {
         //get role repository
         RoleRepository roleRepository = Repositories.getInstance().getRoleRepository();
         roleRepository.add(new Role("Agent"));
+        roleRepository.add(new Role("Client"));
+
     }
 
     private void addUsers() {
@@ -79,6 +81,7 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_AGENT, AuthenticationController.ROLE_AGENT);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_CLIENT, AuthenticationController.ROLE_CLIENT);
 
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN);
         authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);

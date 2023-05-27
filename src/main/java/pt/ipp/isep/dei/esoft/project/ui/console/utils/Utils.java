@@ -137,4 +137,10 @@ public class Utils {
 
         return value - 1;
     }
+
+    public static String readStringFromConsole(String s) {
+
+        return s;
+    }
+
 }
