@@ -36,5 +36,10 @@ public class PropertyType {
     public String getName() {
             return propertyType;
         }
+
+    @Override
+    public String toString() {
+        return propertyType ;
     }
+}
 

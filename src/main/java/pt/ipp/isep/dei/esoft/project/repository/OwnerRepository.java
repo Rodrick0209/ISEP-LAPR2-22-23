@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.repository;
+/*package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Agency;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
@@ -62,3 +62,4 @@ public class OwnerRepository {
 
     private boolean validateOwner(Owner owner){return !owners.contains(owner); }
 }
+*/

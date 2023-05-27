@@ -34,7 +34,7 @@ public class Repositories {
      */
     PropertyTypeRepository propertyTypeRepository = new PropertyTypeRepository();
 
-    OwnerRepository ownerRepository = new OwnerRepository();
+    //OwnerRepository ownerRepository = new OwnerRepository();
 
     TypeBusinessRepository typeBusinessRepository = new TypeBusinessRepository();
     EmployeeRepository employeeRepository = new EmployeeRepository();
@@ -103,7 +103,7 @@ public class Repositories {
         return propertyTypeRepository;
     }
 
-    public OwnerRepository getOwnerRepository() { return ownerRepository; }
+    //public OwnerRepository getOwnerRepository() { return ownerRepository; }
 
     public EmployeeRepository getEmployeeRepository() { return employeeRepository; }
 

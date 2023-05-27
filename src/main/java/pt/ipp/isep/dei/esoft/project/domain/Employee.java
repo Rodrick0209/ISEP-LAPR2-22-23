@@ -94,4 +94,7 @@ public class Employee {
     public Employee clone() {
         return new Employee(this.email);
     }
+    public Role getRole(){
+        return role;
+    }
 }

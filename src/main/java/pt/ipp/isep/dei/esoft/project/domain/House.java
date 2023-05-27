@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.List;
-
 /**
  * The type House.
  */
@@ -19,8 +17,8 @@ public class House extends Property {
     private String sunExposure;
 
 
-    public House(PropertyType propertyType, double area, Location location, double distance, List<String> photos, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure) {
-        super(propertyType, area, String.valueOf(location), distance, photos, owner);
+    public House(String propertyType, int area, Location location, int distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, int nParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
+        super(propertyType, area, String.valueOf(location), distance );
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -31,8 +29,8 @@ public class House extends Property {
         this.sunExposure = sunExposure;
     }
 
-    public House(PropertyType propertyType, double area, Location location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, Owner owner) {
-        super(propertyType, area, String.valueOf(location), distance, owner);
+    public House(PropertyType propertyType, int area, Location location, int distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces) {
+        super(propertyType, area, String.valueOf(location), distance);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -44,8 +42,8 @@ public class House extends Property {
 
     }
 
-    public House(String house, int area, Location location, int distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(house, area, String.valueOf(location), distance, owner);
+    public House(String house, int area, Location location, int distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(house, area, String.valueOf(location), distance );
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;

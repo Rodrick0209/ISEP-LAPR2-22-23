@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The type Property.
@@ -16,7 +17,7 @@ public class Property {
 
     private List<String> photos;
 
-    private Owner owner;
+    //private Owner owner;
 
     private static final String initialValue = "n/a";
 
@@ -48,9 +49,8 @@ public class Property {
      * @param area     the area
      * @param location
      * @param distance the distance
-     * @param owner
      */
-    public Property(String house, int area, String location, int distance, Owner owner) {
+    public Property(String house, int area, String location, int distance) {
         this.area = area;
         this.distance = distance;
     }
@@ -122,7 +122,7 @@ public class Property {
      * @param location the location
      * @param distance the distance
      */
-    public Property(PropertyType type, double area, String location, double distance, List<String> photos, Owner owner) {
+    public Property(PropertyType type, double area, String location, double distance, List<String> photos) {
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -131,10 +131,10 @@ public class Property {
         this.location = location;
         this.distance = distance;
         this.photos = photos;
-        this.owner = owner;
+
     }
 
-    public Property(PropertyType type, double area, String location, double distance, Owner owner){
+    public Property(PropertyType type, double area, String location, double distance){
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -142,12 +142,12 @@ public class Property {
         }
         this.location = location;
         this.distance = distance;
-        this.owner = owner;
+
         setPhotos(initialValue);
     }
 
     public Property clone() {
-        return new Property(this.type, this.area, this.location, this.distance, this.photos, this.owner);
+        return new Property(this.type, this.area, this.location, this.distance, this.photos);
     }
 
     /**
@@ -167,5 +167,9 @@ public class Property {
                 "Area: %.2f%n" +
                 "Location: %s%n" +
                 "Distance from City Centre: %.2f%n", type, area, location, distance);
+    }
+
+    public Optional<Property> createProperty() {
+        return createProperty();
     }
 }

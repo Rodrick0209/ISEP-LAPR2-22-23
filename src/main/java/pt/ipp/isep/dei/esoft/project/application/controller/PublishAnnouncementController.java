@@ -88,5 +88,6 @@ public class PublishAnnouncementController {
         return new Employee(email.getEmail());
     }
 
-    public List<Property> getProperties(){return getPropertyRepository().getProperties();}
+    public List<Property> getProperties(){
+        return getPropertyRepository().getProperties();}
 }
