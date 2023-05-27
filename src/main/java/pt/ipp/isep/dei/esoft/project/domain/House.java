@@ -19,8 +19,8 @@ public class House extends Property {
     private String sunExposure;
 
 
-    public House(String typeName, double area, String location, double distance, List<String> photos, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure) {
-        super(typeName, area, location, distance, photos, owner);
+    public House(PropertyType propertyType, double area, Location location, double distance, List<String> photos, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure) {
+        super(propertyType, area, String.valueOf(location), distance, photos, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -30,6 +30,33 @@ public class House extends Property {
         this.existinhabitableLoft = existinhabitableLoft;
         this.sunExposure = sunExposure;
     }
+
+    public House(PropertyType propertyType, double area, Location location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, Owner owner) {
+        super(propertyType, area, String.valueOf(location), distance, owner);
+        this.n_bedrooms = n_bedrooms;
+        this.n_bathrooms = n_bathrooms;
+        this.n_parkingSpaces = n_parkingSpaces;
+        this.centralHeating = centralHeating;
+        this.airConditioning = airConditioning;
+        this.existBasement = existBasement;
+        this.existinhabitableLoft = existinhabitableLoft;
+        this.sunExposure = sunExposure;
+
+    }
+
+    public House(String house, int area, Location location, int distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(house, area, String.valueOf(location), distance, owner);
+        this.n_bedrooms = n_bedrooms;
+        this.n_bathrooms = n_bathrooms;
+        this.n_parkingSpaces = n_parkingSpaces;
+        this.centralHeating = centralHeating;
+        this.airConditioning = airConditioning;
+        this.existBasement = existBasement;
+        this.existinhabitableLoft = existinhabitableLoft;
+        this.sunExposure = sunExposure;
+
+    }
+
 
     public int getN_bedrooms() {
         return n_bedrooms;

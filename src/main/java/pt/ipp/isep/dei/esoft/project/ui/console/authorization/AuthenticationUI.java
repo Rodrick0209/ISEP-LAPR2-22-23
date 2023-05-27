@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.authorization;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.AdminUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.menu.AgentUI;
+//import pt.ipp.isep.dei.esoft.project.ui.console.menu.AgentUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.OwnerUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -48,7 +48,7 @@ public class AuthenticationUI implements Runnable {
     private List<MenuItem> getMenuItemForRoles() {
         List<MenuItem> rolesUI = new ArrayList<>();
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_ADMIN, new AdminUI()));
-        rolesUI.add(new MenuItem(AuthenticationController.ROLE_AGENT, new AgentUI()));
+        //rolesUI.add(new MenuItem(AuthenticationController.ROLE_AGENT, new AgentUI()));
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_OWNER, new OwnerUI()));
 
         //TODO: Complete with other user roles and related RoleUI

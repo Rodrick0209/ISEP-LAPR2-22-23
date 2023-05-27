@@ -6,6 +6,9 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 
 public class Bootstrap implements Runnable {
 
+    private PropertyType House;
+    PropertyType Land;
+
     //Add some task categories to the repository as bootstrap
     public void run() {
         addRoles();
@@ -14,6 +17,7 @@ public class Bootstrap implements Runnable {
         addUsers();
         addProperties();
         addTypeBusiness();
+        addPropertyType();
     }
 
     private void addOrganization() {
@@ -45,7 +49,9 @@ public class Bootstrap implements Runnable {
     // get agency Proprety
     
     PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-    propertyRepository.add(new Land("House", 123, "Lol Street", 23, new Owner("owner@this.app")));
+
+
+        //propertyRepository.add(new Land( Land, 123, "Lol Street", 23, new Owner("owner@this.app")));
 
     }
 
@@ -74,6 +80,15 @@ public class Bootstrap implements Runnable {
 
         typeBusinessRepository.add(new TypeBusiness("Sell"));
         typeBusinessRepository.add(new TypeBusiness("Rent"));
+    }
+
+    private void addPropertyType(){
+        PropertyTypeRepository propertyTypeRepository = Repositories.getInstance().getPropertyTypeRepository();
+
+        propertyTypeRepository.addPropertyTypes(new PropertyType("Land"));
+        propertyTypeRepository.addPropertyTypes(new PropertyType("Apartment"));
+        propertyTypeRepository.addPropertyTypes(new PropertyType("House"));
+
     }
 
 

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.application.controller;
+/*package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
@@ -26,6 +26,7 @@ public class ImportInformationController implements FileReader {
     private OwnerRepository ownerRepository;
 
     private Optional<Owner> owner;
+    private String propertyType;
 
     public Optional<Owner> getOwner() {
         return owner;
@@ -220,6 +221,8 @@ public class ImportInformationController implements FileReader {
                 case "land":
                     if (getPropertyRepository() != null) {
                         newProperty = Optional.of(getPropertyRepository().createLand());
+
+
                     }
                 case "apartment":
                     if (getPropertyRepository() != null) {
@@ -229,6 +232,10 @@ public class ImportInformationController implements FileReader {
                     if (getPropertyRepository() != null) {
                         newProperty = Optional.of(getPropertyRepository().createHouse());
                     }
+
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + information[6]);
             }
             return newProperty;
         }
@@ -270,5 +277,5 @@ public class ImportInformationController implements FileReader {
             return getRequestRepository().getRequestByPropertyLocation(propertyLocation);
         }
 }
-
+*/
 

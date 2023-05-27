@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.List;
 
@@ -45,10 +44,13 @@ public class Property {
     /**
      * Instantiates a new Property.
      *
+     * @param house
      * @param area     the area
+     * @param location
      * @param distance the distance
+     * @param owner
      */
-    public Property(int area, int distance) {
+    public Property(String house, int area, String location, int distance, Owner owner) {
         this.area = area;
         this.distance = distance;
     }

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.console.menu;
+/*package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 import pt.ipp.isep.dei.esoft.project.ui.console.AgentRequestListUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementUI;
@@ -31,3 +31,4 @@ public class AgentUI implements Runnable {
     }
 }
 
+*/

@@ -63,9 +63,6 @@ public class CreateRequestUI implements Runnable {
 
     }
 
-    public void  Run() {
-
-    }
 /*List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Sell", (Runnable) new TypeBusinessRepository()));
         options.add(new MenuItem("Rent", (Runnable) new TypeBusinessRepository()));
@@ -283,9 +280,25 @@ public class CreateRequestUI implements Runnable {
         if (requestType == "2"){
             requestData2();
         }
+        propertyType = displayAndSelectTypeProperty();
+        if ( propertyType == "Land"){
+            Land land = controller.getLand();
+        }
+        if ( propertyType == "Apartment"){
+            Apartment apartment = controller.getApartment();
+        }
+        if ( propertyType == "House"){
+            House house = controller.getHouse();
+        }
+
 
     }
 
+    private String displayAndSelectTypeProperty() {
+        List<PropertyType> propertyTypes = controller.getPropertyType();
+        int answer = Utils.showAndSelectIndex(propertyTypes, "Type of property:");
+        return propertyTypes.get(answer).getName();
+    }
 
 
     private String displayAndSelectTypeBusiness() {

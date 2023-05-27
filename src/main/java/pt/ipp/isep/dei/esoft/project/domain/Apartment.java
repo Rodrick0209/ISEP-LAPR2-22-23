@@ -10,7 +10,7 @@ public class Apartment extends Property {
 
     private String type;
     private double area;
-    private String location;
+    private Location location;
 
     private double distance;
 
@@ -32,15 +32,14 @@ public class Apartment extends Property {
      * @param area            the area
      * @param location        the location
      * @param distance        the distance
-     * @param photos          the photos
      * @param n_bedrooms      the n bedrooms
      * @param n_bathrooms     the n bathrooms
      * @param n_parkingSpaces the n parking spaces
      */
 
 
-    public Apartment(PropertyType typeName, double area, String location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(typeName, area, location, distance, owner);
+    public Apartment(PropertyType typeName, double area, Location location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(typeName, area, String.valueOf(location), distance, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -48,8 +47,8 @@ public class Apartment extends Property {
         this.airConditioning = airConditioning;
     }
 
-    public Apartment(PropertyType typeName, double area, String location, double distance, List<String> photos, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(typeName, area, location, distance, photos, owner);
+    public Apartment(PropertyType typeName, double area, Location location, double distance, List<String> photos, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(typeName, area, String.valueOf(location), distance, photos, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
