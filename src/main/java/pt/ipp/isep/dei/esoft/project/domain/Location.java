@@ -1,12 +1,12 @@
-/*
+
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
-*/
+
 /**
  * The type Location.
- *//*
+ */
 
 public class Location {
     private String street;
@@ -15,7 +15,7 @@ public class Location {
     private String state;
     private int zipCode;
 
-    */
+
 /**
      * Instantiates a new Location.
      *
@@ -24,7 +24,7 @@ public class Location {
      * @param district the district
      * @param state    the state
      * @param zipCode  the zip code
-     *//*
+     */
 
     public Location(String street, String city, String district, String state, int zipCode){
         this.street = street;
@@ -39,111 +39,111 @@ public class Location {
 
     }
 
-    */
+
 /**
      * Sets street.
      *
      * @param street the street
-     *//*
+     */
 
     public void setStreet(String street) {
         this.street = street;
     }
 
-    */
+
 /**
      * Sets city.
      *
      * @param city the city
-     *//*
+     */
 
     public void setCity(String city) {
         this.city = city;
     }
 
-    */
+
 /**
      * Sets district.
      *
      * @param district the district
-     *//*
+     */
 
     public void setDistrict(String district) {
         this.district = district;
     }
 
-    */
+
 /**
      * Sets state.
      *
      * @param state the state
-     *//*
+     */
 
     public void setState(String state) {
         this.state = state;
     }
 
-    */
+
 /**
      * Sets zip code.
      *
      * @param zipCode the zip code
-     *//*
+     */
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
-    */
+
 /**
      * Gets street.
      *
      * @return the street
-     *//*
+     */
 
     public String getStreet() {
         return street;
     }
 
-    */
+
 /**
      * Gets city.
      *
      * @return the city
-     *//*
+     */
 
     public String getCity() {
         return city;
     }
 
-    */
+
 /**
      * Gets district.
      *
      * @return the district
-     *//*
+     */
 
     public String getDistrict() {
         return district;
     }
 
-    */
+
 /**
      * Gets state.
      *
      * @return the state
-     *//*
+     */
 
     public String getState() {
         return state;
     }
 
-    */
+
 /**
      * Gets zip code.
      *
      * @return the zip code
-     *//*
+     */
 
     public int getZipCode() {
         return zipCode;
@@ -173,4 +173,4 @@ public class Location {
     }
 
 }
-*/
+

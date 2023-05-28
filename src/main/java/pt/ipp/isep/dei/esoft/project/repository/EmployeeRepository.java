@@ -58,4 +58,7 @@ public class EmployeeRepository {
 
     private boolean validateEmployee(Employee employee){return !employees.contains(employee);}
 
+    public List<Employee> getEmployee() {
+        return List.copyOf(employees);
+    }
 }

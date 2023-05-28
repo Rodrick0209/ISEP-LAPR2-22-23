@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -7,6 +8,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestControl
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -22,7 +24,9 @@ public class CreateRequestUI implements Runnable {
 
     private String propertyType;
 
-    /*private int area;
+    private String agent;
+
+    private int area;
 
     private int distance;
 
@@ -47,7 +51,7 @@ public class CreateRequestUI implements Runnable {
     private String district;
     private String state;
     private int zipCode;
-    */
+
     private List<String> photos = new ArrayList<>();
 
     private int contractDuraction;
@@ -56,255 +60,114 @@ public class CreateRequestUI implements Runnable {
     private int rentprice;
 
 
-
+    private CreateRequestController getController() {
+        return controller;
+    }
     private String answer = "yes";
 
-    public CreateRequestUI() {
-
-    }
-
-    public void  Run() {
-
-    }
-/*List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Sell", (Runnable) new TypeBusinessRepository()));
-        options.add(new MenuItem("Rent", (Runnable) new TypeBusinessRepository()));
-        int option = 0;
-        do {
-            option = Utils.showAndSelectIndex(options, "\n\nType of Request:");
-
-            if ((option >= 0) && (option < options.size())) {
-                options.get(option).run();
-            }
-        } while (option != -1);
-
-        if (("1".equals(options))) {
-            Sell sell = new Sell();
-        }
-        if ("2".equals(option)) {
-            Rent rent = new Rent();
-
-        } else {
-            System.out.println("Insert a valid number");
-        }
-        */
 
 
-    /*
-    CreateRequestController controller = new CreateRequestController();
-    public void run() {
-            // Property Type data verification:
-            requestType = Utils.readLineFromConsole("Choose a type: sell or rent");
-            switch(requestType) {
+    /*public CreateRequestUI() {
 
-                case "sell":
-                    price = Utils.readIntegerFromConsole("Price of the property");
-                    do {
-                        photos.add(Utils.readLineFromConsole("photo URL"));
-                        answer = Utils.readLineFromConsole("Do you want more photos?");
-                        n++;
-                    } while (answer.equals("yes") & n <= 30);
-
-                    propertyType = Utils.readLineFromConsole("Property Type(land, apartment or house):");
-                    switch (propertyType) {
-                        case "land":
-                            area = Utils.readIntegerFromConsole("Area in squad meters");
-                            street = Utils.readLineFromConsole("Street");
-                            city = Utils.readLineFromConsole("City");
-                            district = Utils.readLineFromConsole("District");
-                            state = Utils.readLineFromConsole("State");
-                            zipCode = Utils.readIntegerFromConsole("Zipcode");
-                            distance = Utils.readIntegerFromConsole("Distance from the city center");
-                            System.out.println("Request Type: " + requestType);
-                            System.out.println("Property Type: " + propertyType);
-                            System.out.println("Price: " + price + " $");
-                            System.out.println("Area: " + area + "m2");
-                            System.out.println("Location: " + street + "," + city + "," + district + "," + state + "," + zipCode);
-                            System.out.println("Distance: " + distance + " km");
-                            break;
-                        case "apartment":
-                            area = Utils.readIntegerFromConsole("Area in squad meters");
-                            street = Utils.readLineFromConsole("Street");
-                            city = Utils.readLineFromConsole("City");
-                            district = Utils.readLineFromConsole("District");
-                            state = Utils.readLineFromConsole("State");
-                            zipCode = Utils.readIntegerFromConsole("Zipcode");
-                            distance = Utils.readIntegerFromConsole("Distance from the city center");
-                            n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
-                            n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
-                            n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment(central heating and/or air conditioning)");
-                            System.out.println();
-                            System.out.println("Request Type: " + requestType);
-                            System.out.println("Property Type: " + propertyType);
-                            System.out.println("Price: " + price + "$");
-                            System.out.println("Area: " + area + "m2");
-                            System.out.println("Location: " + street + "," + city + "," + district + "," + state + "," + zipCode);
-                            System.out.println("Distance: " + distance + "km");
-                            System.out.println("Number of bedrooms: " + n_bedrooms);
-                            System.out.println("Number of bathrooms: " + n_bathrooms);
-                            System.out.println("Number of parking spaces: " + n_parkingSpaces);
-                            System.out.println("Avaiable equipment: " + avaiableEquipment);
-                            break;
-
-                        case "house":
-                            area = Utils.readIntegerFromConsole("Area in squad meters");
-                            street = Utils.readLineFromConsole("Street");
-                            city = Utils.readLineFromConsole("City");
-                            district = Utils.readLineFromConsole("District");
-                            state = Utils.readLineFromConsole("State");
-                            zipCode = Utils.readIntegerFromConsole("Zipcode");
-                            distance = Utils.readIntegerFromConsole("Distance from the city center");
-                            n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
-                            n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
-                            n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("Name of the equipment(central heating and/or air conditioning)");
-                            existBasement = Boolean.parseBoolean(Utils.readLineFromConsole("Has a basement?(true or false)"));
-                            inhabitableLoft = Boolean.parseBoolean(Utils.readLineFromConsole("Has a inhabitable loft?(true or false)"));
-                            sunExposure = Utils.readLineFromConsole("Direction of the sun exposure(N , S , W or E ):");
-                            System.out.println();
-                            System.out.println("Request Type: " + requestType);
-                            System.out.println("Property Type: " + propertyType);
-                            System.out.println("Price: " + price + "$");
-                            System.out.println("Area: " + area + "m2");
-                            System.out.println("Location: " + street + "," + city + "," + district + "," + state + "," + zipCode);
-                            System.out.println("Distance: " + distance + "km");
-                            System.out.println("Number of bedrooms: " + n_bedrooms);
-                            System.out.println("Number of bathrooms: " + n_bathrooms);
-                            System.out.println("Number of parking spaces: " + n_parkingSpaces);
-                            System.out.println("Avaiable equipment: " + avaiableEquipment);
-                            System.out.println("Existence of a Basement: " + existBasement);
-                            System.out.println("Existence of an inhabitable loft: " + inhabitableLoft);
-                            System.out.println("Sun exposure: " + sunExposure);
-                            System.out.println();
-                            break;
-
-                    }
-                    break;
-
-                case "rent":
-                    contractDuraction = Utils.readIntegerFromConsole("Contract duraction in months:");
-                    rentprice = Utils.readIntegerFromConsole("Rent price:");
-
-                    do {
-                        photos.add(Utils.readLineFromConsole("photo URL"));
-                        answer = Utils.readLineFromConsole("Do you want more photos?");
-                        n++;
-                    }while (answer.equals("yes") & n<=30);
-
-                    propertyType = Utils.readLineFromConsole("Property Type(land, apartment or house):");
-                    switch (propertyType) {
-                        case "land" :
-                            area = Utils.readIntegerFromConsole("Area in squad meters");
-                            street = Utils.readLineFromConsole("Street");
-                            city = Utils.readLineFromConsole("City");
-                            district = Utils.readLineFromConsole("District");
-                            state = Utils.readLineFromConsole("State");
-                            zipCode = Utils.readIntegerFromConsole("Zipcode");
-                            distance = Utils.readIntegerFromConsole("Distance from the city center");
-                            System.out.println("Request Type: " + requestType);
-                            System.out.println("Property Type: " + propertyType);
-                            System.out.println("Contract duration: " + contractDuraction + " months");
-                            System.out.println("Rent price: " + rentprice + "$");
-                            System.out.println("Area: " + area + "m2");
-                            System.out.println("Location: " + street + "," + city + "," + district + "," + state + "," + zipCode);
-                            System.out.println("Distance: " + distance + "km");
-                            break;
-                        case "apartment":
-                            area = Utils.readIntegerFromConsole("Area in squad meters");
-                            street = Utils.readLineFromConsole("Street");
-                            city = Utils.readLineFromConsole("City");
-                            district = Utils.readLineFromConsole("District");
-                            state = Utils.readLineFromConsole("State");
-                            zipCode = Utils.readIntegerFromConsole("Zipcode");
-                            distance = Utils.readIntegerFromConsole("Distance from the city center");
-                            n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
-                            n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
-                            n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment(central heating and/or air conditioning): ");
-                            System.out.println();
-                            System.out.println("Request Type: " + requestType);
-                            System.out.println("Property Type: " + propertyType);
-                            System.out.println("Contract duration: " + contractDuraction + " months");
-                            System.out.println("Rent price: " + rentprice + " $");
-                            System.out.println("Area: " + area + "m2");
-                            System.out.println("Location: " + street + "," + city + "," + district + "," + state + "," + zipCode);
-                            System.out.println("Distance: " + distance + "km");
-                            System.out.println("Number of bedrooms: " + n_bedrooms);
-                            System.out.println("Number of bathrooms: " + n_bathrooms);
-                            System.out.println("Number of parking spaces: " + n_parkingSpaces);
-                            System.out.println("Avaiable equipment: " + avaiableEquipment);
-                            break;
-
-                        case "house":  area = Utils.readIntegerFromConsole("Area in squad meters");
-                            street = Utils.readLineFromConsole("Street");
-                            city = Utils.readLineFromConsole("City");
-                            district = Utils.readLineFromConsole("District");
-                            state = Utils.readLineFromConsole("State");
-                            zipCode =Utils.readIntegerFromConsole("Zipcode");
-                            distance = Utils.readIntegerFromConsole("Distance from the city center");
-                            n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
-                            n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
-                            n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-                            avaiableEquipment = Utils.readLineFromConsole("name of the equipment(central heating and/or air conditioning):");
-                            existBasement = Boolean.parseBoolean(Utils.readLineFromConsole("Has a basement?(true or false"));
-                            inhabitableLoft = Boolean.parseBoolean(Utils.readLineFromConsole("Has a inhabitable loft?(true or false)"));
-                            sunExposure = Utils.readLineFromConsole("Direction of the sun exposure( N,S , W or E)");
-                            System.out.println();
-                            System.out.println("Request Type: " + requestType);
-                            System.out.println("Property Type: " + propertyType);
-                            System.out.println("Contract duration: " + contractDuraction);
-                            System.out.println("Rent price: " + rentprice + " $");
-                            System.out.println("Area: " + area + "m2");
-                            System.out.println("Location: " + street + "," + city + "," + district + "," + state +"," + zipCode);
-                            System.out.println("Distance: " + distance + " km");
-                            System.out.println("Number of bedrooms: " + n_bedrooms);
-                            System.out.println("Number of bathrooms: " + n_bathrooms);
-                            System.out.println("Number of parking spaces: " + n_parkingSpaces);
-                            System.out.println("Avaiable equipment: " + avaiableEquipment);
-                            System.out.println("Existence of a Basement: " + existBasement);
-                            System.out.println("Existence of an inhabitable loft: " + inhabitableLoft);
-                            System.out.println("Sun exposure: " + sunExposure);
-                            System.out.println();
-
-                    }
-
-            }
     }*/
-
 
     @Override
     public void run() {
-        System.out.println("Create a request");
+        //agent = displayAndSelectAgent();
         requestType = displayAndSelectTypeBusiness();
-        if (requestType == "1"){
+        propertyType = displayAndSelectTypeProperty();
+        if ( propertyType == "Land" && requestType=="Sell"){
             requestData1();
+            Land land = controller.getSellLand();
+            System.out.println("Price :" + price + "$");
         }
-        if (requestType == "2"){
+        if ( propertyType == "Land" && requestType=="Rent"){
             requestData2();
+            requestData3();
+            Land land = controller.getRentLand();
+            System.out.println("Rent price :" + rentprice + "$");
+            System.out.println("Contract duration :" + contractDuraction + "months");
+        }
+        if ( propertyType == "Apartment" && requestType == "Sell"){
+            requestData1();
+            Apartment apartment = controller.getSellApartment();
+            System.out.println("Price :" + price + "$");
+        }
+        if ( propertyType == "Apartment" && requestType == "Rent"){
+            requestData2();
+            requestData3();
+            Apartment apartment = controller.getRentApartment();
+            System.out.println("Rent price :" + rentprice + "$");
+            System.out.println("Contract duration :" + contractDuraction + "months");
+        }
+        if ( propertyType == "House" && requestType =="Sell"){
+            requestData1();
+            House house = controller.getSellHouse();
+            System.out.println("Price :" + price + "$");
+        }
+        if ( propertyType == "House" && requestType =="Rent"){
+            requestData1();
+            House house = controller.getRentHouse();
+            System.out.println("Rent price :" + rentprice + "$");
+            System.out.println("Contract duration :" + contractDuraction + "months");
         }
 
-    }
+ }
 
+    /*private void submitOrNot() {
+        boolean answer = Utils.confirm("Submit Data? (type yes or no)");
+        if(answer){
+            submitData();
+        } else run();
+        */
+
+
+
+    private void submitData() {
+        List<Property> properties = (List<Property>) getController().createProperty();
+
+        }
+
+
+
+
+
+    /*private String displayAndSelectAgent() {
+        List<Employee> employees = controller.getAgents();
+        int answer = Utils.showAndSelectIndex(employees, "Agent:");
+        return employees.get(answer).getRole().getName();
+    }*/
+
+
+
+    private String displayAndSelectTypeProperty() {
+        List<PropertyType> propertyTypes = controller.getPropertyType();
+        int answer = Utils.showAndSelectIndex(propertyTypes, "Type of property:");
+        return propertyTypes.get(answer).getName();
+    }
 
 
     private String displayAndSelectTypeBusiness() {
         List<TypeBusiness> typeBusiness = controller.getTypeBusiness();
-        int answer = Utils.showAndSelectIndex(typeBusiness, "Type of business");
+        int answer = Utils.showAndSelectIndex(typeBusiness, "Type of business:");
         return typeBusiness.get(answer).getName();
     }
 
-    public void requestData1(){
+    public int requestData1(){
         price = requestPrice();
-        propertyType = requestPropertyType();
-
+        return price;
     }
 
-    private void requestData2() {
+    private int requestData2() {
         contractDuraction = requestContractDuraction();
-        rentprice = requestRentPrice();
-        propertyType = requestPropertyType();
+        return contractDuraction;
     }
+
+    private int requestData3() {
+        rentprice = requestRentPrice();
+        return rentprice;
+    }
+
 
     private int requestRentPrice() {
         int input=0;

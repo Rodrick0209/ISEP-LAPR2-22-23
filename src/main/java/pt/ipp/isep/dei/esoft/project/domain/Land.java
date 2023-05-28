@@ -13,16 +13,16 @@ public class Land extends Property {
         super(area, distance, photos);
     }
 
-    public Land(String location) {
-        super(location);
+    public Land(PropertyType land, int area, Location location, int distance) {
+        super(String.valueOf(location));
     }
 
-    public Land(PropertyType type, double area, String location, double distance, List<String> photos, Owner owner) {
-        super(type, area, location, distance, photos, owner);
+    public Land(PropertyType type, double area, Location location, double distance, List<String> photos) {
+        super(type, area, String.valueOf(location), distance, photos);
     }
 
-    public Land(PropertyType type, double area, String location, double distance, Owner owner) {
-        super(type, area, location, distance, owner);
+    public Land(PropertyType type, double area, Location location, double distance) {
+        super(type, area, String.valueOf(location), distance);
     }
 
 
