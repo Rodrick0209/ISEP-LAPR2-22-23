@@ -10,7 +10,7 @@ public class Property {
 
     private PropertyType type;
     private double area;
-    private String location;
+    private Location location;
 
     private double distance;
 
@@ -52,7 +52,7 @@ public class Property {
         this.distance = distance;
     }
 
-    public Property(String location) {
+    public Property(Location location) {
         this.location = location;
     }
 
@@ -114,7 +114,7 @@ public class Property {
      * @param location the location
      * @param distance the distance
      */
-    public Property(PropertyType type, double area, String location, double distance, List<String> photos, Owner owner) {
+    public Property(PropertyType type, double area, Location location, double distance, List<String> photos, Owner owner) {
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -126,7 +126,7 @@ public class Property {
         this.owner = owner;
     }
 
-    public Property(PropertyType type, double area, String location, double distance, Owner owner){
+    public Property(PropertyType type, double area, Location location, double distance, Owner owner){
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -147,7 +147,7 @@ public class Property {
      *
      * @return the location
      */
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 

@@ -38,8 +38,8 @@ public class Apartment extends Property {
      */
 
 
-    public Apartment(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, int nParkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(typeName, area, String.valueOf(location), distance );
+    public Apartment(PropertyType typeName, double area, Location location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, int nParkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(typeName, area, location, distance, owner );
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -47,8 +47,8 @@ public class Apartment extends Property {
         this.airConditioning = airConditioning;
     }
 
-    public Apartment(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(typeName, area, String.valueOf(location), distance);
+    public Apartment(PropertyType typeName, double area, Location location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(typeName, area, location, distance, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;

@@ -225,17 +225,19 @@ public class ImportInformationController implements FileReader {
             Owner owner = getOwnerByEmail(information[4]);
             Optional<Property> newProperty = Optional.empty();
             PropertyType propertyType = getPropertyTypeByName(information[6]);
+            String[] informationLocation = information[8].split(", ");
+            Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3]));
             switch (information[6]) {
                 case "land":
                     if (getPropertyRepository() != null) {
-                        newProperty = getPropertyRepository().createLand(propertyType, Double.parseDouble(information[7]), information[8], Double.parseDouble(information[9]), owner);
+                        newProperty = getPropertyRepository().createLand(propertyType, Double.parseDouble(information[7]), location, Double.parseDouble(information[9]), owner);
                     }
                     break;
                 case "apartment":
                     if (getPropertyRepository() != null) {
                         boolean centralHeating = information[13].equalsIgnoreCase("Y");
                         boolean airConditioning = information[14].equalsIgnoreCase("Y");
-                        newProperty = getPropertyRepository().createApartment(propertyType, Double.parseDouble(information[7]), information[8], Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, owner);
+                        newProperty = getPropertyRepository().createApartment(propertyType, Double.parseDouble(information[7]), location, Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, owner);
                     }
                     break;
                 case "house":
@@ -244,7 +246,7 @@ public class ImportInformationController implements FileReader {
                         boolean airConditioning = information[14].equalsIgnoreCase("Y");
                         boolean existenceOfAnBasement = information[15].equalsIgnoreCase("Y");
                         boolean inhabitableLoft = information[16].equalsIgnoreCase("Y");
-                        newProperty = getPropertyRepository().createHouse(propertyType, Double.parseDouble(information[7]), information[8], Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, information[17], owner);
+                        newProperty = getPropertyRepository().createHouse(propertyType, Double.parseDouble(information[7]), location, Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, information[17], owner);
                     }
                     break;
             }
@@ -254,7 +256,9 @@ public class ImportInformationController implements FileReader {
         public Optional<Request> createRequest(String[] information) {
             Optional<Request> newRequest = Optional.empty();
             Owner owner = getOwnerByEmail(information[4]);
-            Property property = getPropertyByLocation(information[8]);
+            String[] informationLocation = information[8].split(", ");
+            Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3]));
+            Property property = getPropertyByLocation(location);
             TypeBusiness typeBusiness = getTypeBusinessByName(information[24]);
             switch (information[24]) {
                 case "sale":
@@ -273,7 +277,9 @@ public class ImportInformationController implements FileReader {
 
         public Optional<Announcement> createAnnoouncement(String[] information){
             Optional<Announcement> newAnnouncement = Optional.empty();
-            Property property = getPropertyByLocation(information[8]);
+            String[] informationLocation = information[8].split(", ");
+            Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3]));
+            Property property = getPropertyByLocation(location);
             Request request = getRequestByProperty(property);
             Commission commission = new Commission("Percentage Commission", Double.parseDouble(information[20]));
             if (getAnnouncementRepository() != null) {
@@ -298,8 +304,8 @@ public class ImportInformationController implements FileReader {
             return getOwnerRepository().getOwnerByEmail(ownerEmailAddress);
         }
 
-        private Property getPropertyByLocation(String propertyLocation){
-            return getPropertyRepository().getPropertyByLocation(propertyLocation);
+        private Property getPropertyByLocation(Location location){
+            return getPropertyRepository().getPropertyByLocation(location);
     }
 
         private Request getRequestByProperty(Property property){

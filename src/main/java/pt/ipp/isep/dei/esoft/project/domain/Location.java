@@ -11,7 +11,6 @@ import java.util.Objects;
 public class Location {
     private String street;
     private String city;
-    private String district;
     private String state;
     private int zipCode;
 
@@ -21,15 +20,13 @@ public class Location {
      *
      * @param street   the street
      * @param city     the city
-     * @param district the district
      * @param state    the state
      * @param zipCode  the zip code
      */
 
-    public Location(String street, String city, String district, String state, int zipCode){
+    public Location(String street, String city, String state, int zipCode){
         this.street = street;
         this.city = city;
-        this.district = district;
         this.state = state;
         if(zipCode < 10000 || zipCode > 99999){
             throw new IllegalArgumentException("Invalid zip code");
@@ -65,12 +62,6 @@ public class Location {
 /**
      * Sets district.
      *
-     * @param district the district
-     */
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
 
 
 /**
@@ -117,16 +108,6 @@ public class Location {
     }
 
 
-/**
-     * Gets district.
-     *
-     * @return the district
-     */
-
-    public String getDistrict() {
-        return district;
-    }
-
 
 /**
      * Gets state.
@@ -153,12 +134,12 @@ public class Location {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location adress = (Location) o;
-        return zipCode == adress.zipCode && street.equals(adress.street) && city.equals(adress.city) && district.equals(adress.district) && state.equals(adress.state);
+        return zipCode == adress.zipCode && street.equals(adress.street) && city.equals(adress.city) && state.equals(adress.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(street, city, district, state, zipCode);
+        return Objects.hash(street, city, state, zipCode);
     }
 
     @Override
@@ -166,9 +147,8 @@ public class Location {
         return String.format (
                 "Street: %s%n" +
                 "City: %s%n" +
-                        "District: %s%n" +
                 "State: %s%n"+
-                "ZipCode: %d",street,city,district,state,zipCode);
+                "ZipCode: %d",street,city, state,zipCode);
 
     }
 

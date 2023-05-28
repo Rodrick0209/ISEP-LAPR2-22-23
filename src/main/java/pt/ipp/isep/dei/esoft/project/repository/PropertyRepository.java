@@ -18,10 +18,10 @@ public class PropertyRepository {
      * @param location the property location
      * @return the property
      */
-    public Property getPropertyByLocation(String location){
+    public Property getPropertyByLocation(Location location){
         Property property = null;
         for (Property p : properties){
-            if (p.getLocation().equalsIgnoreCase(location)){
+            if (p.getLocation().equals(location)){
                 property = p;
             }
         }
@@ -53,7 +53,7 @@ public class PropertyRepository {
         return newProperty;
     }
 
-    public Optional<Property> createLand(PropertyType propertyType, double area, String location, double distance, Owner owner){
+    public Optional<Property> createLand(PropertyType propertyType, double area, Location location, double distance, Owner owner){
         Optional<Property> optionalValue = Optional.empty();
 
         Land land = new Land(propertyType, area, location, distance, owner);
@@ -64,7 +64,7 @@ public class PropertyRepository {
         return optionalValue;
     }
 
-    public Optional<Property> createApartment(PropertyType propertyType, double area, String location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, Owner owner){
+    public Optional<Property> createApartment(PropertyType propertyType, double area, Location location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, Owner owner){
         Optional<Property> optionalValue = Optional.empty();
 
         Apartment apartment = new Apartment(propertyType, area, location, distance, owner, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, centralHeating, airConditioning);
@@ -75,7 +75,7 @@ public class PropertyRepository {
         return optionalValue;
     }
 
-    public Optional<Property> createHouse(PropertyType propertyType, double area, String location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, Owner owner){
+    public Optional<Property> createHouse(PropertyType propertyType, double area, Location location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, Owner owner){
         Optional<Property> optionalValue = Optional.empty();
 
         House house = new House(propertyType, area, location, distance, owner, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure);
