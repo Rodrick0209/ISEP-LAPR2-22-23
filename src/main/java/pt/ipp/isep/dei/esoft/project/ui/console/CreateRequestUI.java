@@ -337,8 +337,8 @@ public class CreateRequestUI implements Runnable {
 
     private String requestPropertyType() {
         String input=null;
-            List<PropertyType> options = controller.getPropertyType();
-        int answer = Utils.showAndSelectIndex(options, "Type of business");
+            List<PropertyType> options = controller.getPropertyTypes();
+        int answer = Utils.showAndSelectIndex(options, "Property Type: ");
         return options.get(answer).getName();
 
     }

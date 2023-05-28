@@ -1,53 +1,27 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 /**
  * The type Announcement.
  */
 public class Announcement {
-    private final Property land;
-    private final String description;
+    private final Request request;
+    private final Commission commission;
+    private final Date date;
 
-    private double commission = 0;
-
-    private Commission commission_v2;
-    private final Employee agent;
-
-    /**
-     * Instantiates a new Announcement.
-     *
-     * @param land    the property
-     * @param description the description
-     * @param commission  the commission
-     * @param agent       the agent
-     */
-    public Announcement(Property land, String description, double commission, Employee agent){
-        this.land = land;
-        this.description = description;
+    public Announcement(Request request, Commission commission, Date date) {
+        this.request = request;
         this.commission = commission;
-        this.agent = agent;
-    }
-
-    public Announcement(Property land, String description, Commission commission_v2, Employee agent) {
-        this.land = land;
-        this.description = description;
-        this.commission_v2 = commission_v2;
-        this.agent = agent;
-    }
-
-    public boolean equals(Object o){
-        if (this == o){
-            return true;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = sdf.format(date);
+        try {
+            this.date = sdf.parse(formattedDate);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Invalid date format");
         }
-        if (!(o instanceof Announcement)){
-            return false;
-        }
-        Announcement that = (Announcement) o;
-        return description.equalsIgnoreCase(that.description);
     }
-
-    public int hashCode(){ return Objects.hash(description);}
-
-    public Announcement clone() { return new Announcement(this.land, this.description, this.commission, this.agent);}
 }

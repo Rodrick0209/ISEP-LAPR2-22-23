@@ -25,11 +25,15 @@ public class Owner {
         this.name = name;
         this.ccNumber = ccNumber;
         this.taxNumber = taxNumber;
-        if (!emailAddress.contains("@")) {
-            throw new IllegalArgumentException("Invalid email address");
-        } else {
-            this.emailAddress = emailAddress;
+        int count = 0;
+        for (char c : emailAddress.toCharArray()) {
+            if (c == '@') {
+                count++;
+            }
         }
+        if (count != 1) {
+            throw new IllegalArgumentException("Invalid email address");
+        } else this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
     }
 
@@ -39,11 +43,15 @@ public class Owner {
      * @param emailAddress the email address
      */
     public Owner(String emailAddress) {
-        if (!emailAddress.contains("@")) {
-            throw new IllegalArgumentException("Invalid email address");
-        } else {
-            this.emailAddress = emailAddress;
+        int count = 0;
+        for (char c : emailAddress.toCharArray()) {
+            if (c == '@') {
+                count++;
+            }
         }
+        if (count != 1) {
+            throw new IllegalArgumentException("Invalid email address");
+        } else this.emailAddress = emailAddress;
     }
 
     /**

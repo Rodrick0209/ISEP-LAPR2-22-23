@@ -1,38 +1,32 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.OrganizationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.PropertyRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 public class PublishAnnouncementController {
-    private OrganizationRepository organizationRepository;
     private AuthenticationRepository authenticationRepository;
+    private RequestRepository requestRepository;
+
     private PropertyRepository propertyRepository;
+    private AnnouncementRepository announcementRepository;
 
     public PublishAnnouncementController() {
-        getOrganizationRepository();
         getAuthenticationRepository();
         getPropertyRepository();
+        getRequestRepository();
+        getAnnouncementRepository();
     }
 
-    public PublishAnnouncementController(OrganizationRepository organizationRepository, AuthenticationRepository authenticationRepository, PropertyRepository propertyRepository){
-        this.organizationRepository = organizationRepository;
+    public PublishAnnouncementController(AuthenticationRepository authenticationRepository, PropertyRepository propertyRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository){
         this.authenticationRepository = authenticationRepository;
         this.propertyRepository = propertyRepository;
-    }
-
-    private OrganizationRepository getOrganizationRepository(){
-        if(organizationRepository == null){
-            Repositories repositories = Repositories.getInstance();
-            organizationRepository = repositories.getOrganizationRepository();
-        }
-        return organizationRepository;
+        this.requestRepository = requestRepository;
+        this.announcementRepository = announcementRepository;
     }
 
     private AuthenticationRepository getAuthenticationRepository() {
@@ -43,50 +37,57 @@ public class PublishAnnouncementController {
         return authenticationRepository;
     }
 
+    private RequestRepository getRequestRepository(){
+        if (requestRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            requestRepository = repositories.getRequestRepository();
+        }
+        return requestRepository;
+    }
+
     private PropertyRepository getPropertyRepository(){
-        if (propertyRepository == null) {
+        if(propertyRepository == null) {
             Repositories repositories = Repositories.getInstance();
             propertyRepository = repositories.getPropertyRepository();
         }
         return propertyRepository;
     }
 
-    public Optional<Announcement> createAnnouncement(String propertyLocation, String description, int commission){
-        Property land = getPropertyByLocation(propertyLocation);
+    private AnnouncementRepository getAnnouncementRepository(){
+        if(announcementRepository == null){
+            Repositories repositories = Repositories.getInstance();
+            announcementRepository = repositories.getAnnouncementRepository();
+        }
+        return announcementRepository;
+    }
 
-        Employee agent = getAgentFromSession();
-        Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(agent);
+    public Optional<Announcement> createAnnouncement(String propertyLocation, Commission commission, Date date){
+        Property property = getPropertyByLocation(propertyLocation);
+        Request request = getRequestByProperty(property);
+
 
         Optional<Announcement> newAnnouncement = Optional.empty();
-        if(organization.isPresent()){
-            newAnnouncement = organization.get().createAnnouncement(land, description, commission, agent);
+        if(getAnnouncementRepository() != null){
+            newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
         }
         return newAnnouncement;
     }
 
-    public Optional<Announcement> createAnnouncement(String propertyLocation, String description, Commission commission){
-        Property land = getPropertyByLocation(propertyLocation);
-
-        Employee agent = getAgentFromSession();
-        Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(agent);
-
-        Optional<Announcement> newAnnouncement = Optional.empty();
-        if(organization.isPresent()){
-            newAnnouncement = organization.get().createAnnouncement(land, description, commission, agent);
-        }
-        return newAnnouncement;
+    private Request getRequestByProperty(Property property){
+        return getRequestRepository().getRequestByProperty(property);
     }
 
-    private Property getPropertyByLocation(String propertyLocation) {
+    private Property getPropertyByLocation(String propertyLocation){
         return getPropertyRepository().getPropertyByLocation(propertyLocation);
     }
 
     private Employee getAgentFromSession() {
-        /*public Employee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator){
-         */
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new Employee(email.getEmail());
     }
 
-    public List<Property> getProperties(){return getPropertyRepository().getProperties();}
+    public List<Request> getRequests(){
+        return getRequestRepository().getRequests();
+    }
+
 }

@@ -4,9 +4,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
  * The type Property type.
  */
 public class PropertyType {
-        private final int idType;
         private final String propertyType;
-        private static int numberOfTypes=1;
 
     /**
      * Instantiates a new Property type.
@@ -14,9 +12,7 @@ public class PropertyType {
      * @param name the name
      */
     public PropertyType(String name){
-            this.idType=numberOfTypes;
             this.propertyType=name;
-            numberOfTypes++;
         }
 
     /**
@@ -24,9 +20,6 @@ public class PropertyType {
      *
      * @return the id type
      */
-    public int getIdType() {
-            return idType;
-        }
 
     /**
      * Gets name.
@@ -36,5 +29,10 @@ public class PropertyType {
     public String getName() {
             return propertyType;
         }
-    }
+
+        public PropertyType clone(){
+        return new PropertyType(propertyType);
+        }
+}
+
 

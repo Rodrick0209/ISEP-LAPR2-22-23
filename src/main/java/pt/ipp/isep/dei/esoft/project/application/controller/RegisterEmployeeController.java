@@ -12,31 +12,30 @@ import java.util.List;
 import java.util.Optional;
 
 public class RegisterEmployeeController implements FileWriter{
-    private OrganizationRepository organizationRepository;
     private AgencyRepository agencyRepository;
     private RoleRepository roleRepository;
     private AuthenticationRepository authenticationRepository;
 
+    private EmployeeRepository employeeRepository;
+
     public RegisterEmployeeController(){
-        getOrganizationRepository();
         getAgencyRepository();
         getRoleRepository();
         getAuthenticationRepository();
     }
 
-    public RegisterEmployeeController(OrganizationRepository organizationRepository, RoleRepository roleRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository){
-        this.organizationRepository = organizationRepository;
+    public RegisterEmployeeController(RoleRepository roleRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository){
         this.roleRepository = roleRepository;
         this.agencyRepository = agencyRepository;
         this.authenticationRepository = authenticationRepository;
     }
 
-    private OrganizationRepository getOrganizationRepository(){
-        if(organizationRepository == null){
+    private EmployeeRepository getEmployeeRepository(){
+        if(employeeRepository == null){
             Repositories repositories = Repositories.getInstance();
-            organizationRepository = repositories.getOrganizationRepository();
+            employeeRepository = repositories.getEmployeeRepository();
         }
-        return organizationRepository;
+        return employeeRepository;
     }
     private AgencyRepository getAgencyRepository() {
         if(agencyRepository == null){
@@ -63,16 +62,15 @@ public class RegisterEmployeeController implements FileWriter{
     }
 
 
-    public Optional<Employee> createEmployee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, String roleName, int agencyID){
+    public Optional<Employee> createEmployee(String name, String email, int ccNumber, String taxNumber, String address, String phoneNumber, String roleName, int agencyID){
         Agency agency = getAgencyByID(agencyID);
         Role role = getRoleByName(roleName);
 
         Employee administrator = getAdministratorFromSession();
-        Optional<Organization> organization = getOrganizationRepository().getOrganizationByEmployee(administrator);
 
         Optional<Employee> newEmployee = Optional.empty();
-        if(organization.isPresent()){
-            newEmployee = organization.get().createEmployee(name, email, ccNumber, taxNumber, address, phoneNumber, role, agency, administrator);
+        if(getEmployeeRepository() != null){
+            newEmployee = getEmployeeRepository().createEmployee(name, email, ccNumber, taxNumber, address, phoneNumber, role, agency, administrator);
         }
         return newEmployee;
     }

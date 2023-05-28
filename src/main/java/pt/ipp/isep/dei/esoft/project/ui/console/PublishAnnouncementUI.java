@@ -1,14 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
-import pt.ipp.isep.dei.esoft.project.domain.Announcement;
-import pt.ipp.isep.dei.esoft.project.domain.Commission;
-import pt.ipp.isep.dei.esoft.project.domain.Land;
-import pt.ipp.isep.dei.esoft.project.domain.Property;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 import java.util.List;
 
@@ -16,23 +14,23 @@ public class PublishAnnouncementUI implements Runnable {
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
 
     private String announcementPropertyLocation;
-    private String announcementDescription;
+    private Date date;
     private Commission commission;
     private PublishAnnouncementController getController() {
         return controller;
     }
 
     public void run() {
-        System.out.println("Select the properties\n");
+        System.out.println("Select the requests\n");
 
-        announcementPropertyLocation = displayAndSelectProperty();
+        announcementPropertyLocation = displayAndSelectRequests();
         requestData();
 
         submitOrNot();
     }
 
     private void submitData() {
-        Optional<Announcement> announcement = getController().createAnnouncement(announcementPropertyLocation, announcementDescription, commission);
+        Optional<Announcement> announcement = getController().createAnnouncement(announcementPropertyLocation, commission, date);
 
         if (announcement.isPresent()) {
             System.out.println("Announcement has been successfully published!");
@@ -43,7 +41,7 @@ public class PublishAnnouncementUI implements Runnable {
 
     private void submitOrNot() {
         showData();
-        boolean answer = Utils.confirm("Submit and Publish data? (type yes or no)");
+        boolean answer = Utils.confirm("Confirm data? (type yes or no)");
         if(answer){
             submitData();
         } else run();
@@ -52,29 +50,29 @@ public class PublishAnnouncementUI implements Runnable {
     private void showData(){
         System.out.println();
         System.out.println("Property Location: " + announcementPropertyLocation);
-        System.out.println("Announcement Description: " + announcementDescription);
         System.out.println("Commission Type: " + commission.getType());
         System.out.println("Commission Value: " + commission.getValue());
+        System.out.println("Date of announcement: " + date);
         System.out.println();
     }
 
     private void requestData() {
-        announcementDescription = requestAnnouncementDescription();
         commission = requestCommission();
+        date = requestDate();
     }
 
     /**
      *
      * @return input of the announcement description
      */
-    private String requestAnnouncementDescription() {
-        String input;
+    private Date requestDate() {
+        Date input;
         do{
-            input = Utils.readLineFromConsole("Announcement description: ");
-            if (input != null && input.isEmpty()) {
+            input = Utils.readDateFromConsole("Date of Request: ");
+            if (input != null) {
                 System.out.println("Invalid input. Please try again.");
             }
-        } while(input != null && input.isEmpty());
+        } while(input != null);
         return input;
     }
 
@@ -128,23 +126,17 @@ public class PublishAnnouncementUI implements Runnable {
         }
         return new Commission(input_type,input_value);
     }
-    /*
-    input_value = Utils.readIntegerFromConsole("Commission value: ");
-            if(input_value >= 0 ){
-                validCommissionType = true;
-            }else {
-                System.out.println("Invalid Number. Please enter a valid number.");
-            }
-     */
+
+
 
     /**
      *
      * @return selected property from displayed property list
      */
-    private String displayAndSelectProperty() {
-        List<Property> properties = controller.getProperties();
-        int answer = Utils.showAndSelectIndex(properties, "Properties:\n");
-        return properties.get(answer).getLocation();
+    private String displayAndSelectRequests() {
+        List<Request> requests = controller.getRequests();
+        int answer = Utils.showAndSelectIndex(requests, "Requests:\n");
+        return requests.get(answer).getProperty().getLocation();
     }
 
 }

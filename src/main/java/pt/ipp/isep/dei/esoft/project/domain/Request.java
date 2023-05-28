@@ -1,67 +1,43 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-public class Request{
-    private Land land;
-    private Apartment apartment;
-    private House house;
-    private TypeBusiness typeBusiness;
-    private int price;
+import java.util.Objects;
 
-    public Request(Land land, TypeBusiness typeBusiness, int price) {
-        this.land = land;
+public class Request {
+    private final Property property;
+    private final TypeBusiness typeBusiness;
+    private final int price;
+
+    private Owner owner;
+
+    public Request(Property property, TypeBusiness typeBusiness, int price, Owner owner) {
+        this.property = property;
         this.typeBusiness = typeBusiness;
         this.price = price;
+        this.owner  = owner;
     }
 
-    public Request(Apartment apartment, TypeBusiness typeBusiness, int price) {
-        this.apartment = apartment;
-        this.typeBusiness = typeBusiness;
-        this.price = price;
+    public Property getProperty() {
+        return property;
     }
 
-    public Request(House house, TypeBusiness typeBusiness, int price) {
-        this.house = house;
-        this.typeBusiness = typeBusiness;
-        this.price = price;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return property.equals(request.property);
     }
 
-    public Land getLand() {
-        return land;
+    @Override
+    public int hashCode() {
+        return Objects.hash(property);
     }
 
-    public void setLand(Land land) {
-        this.land = land;
-    }
-
-    public Apartment getApartment() {
-        return apartment;
-    }
-
-    public void setApartment(Apartment apartment) {
-        this.apartment = apartment;
-    }
-
-    public House getHouse() {
-        return house;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
-    }
-
-    public TypeBusiness getTypeBusiness() {
-        return typeBusiness;
-    }
-
-    public void setTypeBusiness(TypeBusiness typeBusiness) {
-        this.typeBusiness = typeBusiness;
+    public Request clone(){
+        return new Request(property, typeBusiness, price, owner);
     }
 
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 }

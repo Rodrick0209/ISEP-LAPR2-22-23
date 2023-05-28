@@ -80,12 +80,20 @@ public class RegisterAgencyUI implements Runnable {
      */
     private String requestAgencyEmailAddress() {
         String input;
-        do{
-            input = Utils.readLineFromConsole("Agency Email Address: ");
-            if (input != null && !input.contains("@")) {
-                System.out.println("Invalid input. Please try again.");
+        int count = 0;
+        do {
+            input = Utils.readLineFromConsole("Employee Email Address: ");
+            if (input != null) {
+                for (char c : input.toCharArray()) {
+                    if (c == '@') {
+                        count++;
+                    }
+                }
+                if (input.isEmpty() || count != 1) {
+                    System.out.println("Invalid input. Please try again.");
+                }
             }
-        } while(input != null && !input.contains("@"));
+        } while ((input != null && input.isEmpty()) || count != 1);
         return input;
     }
 
@@ -130,10 +138,10 @@ public class RegisterAgencyUI implements Runnable {
         String input;
         do{
             input = Utils.readLineFromConsole("Agency Phone Number: ");
-            if (input != null && !input.contains("(") && !input.contains(")") && !input.contains("-")) {
+            if (input != null && input.isEmpty()) {
                 System.out.println("Invalid input. Please try again.");
             }
-        } while (input != null && !input.contains("(") && !input.contains(")") && !input.contains("-"));
+        } while(input!= null && input.isEmpty());
         return input;
     }
 }

@@ -17,10 +17,11 @@ public class AgencyRepository {
      */
     public Agency getAgencyByID(int agencyID){
 
-        Agency newAgency = new Agency(agencyID, "Agency Name", "Power Street, F");
         Agency agency = null;
-        if(agencies.contains(newAgency)){
-            agency = agencies.get(agencies.indexOf(newAgency));
+        for(Agency a : agencies){
+            if(a.getID() == agencyID){
+                agency = a;
+            }
         }
         if(agency == null){
             throw new IllegalArgumentException("Agency not found");

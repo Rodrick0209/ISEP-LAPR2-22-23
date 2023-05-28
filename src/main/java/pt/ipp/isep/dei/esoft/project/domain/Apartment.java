@@ -32,7 +32,6 @@ public class Apartment extends Property {
      * @param area            the area
      * @param location        the location
      * @param distance        the distance
-     * @param photos          the photos
      * @param n_bedrooms      the n bedrooms
      * @param n_bathrooms     the n bathrooms
      * @param n_parkingSpaces the n parking spaces

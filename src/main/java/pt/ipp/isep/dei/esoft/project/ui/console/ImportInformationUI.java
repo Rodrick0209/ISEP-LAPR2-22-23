@@ -1,0 +1,54 @@
+package pt.ipp.isep.dei.esoft.project.ui.console;
+
+import pt.ipp.isep.dei.esoft.project.application.controller.ImportInformationController;
+import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+
+import java.util.Optional;
+
+public class ImportInformationUI implements Runnable {
+
+    private final ImportInformationController controller = new ImportInformationController();
+    private String fileName;
+
+    public ImportInformationController getController() {
+        return controller;
+    }
+
+    public void run(){
+        requestData();
+        submitOrNot();
+    }
+
+    private void requestData(){
+        fileName = requestFileName();
+    }
+
+    private void submitData() {
+        boolean operationSuccess = getController().readFile(fileName);
+
+        if (operationSuccess) {
+            System.out.println("Announcement has been successfully published!");
+        } else {
+            System.out.println("Announcement not published!");
+        }
+    }
+
+    private void submitOrNot() {
+        boolean answer = Utils.confirm("Confirm data? (type yes or no)");
+        if(answer){
+            submitData();
+        } else run();
+    }
+
+    private String requestFileName(){
+        String input;
+        do{
+            input = Utils.readLineFromConsole("Inserts the file: ");
+            if (input != null && !input.contains(".csv")) {
+                System.out.println("Invalid input. Please try again.");
+            }
+        } while(input != null && !input.contains(".csv"));
+        return input;
+    }
+}

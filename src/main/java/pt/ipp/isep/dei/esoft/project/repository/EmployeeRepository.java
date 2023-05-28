@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Agency;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.Role;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,24 @@ public class EmployeeRepository {
         return newEmployee;
     }
 
+    public Optional<Employee> createEmployee(String name, String email, int ccNumber, String taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator){
+        Optional<Employee> optionalValue = Optional.empty();
+
+        Employee employee = new Employee(name, email, ccNumber, taxNumber, address, phoneNumber, role, agency, administrator);
+
+        if(addEmployee(employee)){
+            optionalValue = Optional.of(employee);
+        }
+        return optionalValue;
+    }
+
+    public boolean addEmployee(Employee employee){
+        boolean operationSuccess = false;
+        if(validateEmployee(employee)){
+            operationSuccess = employees.add(employee);
+        }
+        return operationSuccess;
+    }
+
     private boolean validateEmployee(Employee employee){return !employees.contains(employee);}
-
-
 }

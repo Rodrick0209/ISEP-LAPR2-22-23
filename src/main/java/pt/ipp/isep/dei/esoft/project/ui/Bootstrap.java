@@ -10,21 +10,19 @@ public class Bootstrap implements Runnable {
     public void run() {
         addRoles();
         addAgencies();
-        addOrganization();
         addUsers();
+        addEmployees();
         addProperties();
         addTypeBusiness();
+        addPropertyTypes();
     }
 
-    private void addOrganization() {
-        //TODO: add organizations bootstrap here
-        //get organization repository
-        OrganizationRepository organizationRepository = Repositories.getInstance().getOrganizationRepository();
-        Organization organization = new Organization("This Company");
-        organization.addEmployee(new Employee("admin@this.app"));
-        organization.addEmployee(new Employee("agent@this.app"));
-        organizationRepository.add(organization);
-
+    private void addEmployees(){
+        EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
+        employeeRepository.add(new Employee("admin@this.app"));
+        employeeRepository.add(new Employee("owner@this.app"));
+        employeeRepository.add(new Employee("storemanager@this.app"));
+        employeeRepository.add(new Employee("agent@this.app"));
     }
     
 
@@ -33,11 +31,7 @@ public class Bootstrap implements Runnable {
 
         //get agency repository
         AgencyRepository agencyRepository = Repositories.getInstance().getAgencyRepository();
-        Role owner = new Role("Marco");
-        Agency agency = new Agency(123123,"Agency","s",12312);
-        Employee employee = new Employee("employee@this.app");
-        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "abc@gmail.com", "(567) 456-2345",new Employee( "name", "admin@this.app", 1212434, 123124, "address", "phoneNumber", owner,  agency,  employee)));
-        agencyRepository.add(new Agency ( 1244, "Agency Name","Tower Street","abc@gmail.com","(334) 459-9874",new Employee("name","agent@this.app",1220403,123453,"adress","phonenumber",owner,agency,employee)));
+        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "abc@gmail.com", "(567) 456-2345",new Employee("admin@this.app")));
     }
     private void addProperties(){
        // TODO: add boostrap Properties
@@ -45,7 +39,8 @@ public class Bootstrap implements Runnable {
     // get agency Proprety
     
     PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-    propertyRepository.add(new Land("House", 123, "Lol Street", 23, new Owner("owner@this.app")));
+    propertyRepository.add(new Land(new PropertyType("Land"), 123, "Lol Street", 23, new Owner("owner@this.app")));
+    propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, "Lmao Street", 23,new Owner("owner@this.app") , 3, 3, 1, false, true));
 
     }
 
@@ -72,8 +67,16 @@ public class Bootstrap implements Runnable {
     private void addTypeBusiness(){
         TypeBusinessRepository typeBusinessRepository = Repositories.getInstance().getTypeBusinessRepository();
 
-        typeBusinessRepository.add(new TypeBusiness("Sell"));
+        typeBusinessRepository.add(new TypeBusiness("Sale"));
         typeBusinessRepository.add(new TypeBusiness("Rent"));
+    }
+
+    private void addPropertyTypes(){
+        PropertyTypeRepository propertyTypeRepository = Repositories.getInstance().getPropertyTypeRepository();
+
+        propertyTypeRepository.add(new PropertyType("Land"));
+        propertyTypeRepository.add(new PropertyType("Apartment"));
+        propertyTypeRepository.add(new PropertyType("House"));
     }
 
 

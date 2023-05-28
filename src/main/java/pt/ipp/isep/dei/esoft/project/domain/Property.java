@@ -19,7 +19,7 @@ public class Property {
 
     private Owner owner;
 
-    private static final String initialValue = "n/a";
+    private static final String initialString = "n/a";
 
 
     /**
@@ -141,7 +141,7 @@ public class Property {
         this.location = location;
         this.distance = distance;
         this.owner = owner;
-        setPhotos(initialValue);
+        setPhotos(initialString);
     }
 
     public Property clone() {

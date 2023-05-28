@@ -9,7 +9,7 @@ public class Repositories {
     /**
      * The Organization repository.
      */
-    OrganizationRepository organizationRepository = new OrganizationRepository();
+
     /**
      * The Agency repository.
      */
@@ -60,7 +60,6 @@ public class Repositories {
      *
      * @return the organization repository
      */
-    public OrganizationRepository getOrganizationRepository(){ return organizationRepository; }
 
     /**
      * Gets agency repository.

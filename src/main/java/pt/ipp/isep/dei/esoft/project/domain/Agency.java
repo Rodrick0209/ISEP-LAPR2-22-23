@@ -11,7 +11,7 @@ public class Agency {
     private String phoneNumber;
     private Employee administrator;
 
-    public Agency(int id, String agency_name, String s){
+    public Agency(int id){
         this.id = id;
     }
 
@@ -24,21 +24,21 @@ public class Agency {
             this.designation = designation;
         }
         this.location = location;
-        if(!emailAddress.contains("@")){
-            throw new IllegalArgumentException("Invalid email address");
-        } else {
-            this.emailAddress = emailAddress;
+        int count = 0;
+        for (char c : emailAddress.toCharArray()) {
+            if (c == '@') {
+                count++;
+            }
         }
+        if (count != 1) {
+            throw new IllegalArgumentException("Invalid email address");
+        } else this.emailAddress = emailAddress;
         if(!phoneNumber.contains("(") && !phoneNumber.contains(")") && !phoneNumber.contains("-")){
             throw new IllegalArgumentException("Invalid Phone Number");
         } else {
             this.phoneNumber = phoneNumber;
         }
         this.administrator = administrator;
-    }
-
-    public Agency(int agencyID, String agency_name, String s, int id) {
-        this.id = id;
     }
 
     public boolean equals(Object o){
@@ -67,6 +67,6 @@ public class Agency {
                 , this.id, this.designation, this.location, this.emailAddress, this.phoneNumber);
     }
 
-    public Agency clone(){ return new Agency(this.id, "Agency Name", "Power Street, F"); }
+    public Agency clone(){ return new Agency(this.id, this.designation, this.location, this.emailAddress, this.phoneNumber, this.administrator); }
 
 }

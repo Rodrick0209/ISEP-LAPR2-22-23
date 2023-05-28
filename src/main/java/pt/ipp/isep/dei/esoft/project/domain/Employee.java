@@ -9,7 +9,7 @@ public class Employee {
     private String name;
     private final String email;
     private int ccNumber;
-    private int taxNumber;
+    private String taxNumber;
     private String address;
     private String phoneNumber;
     private Role role;
@@ -17,8 +17,9 @@ public class Employee {
     private Employee administrator;
 
     private static final String initialString = "n/a";
-
+    private static final String initialEmailString = "test@this.app";
     private static final int initialValue = 0;
+    private static final Role initialRole = new Role("n/a");
 
     /**
      * Instantiates a new Employee.
@@ -33,13 +34,17 @@ public class Employee {
      * @param agency        the agency
      * @param administrator the administrator
      */
-    public Employee(String name, String email, int ccNumber, int taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator){
+    public Employee(String name, String email, int ccNumber, String taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator){
         this.name = name;
-        if(!email.contains("@")){
-            throw new IllegalArgumentException("Invalid email address");
-        } else {
-            this.email = email;
+        int count = 0;
+        for (char c : email.toCharArray()) {
+            if (c == '@') {
+                count++;
+            }
         }
+        if (count != 1) {
+            throw new IllegalArgumentException("Invalid email address");
+        } else this.email = email;
         this.ccNumber = ccNumber;
         this.taxNumber = taxNumber;
         this.address = address;
@@ -56,13 +61,19 @@ public class Employee {
      */
     public Employee(String email){
         this.name = initialString;
-        if(!email.contains("@")){
-            throw new IllegalArgumentException("Invalid email address");
-        } else {
-            this.email = email;
+        int count = 0;
+        for (char c : email.toCharArray()) {
+            if (c == '@') {
+                count++;
+            }
         }
+        if (count != 1) {
+            throw new IllegalArgumentException("Invalid email address");
+        } else this.email = email;
         this.ccNumber = initialValue;
-        this.
+        this.taxNumber = initialString;
+        this.address = initialString;
+        this.phoneNumber = initialString;
     }
 
     public boolean equals(Object o) {

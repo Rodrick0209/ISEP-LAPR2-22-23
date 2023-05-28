@@ -2,10 +2,14 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -170,9 +174,11 @@ public class ImportInformationController implements FileReader {
             return agencyRepository;
         }
 
-        public void readFile(String fileName){
+        public boolean readFile(String fileName){
+            String csvFile = Files.path + fileName;
+            boolean operationSuccess = false;
             try {
-                Scanner sc = new Scanner(new File(fileName));
+                Scanner sc = new Scanner(new File(csvFile));
                 if (!fileName.contains(".csv")) {
                     throw new FileNotFoundException("File is not on the correct format");
                 }
@@ -191,9 +197,11 @@ public class ImportInformationController implements FileReader {
                     }
                 }
                 sc.close();
+                operationSuccess = true;
             } catch (FileNotFoundException e) {
                 System.out.println("File not Found");
             }
+            return operationSuccess;
         }
 
         public Optional<Owner> createOwner (String[] information){
@@ -216,19 +224,29 @@ public class ImportInformationController implements FileReader {
         public Optional<Property> createProperty(String[] information) {
             Owner owner = getOwnerByEmail(information[4]);
             Optional<Property> newProperty = Optional.empty();
+            PropertyType propertyType = getPropertyTypeByName(information[6]);
             switch (information[6]) {
                 case "land":
                     if (getPropertyRepository() != null) {
-                        newProperty = Optional.of(getPropertyRepository().createLand());
+                        newProperty = getPropertyRepository().createLand(propertyType, Double.parseDouble(information[7]), information[8], Double.parseDouble(information[9]), owner);
                     }
+                    break;
                 case "apartment":
                     if (getPropertyRepository() != null) {
-                        newProperty = Optional.of(getPropertyRepository().createApartment());
+                        boolean centralHeating = information[13].equalsIgnoreCase("Y");
+                        boolean airConditioning = information[14].equalsIgnoreCase("Y");
+                        newProperty = getPropertyRepository().createApartment(propertyType, Double.parseDouble(information[7]), information[8], Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, owner);
                     }
+                    break;
                 case "house":
                     if (getPropertyRepository() != null) {
-                        newProperty = Optional.of(getPropertyRepository().createHouse());
+                        boolean centralHeating = information[13].equalsIgnoreCase("Y");
+                        boolean airConditioning = information[14].equalsIgnoreCase("Y");
+                        boolean existenceOfAnBasement = information[15].equalsIgnoreCase("Y");
+                        boolean inhabitableLoft = information[16].equalsIgnoreCase("Y");
+                        newProperty = getPropertyRepository().createHouse(propertyType, Double.parseDouble(information[7]), information[8], Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, information[17], owner);
                     }
+                    break;
             }
             return newProperty;
         }
@@ -237,17 +255,35 @@ public class ImportInformationController implements FileReader {
             Optional<Request> newRequest = Optional.empty();
             Owner owner = getOwnerByEmail(information[4]);
             Property property = getPropertyByLocation(information[8]);
-            if (getRequestRepository() != null) {
-                newRequest = Optional.of(getRequestRepository().createRequest());
+            TypeBusiness typeBusiness = getTypeBusinessByName(information[24]);
+            switch (information[24]) {
+                case "sale":
+;                    if (getRequestRepository() != null) {
+                        newRequest = getRequestRepository().createSaleRequest(property, typeBusiness, Integer.parseInt(information[18]), owner);
+                    }
+                    break;
+                case "rent":
+                    if (getRequestRepository() != null) {
+                        newRequest = getRequestRepository().createRentRequest(property, typeBusiness, Integer.parseInt(information[18]), Integer.parseInt(information[21]), owner);
+                    }
+                    break;
             }
             return newRequest;
         }
 
         public Optional<Announcement> createAnnoouncement(String[] information){
             Optional<Announcement> newAnnouncement = Optional.empty();
-            Request request = getRequestByPropertyLocation(information[4]);
-            if (getAnnouncementRepository() != null){
-                newAnnouncement = Optional.of(getAnnouncementRepository().createAnnouncement());
+            Property property = getPropertyByLocation(information[8]);
+            Request request = getRequestByProperty(property);
+            Commission commission = new Commission("Percentage Commission", Double.parseDouble(information[20]));
+            if (getAnnouncementRepository() != null) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = sdf.parse(information[22]);
+                    newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
+                } catch (ParseException e) {
+                    throw new IllegalArgumentException("Invalid Date Format");
+                }
             }
             return newAnnouncement;
         }
@@ -266,8 +302,16 @@ public class ImportInformationController implements FileReader {
             return getPropertyRepository().getPropertyByLocation(propertyLocation);
     }
 
-        private Request getRequestByPropertyLocation(String propertyLocation){
-            return getRequestRepository().getRequestByPropertyLocation(propertyLocation);
+        private Request getRequestByProperty(Property property){
+            return getRequestRepository().getRequestByProperty(property);
+        }
+
+        private PropertyType getPropertyTypeByName(String propertyTypeName){
+            return getPropertyTypeRepository().getPropertyTypeByName(propertyTypeName);
+        }
+
+        private TypeBusiness getTypeBusinessByName(String typeBusinessName){
+            return getTypeOfBusinessRepository().getTypeBusinessbyName(typeBusinessName);
         }
 }
 

@@ -18,7 +18,7 @@ public class RegisterEmployeeUI implements Runnable {
     private String employeeName;
     private String employeeEmail;
     private int employeeCCNumber;
-    private int employeeTaxNumber;
+    private String employeeTaxNumber;
     private String employeeAddress;
     private String employeePhoneNumber;
     private String employeeRoleName;
@@ -99,14 +99,23 @@ public class RegisterEmployeeUI implements Runnable {
      */
     private String requestEmployeeEmail() {
         String input;
-        do{
-            input = Utils.readLineFromConsole("Employee Email: ");
-            if (input != null && !input.contains("@")) {
+        int count = 0;
+        do {
+            input = Utils.readLineFromConsole("Employee Email Address: ");
+            if (input != null){
+            for (char c : input.toCharArray()) {
+                if (c == '@') {
+                    count++;
+                }
+            }
+            if (input.isEmpty() || count != 1) {
                 System.out.println("Invalid input. Please try again.");
             }
-        } while(input != null && !input.contains("@"));
+        }
+    } while ((input != null && input.isEmpty()) || count != 1);
         return input;
     }
+
 
     /**
      *
@@ -130,17 +139,14 @@ public class RegisterEmployeeUI implements Runnable {
      *
      * @return input of employee tax number
      */
-    private int requestEmployeeTaxNumber() {
-        int input = 0;
-        boolean valid = false;
+    private String requestEmployeeTaxNumber() {
+        String input;
         do{
-            try{
-                input = Utils.readIntegerFromConsole("Employee Tax Number: ");
-                valid = true;
-            } catch (NullPointerException e){
-                System.out.println("Invalid Number. Please enter a valid number.");
+            input = Utils.readLineFromConsole("Employee Tax Number: ");
+            if (input != null && input.isEmpty()) {
+                System.out.println("Invalid input. Please try again.");
             }
-        }while(!valid);
+        } while(input!= null && input.isEmpty());
         return input;
     }
 

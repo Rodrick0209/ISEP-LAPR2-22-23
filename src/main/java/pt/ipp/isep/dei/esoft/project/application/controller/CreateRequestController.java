@@ -45,8 +45,8 @@ public class CreateRequestController {
         return typeBusinessRepository;
     }
 
-    public List<PropertyType> getPropertyType() {
-        return  getPropertyTypeRepository().getPropertyType();
+    public List<PropertyType> getPropertyTypes() {
+        return  getPropertyTypeRepository().getPropertyTypes();
     }
 
     private PropertyTypeRepository getPropertyTypeRepository() {
