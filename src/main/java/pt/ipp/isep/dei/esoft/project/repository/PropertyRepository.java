@@ -67,7 +67,7 @@ public class PropertyRepository {
     public Optional<Property> createApartment(PropertyType propertyType, double area, Location location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, Owner owner){
         Optional<Property> optionalValue = Optional.empty();
 
-        Apartment apartment = new Apartment(propertyType, area, location, distance, owner, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, centralHeating, airConditioning);
+        Apartment apartment = new Apartment(propertyType, area, location, distance, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, centralHeating, airConditioning);
 
         if(addProperty(apartment)){
             optionalValue = Optional.of(apartment);
@@ -78,7 +78,7 @@ public class PropertyRepository {
     public Optional<Property> createHouse(PropertyType propertyType, double area, Location location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure, Owner owner){
         Optional<Property> optionalValue = Optional.empty();
 
-        House house = new House(propertyType, area, location, distance, owner, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure);
+        House house = new House(propertyType, area, location, distance, numberOfBedrooms, numberOfBathrooms, numberOfParkingSpaces, centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, sunExposure);
 
         if(addProperty(house)){
             optionalValue = Optional.of(house);

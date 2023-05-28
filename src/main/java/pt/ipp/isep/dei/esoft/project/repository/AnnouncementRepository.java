@@ -37,4 +37,8 @@ public class AnnouncementRepository {
     }
 
     private boolean validateAnnouncement(Announcement announcement){ return !announcements.contains(announcement);}
+
+    public List<Announcement> getAnnouncements() {
+        return announcements;
+    }
 }

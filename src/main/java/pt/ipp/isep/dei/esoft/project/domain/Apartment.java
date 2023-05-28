@@ -33,13 +33,21 @@ public class Apartment extends Property {
      * @param distance        the distance
      * @param n_bedrooms      the n bedrooms
      * @param n_bathrooms     the n bathrooms
-     * @param n_parkingSpaces the n parking spaces
-     * @param nParkingSpaces
+     * @param n_parkingSpaces
      */
 
 
-    public Apartment(PropertyType typeName, double area, Location location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, int nParkingSpaces, boolean centralHeating, boolean airConditioning) {
+    /*public Apartment(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
         super(typeName, area, location, distance, owner );
+        this.n_bedrooms = n_bedrooms;
+        this.n_bathrooms = n_bathrooms;
+        this.n_parkingSpaces = this.n_parkingSpaces;
+        this.centralHeating = centralHeating;
+        this.airConditioning = airConditioning;
+    }*/
+
+    public Apartment(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
+        super(typeName, area, location, distance);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -47,13 +55,15 @@ public class Apartment extends Property {
         this.airConditioning = airConditioning;
     }
 
-    public Apartment(PropertyType typeName, double area, Location location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(typeName, area, location, distance, owner);
+    public Apartment(PropertyType apartment, int area, Location location, int distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, int n_parkingSpaces1, boolean centralHeating, boolean airConditioning) {
+        super( apartment, area, location, distance);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
         this.centralHeating = centralHeating;
         this.airConditioning = airConditioning;
+
+
     }
 
     /**

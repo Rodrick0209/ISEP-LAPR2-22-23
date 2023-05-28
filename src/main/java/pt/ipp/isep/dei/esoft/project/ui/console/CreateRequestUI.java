@@ -80,6 +80,7 @@ public class CreateRequestUI implements Runnable {
             requestData1();
             Land land = controller.getSellLand();
             System.out.println("Price :" + price + "$");
+            System.out.println(land);
         }
         if ( propertyType == "Land" && requestType=="Rent"){
             requestData2();
@@ -87,11 +88,14 @@ public class CreateRequestUI implements Runnable {
             Land land = controller.getRentLand();
             System.out.println("Rent price :" + rentprice + "$");
             System.out.println("Contract duration :" + contractDuraction + "months");
+            System.out.println(land);
+
         }
         if ( propertyType == "Apartment" && requestType == "Sell"){
             requestData1();
             Apartment apartment = controller.getSellApartment();
             System.out.println("Price :" + price + "$");
+            System.out.println(apartment);
         }
         if ( propertyType == "Apartment" && requestType == "Rent"){
             requestData2();
@@ -99,17 +103,20 @@ public class CreateRequestUI implements Runnable {
             Apartment apartment = controller.getRentApartment();
             System.out.println("Rent price :" + rentprice + "$");
             System.out.println("Contract duration :" + contractDuraction + "months");
+            System.out.println(apartment);
         }
         if ( propertyType == "House" && requestType =="Sell"){
             requestData1();
             House house = controller.getSellHouse();
             System.out.println("Price :" + price + "$");
+            System.out.println(house);
         }
         if ( propertyType == "House" && requestType =="Rent"){
             requestData1();
             House house = controller.getRentHouse();
             System.out.println("Rent price :" + rentprice + "$");
             System.out.println("Contract duration :" + contractDuraction + "months");
+            System.out.println(house);
         }
 
  }
@@ -123,10 +130,12 @@ public class CreateRequestUI implements Runnable {
 
 
 
-    private void submitData() {
+    /*private void submitData() {
         List<Property> properties = (List<Property>) getController().createProperty();
 
         }
+
+     */
 
 
 

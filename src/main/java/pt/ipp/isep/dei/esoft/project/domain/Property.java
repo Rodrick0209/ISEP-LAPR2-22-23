@@ -52,7 +52,7 @@ public class Property {
         this.distance = distance;
     }
 
-    public Property(Location location) {
+    public Property(PropertyType typeName, double area, Location location, double distance) {
         this.location = location;
     }
 

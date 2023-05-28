@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.List;
-
 /**
  * The type House.
  */
@@ -19,7 +17,7 @@ public class House extends Property {
     private String sunExposure;
 
 
-    public House(PropertyType typeName, double area, Location location, double distance, List<String> photos, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure) {
+    /*public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
         super(typeName, area, location, distance, photos, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
@@ -31,8 +29,10 @@ public class House extends Property {
         this.sunExposure = sunExposure;
     }
 
-    public House(PropertyType typeName, double area, Location location, double distance, Owner owner, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure) {
-        super(typeName, area, location, distance, owner);
+     */
+
+    public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure) {
+        super(typeName, area, location, distance);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -42,6 +42,7 @@ public class House extends Property {
         this.existinhabitableLoft = existinhabitableLoft;
         this.sunExposure = sunExposure;
     }
+
 
     public int getN_bedrooms() {
         return n_bedrooms;

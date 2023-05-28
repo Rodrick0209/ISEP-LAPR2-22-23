@@ -61,7 +61,7 @@ public class PublishAnnouncementController {
         return announcementRepository;
     }
 
-    public Optional<Announcement> createAnnouncement(String propertyLocation, Commission commission, Date date){
+    public Optional<Announcement> createAnnouncement(Location propertyLocation, Commission commission, Date date){
         Property property = getPropertyByLocation(propertyLocation);
         Request request = getRequestByProperty(property);
 
@@ -77,7 +77,7 @@ public class PublishAnnouncementController {
         return getRequestRepository().getRequestByProperty(property);
     }
 
-    private Property getPropertyByLocation(String propertyLocation){
+    private Property getPropertyByLocation(Location propertyLocation){
         return getPropertyRepository().getPropertyByLocation(propertyLocation);
     }
 

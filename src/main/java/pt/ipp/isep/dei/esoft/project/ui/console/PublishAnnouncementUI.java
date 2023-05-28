@@ -2,10 +2,8 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
 public class PublishAnnouncementUI implements Runnable {
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
 
-    private String announcementPropertyLocation;
+    private Location announcementPropertyLocation;
     private Date date;
     private Commission commission;
     private PublishAnnouncementController getController() {
@@ -133,7 +131,7 @@ public class PublishAnnouncementUI implements Runnable {
      *
      * @return selected property from displayed property list
      */
-    private String displayAndSelectRequests() {
+    private Location displayAndSelectRequests() {
         List<Request> requests = controller.getRequests();
         int answer = Utils.showAndSelectIndex(requests, "Requests:\n");
         return requests.get(answer).getProperty().getLocation();

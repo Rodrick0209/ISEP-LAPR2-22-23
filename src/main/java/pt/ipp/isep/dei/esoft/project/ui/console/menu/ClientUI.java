@@ -9,6 +9,10 @@ import java.util.List;
 
 public class ClientUI implements Runnable{
 
+
+    public ClientUI() {
+
+    }
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Schedule a visit", new CreateVisitUI()));

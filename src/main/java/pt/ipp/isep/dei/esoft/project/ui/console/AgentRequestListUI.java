@@ -39,7 +39,7 @@ public class AgentRequestListUI implements Runnable {
     private String displayAndSelectRequests() {
         List<Request> requests = controller.getRequests();
         int answer = Utils.showAndSelectIndex(requests, "Requests\n");
-        return requests.get(answer).getProperty().getLocation();
+        return requests.get(answer).getProperty().getLocation().getStreet();
     }
 
 }

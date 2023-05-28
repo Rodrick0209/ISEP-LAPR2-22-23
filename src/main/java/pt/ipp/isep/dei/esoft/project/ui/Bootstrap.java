@@ -39,8 +39,8 @@ public class Bootstrap implements Runnable {
     // get agency Proprety
     
     PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-    propertyRepository.add(new Land(new PropertyType("Land"), 123, "Lol Street", 23, new Owner("owner@this.app")));
-    propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, "Lmao Street", 23,new Owner("owner@this.app") , 3, 3, 1, false, true));
+    //propertyRepository.add(new Land(new PropertyType("Land"), 123, "Lol Street", 23, new Owner("owner@this.app")));
+    //propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, "Lmao Street", 23,new Owner("owner@this.app") , 3, 3, 1, false, true));
 
     }
 
@@ -58,16 +58,20 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_AGENT, AuthenticationController.ROLE_AGENT);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_CLIENT, AuthenticationController.ROLE_CLIENT);
+
 
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN);
         authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
+        authenticationRepository.addUserWithRole("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT);
+
     }
 
     private void addTypeBusiness(){
         TypeBusinessRepository typeBusinessRepository = Repositories.getInstance().getTypeBusinessRepository();
 
-        typeBusinessRepository.add(new TypeBusiness("Sale"));
+        typeBusinessRepository.add(new TypeBusiness("Sell"));
         typeBusinessRepository.add(new TypeBusiness("Rent"));
     }
 
