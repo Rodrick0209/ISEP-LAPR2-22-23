@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterEmployeeController;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.Agency;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Role;
@@ -23,6 +24,7 @@ public class RegisterEmployeeUI implements Runnable {
     private String employeePhoneNumber;
     private String employeeRoleName;
     private int employeeAgencyID;
+    private String employeePassword;
 
     private RegisterEmployeeController getController() {
         return controller;
@@ -41,9 +43,11 @@ public class RegisterEmployeeUI implements Runnable {
 
     private void submitData() {
         Optional<Employee> employee = getController().createEmployee(employeeName, employeeEmail, employeeCCNumber, employeeTaxNumber, employeeAddress, employeePhoneNumber, employeeRoleName, employeeAgencyID);
+        employeePassword = controller.generatePassword();
 
-        if (employee.isPresent()) {
-            System.out.println("Employee successfully registered!");
+        if (employee.isPresent() && controller.addUserWithRole(employeeName, employeeEmail, employeePassword, AuthenticationController.ROLE_AGENT)) {
+            System.out.println("Employee successfully registered! A password for the employee login the application will be sent t´2o his email address");
+            controller.writeFile(employeeEmail, employeePassword);
         } else {
             System.out.println("Employee not registered!");
         }
@@ -52,7 +56,7 @@ public class RegisterEmployeeUI implements Runnable {
 
     private void submitOrNot() {
         showData();
-        boolean answer = Utils.confirm("Submit Data? (type yes or no)");
+        boolean answer = Utils.confirm("Confirm Data? (type yes or no)");
         if(answer){
             submitData();
         } else run();
@@ -126,7 +130,7 @@ public class RegisterEmployeeUI implements Runnable {
         boolean valid = false;
         do{
             try {
-                input = Utils.readIntegerFromConsole("Employee Tax Number: ");
+                input = Utils.readIntegerFromConsole("Employee CC Number: ");
                 valid = true;
             } catch (NullPointerException e) {
                 System.out.println("Invalid Number. Please enter a valid number.");
@@ -173,10 +177,10 @@ public class RegisterEmployeeUI implements Runnable {
         String input;
         do{
             input = Utils.readLineFromConsole("Employee Phone Number: ");
-            if (input != null && !input.contains("(") && !input.contains(")") && !input.contains("-")) {
+            if (input != null && input.isEmpty()) {
                 System.out.println("Invalid input. Please try again.");
             }
-        } while (input != null && !input.contains("(") && !input.contains(")") && !input.contains("-"));
+        } while (input != null && input.isEmpty());
         return input;
     }
 

@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
@@ -97,18 +98,21 @@ public class RegisterEmployeeController implements FileWriter{
     }
 
     public boolean addUserWithRole(String name,String email, String pwd, String roleId){
-        AuthenticationRepository authenticationRepository = getAuthenticationRepository();
-        AuthFacade authenticationFacade = authenticationRepository.getAuthenticationFacade();
-        return authenticationFacade.addUserWithRole(name, email, pwd, roleId);
+        return getAuthenticationRepository().addUserWithRole(name, email, pwd, roleId);
     }
 
-    public void writeFile(String role, String email, String pwd) {
-        String fileName = "password.txt";
+    public String generatePassword(){
+        PasswordGenerator passwordGenerator = new PasswordGenerator();
+        return passwordGenerator.generatePassword();
+    }
+
+    public void writeFile(String email, String pwd) {
+        String fileName = Files.path + "passwords.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);
-            pw.printf("Role: %s%n" +
+            pw.printf("Role: Employee%n" +
                     "Email: %s%n" +
-                    "Password: %s%n", role, email, pwd);
+                    "Password: %s%n", email, pwd);
             pw.println();
             pw.close();
         } catch (FileNotFoundException e) {

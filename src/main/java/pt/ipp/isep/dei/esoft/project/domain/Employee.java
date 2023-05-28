@@ -13,12 +13,11 @@ public class Employee implements Comparable<Employee>, Comparator<Employee>{
     private final String taxNumber;
     private final String address;
     private final String phoneNumber;
-    private final Role role;
-    private final Agency agency;
-    private final Employee administrator;
+    private Role role;
+    private Agency agency;
+    private Employee administrator;
 
     private static final String initialString = "n/a";
-    private static final String initialEmailString = "test@this.app";
     private static final int initialValue = 0;
 
     /**
@@ -74,9 +73,6 @@ public class Employee implements Comparable<Employee>, Comparator<Employee>{
         this.taxNumber = initialString;
         this.address = initialString;
         this.phoneNumber = initialString;
-        this.role = new Role(initialString);
-        this.agency = new Agency(initialValue);
-        this.administrator = new Employee(initialEmailString);
     }
 
 

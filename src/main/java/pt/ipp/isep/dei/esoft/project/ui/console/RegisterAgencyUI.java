@@ -36,7 +36,7 @@ public class RegisterAgencyUI implements Runnable {
 
     private void submitOrNot() {
         showData();
-        boolean answer = Utils.confirm("Submit Data? (type yes or no)");
+        boolean answer = Utils.confirm("Confirm Data? (type yes or no)");
         if(answer){
             submitData();
         } else run();

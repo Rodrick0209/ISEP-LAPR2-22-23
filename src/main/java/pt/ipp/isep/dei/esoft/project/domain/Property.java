@@ -152,7 +152,6 @@ public class Property {
     }
 
     public void setPhotos(Object o) {
-        photos.add((String) o);
     }
 
 

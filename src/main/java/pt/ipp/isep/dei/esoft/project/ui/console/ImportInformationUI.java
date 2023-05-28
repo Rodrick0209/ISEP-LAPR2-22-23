@@ -28,9 +28,9 @@ public class ImportInformationUI implements Runnable {
         boolean operationSuccess = getController().readFile(fileName);
 
         if (operationSuccess) {
-            System.out.println("Announcement has been successfully published!");
+            System.out.println("Information successfully inserted in the system");
         } else {
-            System.out.println("Announcement not published!");
+            System.out.println("Information not inserted successfully!");
         }
     }
 

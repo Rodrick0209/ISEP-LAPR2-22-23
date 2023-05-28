@@ -69,10 +69,10 @@ public class PublishAnnouncementUI implements Runnable {
         Date input;
         do{
             input = Utils.readDateFromConsole("Date of Request: ");
-            if (input != null) {
+            if (input == null) {
                 System.out.println("Invalid input. Please try again.");
             }
-        } while(input != null);
+        } while(input == null);
         return input;
     }
 
