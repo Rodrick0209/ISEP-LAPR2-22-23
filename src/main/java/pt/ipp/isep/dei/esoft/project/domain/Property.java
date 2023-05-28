@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.List;
 
@@ -53,11 +52,6 @@ public class Property {
         this.distance = distance;
     }
 
-    /**
-     * Instantiates a new Property.
-     *
-     * @param location the property location
-     */
     public Property(String location) {
         this.location = location;
     }
@@ -158,7 +152,9 @@ public class Property {
     }
 
     public void setPhotos(Object o) {
+        photos.add((String) o);
     }
+
 
     public String toString() {
         return String.format("Type: %s%n" +

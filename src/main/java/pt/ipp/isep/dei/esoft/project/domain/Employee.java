@@ -1,25 +1,25 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * The type Employee.
  */
-public class Employee {
-    private String name;
+public class Employee implements Comparable<Employee>, Comparator<Employee>{
+    private final String name;
     private final String email;
-    private int ccNumber;
-    private String taxNumber;
-    private String address;
-    private String phoneNumber;
-    private Role role;
-    private Agency agency;
-    private Employee administrator;
+    private final int ccNumber;
+    private final String taxNumber;
+    private final String address;
+    private final String phoneNumber;
+    private final Role role;
+    private final Agency agency;
+    private final Employee administrator;
 
     private static final String initialString = "n/a";
     private static final String initialEmailString = "test@this.app";
     private static final int initialValue = 0;
-    private static final Role initialRole = new Role("n/a");
 
     /**
      * Instantiates a new Employee.
@@ -74,6 +74,15 @@ public class Employee {
         this.taxNumber = initialString;
         this.address = initialString;
         this.phoneNumber = initialString;
+        this.role = new Role(initialString);
+        this.agency = new Agency(initialValue);
+        this.administrator = new Employee(initialEmailString);
+    }
+
+
+    @Override
+    public int compare(Employee o1, Employee o2) {
+        return o1.getAgency().compareTo(o2.getAgency());
     }
 
     public boolean equals(Object o) {
@@ -103,6 +112,21 @@ public class Employee {
 
 
     public Employee clone() {
-        return new Employee(this.email);
+        return new Employee(this.name, this.email, this.ccNumber, this.taxNumber, this.address, this.phoneNumber, this.role, this.agency, this.administrator);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int compareTo(Employee o) {
+        return this.name.compareTo(o.getName());
+    }
+
+
+    public Agency getAgency() {
+        return agency;
+    }
+
+
 }

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
-public class Agency {
+public class Agency implements Comparable<Agency> {
 
     private final int id;
     private String designation;
@@ -69,4 +69,7 @@ public class Agency {
 
     public Agency clone(){ return new Agency(this.id, this.designation, this.location, this.emailAddress, this.phoneNumber, this.administrator); }
 
+    public int compareTo(Agency o) {
+        return Integer.compare(this.id, o.getID());
+    }
 }
