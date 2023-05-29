@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "agencyRepository\n:AgencyRepository" as AgencyRepository
+participant "agency\n:Agency" as Agency
+
+autonumber 10
+-> AgencyRepository: createAgency(information)
+
+autonumber 10.1
+activate AgencyRepository
+    group Create Agency
+
+        AgencyRepository -> Agency**: createAgency(id, designation, location, \nemailAddress, telephoneNumber, administrator)
+            AgencyRepository -> AgencyRepository: addAgency(agency)
+            deactivate Agency
+        activate AgencyRepository
+            AgencyRepository -> AgencyRepository: validateAgency(agency)
+            activate AgencyRepository
+                AgencyRepository --> AgencyRepository
+            deactivate AgencyRepository
+
+            AgencyRepository --> AgencyRepository
+        deactivate AgencyRepository
+    end
+
+    autonumber 11
+    <-- AgencyRepository : agency
+deactivate AgencyRepository
+
+
+@enduml

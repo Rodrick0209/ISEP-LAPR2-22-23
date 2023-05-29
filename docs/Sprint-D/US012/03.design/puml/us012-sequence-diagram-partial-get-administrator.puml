@@ -1,0 +1,56 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+
+'hide footbox
+participant ":ImportInformationController" as CTRL
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSAO
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "employeeRepository:\nEmployeeRepository" as EmployeeRepository
+
+autonumber 14
+-> CTRL : getAdministratorFromSession()
+autonumber 14.1
+activate CTRL
+
+    group Get Administrator
+        CTRL -> _APP: getInstance()
+        activate _APP
+            _APP -> CTRL: appSession
+        deactivate _APP
+
+        CTRL -> APP: getCurrentSession()
+        activate APP
+
+            APP --> CTRL: currentSession
+        deactivate APP
+
+        CTRL -> SESSAO: email = getUserEmail()
+        activate SESSAO
+
+            SESSAO --> CTRL: email
+        deactivate SESSAO
+
+        CTRL -> PLAT: getEmployeeRepository(email)
+        activate PLAT
+
+            PLAT --> CTRL: employeeRepository
+        deactivate PLAT
+
+        CTRL -> EmployeeRepository: getEmployeeByEmail(email)
+        activate EmployeeRepository
+
+            Employee --> CTRL : administrator
+        deactivate EmployeeRepository
+    end
+    autonumber 15
+    <-- CTRL : administrator
+deactivate CTRL
+
+@enduml

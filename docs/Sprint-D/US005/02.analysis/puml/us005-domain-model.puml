@@ -1,0 +1,49 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+class SystemAdministrator{
+name
+ccNumber
+taxNumber
+emailAddress
+phoneNumber
+}
+
+class Agency {
+    id
+    designation
+    location
+    emailAddress
+    phoneNumber
+}
+
+class AgencyManager{
+name
+ccNumber
+taxNumber
+emailAddress
+phoneNumber
+}
+
+class NetworkManager {
+name
+ccNumber
+taxNumber
+emailAddress
+phoneNumber
+}
+
+
+
+SystemAdministrator "1" - "*" Agency : registers >
+Agency "1" -- "1" AgencyManager : managed by >
+Agency "*" -- "1" NetworkManager : managed by >
+
+@enduml

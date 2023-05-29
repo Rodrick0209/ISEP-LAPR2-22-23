@@ -1,0 +1,287 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Owner" as ADM
+participant ":CreateRequestUI" as UI
+participant ":CreateRequestController" as CTRL
+participant ":Repositories" as Rep
+
+participant "repositories\n:Repositories" as PLAT
+participant "RequestTypeRepository:\nRequestTypeRepository" as TaskCategoryRepository
+participant "PropertyTypeRepository:\nPropertyTypeRepository" as ProType
+participant "agency:\nAgency" as Br
+participant "agencyRepository:\nAgencyRepository" as AgencyRep
+participant "request:\nRequest" as Req
+participant "property:\nProperty" as Prop
+participant "Agent:\nAgent" as Agent
+participant "agentList:\nAgentList" as AgList
+participant "apartment:\nApartment" as Apart
+participant "house:\nHouse" as House
+participant "photographList:\nPhotographList" as PhotoList
+participant "number ofs bedrooms"
+participant "number ofs bathrooms"
+participant "number ofs parking spaces"
+participant "available equipment"
+participant "existence of basement"
+participant "inhabitable loft"
+participant "sun exposure"
+
+
+
+
+
+activate ADM
+
+        ADM -> UI : asks to create a new request
+
+        activate UI
+
+            UI -> CTRL : getRequestCategories()
+            activate CTRL
+
+                CTRL -> Rep : getInstance()
+                activate Rep
+
+                    Rep --> CTRL: repositories
+                deactivate Rep
+
+                CTRL -> PLAT : getRequestCategoryRepository()
+                activate PLAT
+
+                    PLAT --> CTRL: requestCategoryRepository
+                deactivate PLAT
+
+                CTRL -> TaskCategoryRepository : getRequestTypeRepository()
+                activate TaskCategoryRepository
+
+                    TaskCategoryRepository --> CTRL : requestTypeList
+                deactivate TaskCategoryRepository
+
+                CTRL --> UI : requestTypeList
+            deactivate CTRL
+
+            UI --> ADM : shows type of request list
+        deactivate UI
+
+ADM-> UI : get Agency
+activate UI
+    UI -> CTRL : get Agency
+        activate CTRL
+        CTRL-> Rep : get Instance
+        activate Rep
+        Rep --> CTRL :repositories
+        deactivate Rep
+
+        CTRL -> PLAT : getAgency
+        activate PLAT
+        PLAT--> CTRL : agencyRepositories
+        deactivate PLAT
+        CTRL -> AgencyRep : getAgencyList
+        activate AgencyRep
+        AgencyRep -> CTRL : agencylist
+        deactivate AgencyRep
+        CTRL --> UI : agencylist
+     deactivate CTRL
+     UI --> ADM : shows agency list
+
+     deactivate UI
+
+        ADM -> UI : selects agency
+        activate UI
+        UI --> Br : get Agent List(colect Agency)
+        activate Br
+        loop For each employee
+        Br-> Agent : has an agent
+        activate Agent
+        Agent --> Br : true / false
+        deactivate Agent
+        alt true
+        Br-> AgList :add agent to the list
+        activate AgList
+        AgList --> Br : agent list
+        deactivate AgList
+        end
+        end
+        Br --> CTRL : Agent List
+        deactivate Br
+        CTRL --> UI : agent List
+        UI --> ADM : shows agent List
+        deactivate UI
+        ADM -> AgList : selects agent
+        activate AgList
+        AgList --> ADM : shows selected agent
+        deactivate AgList
+
+
+    ADM -> UI : selects a type of property
+    activate UI
+
+    UI -> CTRL : create a request type
+        activate CTRL
+
+    CTRL --> Br : create a request type
+    activate Br
+
+    Br -> Req : create
+    activate Req
+
+    Req --> Br : request
+    deactivate Req
+
+    Br -> Br : add Request
+
+    deactivate Br
+
+
+    UI -> CTRL : get a property type
+
+       CTRL -> Rep : getInstance()
+                    activate Rep
+
+                        Rep --> CTRL: repositories
+                    deactivate Rep
+
+    CTRL -> PLAT : Get Property- Type repository
+    activate PLAT
+
+    PLAT --> CTRL : PropertyTypeRepository
+    deactivate PLAT
+
+    CTRL -> ProType :get property type
+    activate ProType
+
+    ProType --> CTRL : Property Type
+    deactivate ProType
+
+    CTRL --> UI : propert Type List
+    deactivate CTRL
+
+        UI --> ADM : shows list of property type
+    deactivate Br
+    deactivate UI
+
+    ADM -> UI : selects type of property
+    activate UI
+
+        UI -> CTRL : create property
+        activate CTRL
+
+        CTRL --> Req :selects Property Type
+        activate Req
+        deactivate Req
+        deactivate CTRL
+
+
+
+        UI --> ADM : request data( the area in m2, the location, the distance from the city centre)
+    deactivate UI
+
+    ADM -> UI : type request
+    activate UI
+
+        UI -> CTRL : create property( area, location, distance of center, photograph)
+    activate CTRL
+        CTRL -> Req : create property( area, location, distance of center, photograph)
+    deactivate CTRL
+    activate Req
+
+    Req -> Prop: create
+    activate Prop
+
+    Prop -> Req:  property
+    Req -> Req :add property
+    deactivate Prop
+    deactivate Req
+
+    UI --> ADM :  request data (photograph)
+    deactivate UI
+
+    ADM -> UI : type request data
+    activate UI
+
+    UI -> CTRL : create Photograph
+
+
+
+            CTRL -> Prop: creates Photograph
+    loop 1 photo or more and less than 30
+
+    activate Prop
+
+
+    Prop -> PhotoList :  add photograph to PhotoList
+    activate PhotoList
+    deactivate Prop
+    deactivate PhotoList
+    end
+
+    opt Request ia a Land
+    UI-->ADM : request data (contract duration)
+    deactivate UI
+
+    opt Rent a Property
+    ADM -> UI : type requested data
+    activate UI
+    UI-> CTRL : set Contract Duration and monthly rent
+    activate CTRL
+    CTRL -> Req : set contract duration and monthly rent
+    deactivate CTRL
+    end
+
+    opt Property Apartment or House
+
+        UI--> ADM : request data(number od bedrooms, number\nof bathrooms, number of parking \nspaces and available equipment)
+     deactivate UI
+
+     ADM -> UI : type request all data
+     activate UI
+     UI-> CTRL : create Apartment(bedromoms, bathrooms, parking spaces and equipment)
+     activate CTRL
+     CTRL -> Req : create Apartment(bedromoms, bathrooms, parking spaces and equipment)
+     activate Req
+    deactivate CTRL
+
+    Req -> Apart : create
+    activate Apart
+    Apart --> Req : apartment
+    deactivate Apart
+    Req-> Req : add Property(apartment)
+     deactivate Req
+
+
+    opt Property is a House
+    UI --> ADM : request data (existence of a basement, an inhabitable loft, and sun exposure)
+    deactivate UI
+    ADM-> UI : submits data
+    activate UI
+    UI-> CTRL : create house (e existence of a basement, an inhabitable loft, and sun exposure)
+    activate CTRL
+    CTRL -> Req : create house (e existence of a basement, an inhabitable loft, and sun exposure)
+    activate Req
+    Req -> House : create
+    activate House
+    House --> Req: property
+    deactivate House
+    Req -> Req :add Property (house)
+    deactivate Req
+    deactivate CTRL
+    end
+    end
+
+    activate UI
+    UI --> ADM : shows all the data related to the request
+    deactivate UI
+    ADM -> UI : submits data
+    activate UI
+    UI --> ADM : display operation
+    deactivate UI
+    deactivate ADM
+
+
+
+@enduml

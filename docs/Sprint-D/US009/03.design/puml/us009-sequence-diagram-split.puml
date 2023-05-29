@@ -1,0 +1,124 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Organization Employee" as ADM
+participant ":CreateRequestUI" as UI
+participant ":CreateRequestController" as CTRL
+participant ":Repositories" as Rep
+participant "repositories\n:Repositories" as PLAT
+participant "PropertyRepository:\npropertyRepository" as PropRep
+participant "OwnerRepository:\n ownerRepository" as OwnRep
+participant "ResponseRepository:\nresponseRepository" as RespRep
+participant "VisitRepository:\n visitRpository" as VisRep
+
+activate ADM
+
+
+        ADM -> UI : asks to shcedule a visit
+        activate UI
+
+        UI -> CTRL : get a property
+                               activate CTRL
+                               ref over CTRL
+                                   Get Property List
+                               end
+
+                               CTRL --> UI : propertylist
+                               deactivate CTRL
+
+        UI --> ADM : shows property list
+        deactivate UI
+
+
+    ADM -> UI :  selects property
+    activate UI
+
+    ref over UI
+                Get user information
+        end
+    UI --> ADM : asks for date
+    deactivate UI
+
+    ADM -> UI :  submits date
+    activate UI
+
+    UI -->ADM : asks for time slot
+    deactivate UI
+
+    ADM -> UI : submits time slot
+    activate UI
+
+    UI -> CTRL : checkVisitValid()
+        activate CTRL
+
+    CTRL -> RespRep :  checkVisitValid()
+    activate RespRep
+
+    RespRep --> CTRL : return True or False
+    deactivate RespRep
+
+    CTRL --> UI : return True or False
+    deactivate CTRL
+loop while the answer is false - date and/or time slot are invalid
+
+opt date is invalid
+ UI --> ADM : asks for another date
+
+ ADM -> UI : submit new date
+end
+
+opt time slot is invalid
+UI --> ADM : asks for another time slot
+
+ADM -> UI : submit new time slot
+end
+ UI -> CTRL : checkVisitValid()
+        activate CTRL
+
+    CTRL -> RespRep :  checkVisitValid()
+    activate RespRep
+
+    RespRep --> CTRL : return True or False
+    deactivate RespRep
+
+    CTRL --> UI : return True or False
+    deactivate CTRL
+
+end
+
+opt TRUE - date and time slot are valid
+
+        ADM -> UI : confirms data
+
+        UI -> CTRL : save visit data
+        activate CTRL
+        CTRL -> VisRep : save visit data
+
+
+        UI-> CTRL : addMessage()
+
+
+        CTRL -> RespRep : addMessage()
+
+        activate RespRep
+
+        RespRep --> CTRL: valid message
+        deactivate RespRep
+
+        CTRL --> UI: valid message
+        deactivate CTRL
+
+        UI --> ADM  : shows valid message
+        deactivate UI
+        deactivate ADM
+
+end
+
+
+
+@enduml

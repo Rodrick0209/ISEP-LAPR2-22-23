@@ -1,0 +1,124 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "System Administrator" as ADM
+participant ":ImportInformationUI" as UI
+participant ":ImportInformationController" as CTRL
+participant "propertyRepository\n:PropertyRepository" as PropertyRepository
+participant "requestRepository\n:RequestRepository" as RequestRepository
+participant "announcementRepository\n:AnnouncementRepository" as AnnouncementRepository
+participant "agencyRepository\n:AgencyRepository" as AgencyRepository
+
+activate ADM
+
+    ADM -> UI : asks to import information from a legacy system
+
+autonumber 1.1
+    activate UI
+
+        UI -> CTRL** : import
+
+autonumber 2
+        UI --> ADM : requests data
+    deactivate UI
+
+    ADM -> UI : types requested data (fileName)
+    activate UI
+
+        UI --> ADM : shows selected data and asks to confirm data
+    deactivate UI
+
+    ADM -> UI : confirms data
+    activate UI
+        autonumber 5.1
+        UI -> CTRL : readFile(fileName)
+        activate CTRL
+
+            CTRL -> CTRL : getPropertyTypeByName(String propertyTypeName)
+            activate CTRL
+
+                ref over CTRL
+                    Get Property Type
+
+                end ref
+
+                CTRL --> CTRL : propertyType
+            deactivate CTRL
+
+            CTRL -> CTRL : getTypeOfBusinessByName(String typeOfBusinessName)
+                        activate CTRL
+
+                            ref over CTRL
+                                Get Type Business
+
+                            end ref
+
+                            CTRL --> CTRL : typeBusiness
+                        deactivate CTRL
+
+            CTRL -> CTRL : getAdministratorFromSession()
+            activate CTRL
+
+                ref over CTRL
+                    Get Administrator
+
+                end ref
+                CTRL -> CTRL : administrator
+            deactivate CTRL
+
+            CTRL -> CTRL: readFile(fileName)
+            activate CTRL
+            opt land
+            CTRL -> PropertyRepository: createProperty(information)
+            activate PropertyRepository
+
+                ref over PropertyRepository
+                    Create Property
+
+                    end
+
+            PropertyRepository --> CTRL: property
+            deactivate PropertyRepository
+            autonumber 5.11
+
+            CTRL -> RequestRepository: createRequest(information)
+            activate RequestRepository
+                ref over RequestRepository
+                                    Create Request
+
+                end
+                RequestRepository --> CTRL: request
+                deactivate RequestRepository
+
+           CTRL -> AnnouncementRepository: createAnnouncement(information)
+                       activate AnnouncementRepository
+                           ref over AnnouncementRepository
+                                               Create Announcement
+
+                           end
+                           AnnouncementRepository --> CTRL: announcement
+                           deactivate AnnouncementRepository
+          CTRL -> AgencyRepository: createAgency(information)
+                                 activate AgencyRepository
+                                     ref over AgencyRepository
+                                                         Create Agency
+
+                                     end
+                                     AgencyRepository --> CTRL: agency
+                                     deactivate AgencyRepository
+          CTRL --> CTRL
+          deactivate CTRL
+          CTRL --> UI
+          deactivate CTRL
+          autonumber 6
+            UI --> ADM: displays operation success
+    deactivate UI
+
+deactivate ADM
+
+@enduml

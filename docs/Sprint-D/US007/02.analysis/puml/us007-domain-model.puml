@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+class Organization{
+    description
+}
+
+class User {
+    name
+    citizen_card_number
+    tax_number
+    email
+    telephone_number
+    password
+}
+
+class Role {
+    description
+}
+
+Organization "1" - "0..*" User : has >
+User "*" - "1" Role: cataloged by >
+@enduml

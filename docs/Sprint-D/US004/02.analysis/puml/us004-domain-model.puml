@@ -1,0 +1,84 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+'title Domain Model
+
+'class Platform {
+'  -description
+'}
+
+class Property  {
+    type_of_property
+    area
+    location
+    distance_from_the_city_centre
+    requested_price
+    photos
+}
+
+class Owner{
+    name
+    citize's card number
+    tax number
+    adress
+    email adress
+    contact telephone number
+    agency
+}
+
+class Apartment{
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking_spaces
+    existence_of_central_heating
+    existence_of_air_conditioning
+
+}
+class House{
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking spaces
+    existence_of_central heating
+    existence_of_air_conditioning
+    existence_of_a_basement
+    existence_of_an_inhabitable_loft
+    existence_of_sun_exposure
+}
+
+
+class Agent {
+    name
+    citize's card number
+    tax number
+    adress
+    email adress
+    contact telephone number
+    agency
+}
+
+'class User {
+'    name
+'    email
+'    password
+'}
+
+'Platform  -- "*" Owner : has registered >
+'Platform -- "*" Category : defines >
+Property "1"-D-> "1..*" House :  can be a
+Property "1    "-U-> "1..* " Apartment :  can be an
+Property "1"->"*" Owner : has an
+Owner "1"-> "*" Agent : contracts an
+
+
+
+@enduml

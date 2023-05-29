@@ -1,0 +1,112 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Owner" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to create a new request
+    activate System
+
+        System --> Employee : shows type of request list
+    deactivate System
+
+    Employee -> System : selects type of request
+    activate System
+
+        System --> Employee : shows type of property list
+
+    deactivate System
+
+    Employee -> System : selects type of property
+
+    activate System
+
+        System --> Employee : request data
+    deactivate System
+
+opt Property (land or house or apartment)
+
+   Employee -> System : the area in m2, the location,\nthe distance from the city centre, the\nrequested price and one or more photographs
+    activate System
+
+    loop photos
+    Employee -> System : add photos to the list(more than one and less than 30)
+    end
+
+opt House or apartment
+
+    Employee -> System : types of data (numbers of bedrooms, bathrooms and parking\n spaces  and the exisence  of a central heating and/or air conditioning
+
+
+opt only house
+      System --> Employee : shows basement options
+      deactivate System
+
+
+      Employee -> System : selects option
+      activate System
+
+    System --> Employee : shows inhabitable loft options
+      deactivate System
+
+
+      Employee -> System :  selects option
+
+      activate System
+
+            System --> Employee :shows sun exposure list
+      deactivate System
+
+      Employee -> System :selects option
+      activate System
+
+end
+end
+end
+
+
+     activate System
+
+        System --> Employee : shows agent list
+    deactivate System
+
+    Employee -> System :  selects agent
+
+     activate System
+
+        System --> Employee : shows all the data related to the request
+
+
+    alt rent a property
+            System --> Employee : asks for the contract duration and the price (per month))
+         deactivate System
+            Employee -> System : submits data
+            activate System
+         else       sell a property
+            System --> Employee : asks for property price
+            deactivate System
+            Employee -> System : submits data
+            activate System
+
+         end
+
+    System --> Employee: shows requested data
+
+    deactivate System
+
+     Employee -> System : confirm data
+
+     activate System
+
+            System --> Employee : display operation sucess
+     deactivate System
+
+@enduml

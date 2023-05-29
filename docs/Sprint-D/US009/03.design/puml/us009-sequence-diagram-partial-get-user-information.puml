@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":CreateRequestUI" as UI
+participant ":CreateRequestController" as CTRL
+participant "OwnerRepository:\n ownerRepository" as OwnRep
+
+
+UI -> CTRL : getPersonByUserSession()
+
+    activate UI
+    activate CTRL
+
+    CTRL -> OwnRep : getPersonByUserSession()
+    activate OwnRep
+
+    OwnRep --> CTRL : returns person
+    deactivate OwnRep
+
+    CTRL --> UI : returns person
+    deactivate CTRL
+
+
+    UI -> UI : save name and phone number of the user (owner)
+@enduml

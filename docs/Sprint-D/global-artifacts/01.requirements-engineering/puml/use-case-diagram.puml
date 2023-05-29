@@ -1,0 +1,53 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+'skinparam shadowing false
+
+skinparam rectangle{
+    BorderColor white
+}
+
+'title Use Case Diagram Example
+
+top to bottom direction
+
+rectangle "Use Cases" as usecases{
+    usecase "UC13" as UC13
+    usecase "UC12 - To import information from a legacy system" as UC12
+    SystemAdministrator--> UC12
+    usecase "UC11" as UC11
+    usecase "UC10" as UC10
+    usecase "UC9" as UC9
+    usecase "UC8" as UC8
+    usecase "UC8 - To select a request and publish an announcement" as UC8
+    Agent--> UC8
+    usecase "UC4 - To submit a request" as UC4
+        Owner --> UC4
+        usecase "UC3 - To register an employee" as UC3
+        SystemAdministrator --> UC3
+        usecase "UC5 - To register a store" as UC5
+        SystemAdministrator --> UC5
+        usecase "UC2 - To publish an announcement" as UC2
+        Agent --> UC2
+        usecase "UC1 - To display listed properties" as UC1
+        UnregisteredUser --> UC1
+        usecase "UC7 -  To register a new user in the system" as UC7
+          UnregisteredUser --> UC7
+
+         usecase "UC11 - To list and decide (whether to accept or decline)  real estate purchase \nand to send an email to the customer in case of acceptance" as UC11
+             Agent--> UC11
+
+             usecase "UC10 - To place and submit a purchase order \n (with the respective amoount)" as UC10
+             Client --> UC10
+
+             usecase "UC9 To request a visit to a land" as UC9
+             Client --> UC9
+             usecase "UC13 To list all employes working on the current network" as UC13
+             NetworkManager --> UC13
+
+
+
+ }
+
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+
+participant ":ImportInformationController" as CTRL
+participant ":Repositories" as Rep
+participant "repositories\n:Repositories" as PLAT
+participant "propertyTypeRepository\n:PropertyTypeRepository" as ProType
+
+autonumber 17
+-> CTRL: getPropertyTypeByName(String propertyTypeName)
+
+activate CTRL
+    CTRL -> Rep : getInstance()
+
+    activate Rep
+
+    Rep --> CTRL: repositories
+    deactivate Rep
+
+    CTRL -> PLAT : getPropertyTypeRepository()
+    activate PLAT
+
+    PLAT --> CTRL : propertyTypeRepository
+    deactivate PLAT
+
+    CTRL -> ProType :getPropertyTypeByName(String propertyTypeName)
+    activate ProType
+
+    ProType --> CTRL : propertyType
+    deactivate ProType
+
+<-- CTRL: propertyType
+@enduml

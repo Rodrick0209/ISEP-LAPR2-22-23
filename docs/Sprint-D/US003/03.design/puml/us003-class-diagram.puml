@@ -1,0 +1,85 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+class SystemAdministrator {
+}
+
+class RegisterEmployeeUI {
+    + create()
+    + display(employee, roles, agencies)
+    + getEmployeeData()
+}
+
+class EmployeeController {
+    - roleRepository
+    - agencyRepository
+    - employeeRepository
+
+    + create(name, email, role, agency, startDate)
+}
+
+class EmployeeRepository {
++ create(employee)
+    + findByEmail(email)
+    + update(employee, name, role, agency, startDate)
+}
+
+class Employee {
+    - name
+    - citizen_card_number
+    - tax_number
+    - address
+    - email_address
+    - contact
+
+    + setName(name)
+    + setCCNumber(citizenCardNumber)
+    + setTaxNumber(taxNumber)
+    + setAddress(address)
+    + setRole(role)
+    + setAgency(agency)
+    + setStartDate(startDate)
+}
+
+class RoleRepository {
+    + getRoles()
+}
+
+class AgencyRepository {
+    + getAgencies()
+}
+
+class ApplicationSession {
+    + getUserEmail()
+}
+
+class Organization {
+    - String name
+    - String vatNumber
+    - String website
+    - String phone
+    - String email
+
+    - addTask(task)
+    - validateTask(task)
+    + anyEmployeeHasEmail(email)
+    + Organization(name, vatNumber, webSite, phone, email, postalAddress, manager)
+    + createTask(reference, description, informalDesccription,\ntechnicalDescription, duration, cost, taskCategoryDescription)
+    - getEmployeeByEmail(email)
+
+'  +saveTask(task)
+}
+
+SystemAdministrator -> RegisterEmployeeUI
+RegisterEmployeeUI -> EmployeeController
+EmployeeController -> EmployeeRepository
+EmployeeRepository -> Employee
+EmployeeController -> RoleRepository
+EmployeeController -> AgencyRepository
+Employee -> Role
+Employee -> Agency
+EmployeeController -> ApplicationSession
+EmployeeController -> Organization
+@enduml

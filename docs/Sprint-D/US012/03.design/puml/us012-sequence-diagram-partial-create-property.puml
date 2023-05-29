@@ -1,0 +1,44 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "propertyRepository\n:propertyRepository" as PropertyRepository
+participant "land\n:Land" as Land
+participant "apartment\n:Apartment" as Apartment
+participant "house\n:House" as House
+
+autonumber 10
+-> PropertyRepository : createProperty(information)
+group Create Property
+activate PropertyRepository
+autonumber 10.1
+opt land
+   PropertyRepository -> Land**: createLand(propertyType, area, \nlocation, distanceFromCityCentre, owner)
+
+    autonumber 10.1
+    end
+    opt apartment
+    PropertyRepository -> Apartment**: createApartment(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, owner)
+    end
+
+    autonumber 10.1
+    opt house
+        PropertyRepository -> House**: createHouse(propertyType, area, location, \ndistanceFromCityCentre, numberOfBedrooms, \nnumberOfBathrooms, numberOfParkingSpaces, \ncentralHeating, airConditioning, \ninhabitableLoft, sunExposure, owner)
+    end
+
+        PropertyRepository -> PropertyRepository: addProperty(property)
+        activate PropertyRepository
+            PropertyRepository -> PropertyRepository: validateProperty(property)
+            activate PropertyRepository
+
+            PropertyRepository --> PropertyRepository
+            deactivate PropertyRepository
+
+        PropertyRepository --> PropertyRepository
+        deactivate PropertyRepository
+
+    end
+        <-- PropertyRepository : property
+    deactivate PropertyRepository
+@enduml

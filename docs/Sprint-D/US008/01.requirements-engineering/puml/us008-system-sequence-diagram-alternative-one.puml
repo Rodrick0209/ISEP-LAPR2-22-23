@@ -1,0 +1,83 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title User Story 008 - System Sequence Diagram (SSD)
+
+
+autonumber
+
+
+
+actor "Real Estate Agent" as Agent
+participant "System" as System
+
+
+
+activate Agent
+activate System
+loop While login data is  not valid
+
+System --> Agent : requests login
+deactivate System
+Agent -> System : inserts loign data (id/email , password )
+alt login is not valid
+activate System
+System --> Agent : displays error message
+
+end
+end
+
+activate System
+System --> Agent: displays agent menu
+deactivate System
+
+Agent -> System : selects to see property announcment requests
+
+
+activate System
+    System --> Agent: displays the announcments request list (sorted by the date they were created, with the most recent requests appearing first)
+    deactivate System
+
+
+    Agent -> System : selects a property announcment request
+
+    activate System
+
+    System--> Agent: asks for request acceptance
+     deactivate System
+   Agent-> System: accepts request
+   activate System
+  System --> Agent: Asks for the type of comission (fixed or percentage)
+  deactivate System
+   Agent-> System: selects the type of comission.
+   activate System
+   loop While comission is not valid
+   System --> Agent: Asks to insert comission.
+   deactivate System
+    Agent -> System:  inserts comission.
+    alt login is not valid
+    activate System
+    System --> Agent : displays error message
+    end
+    end
+
+
+
+
+   activate System
+System --> Agent : informs the agent the announcment has been published
+deactivate System
+
+
+
+
+
+
+
+
+
+
+
+@enduml
