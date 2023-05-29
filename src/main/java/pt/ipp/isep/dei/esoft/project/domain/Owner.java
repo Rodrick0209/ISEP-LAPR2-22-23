@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Owner {
     private String name;
     private int ccNumber;
-    private String taxNumber;
+    private String  taxNumber;
     private final String emailAddress;
     private String phoneNumber;
 
@@ -76,5 +76,20 @@ public class Owner {
         return Objects.hash(emailAddress);
     }
 
-    public Owner clone(){return new Owner(this.name, this.ccNumber, this.taxNumber, this.emailAddress, this.phoneNumber);}
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "name='" + name + '\'' +
+                ", ccNumber=" + ccNumber +
+                ", taxNumber='" + taxNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+
+    public Owner clone(){return new Owner(this.name, this.ccNumber, this.taxNumber, this.emailAddress, this.phoneNumber);
+
+
+
+    }
 }

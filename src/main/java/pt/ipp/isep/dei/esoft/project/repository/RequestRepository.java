@@ -10,7 +10,17 @@ public class RequestRepository {
 
     private final List<Request> requests = new ArrayList<>();
 
-    public Request getRequestByProperty(Property property) {
+    public Request getRequestById(int requestId) {
+        Request request = null;
+        for (Request r : requests) {
+            if (r.getRequestId() == requestId) {
+                request = r;
+            }
+        }
+        return request;
+    }
+
+    public  Request getRequestByProperty(Property property){
         Request request = null;
         for (Request r : requests) {
             if (r.getProperty().equals(property)) {
@@ -65,5 +75,7 @@ public class RequestRepository {
         return newRequest;
     }
     public List<Request> getRequests(){ return List.copyOf(requests); }
-    private boolean validateRequest(Request request){ return !requests.contains(request);}
+    private boolean validateRequest(Request request){ return !requests.contains(request);
+
+    }
 }

@@ -319,6 +319,7 @@ public class ImportInformationController implements FileReader {
         private TypeBusiness getTypeBusinessByName(String typeBusinessName){
             return getTypeOfBusinessRepository().getTypeBusinessbyName(typeBusinessName);
         }
+
 }
 
 

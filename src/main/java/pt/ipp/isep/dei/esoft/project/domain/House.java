@@ -45,6 +45,8 @@ public class House extends Property {
     }
 
 
+
+
     public int getN_bedrooms() {
         return n_bedrooms;
     }

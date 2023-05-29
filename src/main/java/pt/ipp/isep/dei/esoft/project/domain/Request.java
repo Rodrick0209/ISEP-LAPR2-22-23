@@ -1,19 +1,37 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Request {
+    private static int requestIdCounter = 1;
+    private int requestId;
     private final Property property;
     private final TypeBusiness typeBusiness;
-    private final int price;
+    private final double price;
+    private final Owner owner;
+    private final Date requestDate;
 
-    private Owner owner;
+    public Date getRequestDate() {
+        return requestDate;
+    }
 
-    public Request(Property property, TypeBusiness typeBusiness, int price, Owner owner) {
+    public Owner getOwner() {
+        return owner;
+    }
+
+
+    public int getRequestId() {
+        return requestId;
+    }
+
+    public Request(Property property, TypeBusiness typeBusiness, double price, Owner owner) {
         this.property = property;
         this.typeBusiness = typeBusiness;
         this.price = price;
-        this.owner  = owner;
+        this.owner = owner;
+        this.requestId = requestIdCounter++;
+        this.requestDate = new Date();
     }
 
     public Property getProperty() {
@@ -37,7 +55,26 @@ public class Request {
         return new Request(property, typeBusiness, price, owner);
     }
 
-    public int getPrice() {
+
+    public double getPrice() {
         return price;
     }
+
+    public TypeBusiness getTypeBusiness() {
+        return typeBusiness;
+    }
+
+    @Override
+    public String toString() {  // method to convert into displayable
+        return "Request{" +
+                "requestId=" + requestId +
+                ", property=" + property.toString() +
+                ", typeBusiness=" + typeBusiness.toString() +
+                ", price=" + price +
+                ", owner=" + owner.toString() +
+                ", requestDate=" + requestDate +
+                '}';
+    }
+
+
 }

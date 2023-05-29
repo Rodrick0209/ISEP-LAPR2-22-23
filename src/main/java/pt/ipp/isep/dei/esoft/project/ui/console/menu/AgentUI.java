@@ -10,10 +10,6 @@ import java.util.List;
 
 public class AgentUI implements Runnable {
 
-    public AgentUI() {
-
-    }
-
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI())); // us 002 function

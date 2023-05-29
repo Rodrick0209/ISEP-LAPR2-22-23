@@ -11,7 +11,7 @@ import java.util.List;
 public class PublishAnnouncementUI implements Runnable {
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
 
-    private Location announcementPropertyLocation;
+    private int identifyId;
     private Date date;
     private Commission commission;
     private PublishAnnouncementController getController() {
@@ -19,16 +19,15 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     public void run() {
-        System.out.println("Select the requests\n");
 
-        announcementPropertyLocation = displayAndSelectRequests();
+        identifyId = displayAndSelectRequests();
         requestData();
 
         submitOrNot();
     }
 
     private void submitData() {
-        Optional<Announcement> announcement = getController().createAnnouncement(announcementPropertyLocation, commission, date);
+        Optional<Announcement> announcement = getController().createAnnouncement(identifyId, commission, date);
 
         if (announcement.isPresent()) {
             System.out.println("Announcement has been successfully published!");
@@ -47,7 +46,7 @@ public class PublishAnnouncementUI implements Runnable {
 
     private void showData(){
         System.out.println();
-        System.out.println("Property Location: " + announcementPropertyLocation);
+        System.out.println("Request Id: " + identifyId);
         System.out.println("Commission Type: " + commission.getType());
         System.out.println("Commission Value: " + commission.getValue());
         System.out.println("Date of announcement: " + date);
@@ -56,7 +55,6 @@ public class PublishAnnouncementUI implements Runnable {
 
     private void requestData() {
         commission = requestCommission();
-        date = requestDate();
     }
 
     /**
@@ -128,13 +126,12 @@ public class PublishAnnouncementUI implements Runnable {
 
 
     /**
-     *
      * @return selected property from displayed property list
      */
-    private Location displayAndSelectRequests() {
+    private int displayAndSelectRequests() {
         List<Request> requests = controller.getRequests();
-        int answer = Utils.showAndSelectIndex(requests, "Requests:\n");
-        return requests.get(answer).getProperty().getLocation();
+        int answer = Utils.showAndSelectIndex(requests, "Select your request requests:\n");
+        return requests.get(answer).getRequestId();
     }
 
 }
