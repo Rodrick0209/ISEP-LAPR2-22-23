@@ -33,6 +33,11 @@ public class PropertyType {
         public PropertyType clone(){
         return new PropertyType(propertyType);
         }
+
+    @Override
+    public String toString() {
+        return String.format("%s%n", propertyType);
+    }
 }
 
 

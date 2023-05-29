@@ -52,10 +52,14 @@ public class Property {
         this.distance = distance;
     }
 
-    public Property(PropertyType typeName, double area, Location location, double distance) {
+    /* public Property(PropertyType type, double area, Location location, double distance , Owner owner) {
+        this.type = type;
+        this.area = area;
         this.location = location;
-    }
+        this.distance = distance;
+        this.owner = owner ;
 
+    }*/
 
 
     /**
@@ -113,8 +117,9 @@ public class Property {
      * @param area     the area
      * @param location the location
      * @param distance the distance
+     * @param owner
      */
-    public Property(PropertyType type, double area, Location location, double distance, List<String> photos, Owner owner) {
+    public Property(PropertyType type, double area, Location location, double distance, Owner owner) {
         this.type = type;
         this.area = area;
         if (location == null) {
@@ -122,24 +127,11 @@ public class Property {
         }
         this.location = location;
         this.distance = distance;
-        this.photos = photos;
-        this.owner = owner;
     }
 
-    public Property(PropertyType type, double area, Location location, double distance, Owner owner){
-        this.type = type;
-        this.area = area;
-        if (location == null) {
-            throw new NullPointerException("Invalid address. This must not be null.");
-        }
-        this.location = location;
-        this.distance = distance;
-        this.owner = owner;
-        setPhotos(initialString);
-    }
 
     public Property clone() {
-        return new Property(this.type, this.area, this.location, this.distance, this.photos, this.owner);
+        return new Property(this.type, this.area, this.location, this.distance, owner);
     }
 
     /**
@@ -151,8 +143,8 @@ public class Property {
         return location;
     }
 
-    public void setPhotos(Object o) {
-    }
+    /*public void setPhotos(Object o) {
+    }*/
 
 
     public String toString() {

@@ -5,6 +5,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
  */
 public class House extends Property {
 
+    private  Owner owner ;
     private int n_bedrooms;
     private int n_bathrooms;
     private int n_parkingSpaces;
@@ -31,8 +32,8 @@ public class House extends Property {
 
      */
 
-    public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure) {
-        super(typeName, area, location, distance);
+    public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure , Owner owner) {
+        super(typeName, area, location, distance, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;

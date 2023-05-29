@@ -8,6 +8,7 @@ import java.util.Objects;
  */
 public class Apartment extends Property {
 
+    private Owner owner ;
     private String type;
     private double area;
     private Location location;
@@ -37,33 +38,14 @@ public class Apartment extends Property {
      */
 
 
-    /*public Apartment(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(typeName, area, location, distance, owner );
-        this.n_bedrooms = n_bedrooms;
-        this.n_bathrooms = n_bathrooms;
-        this.n_parkingSpaces = this.n_parkingSpaces;
-        this.centralHeating = centralHeating;
-        this.airConditioning = airConditioning;
-    }*/
 
-    public Apartment(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning) {
-        super(typeName, area, location, distance);
+    public Apartment(PropertyType typeName, double area, Location location, double distance , int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning , Owner owner) {
+        super(typeName, area, location, distance, owner);
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
         this.centralHeating = centralHeating;
         this.airConditioning = airConditioning;
-    }
-
-    public Apartment(PropertyType apartment, int area, Location location, int distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, int n_parkingSpaces1, boolean centralHeating, boolean airConditioning) {
-        super( apartment, area, location, distance);
-        this.n_bedrooms = n_bedrooms;
-        this.n_bathrooms = n_bathrooms;
-        this.n_parkingSpaces = n_parkingSpaces;
-        this.centralHeating = centralHeating;
-        this.airConditioning = airConditioning;
-
-
     }
 
     /**
