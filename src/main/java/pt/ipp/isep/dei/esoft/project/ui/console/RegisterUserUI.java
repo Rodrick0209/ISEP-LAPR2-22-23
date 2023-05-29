@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterUserController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
-import pt.ipp.isep.dei.esoft.project.domain.Agency;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
-
-import java.util.Optional;
 
 public class RegisterUserUI implements Runnable {
 
@@ -26,6 +23,7 @@ public class RegisterUserUI implements Runnable {
     private void requestData(){
         userName = requestUserName();
         userEmail = requestUserEmailAddress();
+
     }
 
     private void submitData() {
@@ -50,34 +48,55 @@ public class RegisterUserUI implements Runnable {
         System.out.println("Email Address: " + userEmail);
         System.out.println();
     }
-
     private String requestUserName(){
-        String input;
-        do{
-            input = Utils.readLineFromConsole("Your Name: ");
-            if (input != null && input.isEmpty()) {
-                System.out.println("Invalid input. Please try again.");
-            }
-        } while(input != null && input.isEmpty());
-        return input;
+        userName = inputAndValidateUserName(userName);
+        return  userName;
+
     }
 
-    private String requestUserEmailAddress() {
-        String input;
-        int count = 0;
-        do {
-            input = Utils.readLineFromConsole("Your Email Address: ");
-            if (input != null) {
-                for (char c : input.toCharArray()) {
-                    if (c == '@') {
-                        count++;
-                    }
-                }
-                if (input.isEmpty() || count != 1) {
-                    System.out.println("Invalid input. Please try again.");
-                }
+
+
+    private String inputAndValidateUserName(String userName) {
+        do{
+            userName = Utils.readLineFromConsole("Your Name: ");
+            if (userName != null && !validateName(userName)) {
+                System.out.println("Invalid name. Please try again.");
             }
-        } while ((input != null && input.isEmpty()) || count != 1);
-        return input;
+        } while(userName != null && !validateName(userName));
+        return userName;
+    }
+
+    public boolean validateName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+        if (!name.matches("[a-zA-Z\\s]+")) {
+            return false;
+        }
+        return true;
+    }
+
+
+    private String requestUserEmailAddress() {
+        userEmail = inputAndValidateUserName();
+        return userEmail;
+    }
+    public String inputAndValidateUserName() {
+        do {
+            userEmail = Utils.readLineFromConsole("Your Email Address: ");
+            if (userEmail != null && !validateEmail(userEmail)){
+                System.out.println("Invalid Email please try again");
+            }
+        } while (userEmail != null && !validateEmail(userEmail));
+        return userEmail;
+    }
+
+    /**
+     * Email validiation , email need to have A-Z can or not contain a number a  @ and A-Z  letter can or not contain a number  ,
+     */
+    public static boolean validateEmail(String email) {
+
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(emailRegex);
     }
 }
