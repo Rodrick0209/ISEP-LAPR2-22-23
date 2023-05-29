@@ -15,12 +15,17 @@ public class Bootstrap implements Runnable {
         addProperties();
         addTypeBusiness();
         addPropertyTypes();
+        addOwner();
+    }
+
+    private void addOwner() {
+        OwnerRepository ownerRepository = Repositories.getInstance().getOwnerRepository();
+        ownerRepository.add(new Owner("owner@this.app"));
     }
 
     private void addEmployees(){
         EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
         employeeRepository.add(new Employee("admin@this.app"));
-        employeeRepository.add(new Employee("owner@this.app"));
         employeeRepository.add(new Employee("storemanager@this.app"));
         employeeRepository.add(new Employee("agent@this.app"));
     }
@@ -35,13 +40,15 @@ public class Bootstrap implements Runnable {
     }
     private void addProperties(){
        // TODO: add boostrap Properties
+
+
     
     // get agency Proprety
     
     PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-    //propertyRepository.add(new Land(new PropertyType("Land"), 123, "Lol Street", 23, new Owner("owner@this.app")));
-    //propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, "Lmao Street", 23,new Owner("owner@this.app") , 3, 3, 1, false, true));
-
+    propertyRepository.add(new Land(new PropertyType("Land"), 123, new Location("Lol Street" , "Porto", "Portugal", 12345) , 23, new Owner("owner@this.app")));
+    propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, new Location( "God Street" , "Porto", "Portugal", 12345), 23, 3, 3, 1, false, true, new Owner("owner@this.app")));
+    propertyRepository.add(new House(new PropertyType("House"), 90, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 14490), 37 ,3 , 2 , 1,true ,true,true ,true, "N", new Owner("owner@this.app")));
     }
 
     private void addRoles() {
