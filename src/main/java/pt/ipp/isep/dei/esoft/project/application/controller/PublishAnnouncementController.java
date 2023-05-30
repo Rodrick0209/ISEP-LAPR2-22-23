@@ -61,9 +61,9 @@ public class PublishAnnouncementController {
         return announcementRepository;
     }
 
-    public Optional<Announcement> createAnnouncement(Location propertyLocation, Commission commission, Date date){
-        Property property = getPropertyByLocation(propertyLocation);
-        Request request = getRequestByProperty(property);
+    public Optional<Announcement> createAnnouncement(int requesId, Commission commission, Date date){
+
+        Request request = getRequestById(requesId);
 
 
         Optional<Announcement> newAnnouncement = Optional.empty();
@@ -73,9 +73,6 @@ public class PublishAnnouncementController {
         return newAnnouncement;
     }
 
-    private Request getRequestByProperty(Property property){
-        return getRequestRepository().getRequestByProperty(property);
-    }
 
     private Property getPropertyByLocation(Location propertyLocation){
         return getPropertyRepository().getPropertyByLocation(propertyLocation);
@@ -88,6 +85,9 @@ public class PublishAnnouncementController {
 
     public List<Request> getRequests(){
         return getRequestRepository().getRequests();
+    }
+    private Request getRequestById(int requestId){
+        return getRequestRepository().getRequestById(requestId);
     }
 
 }

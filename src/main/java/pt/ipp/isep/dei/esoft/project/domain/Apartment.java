@@ -48,6 +48,12 @@ public class Apartment extends Property {
         this.airConditioning = airConditioning;
     }
 
+    public Apartment(int area, int distance, boolean centralHeating, boolean airConditioning) {
+        super(area, distance);
+        this.centralHeating = centralHeating;
+        this.airConditioning = airConditioning;
+    }
+
     /**
      * Gets n bedrooms.
      *

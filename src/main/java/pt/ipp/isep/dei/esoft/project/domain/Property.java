@@ -52,6 +52,9 @@ public class Property {
         this.distance = distance;
     }
 
+    public Property(double area) {
+        this.area = area;
+    }
     /* public Property(PropertyType type, double area, Location location, double distance , Owner owner) {
         this.type = type;
         this.area = area;

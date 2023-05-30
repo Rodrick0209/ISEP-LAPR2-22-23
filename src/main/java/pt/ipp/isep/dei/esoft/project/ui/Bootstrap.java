@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
@@ -16,6 +17,7 @@ public class Bootstrap implements Runnable {
         addTypeBusiness();
         addPropertyTypes();
         addOwner();
+        addRequests();
     }
 
     private void addOwner() {
@@ -36,7 +38,7 @@ public class Bootstrap implements Runnable {
 
         //get agency repository
         AgencyRepository agencyRepository = Repositories.getInstance().getAgencyRepository();
-        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "abc@gmail.com", "(567) 456-2345",new Employee("admin@this.app")));
+        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "realestateagency@gmail.com", "(567) 456-2345",new Employee("admin@this.app")));
     }
     private void addProperties(){
        // TODO: add boostrap Properties
@@ -89,6 +91,18 @@ public class Bootstrap implements Runnable {
         propertyTypeRepository.add(new PropertyType("Apartment"));
         propertyTypeRepository.add(new PropertyType("House"));
     }
+    private void addRequests(){
+            RequestRepository savedRequests =  Repositories.getInstance().getRequestRepository();
+           Owner owner = new Owner("owner@gmail.com");
+           Property property = new Property(200);
+        TypeBusiness typeBusiness = new TypeBusiness("Sale");
 
 
-}
+            Request request1 = new Request(property,typeBusiness,500,owner);
+            savedRequests.add(request1);
+
+
+        }
+    }
+
+

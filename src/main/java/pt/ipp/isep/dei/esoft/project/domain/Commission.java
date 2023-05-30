@@ -25,4 +25,6 @@ public class Commission {
     public void setValue(double value) {
         this.value = value;
     }
+
+
 }
