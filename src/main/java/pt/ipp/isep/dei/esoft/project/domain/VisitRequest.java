@@ -2,20 +2,29 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 public class VisitRequest {
 
+    private Announcement announcement;
     private String UserName;
 
-    private int PhoneNumber;
+    private String PhoneNumber;
 
-    private double Date;
+    private String Date;
 
-    private double TimeSlot;
+    private int [][] TimeSlot;
 
-    public VisitRequest(Announcement UserName, String PhoneNumber , int[][] Date , String TimeSlot){
-
+    public VisitRequest(Announcement announcement, String userName, String phonenumber, String date , int[][] timeSlot  , String message) {
     }
 
     public int[][] getTimeSlot() {
     return getTimeSlot();
     }
 
+    @Override
+    public String toString() {
+        return "VisitRequest{" +
+                "UserName='" + UserName + '\'' +
+                ", PhoneNumber=" + PhoneNumber +
+                ", Date=" + Date +
+                ", TimeSlot=" + TimeSlot +
+                '}';
+    }
 }

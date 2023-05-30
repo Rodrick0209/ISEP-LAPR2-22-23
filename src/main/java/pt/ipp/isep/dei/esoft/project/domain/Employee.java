@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * The type Employee.
  */
-public class Employee implements Comparable<Employee>, Comparator<Employee>{
+public class Employee {
     private final String name;
     private final String email;
     private final int ccNumber;
@@ -76,10 +76,6 @@ public class Employee implements Comparable<Employee>, Comparator<Employee>{
     }
 
 
-    @Override
-    public int compare(Employee o1, Employee o2) {
-        return o1.getAgency().compareTo(o2.getAgency());
-    }
 
     public boolean equals(Object o) {
         if (this == o) {

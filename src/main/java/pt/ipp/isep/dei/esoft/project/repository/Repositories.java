@@ -43,6 +43,8 @@ public class Repositories {
 
     AnnouncementRepository announcementRepository = new AnnouncementRepository();
 
+    VisitRepository visitRepository =  new VisitRepository();
+
     private Repositories() {
     }
 
@@ -117,5 +119,11 @@ public class Repositories {
     public AnnouncementRepository getAnnouncementRepository() {
         return announcementRepository;
     }
+
+    public VisitRepository getVisitRepository() {
+        return visitRepository;
+    }
+
+
 }
 

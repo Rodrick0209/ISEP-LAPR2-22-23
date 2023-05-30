@@ -1,9 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Agency;
-import pt.ipp.isep.dei.esoft.project.domain.Announcement;
-import pt.ipp.isep.dei.esoft.project.domain.Owner;
-import pt.ipp.isep.dei.esoft.project.domain.Property;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,4 +58,19 @@ public class OwnerRepository {
     }
 
     private boolean validateOwner(Owner owner){return !owners.contains(owner); }
+
+    public List<Owner> getOwners() {return owners;}
+
+
+    public Owner getOwner (){
+        Owner user1 = null;
+        List<Owner> people = getOwners();
+        for (Owner user: people){
+            if (user.getEmailAddress().equals(CurrentSession.getEmail())){
+                user1 = user;
+            }
+        }
+        return user1;
+    }
+
 }

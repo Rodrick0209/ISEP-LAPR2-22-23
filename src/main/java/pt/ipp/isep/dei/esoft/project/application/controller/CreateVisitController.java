@@ -3,15 +3,17 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
 import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRepository;
+import pt.ipp.isep.dei.esoft.project.repository.OwnerRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.VisitRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateVisitController implements Runnable {
+public class CreateVisitController {
 
-    private VisitRepository visitRepository;
+    private VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
+    OwnerRepository ownerRepository = Repositories.getInstance().getOwnerRepository();
 
     public int[][] saveTimeSlot(int[][] timereal, int count) {
 
@@ -28,22 +30,16 @@ public class CreateVisitController implements Runnable {
 
             for (int[] slot: v.getTimeSlot()
             ) {
-                int firstHour = slot[0]; // 15
-                int finalHour = slot[1]; // 20
-
+                int firstHour = slot[0];
+                int finalHour = slot[1];
 
                 if (!hoursTaked.contains(firstHour)){
                     hoursTaked.add(firstHour);
                 }
 
-
-
                 if (!hoursTaked.contains(finalHour)){
                     hoursTaked.add(finalHour);
                 }
-
-
-
 
                 int hour = firstHour;
                 while (hour != finalHour){
@@ -111,18 +107,26 @@ public class CreateVisitController implements Runnable {
     }
 
 
-    @Override
-    public void run() {
-
-    }
-
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
     public List<Announcement> getAnnouncements() {
         return announcementRepository.getAnnouncements();
     }
 
-    public void createVisitRequest(Announcement announcement, String date, int[][] timeSlot, String message) {
-        VisitRequest visit = new VisitRequest(announcement, date, timeSlot, message );
+    public void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
+        VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message );
         visitRepository.addRequests(visit);
+    }
+
+    public OwnerRepository getOwnerRepository() {
+        return ownerRepository;
+    }
+
+    @Override
+    public String toString() {
+        return "CreateVisitController{" +
+                "visitRepository=" + visitRepository +
+                ", ownerRepository=" + ownerRepository +
+                ", announcementRepository=" + announcementRepository +
+                '}';
     }
 }

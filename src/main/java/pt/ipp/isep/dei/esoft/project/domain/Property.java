@@ -55,14 +55,7 @@ public class Property {
     public Property(double area) {
         this.area = area;
     }
-    /* public Property(PropertyType type, double area, Location location, double distance , Owner owner) {
-        this.type = type;
-        this.area = area;
-        this.location = location;
-        this.distance = distance;
-        this.owner = owner ;
 
-    }*/
 
 
     /**
@@ -156,4 +149,5 @@ public class Property {
                 "Location: %s%n" +
                 "Distance from City Centre: %.2f%n", type, area, location, distance);
     }
+
 }

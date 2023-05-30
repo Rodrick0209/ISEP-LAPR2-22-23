@@ -18,19 +18,6 @@ public class House extends Property {
     private String sunExposure;
 
 
-    /*public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement, boolean existinhabitableLoft, String sunExposure) {
-        super(typeName, area, location, distance, photos, owner);
-        this.n_bedrooms = n_bedrooms;
-        this.n_bathrooms = n_bathrooms;
-        this.n_parkingSpaces = n_parkingSpaces;
-        this.centralHeating = centralHeating;
-        this.airConditioning = airConditioning;
-        this.existBasement = existBasement;
-        this.existinhabitableLoft = existinhabitableLoft;
-        this.sunExposure = sunExposure;
-    }
-
-     */
 
     public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure , Owner owner) {
         super(typeName, area, location, distance, owner);
@@ -43,7 +30,6 @@ public class House extends Property {
         this.existinhabitableLoft = existinhabitableLoft;
         this.sunExposure = sunExposure;
     }
-
 
 
 
@@ -149,5 +135,20 @@ public class House extends Property {
      */
     public void setSunExposure(String sunExposure) {
         this.sunExposure = sunExposure;
+    }
+
+    @Override
+    public String toString() {
+        return
+                ", n_bedrooms=" + n_bedrooms +
+                ", n_bathrooms=" + n_bathrooms +
+                ", n_parkingSpaces=" + n_parkingSpaces +
+                ", avaiableEquip='" + avaiableEquip + '\'' +
+                ", centralHeating=" + centralHeating +
+                ", airConditioning=" + airConditioning +
+                ", existBasement=" + existBasement +
+                ", existinhabitableLoft=" + existinhabitableLoft +
+                ", sunExposure='" + sunExposure + '\'' +
+                '}';
     }
 }

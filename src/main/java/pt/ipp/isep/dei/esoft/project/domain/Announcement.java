@@ -24,4 +24,13 @@ public class Announcement {
             throw new IllegalArgumentException("Invalid date format");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Announcement{" +
+                "request=" + request +
+                ", commission=" + commission +
+                ", date=" + date +
+                '}';
+    }
 }

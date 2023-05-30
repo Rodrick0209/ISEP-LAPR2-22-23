@@ -5,6 +5,8 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
+import java.util.Date;
+
 public class Bootstrap implements Runnable {
 
     //Add some task categories to the repository as bootstrap
@@ -18,6 +20,7 @@ public class Bootstrap implements Runnable {
         addPropertyTypes();
         addOwner();
         addRequests();
+        addAnnouncements();
     }
 
     private void addOwner() {
@@ -25,32 +28,32 @@ public class Bootstrap implements Runnable {
         ownerRepository.add(new Owner("owner@this.app"));
     }
 
-    private void addEmployees(){
+    private void addEmployees() {
         EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
         employeeRepository.add(new Employee("admin@this.app"));
         employeeRepository.add(new Employee("storemanager@this.app"));
         employeeRepository.add(new Employee("agent@this.app"));
     }
-    
+
 
     private void addAgencies() {
         //TODO: add bootstrap Agencies here
 
         //get agency repository
         AgencyRepository agencyRepository = Repositories.getInstance().getAgencyRepository();
-        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "realestateagency@gmail.com", "(567) 456-2345",new Employee("admin@this.app")));
+        agencyRepository.add(new Agency(1234, "Agency Name", "Power Street", "realestateagency@gmail.com", "(567) 456-2345", new Employee("admin@this.app")));
     }
-    private void addProperties(){
-       // TODO: add boostrap Properties
+
+    private void addProperties() {
+        // TODO: add boostrap Properties
 
 
-    
-    // get agency Proprety
-    
-    PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-    propertyRepository.add(new Land(new PropertyType("Land"), 123, new Location("Lol Street" , "Porto", "Portugal", 12345) , 23, new Owner("owner@this.app")));
-    propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, new Location( "God Street" , "Porto", "Portugal", 12345), 23, 3, 3, 1, false, true, new Owner("owner@this.app")));
-    propertyRepository.add(new House(new PropertyType("House"), 90, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 14490), 37 ,3 , 2 , 1,true ,true,true ,true, "N", new Owner("owner@this.app")));
+        // get agency Proprety
+
+        PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
+        propertyRepository.add(new Land(new PropertyType("Land"), 123, new Location("Lol Street", "Porto", "Portugal", 12345), 23, new Owner("owner@this.app")));
+        propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, new Location("God Street", "Porto", "Portugal", 12345), 23, 3, 3, 1, false, true, new Owner("owner@this.app")));
+        propertyRepository.add(new House(new PropertyType("House"), 90, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 14490), 37, 3, 2, 1, true, true, true, true, "N", new Owner("owner@this.app")));
     }
 
     private void addRoles() {
@@ -77,32 +80,44 @@ public class Bootstrap implements Runnable {
 
     }
 
-    private void addTypeBusiness(){
+    private void addTypeBusiness() {
         TypeBusinessRepository typeBusinessRepository = Repositories.getInstance().getTypeBusinessRepository();
 
         typeBusinessRepository.add(new TypeBusiness("Sell"));
         typeBusinessRepository.add(new TypeBusiness("Rent"));
     }
 
-    private void addPropertyTypes(){
+    private void addPropertyTypes() {
         PropertyTypeRepository propertyTypeRepository = Repositories.getInstance().getPropertyTypeRepository();
 
         propertyTypeRepository.add(new PropertyType("Land"));
         propertyTypeRepository.add(new PropertyType("Apartment"));
         propertyTypeRepository.add(new PropertyType("House"));
     }
-    private void addRequests(){
-            RequestRepository savedRequests =  Repositories.getInstance().getRequestRepository();
-           Owner owner = new Owner("owner@gmail.com");
-           Property property = new Property(200);
+
+    private void addRequests() {
+        RequestRepository savedRequests = Repositories.getInstance().getRequestRepository();
+        Owner owner = new Owner("owner@gmail.com");
+        Property property = new Property(200);
         TypeBusiness typeBusiness = new TypeBusiness("Sale");
 
 
-            Request request1 = new Request(property,typeBusiness,500,owner);
-            savedRequests.add(request1);
-
-
-        }
+        Request request1 = new Request(property, typeBusiness, 500, owner);
+        savedRequests.add(request1);
     }
+
+    private void addAnnouncements() {
+        AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
+        VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
+
+        //announcement 1
+        Announcement announcement = new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023,05,31));
+        announcementRepository.addAnnouncement(announcement);
+
+        //VisitRequest visitRequest = new VisitRequest( new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023,05,31)),"Owner1" , "932414522", "31/05" , 15-16, "I want to visit this porperty.");
+
+        //visitRepository.addRequests(visitRequest);
+    }
+}
 
 

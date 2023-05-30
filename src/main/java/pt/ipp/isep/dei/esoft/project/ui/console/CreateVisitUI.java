@@ -2,139 +2,32 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateVisitController;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.domain.Owner;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class CreateVisitUI implements Runnable {
-    /*String name;
-    private Object controller;
-    private Scanner input;
-
-    String timeSlot;
-
-    @Override
-    public void run() {
-
-        CreateVisitController controller = new CreateVisitController();
-
-        name = requestName();
-        //requestPhoneNumber();
-        //requestDate();
-       requestTimeSlot();
-
-
-
-    }
-
-
-    private String requestTimeSlot() {
-        System.out.println("Type the hour you want to visit this property (24h format)");
-        int op = 0;
-        int[][] timeslot1 = new int[100][2];
-        int count = 0;
-        while (op == 0) {
-            String timeSlot = requestString("Time slot (example: 15-16");
-            String[] timeSlotArr = timeSlot.split("-");
-            timeslot1[count][0] = Integer.parseInt(timeSlotArr[0]);
-            timeslot1[count][1] = Integer.parseInt(timeSlotArr[1]);
-            count++;
-            op = verfiInt("What to add another timeslot? \n0: yes\n1: no\n");
-            input.nextLine();
-        }
-        //timeSlot = controller.sav
-        return timeSlot;
-    }
-
-    private int verfiInt(String s) {
-    return verfiInt("What to add another timeslot? \n0: yes\n1: no\n");
-    }
-
-    private String requestString(String print) {
-        System.out.println(print);
-        return input.nextLine();
-    }
-    /*
-    private int requestPhoneNumber() {
-        int input=0;
-        boolean valid = false;
-        int n=0;
-    int phoneNumber =0;
-    do {
-    try {
-                input = Utils.readIntegerFromConsole("Phone number: ");
-                valid = true;
-                phoneNumber = input;
-                for (input / 10 >= 10) {
-                    input / 10;
-                    if (input >= 10) {
-                        input / 10 = input;
-                        n++;
-                    }
-                }catch(NullPointerException e){
-                    System.out.println("Invalid price. Please enter a valid price.");
-                }
-
-            }
-        } while (!valid) ;
-            return phoneNumber;
-        }
-        */
-
-
-
-    /*private int requestPhoneNumber(){
-        int phoneNumber;
-        int n=0;
-        phoneNumber = Utils.readIntegerFromConsole(" Client's phone number");
-        int number = phoneNumber;
-        if(phoneNumber >= 10){
-            number / 10 = phoneNumber;
-            n++;
-
-        }
-    }
-
-
-    private String requestName() {
-        String input = null;
-        boolean valid = false;
-        do {
-            try{
-                input = Utils.readStringFromConsole("Name of the client: ");
-                valid = true;
-            }catch (NullPointerException e){
-                System.out.println("Invalid name. Please enter a valid name.");
-            }
-        }while (!valid);
-        return input;
-    }
-*/
-
     private String date, message;
-    private int[][] timeSlot;
     private Announcement announcement;
-
-
-    /**
-     * The Input.
-     */
+    String name;
     Scanner input = new Scanner(System.in);
 
-    /**
-     * The Controller.
-     */
+    private int[][] timeSlot;
+    private Owner owner;
+
+    private String username;
+    private String phonenumber;
     CreateVisitController controller = new CreateVisitController();
 
-    /**
-     * Runs this operation.
-     */
     @Override
     public void run() {
         requestData();
     }
+
 
     private Announcement requestAnnouncement() {
         int count = 1;
@@ -161,6 +54,11 @@ public class CreateVisitUI implements Runnable {
         return date;
     }
 
+    private String requestString(String print) {
+        System.out.println(print);
+        return input.nextLine();
+    }
+
     private int[][] requestTimeSlot() {
         System.out.println("Type the hour you want to visit this property (24h format)");
         int op = 0;
@@ -179,21 +77,11 @@ public class CreateVisitUI implements Runnable {
         return timeSlot;
     }
 
-    private String requestString(String print) {
-        System.out.println(print);
-        return input.nextLine();
-    }
+    private int verfiInt(String s) {
 
-    /**
-     * Verfi int int.
-     *
-     * @param print the print
-     * @return the int
-     */
-    public int verfiInt(String print) {
         int number;
         while (true) {
-            System.out.print(print);
+            System.out.print(s);
             try {
                 number = Integer.parseInt(input.next());
 
@@ -204,6 +92,8 @@ public class CreateVisitUI implements Runnable {
         }
         return number;
     }
+
+
 
     private String requestMessage() {
 
@@ -223,10 +113,6 @@ public class CreateVisitUI implements Runnable {
             return null;
         }
     }
-
-    /*private Person requestID() {
-        return controller.getPersonRepository().getPerson();
-    }*/
 
     private void requestData() {
 
@@ -249,20 +135,59 @@ public class CreateVisitUI implements Runnable {
             System.out.println();
 
             //request the user ID (name and phone number)
-            /*person = requestID();
-            System.out.println(person.toString());
-            */
+           // owner = requestID();
+            //System.out.println(controller.getOwnerRepository());
 
 
-            createVisitRequest(announcement, date, timeSlot, message);
+            createVisitRequest(announcement,username, phonenumber , date, timeSlot, message);
         } else {
             System.out.println("The hour you've written is not available ");
         }
     }
 
-    private void createVisitRequest(Announcement announcement, String date, int[][] timeSlot, String message) {
-        controller.createVisitRequest(announcement, date, timeSlot, message);
+    private Owner requestID() {
+        return (Owner) controller.getOwnerRepository().getOwners();
+    }
+
+    private void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
+        controller.createVisitRequest(announcement,username, phonenumber, date, timeSlot, message);
 
 
+    }
+
+
+
+
+
+
+
+
+    private String requestName() {
+        String input = null;
+        boolean valid = false;
+        do {
+            try{
+                input = Utils.readStringFromConsole("Name of the client: ");
+                valid = true;
+            }catch (NullPointerException e){
+                System.out.println("Invalid name. Please enter a valid name.");
+            }
+        }while (!valid);
+        return input;
+    }
+
+
+    @Override
+    public String toString() {
+        return "CreateVisitUI{" +
+                "date='" + date + '\'' +
+                ", message='" + message + '\'' +
+                ", announcement=" + announcement +
+                ", name='" + name + '\'' +
+                ", input=" + input +
+                ", timeSlot=" + Arrays.toString(timeSlot) +
+                ", owner=" + owner +
+                ", controller=" + controller +
+                '}';
     }
 }

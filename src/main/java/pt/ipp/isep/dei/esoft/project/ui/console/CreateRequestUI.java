@@ -79,6 +79,7 @@ public class CreateRequestUI implements Runnable {
         if ( propertyType == "Land" && requestType=="Sell"){
             requestData1();
             Land land = controller.getSellLand();
+            System.out.println("Type of Business: " +requestType);
             System.out.println("Price :" + price + "$");
             System.out.println(land);
         }
@@ -86,6 +87,7 @@ public class CreateRequestUI implements Runnable {
             requestData2();
             requestData3();
             Land land = controller.getRentLand();
+            System.out.println("Type of Business: " +requestType);
             System.out.println("Rent price :" + rentprice + "$");
             System.out.println("Contract duration :" + contractDuraction + "months");
             System.out.println(land);
@@ -94,6 +96,7 @@ public class CreateRequestUI implements Runnable {
         if ( propertyType == "Apartment" && requestType == "Sell"){
             requestData1();
             Apartment apartment = controller.getSellApartment();
+            System.out.println("Type of Business: " + requestType);
             System.out.println("Price :" + price + "$");
             System.out.println(apartment);
         }
@@ -101,53 +104,29 @@ public class CreateRequestUI implements Runnable {
             requestData2();
             requestData3();
             Apartment apartment = controller.getRentApartment();
+            System.out.println("Type of Business: " +requestType);
             System.out.println("Rent price :" + rentprice + "$");
             System.out.println("Contract duration :" + contractDuraction + "months");
-            System.out.println(apartment);
+            System.out.println(apartment.toString());
         }
         if ( propertyType == "House" && requestType =="Sell"){
             requestData1();
             House house = controller.getSellHouse();
+            System.out.println("Type of Business: " +requestType);
             System.out.println("Price :" + price + "$");
             System.out.println(house);
         }
         if ( propertyType == "House" && requestType =="Rent"){
-            requestData1();
+            requestData2();
+            requestData3();
             House house = controller.getRentHouse();
+            System.out.println("Type of Business: " +requestType);
             System.out.println("Rent price :" + rentprice + "$");
             System.out.println("Contract duration :" + contractDuraction + "months");
             System.out.println(house);
         }
 
  }
-
-    /*private void submitOrNot() {
-        boolean answer = Utils.confirm("Submit Data? (type yes or no)");
-        if(answer){
-            submitData();
-        } else run();
-        */
-
-
-
-    /*private void submitData() {
-        List<Property> properties = (List<Property>) getController().createProperty();
-
-        }
-
-     */
-
-
-
-
-
-    /*private String displayAndSelectAgent() {
-        List<Employee> employees = controller.getAgents();
-        int answer = Utils.showAndSelectIndex(employees, "Agent:");
-        return employees.get(answer).getRole().getName();
-    }*/
-
-
 
     private String displayAndSelectTypeProperty() {
         List<PropertyType> propertyTypes = controller.getPropertyType();

@@ -77,7 +77,7 @@ public class Owner {
     }
 
     @Override
-    public String toString() {
+    /*public String toString() {
         return "Owner{" +
                 "name='" + name + '\'' +
                 ", ccNumber=" + ccNumber +
@@ -85,11 +85,15 @@ public class Owner {
                 ", emailAddress='" + emailAddress + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
-    }
+    }*/
 
     public Owner clone(){return new Owner(this.name, this.ccNumber, this.taxNumber, this.emailAddress, this.phoneNumber);
+    }
 
-
-
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "emailAddress='" + emailAddress + '\'' +
+                '}';
     }
 }

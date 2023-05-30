@@ -200,7 +200,9 @@ public class CreateRequestController {
         }
         Location location = new Location( street , city , state , zipCode);
         Owner owner = getOwnerFromSession();
+        System.out.println();
         return new Apartment(new PropertyType("Apartment"), area , location  , distance , n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating , airConditioning , owner);
+
     }
 
 
@@ -276,9 +278,7 @@ public class CreateRequestController {
         boolean inhabitableLoft = Boolean.parseBoolean(Utils.readLineFromConsole("Has a inhabitable loft?(true or false)"));
         String sunExposure = Utils.readLineFromConsole("Direction of the sun exposure( N,S , W or E)");
         Owner owner = getOwnerFromSession();
-        return new House(new PropertyType("House"),area, location, distance, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating, airConditioning, existBasement , inhabitableLoft, sunExposure , owner );
-
-
+        return new House(new PropertyType("House"), area , location, distance, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating, airConditioning, existBasement , inhabitableLoft, sunExposure , owner );
     }
 
 

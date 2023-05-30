@@ -12,6 +12,7 @@ public class Request {
     private final Owner owner;
     private final Date requestDate;
 
+
     public Date getRequestDate() {
         return requestDate;
     }
@@ -30,7 +31,7 @@ public class Request {
         this.typeBusiness = typeBusiness;
         this.price = price;
         this.owner = owner;
-        this.requestId = requestIdCounter++;
+        //this.requestId = requestIdCounter++;
         this.requestDate = new Date();
     }
 

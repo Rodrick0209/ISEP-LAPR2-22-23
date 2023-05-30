@@ -26,5 +26,11 @@ public class Commission {
         this.value = value;
     }
 
-
+    @Override
+    public String toString() {
+        return "Commission{" +
+                "type='" + type + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }

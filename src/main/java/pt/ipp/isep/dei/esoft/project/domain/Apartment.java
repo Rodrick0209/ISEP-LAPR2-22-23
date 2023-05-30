@@ -147,5 +147,21 @@ public class Apartment extends Property {
     public boolean getAirConditioning() {
         return airConditioning;
     }
+
+    @Override
+    public String toString() {
+        return ", type='" + type + '\'' +
+                ", area=" + area +
+                ", location=" + location +
+                ", distance=" + distance +
+                ", photos=" + photos +
+                ", n_bedrooms=" + n_bedrooms +
+                ", n_bathrooms=" + n_bathrooms +
+                ", n_parkingSpaces=" + n_parkingSpaces +
+                ", avaiableEquip='" + avaiableEquip + '\'' +
+                ", centralHeating=" + centralHeating +
+                ", airConditioning=" + airConditioning +
+                '}';
+    }
 }
 
