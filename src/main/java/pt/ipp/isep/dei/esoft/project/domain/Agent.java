@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public class Agent{
     private String name;
-    private String email;
+    private final String email;
     private int ccNumber;
     private int taxNumber;
     private String address;

@@ -2,7 +2,10 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Objects;
 
-public class Agency implements Comparable<Agency> {
+/**
+ * The type Agency.
+ */
+public class Agency {
 
     private final int id;
     private String designation;
@@ -11,11 +14,26 @@ public class Agency implements Comparable<Agency> {
     private String phoneNumber;
     private Employee administrator;
 
+    /**
+     * Instantiates a new Agency.
+     *
+     * @param id the id
+     */
     public Agency(int id){
         this.id = id;
     }
 
 
+    /**
+     * Instantiates a new Agency.
+     *
+     * @param id            the id
+     * @param designation   the designation
+     * @param location      the location
+     * @param emailAddress  the email address
+     * @param phoneNumber   the phone number
+     * @param administrator the administrator
+     */
     public Agency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
         this.id = id;
         if(designation.replace(" ", "").length() > 40){
@@ -52,8 +70,18 @@ public class Agency implements Comparable<Agency> {
         return id == that.id;
     }
 
+    /**
+     * Get id int.
+     *
+     * @return the int
+     */
     public int getID(){return id;}
 
+    /**
+     * Gets designation.
+     *
+     * @return the designation
+     */
     public String getDesignation() {return designation;}
 
     public int hashCode() { return Objects.hash(id); }
@@ -69,7 +97,5 @@ public class Agency implements Comparable<Agency> {
 
     public Agency clone(){ return new Agency(this.id, this.designation, this.location, this.emailAddress, this.phoneNumber, this.administrator); }
 
-    public int compareTo(Agency o) {
-        return Integer.compare(this.id, o.getID());
-    }
+
 }

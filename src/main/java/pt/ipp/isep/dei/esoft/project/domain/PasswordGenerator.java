@@ -2,6 +2,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Random;
 
+/**
+ * The type Password generator.
+ */
 public class PasswordGenerator {
     private static final int numberCapitalLetters = 3;
     private static final int numberDigits = 2;
@@ -11,11 +14,22 @@ public class PasswordGenerator {
 
     private final Random random = new Random();
 
+    /**
+     * Generate random character char.
+     *
+     * @param characterSet the character set
+     * @return the char
+     */
     public char generateRandomCharacter(String characterSet) {
         int index = random.nextInt(characterSet.length());
         return characterSet.charAt(index);
     }
 
+    /**
+     * Generate password string.
+     *
+     * @return the string
+     */
     public String generatePassword() {
         StringBuilder password = new StringBuilder();
 
