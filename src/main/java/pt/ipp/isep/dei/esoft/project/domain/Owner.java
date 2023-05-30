@@ -93,8 +93,6 @@ public class Owner {
 
     @Override
     public String toString() {
-        return "Owner{" +
-                "emailAddress='" + emailAddress + '\'' +
-                '}';
+        return "Owner = " + emailAddress;
     }
 }

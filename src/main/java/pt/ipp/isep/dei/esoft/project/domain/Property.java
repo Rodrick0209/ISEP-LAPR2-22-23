@@ -144,7 +144,7 @@ public class Property {
 
 
     public String toString() {
-        return String.format("Type: %s" + "Area: %.2f" + "Location: %s" + "Distance from City Centre: %.2f", type, area, location, distance);
+        return String.format("Type:%s " + "Area: %.2f cubic meters " + "Location: %s " + "Distance from City Centre: %.2f meters", type, area, location, distance);
     }
 
 }

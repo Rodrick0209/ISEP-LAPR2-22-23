@@ -8,10 +8,13 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.List;
 
+/**
+ * The type Publish announcement ui.
+ */
 public class PublishAnnouncementUI implements Runnable {
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
-
-    private int identifyId;
+    private  int announcementGettedById;
+    private int requestsGettedById;
     private Date date;
     private Commission commission;
     private PublishAnnouncementController getController() {
@@ -20,14 +23,14 @@ public class PublishAnnouncementUI implements Runnable {
 
     public void run() {
 
-        identifyId = displayAndSelectRequests();
+        requestsGettedById = displayAndSelectRequests();
         confirmRequest();
 
         submitOrNot();
     }
 
     private void submitData() {
-        Optional<Announcement> announcement = getController().createAnnouncement(identifyId, commission);
+        Optional<Announcement> announcement = getController().createAnnouncement(requestsGettedById, commission);
 
         if (announcement.isPresent()) {
             System.out.println("Announcement has been successfully published!");
@@ -54,7 +57,7 @@ public class PublishAnnouncementUI implements Runnable {
 
     private void showData(){
         System.out.println();
-        System.out.println("Request Id: " + identifyId);
+        System.out.println("Announcment Id: " + requestsGettedById);
         System.out.println("Commission Type: " + commission.getType());
         System.out.println("Commission Value: " + commission.getValue());
         System.out.println("Date of announcement: " + new Date());
@@ -69,7 +72,7 @@ public class PublishAnnouncementUI implements Runnable {
      *
      * @return input of the announcement description
      */
-    private Date requestDate() {
+     /*private Date requestDate() {
         Date input;
         do{
             input = Utils.readDateFromConsole("Date of Request: ");
@@ -79,6 +82,8 @@ public class PublishAnnouncementUI implements Runnable {
         } while(input == null);
         return input;
     }
+
+      */
 
     /**
      *
@@ -138,8 +143,27 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private int displayAndSelectRequests() {
         List<Request> requests = controller.getRequests();
-        int answer = Utils.showAndSelectIndex(requests, "Select your request requests:\n");
+        int answer = Utils.showAndSelectIndex(requests, "Select your Requests:\n");
+
         return requests.get(answer).getRequestId();
     }
+   /* private int getAnnouncementId(){
+        List<Announcement>announcements = controller.getAnnouncements();
+        for (announcements:Announcement;
+             ) {
+
+        }
+
+
+
+        }
+
+
+        return ann
+
+    }
+
+    */
+
 
 }

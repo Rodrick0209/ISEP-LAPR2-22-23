@@ -67,7 +67,8 @@ public class Request {
 
     @Override
      public String toString() {  // method to convert into displayable
-        return String.format("Request\n Property\n" + property.toString() + "\nType Of Business: " + typeBusiness.toString() + "" + price +"$"+ "\nowner = " + owner.toString() + "\nrequestDate=" + requestDate + "\nrequestId ="+ requestId +  " }");
+        return String.format("Request ID:"+requestId +
+                " \nProperty: [ " + property.toString() + "]\nType Of Business: " + typeBusiness.toString() + "\nPrice: " + price +"$"+ "\n" + owner.toString() + "\nRequest Date: " + requestDate );
     }
 
    /* public String toString() {

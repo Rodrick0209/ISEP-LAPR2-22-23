@@ -30,7 +30,7 @@ public class RegisterUserUI implements Runnable {
         userPassword = controller.generatePassword();
         controller.addUserWithRole(userName, userEmail, userPassword, AuthenticationController.ROLE_USER);
         controller.writeFile(userEmail, userPassword);
-        System.out.println("User successfully registered! A password for you login in the application will be sent to your email address.");
+        System.out.println("User successfully registered! A password for your login will be sent to your email address.");
     }
 
     private void submitOrNot() {
