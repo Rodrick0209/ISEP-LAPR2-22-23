@@ -17,10 +17,21 @@ public class AnnouncementRepository {
 
     private final List<Announcement> announcements = new ArrayList<>();
 
-    public Optional<Announcement> createAnnouncement(Request request, Commission commission, Date date){
+    public Optional<Announcement> createAnnouncement(Request request, Commission commission){
         Optional<Announcement> optionalValue = Optional.empty();
 
-        Announcement announcement = new Announcement(request, commission, date);
+        Announcement announcement = new Announcement(request, commission);
+
+        if(addAnnouncement(announcement)){
+            optionalValue = Optional.of(announcement);
+        }
+        return optionalValue;
+    }
+
+    public Optional<Announcement> createAnnouncementWithInputDate(Request request, Commission commission, Date date){
+        Optional<Announcement> optionalValue = Optional.empty();
+
+        Announcement announcement = new Announcement(request, commission);
 
         if(addAnnouncement(announcement)){
             optionalValue = Optional.of(announcement);

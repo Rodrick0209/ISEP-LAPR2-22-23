@@ -87,6 +87,7 @@ public class Owner {
                 '}';
     }*/
 
+
     public Owner clone(){return new Owner(this.name, this.ccNumber, this.taxNumber, this.emailAddress, this.phoneNumber);
     }
 

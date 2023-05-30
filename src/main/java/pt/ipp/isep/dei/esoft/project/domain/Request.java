@@ -68,8 +68,8 @@ public class Request {
     @Override
     public String toString() {  // method to convert into displayable
         return "Request{" +
-                "requestId=" + requestId +
-                ", property=" + property.toString() +
+                "\nrequestId=" + requestId +
+                "\n, property=" + property.toString() +
                 ", typeBusiness=" + typeBusiness.toString() +
                 ", price=" + price +
                 ", owner=" + owner.toString() +

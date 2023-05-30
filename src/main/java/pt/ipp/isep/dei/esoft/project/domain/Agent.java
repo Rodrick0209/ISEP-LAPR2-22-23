@@ -78,6 +78,7 @@ public class Agent{
      */
     public boolean hasEmail(String email) { return email.equalsIgnoreCase(this.email); }
 
+
     public Agent clone() {
         return new Agent(this.name, this.email, this.ccNumber, this.taxNumber, this.address, this.phoneNumber, this.role, this.agency ).clone();
     }

@@ -37,7 +37,8 @@ public class Utils {
 
                 return value;
             } catch (NumberFormatException ex) {
-                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+               // Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Invalid input please try again");
             }
         } while (true);
     }
@@ -51,7 +52,7 @@ public class Utils {
 
                 return value;
             } catch (NumberFormatException ex) {
-                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Invalid input please try again");
             }
         } while (true);
     }

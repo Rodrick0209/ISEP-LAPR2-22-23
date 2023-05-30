@@ -313,7 +313,7 @@ public class ImportInformationController implements FileReader {
                         try {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                             Date date = sdf.parse(information[22]);
-                            newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
+                            newAnnouncement = getAnnouncementRepository().createAnnouncementWithInputDate(request, commission, date);
                         } catch (ParseException e) {
                             throw new IllegalArgumentException("Invalid Date Format");
                         }
@@ -328,7 +328,7 @@ public class ImportInformationController implements FileReader {
                         try {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                             Date date = sdf.parse(information[22]);
-                            newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
+                            newAnnouncement = getAnnouncementRepository().createAnnouncementWithInputDate(request, commission, date);
                         } catch (ParseException e) {
                             throw new IllegalArgumentException("Invalid Date Format");
                         }

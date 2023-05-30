@@ -27,7 +27,7 @@ public class PublishAnnouncementUI implements Runnable {
     }
 
     private void submitData() {
-        Optional<Announcement> announcement = getController().createAnnouncement(identifyId, commission, date);
+        Optional<Announcement> announcement = getController().createAnnouncement(identifyId, commission);
 
         if (announcement.isPresent()) {
             System.out.println("Announcement has been successfully published!");
@@ -49,7 +49,7 @@ public class PublishAnnouncementUI implements Runnable {
         System.out.println("Request Id: " + identifyId);
         System.out.println("Commission Type: " + commission.getType());
         System.out.println("Commission Value: " + commission.getValue());
-        System.out.println("Date of announcement: " + date);
+        System.out.println("Date of announcement: " + new Date());
         System.out.println();
     }
 
@@ -78,7 +78,7 @@ public class PublishAnnouncementUI implements Runnable {
      */
     private Commission requestCommission() {
 
-        int input_value = 0;
+        double input_value = 0;
         int input_type_value = 0;
         String input_type = "";
         boolean validCommissionType = false;
@@ -100,7 +100,7 @@ public class PublishAnnouncementUI implements Runnable {
 
         if (input_type_value == 1) {
             do {
-                input_value = Utils.readIntegerFromConsole("Commission value: ");
+                input_value = Utils.readDoubleFromConsole("Commission value: ");
                 if (input_value > 0) {
                     validCommissionValue = true;
                 }
@@ -111,7 +111,7 @@ public class PublishAnnouncementUI implements Runnable {
         }
         if (input_type_value == 2) {
             do {
-                input_value = Utils.readIntegerFromConsole("Commission value: ");
+                input_value = Utils.readDoubleFromConsole("Commission value: ");
                 if (input_value > 0 && input_value <= 100) {
                     validCommissionValue = true;
                 }

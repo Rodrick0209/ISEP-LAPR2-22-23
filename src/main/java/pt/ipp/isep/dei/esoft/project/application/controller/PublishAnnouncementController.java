@@ -61,14 +61,14 @@ public class PublishAnnouncementController {
         return announcementRepository;
     }
 
-    public Optional<Announcement> createAnnouncement(int requesId, Commission commission, Date date){
+    public Optional<Announcement> createAnnouncement(int requesId, Commission commission){
 
         Request request = getRequestById(requesId);
 
 
         Optional<Announcement> newAnnouncement = Optional.empty();
         if(getAnnouncementRepository() != null){
-            newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
+            newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission);
         }
         return newAnnouncement;
     }

@@ -9,7 +9,9 @@ public class Land extends Property {
 
 
 
+
     public Land(double area, double distance, List<String> photos) {
+
         super(area, distance, photos);
     }
 
@@ -22,4 +24,5 @@ public class Land extends Property {
     public String toString() {
         return String.format("%s%n", super.toString());
     }
+
 }
