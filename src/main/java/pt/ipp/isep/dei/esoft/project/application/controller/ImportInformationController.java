@@ -204,13 +204,12 @@ public class ImportInformationController implements FileReader {
             return operationSuccess;
         }
 
-        public Optional<Owner> createOwner (String[] information){
-            Optional<Owner> newOwner = Optional.empty();
-            if(getOwnerRepository() != null) {
-                newOwner = getOwnerRepository().createOwner(information[1], Integer.parseInt(information[2]), information[3], information[4], information[5]);
-            }
-            return newOwner;
+    public Optional<Owner> createOwner(String[] information) {
+        if (ownerRepository != null) {
+            return ownerRepository.createOwner(information[1], Integer.parseInt(information[2]), information[3], information[4], information[5]);
         }
+        return Optional.empty();
+    }
 
     public Optional<Agency> createAgency (String[] information){
         Employee administrator = getAdministratorFromSession();
@@ -222,31 +221,35 @@ public class ImportInformationController implements FileReader {
         }
 
         public Optional<Property> createProperty(String[] information) {
+        double squareFeetConverter = 0.0929;
+        double mileConverter = 1.609;
             Owner owner = getOwnerByEmail(information[4]);
             Optional<Property> newProperty = Optional.empty();
             PropertyType propertyType = getPropertyTypeByName(information[6]);
-            String[] informationLocation = information[8].split(", ");
-            Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3]));
+            String[] informationLocation = information[8].split(",");
             switch (information[6]) {
                 case "land":
                     if (getPropertyRepository() != null) {
-                        newProperty = getPropertyRepository().createLand(propertyType, Double.parseDouble(information[7]), location, Double.parseDouble(information[9]), owner);
+                        Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3].trim()));
+                        newProperty = getPropertyRepository().createLand(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]) * mileConverter, owner);
                     }
                     break;
                 case "apartment":
                     if (getPropertyRepository() != null) {
+                        Location location = new Location(informationLocation[0], informationLocation[4], informationLocation[5], Integer.parseInt(informationLocation[6].trim()));
                         boolean centralHeating = information[13].equalsIgnoreCase("Y");
                         boolean airConditioning = information[14].equalsIgnoreCase("Y");
-                        newProperty = getPropertyRepository().createApartment(propertyType, Double.parseDouble(information[7]), location, Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, owner);
+                        newProperty = getPropertyRepository().createApartment(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]) * mileConverter, Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, owner);
                     }
                     break;
                 case "house":
                     if (getPropertyRepository() != null) {
+                        Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3].trim()));
                         boolean centralHeating = information[13].equalsIgnoreCase("Y");
                         boolean airConditioning = information[14].equalsIgnoreCase("Y");
                         boolean existenceOfAnBasement = information[15].equalsIgnoreCase("Y");
                         boolean inhabitableLoft = information[16].equalsIgnoreCase("Y");
-                        newProperty = getPropertyRepository().createHouse(propertyType, Double.parseDouble(information[7]), location, Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, information[17], owner);
+                        newProperty = getPropertyRepository().createHouse(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]) * mileConverter, Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, information[17], owner);
                     }
                     break;
             }
@@ -256,19 +259,40 @@ public class ImportInformationController implements FileReader {
         public Optional<Request> createRequest(String[] information) {
             Optional<Request> newRequest = Optional.empty();
             Owner owner = getOwnerByEmail(information[4]);
-            String[] informationLocation = information[8].split(", ");
-            Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3]));
-            Property property = getPropertyByLocation(location);
+            String[] informationLocation = information[8].split(",");
             TypeBusiness typeBusiness = getTypeBusinessByName(information[24]);
-            switch (information[24]) {
-                case "sale":
-;                    if (getRequestRepository() != null) {
-                        newRequest = getRequestRepository().createSaleRequest(property, typeBusiness, Integer.parseInt(information[18]), owner);
+            switch (information[6]) {
+                case "land":
+                case "house":
+                    Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3].trim()));
+                    Property property = getPropertyByLocation(location);
+                    switch (information[24]) {
+                        case "sale":
+                            if (getRequestRepository() != null) {
+                                newRequest = getRequestRepository().createSaleRequest(property, typeBusiness, Integer.parseInt(information[18]), owner);
+                            }
+                            break;
+                        case "rent":
+                            if (getRequestRepository() != null) {
+                                newRequest = getRequestRepository().createRentRequest(property, typeBusiness, Integer.parseInt(information[18]), Integer.parseInt(information[21].trim()), owner);
+                            }
+                            break;
                     }
                     break;
-                case "rent":
-                    if (getRequestRepository() != null) {
-                        newRequest = getRequestRepository().createRentRequest(property, typeBusiness, Integer.parseInt(information[18]), Integer.parseInt(information[21]), owner);
+                case "apartment":
+                    location = new Location(informationLocation[0], informationLocation[4], informationLocation[5], Integer.parseInt(informationLocation[6].trim()));
+                    property = getPropertyByLocation(location);
+                    switch (information[24]) {
+                        case "sale":
+                            if (getRequestRepository() != null) {
+                                newRequest = getRequestRepository().createSaleRequest(property, typeBusiness, Integer.parseInt(information[18].trim()), owner);
+                            }
+                            break;
+                        case "rent":
+                            if (getRequestRepository() != null) {
+                                newRequest = getRequestRepository().createRentRequest(property, typeBusiness, Integer.parseInt(information[18].trim()), Integer.parseInt(information[21]), owner);
+                            }
+                            break;
                     }
                     break;
             }
@@ -278,18 +302,38 @@ public class ImportInformationController implements FileReader {
         public Optional<Announcement> createAnnoouncement(String[] information){
             Optional<Announcement> newAnnouncement = Optional.empty();
             String[] informationLocation = information[8].split(", ");
-            Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3]));
-            Property property = getPropertyByLocation(location);
-            Request request = getRequestByProperty(property);
-            Commission commission = new Commission("Percentage Commission", Double.parseDouble(information[20]));
-            if (getAnnouncementRepository() != null) {
-                try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = sdf.parse(information[22]);
-                    newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
-                } catch (ParseException e) {
-                    throw new IllegalArgumentException("Invalid Date Format");
-                }
+            switch(information[6]){
+                case "land":
+                case "house":
+                    Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3].trim()));
+                    Property property = getPropertyByLocation(location);
+                    Request request = getRequestByProperty(property);
+                    Commission commission = new Commission("Percentage Commission", Double.parseDouble(information[20]));
+                    if (getAnnouncementRepository() != null) {
+                        try {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            Date date = sdf.parse(information[22]);
+                            newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
+                        } catch (ParseException e) {
+                            throw new IllegalArgumentException("Invalid Date Format");
+                        }
+                    }
+                    break;
+                case "apartment":
+                    location = new Location(informationLocation[0], informationLocation[4], informationLocation[5], Integer.parseInt(informationLocation[6].trim()));
+                    property = getPropertyByLocation(location);
+                    request = getRequestByProperty(property);
+                    commission = new Commission("Percentage Commission", Double.parseDouble(information[20]));
+                    if (getAnnouncementRepository() != null) {
+                        try {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            Date date = sdf.parse(information[22]);
+                            newAnnouncement = getAnnouncementRepository().createAnnouncement(request, commission, date);
+                        } catch (ParseException e) {
+                            throw new IllegalArgumentException("Invalid Date Format");
+                        }
+                    }
+                    break;
             }
             return newAnnouncement;
         }
