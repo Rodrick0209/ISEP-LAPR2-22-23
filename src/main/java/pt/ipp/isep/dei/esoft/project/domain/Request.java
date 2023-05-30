@@ -31,7 +31,7 @@ public class Request {
         this.typeBusiness = typeBusiness;
         this.price = price;
         this.owner = owner;
-        //this.requestId = requestIdCounter++;
+        this.requestId = requestIdCounter++;
         this.requestDate = new Date();
     }
 
@@ -66,16 +66,18 @@ public class Request {
     }
 
     @Override
-    public String toString() {  // method to convert into displayable
-        return "Request{" +
-                "\nrequestId=" + requestId +
-                "\n, property=" + property.toString() +
-                ", typeBusiness=" + typeBusiness.toString() +
-                ", price=" + price +
-                ", owner=" + owner.toString() +
-                ", requestDate=" + requestDate +
-                '}';
+     public String toString() {  // method to convert into displayable
+        return String.format("Request\n Property\n" + property.toString() + "\nType Of Business: " + typeBusiness.toString() + "" + price +"$"+ "\nowner = " + owner.toString() + "\nrequestDate=" + requestDate + "\nrequestId ="+ requestId +  " }");
     }
+
+   /* public String toString() {
+        return String.format("Request nº%d%n Property%n %s%n Type Of Business: %s%n Price: %.2f%n Owner%n %s%n Date:%s%n", requestId, property, typeBusiness, price, owner, )
+    }
+
+    */
+
+
+
 
 
 }

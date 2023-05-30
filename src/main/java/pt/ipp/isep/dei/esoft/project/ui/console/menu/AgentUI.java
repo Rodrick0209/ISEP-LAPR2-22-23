@@ -12,8 +12,8 @@ public class AgentUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI())); // us 002 function
-        options.add(new MenuItem("See property requests ",new PublishAnnouncementUI()));  // us009;
+        options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI())); // us 002 and 009 combined
+        //options.add(new MenuItem("See property requests ",new AgentRequestListUI()));  // us009;
 
 
         int option = 0;

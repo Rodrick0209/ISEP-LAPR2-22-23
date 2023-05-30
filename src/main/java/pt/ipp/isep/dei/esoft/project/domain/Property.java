@@ -144,10 +144,7 @@ public class Property {
 
 
     public String toString() {
-        return String.format("Type: %s%n" +
-                "Area: %.2f%n" +
-                "Location: %s%n" +
-                "Distance from City Centre: %.2f%n", type, area, location, distance);
+        return String.format("Type: %s" + "Area: %.2f" + "Location: %s" + "Distance from City Centre: %.2f", type, area, location, distance);
     }
 
 }

@@ -21,7 +21,7 @@ public class PublishAnnouncementUI implements Runnable {
     public void run() {
 
         identifyId = displayAndSelectRequests();
-        requestData();
+        confirmRequest();
 
         submitOrNot();
     }
@@ -36,9 +36,17 @@ public class PublishAnnouncementUI implements Runnable {
         }
     }
 
+    private void confirmRequest(){
+        boolean answer = Utils.confirm("Accept request? (type yes or no)");
+        if(answer){
+            requestData();
+        } else run();
+    }
+
+
     private void submitOrNot() {
         showData();
-        boolean answer = Utils.confirm("Confirm data? (type yes or no)");
+        boolean answer = Utils.confirm("publish Announcement? (type yes or no)");
         if(answer){
             submitData();
         } else run();

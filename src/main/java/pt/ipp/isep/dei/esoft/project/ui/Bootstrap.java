@@ -97,7 +97,7 @@ public class Bootstrap implements Runnable {
 
     private void addRequests() {
         RequestRepository savedRequests = Repositories.getInstance().getRequestRepository();
-        Owner owner = new Owner("owner@gmail.com");
+       Owner owner = new Owner("owner@gmail.com");
         Property property = new Property(200);
         TypeBusiness typeBusiness = new TypeBusiness("Sale");
 
