@@ -1,11 +1,14 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestController;
+
 /**
  * The type Repositories.
  */
 public class Repositories {
 
     private static final Repositories instance = new Repositories();
+    public CreateRequestController getRequestRepository ;
     /**
      * The Organization repository.
      */

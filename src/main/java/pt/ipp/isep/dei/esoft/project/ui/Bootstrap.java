@@ -8,6 +8,8 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 import java.util.Date;
 
 public class Bootstrap implements Runnable {
+    private Employee agent = null;
+
 
     //Add some task categories to the repository as bootstrap
     public void run() {
@@ -21,6 +23,7 @@ public class Bootstrap implements Runnable {
         addOwner();
         addRequests();
         addAnnouncements();
+        //addVisit();
     }
 
     private void addOwner() {
@@ -108,16 +111,32 @@ public class Bootstrap implements Runnable {
 
     private void addAnnouncements() {
         AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
-        VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
+
+        AnnouncementRequest announcementRequest = new AnnouncementRequest( new House(( new PropertyType("House")) , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")) , 3000.0 , "Sell" );
+        Repositories.getInstance().getAnnouncementRepository().addAnnouncement(new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage", 5), new Date(2023,05,31)));
+
+
 
         //announcement 1
         Announcement announcement = new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023,05,31));
         announcementRepository.addAnnouncement(announcement);
 
-        //VisitRequest visitRequest = new VisitRequest( new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023,05,31)),"Owner1" , "932414522", "31/05" , 15-16, "I want to visit this porperty.");
+        Repositories.getInstance().getAnnouncementRepository().addAnnouncement(announcement);
+        //Repositories.getInstance().getRequestRepository().addRequests();
 
-        //visitRepository.addRequests(visitRequest);
+        //agent.addAnnouncements();
+
     }
+
+    /*private void addVisit() {
+        VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
+
+        VisitRequest visitRequest;
+        visitRequest = new VisitRequest( new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023,05,31)),"Owner1" , "932414522", "31/05" , 15-16 , "I want to visit this porperty.");
+
+        visitRepository.addRequests(visitRequest);
+    }*/
+
 }
 
 

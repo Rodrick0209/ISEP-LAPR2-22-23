@@ -6,27 +6,27 @@ import java.util.Objects;
  * The type Announcement request.
  */
 public class AnnouncementRequest {
-    private Land land;
+    private Property property;
     private double price;
     private String type;
 
-    public void setLand(Land land) {
-        this.land = land;
+    public void setProperty(Property property) {
+        this.property= property;
     }
 
-    public Land getLand() {
-        return land;
+    public Property getProperty() {
+        return property;
     }
 
     /**
      * Instantiates a new Announcement request.
      *
-     * @param land the property
+     * @param property the property
      * @param price    the price
      * @param type     the type
      */
-    public AnnouncementRequest(Land land, double price, String type) {
-        this.land = land;
+    public AnnouncementRequest( Property property, double price, String type) {
+        this.property = property;
         this.price = price;
         this.type = type;
     }
@@ -34,20 +34,13 @@ public class AnnouncementRequest {
     @Override
     public String toString() {
         return "AnnoucementRequest{" +
-                "property=" + land +
+                "property=" + property +
                 ", price=" + price +
                 ", type='" + type + '\'' +
                 '}';
     }
 
-    /**
-     * Gets property.
-     *
-     * @return the property
-     */
-    public Land getProperty() {
-        return land;
-    }
+
 
     /**
      * Sets property.
@@ -55,7 +48,7 @@ public class AnnouncementRequest {
      * @param land the property
      */
     public void setProperty(Land land) {
-        this.land = land;
+        this.property = land;
     }
 
     /**
@@ -99,12 +92,12 @@ public class AnnouncementRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnouncementRequest that = (AnnouncementRequest) o;
-        return Double.compare(that.price, price) == 0 && land.equals(that.land) && type.equals(that.type);
+        return Double.compare(that.price, price) == 0 && property.equals(that.price) && type.equals(that.type);
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(land, price, type);
+        return Objects.hash(property, price, type);
     }
 }

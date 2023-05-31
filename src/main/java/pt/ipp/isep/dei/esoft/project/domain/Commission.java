@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 public class Commission {
 
-    private String type; // type of commision
+    private String type;
     private double value;
 
     public Commission(String type, double value) {
@@ -28,9 +28,7 @@ public class Commission {
 
     @Override
     public String toString() {
-        return "Commission{" +
-                "type='" + type + '\'' +
-                ", value=" + value +
-                '}';
+        return "\nType:" + type +
+                "\nValue: " + value ;
     }
 }

@@ -24,10 +24,8 @@ public class Announcement {
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format");
         }
-        this.announcementId = announcmentIdCounter++;
 
     }
-
 
     public Announcement(Request request, Commission commission, Date date) {
         this.request = request;
@@ -40,30 +38,18 @@ public class Announcement {
         }
     }
 
-    public int getAnnouncementId() {
-        return announcementId;
-    }
-
-    public Request getRequest() {
-        return request;
-    }
-
-    public Commission getCommission() {
-        return commission;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
     @Override
     public String toString() {
-        return "Announcement{" +
-                "announcementId=" + announcementId +
-                ", request=" + request +
-                ", commission=" + commission +
-                ", date=" + date +
-                '}';
+        return "\nREQUEST: " + request +
+                "\nCommission: " + commission +
+                "\nDate: " + date ;
+    }
+
+    public Announcement(int announcementId, Request request, Commission commission) {
+        this.request = request;
+        this.commission = commission;
+        this.date = new Date();
+        this.announcementId = announcmentIdCounter++;
     }
 }
 
