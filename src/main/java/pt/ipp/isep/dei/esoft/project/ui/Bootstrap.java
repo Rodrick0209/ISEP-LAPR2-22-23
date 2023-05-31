@@ -22,7 +22,7 @@ public class Bootstrap implements Runnable {
         addPropertyTypes();
         addOwner();
         addRequests();
-        addAnnouncements();
+        //addAnnouncements();
         //addVisit();
     }
 
@@ -112,7 +112,7 @@ public class Bootstrap implements Runnable {
     private void addAnnouncements() {
         AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
 
-        AnnouncementRequest announcementRequest = new AnnouncementRequest( new House(( new PropertyType("House")) , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")) , 3000.0 , "Sell" );
+        //AnnouncementRequest announcementRequest = new AnnouncementRequest( new House(( new PropertyType("House")) , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")) , 3000.0 , "Sell" );
         Repositories.getInstance().getAnnouncementRepository().addAnnouncement(new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage", 5), new Date(2023,05,31)));
 
 

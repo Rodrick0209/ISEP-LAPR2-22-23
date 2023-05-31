@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.AnnouncementRequest;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Commission;
 import pt.ipp.isep.dei.esoft.project.domain.Request;
@@ -17,9 +16,18 @@ public class AnnouncementRepository {
 
     private final List<Announcement> announcements = new ArrayList<>();
 
+    public Announcement getAnnouncementById(int announcementId) {
+        Announcement announcementReturn = null;
+        for (Announcement announcement: announcements) {
+            if (announcement.getAnnouncementId() == announcementId) {
+                announcementReturn = announcement;
+            }
+        }
+        return announcementReturn;
+    }
+
     public Optional<Announcement> createAnnouncement(Request request, Commission commission){
         Optional<Announcement> optionalValue = Optional.empty();
-
         Announcement announcement = new Announcement(request, commission);
 
         if(addAnnouncement(announcement)){

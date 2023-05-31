@@ -87,7 +87,7 @@ public class PublishAnnouncementController {
     public List<Request> getRequests(){
         return getRequestRepository().getRequests();
     }
-    public List <Announcement> getAnnouncements(){
+    public List <Announcement> getAnnouncement(){
         return getAnnouncementRepository().getAnnouncements();
     }
     private Request getRequestById(int requestId){

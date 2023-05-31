@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Request {
-    private static int requestIdCounter = 1;
+    private static int requestIdCounter = 0;
     private int requestId;
     private final Property property;
     private final TypeBusiness typeBusiness;
@@ -41,7 +41,7 @@ public class Request {
         this.typeBusiness = typeBusiness;
         this.price = price;
         this.owner = owner;
-        //this.requestId = requestIdCounter++;
+        this.requestId = requestIdCounter++;
         this.requestDate = new Date();
     }
 
@@ -79,7 +79,8 @@ public class Request {
 
     @Override
     public String toString() {  // method to convert into displayable
-        return "\nProperty: " + property +
+        return "\nRequest Id: " + requestId +
+                "\nProperty: " + property +
                 "\nTypeBusiness: " + typeBusiness.toString() +
                 "\nPrice: " + price +
                 "\nOwner: " + owner.toString() +

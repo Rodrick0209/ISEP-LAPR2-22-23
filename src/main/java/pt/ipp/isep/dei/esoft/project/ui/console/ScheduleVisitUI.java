@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class CreateVisitUI implements Runnable {
+public class ScheduleVisitUI implements Runnable {
     private String date, message;
     private Announcement announcement;
     String name;
@@ -92,9 +92,6 @@ public class CreateVisitUI implements Runnable {
         }
         return number;
     }
-
-
-
     private String requestMessage() {
 
         System.out.println("Do you want to leave a message for the agent?\n" +
