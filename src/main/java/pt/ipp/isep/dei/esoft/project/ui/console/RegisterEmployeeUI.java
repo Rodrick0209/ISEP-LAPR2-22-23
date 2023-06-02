@@ -45,7 +45,15 @@ public class RegisterEmployeeUI implements Runnable {
         Optional<Employee> employee = getController().createEmployee(employeeName, employeeEmail, employeeCCNumber, employeeTaxNumber, employeeAddress, employeePhoneNumber, employeeRoleName, employeeAgencyID);
         employeePassword = controller.generatePassword();
 
-        if (employee.isPresent() && controller.addUserWithRole(employeeName, employeeEmail, employeePassword, AuthenticationController.ROLE_AGENT)) {
+        if (employee.isPresent()){
+            if(employeeRoleName.equalsIgnoreCase("Agent")){
+                controller.addUserWithRole(employeeName, employeeEmail, employeePassword, AuthenticationController.ROLE_AGENT);
+            }
+            else if(employeeRoleName.equalsIgnoreCase("Store Manager")){
+                controller.addUserWithRole(employeeName, employeeEmail, employeePassword, AuthenticationController.ROLE_STORE_MANAGER);
+            }else if(employeeRoleName.equalsIgnoreCase("Network Manager")){
+                controller.addUserWithRole(employeeName, employeeEmail, employeePassword, AuthenticationController.ROLE_NETWORK_MANAGER);
+            }
             System.out.println("Employee successfully registered! A password for the employee login the application will be sent t´2o his email address");
             controller.writeFile(employeeEmail, employeePassword);
         } else {

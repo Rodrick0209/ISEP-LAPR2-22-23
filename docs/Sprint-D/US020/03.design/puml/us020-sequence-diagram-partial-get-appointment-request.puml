@@ -1,0 +1,44 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":RespondAppointmentController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "appointmentRequestRepository:\nAppointmentRequestRepository" as AppointmentRequestRepository
+
+autonumber 9.2
+-> CTRL : getAppointmentRequestByProperty(property)
+
+autonumber 9.2.1
+
+activate CTRL
+    group Get Appointment Request
+        CTRL -> RepositorySingleton : getInstance()
+        activate RepositorySingleton
+
+            RepositorySingleton --> CTRL: repositories
+        deactivate RepositorySingleton
+
+        CTRL -> PLAT : getAppointmentRequestRepository()
+        activate PLAT
+
+            PLAT -> CTRL : appointmentRequestRepository
+        deactivate PLAT
+
+        CTRL -> AppointmentRequestRepository : getAppointmentRequestByProperty(property)
+        activate AppointmentRequestRepository
+
+            AppointmentRequestRepository --> CTRL : appointmentRequest
+        deactivate AppointmentRequestRepository
+
+    end group
+
+    autonumber 9.3
+    <-- CTRL : appointmentRequest
+
+deactivate CTRL
+
+
+@enduml

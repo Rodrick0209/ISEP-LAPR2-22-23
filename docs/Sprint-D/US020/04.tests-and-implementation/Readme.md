@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 020 - To accept or reject appointment request 
 
 # 4. Tests 
 
@@ -10,69 +10,86 @@
 	}
 	
 
-**Test 2:** Check that it is not possible to create an instance of the Task class with a reference containing less than five chars - AC2. 
+**Test 2:** Check that it is not possible to create an instance of the Response of Appointment Request class when this appointment request is accepted, but the reason is inserted  - AC2. 
 
 	@Test(expected = IllegalArgumentException.class)
-		public void ensureReferenceMeetsAC2() {
-		Category cat = new Category(10, "Category 10");
-		
-		Task instance = new Task("Ab1", "Task Description", "Informal Data", "Technical Data", 3, 3780, cat);
-	}
+		public void ensureReasonMeetsAC3() { 
+        Location location = new Location("Power Street", "Porto", "Portugal", 45673)
+		Property property = new Property(236, location, 2346)
+        Client client = new Client("client@this.app")
+        Agent agent = new Agent("Agent Name", "agent@this.app")
+        AppointmentRequest appointmentRequest = new AppointmentRequest(property, "02/09/2004", agent)
+        boolean acceptAppointment = false;
 
+        if(!acceptAppointment){
+		ResponseOfAppointmentRequest instance = new ResponseOfAppointmentRequest(appointmentRequest, acceptAppointment, "reason", client);}
+
+    
 
 *It is also recommended to organize this content by subsections.* 
 
 # 5. Construction (Implementation)
 
 
-## Class CreateTaskController 
+## Class RespondAppointmentController 
 
 ```java
-public Task createTask(String reference, String description, String informalDescription,
-								 String technicalDescription, Integer duration, Double cost,
-								 String taskCategoryDescription) {
+public ResponseOfAppointmentRequest createAcceptResponse(appointmentRequestProperty, acceptAppointment, client) {
 
-	TaskCategory taskCategory = getTaskCategoryByDescription(taskCategoryDescription);
+	AppointmentRequest appointmentRequest = getAppointmentRequestByProperty(appointmentRequestProperty);
 
-	Employee employee = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(employee);
+	Client client = getClientFromSession();
+        ResponseOfAppointmentRequestRepository responseOfAppointmentRequestRepository = getResponseOfAppointmentRequestRepository()
 
-	newTask = organization.createTask(reference, description, informalDescription, technicalDescription, 
-			duration, cost,taskCategory, employee);
+	newResponse = responseOfAppointmentRequestRepository.createAcceptResponse(appointmentRequest, acceptAppointment, client);
     
-	return newTask;
+	return newResponse;
 }
+
+public ResponseOfAppointmentRequest createRejectResponse(appointmentRequestProperty, acceptAppointment, reason, client) {
+        AppointmentRequest appointmentRequest = getAppointmentRequestByProperty(appointmentRequestProperty);
+
+        Client client = getClientFromSession();
+        ResponseOfAppointmentRequestRepository responseOfAppointmentRequestRepository = getResponseOfAppointmentRequestRepository()
+
+        newResponse = responseOfAppointmentRequestRepository.createAcceptResponse(appointmentRequest, acceptAppointment, reason, client);
+
+        return newResponse;
+        }
 ```
 
 
-## Class Organization
+## Class ResponseOfAppointmentRequestRepository
 
 ```java
-public Optional<Task> createTask(String reference, String description, String informalDescription,
-                                     String technicalDescription, Integer duration, Double cost,
-                                     TaskCategory taskCategory, Employee employee) {
+public Optional<ResponseOfAppointmentRequest> createAcceptResponse(appointmentRequest, acceptAppointment, client) {
     
-        Task task = new Task(reference, description, informalDescription, technicalDescription, duration, cost,
-                taskCategory, employee);
+        ResponseOfAppointmentRequest responseOfAppointmentRequest = new ResponseOfAppointmentRequest(appointmentRequest, acceptAppointment, client);
 
-        addTask(task);
+        addResponse(responseOfAppointmentRequest);
         
-        return task;
+        return responseOfAppointmentRequest;
     }
+
+public Optional<ResponseOfAppointmentRequest> createRejectResponse() {
+        ResponseOfAppointmentRequest responseOfAppointmentRequest = new ResponseOfAppointmentRequest(appointmentRequest, acceptAppointment, reason, client);
+
+        addResponse(responseOfAppointmentRequest);
+
+        return responseOfAppointmentRequest;
+        }
 ```
 
 # 6. Integration and Demo 
 
-* A new option on the Employee menu options was added.
+* A new option on the Client menu options was added.
 
-* Some demo purposes some tasks are bootstrapped while system starts.
+* Some appointment requests are bootstrapped while system starts.
 
 
 # 7. Observations
 
-Platform and Organization classes are getting too many responsibilities due to IE pattern and, therefore, they are becoming huge and harder to maintain. 
-
-Is there any way to avoid this to happen?
+When the request was accept, the announcement of this property, will be deleted in the application.
 
 
 

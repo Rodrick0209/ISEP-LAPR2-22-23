@@ -12,6 +12,8 @@ skinparam rectangle{
 top to bottom direction
 
 rectangle "Use Cases" as usecases{
+    usecase "UC20 - To accept or reject an appointment request" as UC20
+    Client --> UC20
     usecase "UC13" as UC13
     usecase "UC12 - To import information from a legacy system" as UC12
     SystemAdministrator--> UC12

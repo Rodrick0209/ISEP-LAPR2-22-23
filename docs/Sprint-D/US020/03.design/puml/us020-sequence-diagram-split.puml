@@ -1,0 +1,127 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Client" as Client
+participant ":RespondAppointmentUI" as UI
+participant ":RespondAppointmentController" as CTRL
+participant "responseAppointmentRequestRepository\n:responseAppointmentRequestRepository" as ORG
+
+activate Client
+
+    Client -> UI : asks to accept or reject the appointment request
+
+    activate UI
+
+    autonumber 1.1
+
+        UI -> CTRL** : respond
+        UI -> CTRL : getAppointmentRequests()
+        ref over CTRL
+            Get Appointment Request List
+
+        end ref
+
+        activate CTRL
+
+            CTRL --> UI : appointmentRequestList
+        deactivate CTRL
+
+    autonumber 2
+
+        UI --> Client : shows appointment request list and asks to select one
+    deactivate UI
+
+    Client -> UI : selects a appointment request list
+    activate UI
+
+        UI --> Client : shows appointment request data (property information, \ndate of the appointment, agent name and phone number) \nand asks to accept or reject
+    deactivate UI
+
+    Client -> UI: accepts or rejects the appointment request
+    activate UI
+
+    alt reject the appointment request
+
+        UI --> Client: requests data (reason)
+        deactivate UI
+
+    Client -> UI: types requested data
+    activate UI
+
+    end
+
+        UI --> Client: shows data and asks to confirm
+        deactivate UI
+
+    Client -> UI: confirms data
+    activate UI
+
+    autonumber 9.1
+
+    alt acceptAppointment = false
+        UI -> CTRL : createResponse(appointmentRequestProperty, \nacceptAppointment, reason)
+        activate CTRL
+
+    end
+
+    autonumber 9.1
+    alt acceptAppointment = true
+        UI -> CTRL: createResponse(appointmentRequestProperty, \nacceptAppointment)
+
+    end
+            CTRL -> CTRL : getAppointmentRequestByProperty\n(appointmentRequestProperty)
+            activate CTRL
+
+                ref over CTRL
+                    Get Appointment Request
+
+                end ref
+
+                CTRL --> CTRL : appointmentRequest
+            deactivate CTRL
+
+            CTRL -> CTRL : getClientFromSession()
+            activate CTRL
+
+                ref over CTRL
+                    Get Client
+
+                end ref
+                CTRL -> CTRL : client
+            deactivate CTRL
+
+    alt acceptAppointment = false
+            CTRL -> ORG: createResponse(appointmentRequest, \nacceptAppointment, reason, client)
+            activate ORG
+
+    end
+
+    autonumber 9.6
+
+    alt acceptAppointment = true
+            CTRL -> ORG: createResponse(appointmentRequest, \nacceptAppointment, client)
+
+  end
+                ref over ORG
+                    Create Response Of Appointment Request
+
+                end
+
+                ORG --> CTRL : response
+            deactivate ORG
+
+            CTRL --> UI: response
+            deactivate CTRL
+
+            autonumber 10
+            UI --> Client: shows operation success
+    deactivate UI
+
+deactivate Client
+
+@enduml

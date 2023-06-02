@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 020 - To accept or reject appointment request
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

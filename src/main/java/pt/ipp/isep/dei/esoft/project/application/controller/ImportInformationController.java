@@ -301,7 +301,7 @@ public class ImportInformationController implements FileReader {
 
         public Optional<Announcement> createAnnoouncement(String[] information){
             Optional<Announcement> newAnnouncement = Optional.empty();
-            String[] informationLocation = information[8].split(", ");
+            String[] informationLocation = information[8].split(",");
             switch(information[6]){
                 case "land":
                 case "house":

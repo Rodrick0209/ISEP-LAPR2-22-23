@@ -1,0 +1,161 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class ApplicationSession
+{
+    + static getInstance()
+    + getCurrentSession()
+}
+
+class UserSession
+{
+    + getUserEmail()
+}
+
+class Client {
+    - name
+    - email
+    - position
+    - phone
+}
+
+class ResponseOfAppointmentRequest {
+    - Boolean acceptAppointment
+    - String reason
+
+    + ResponseOfAppointmentRequest\n(appointmentRequest, acceptAppointment, client)
+    + ResponseOfAppointmentRequest(appointmentRequest, \nacceptAppointment, reason, client)
+}
+
+class AppointmentRequest {
+    - Date dateOfAppointmentRequest
+
+    + AppointmentRequest(property, dateOfAppointmentRequest, agentName, agentPhoneNumber)
+}
+
+class Property{
+    - area
+    - distanceFromCityCentre
+}
+
+class Land{
+}
+
+class Apartment{
+    - numberOfBedrooms
+    - numberOfBathrooms
+    - numberOfParkingSpaces
+    - centralHeating
+    - airConditioning
+}
+
+class House{
+    - numberOfBedrooms
+    - numberOfBathrooms
+    - numberOfParkingSpaces
+    - centralHeating
+    - airConditioning
+    - existenceOfAnBasement
+    - inhabitableLoft
+    - sunExposure
+}
+
+class Location{
+    - street
+    - city
+    - state
+    - zipCode
+}
+
+class Agent{
+    - name
+    - ccNumber
+    - taxNumber
+    - emailAddress
+    - phoneNumber
+}
+
+class ResponseOfAppointmentRequestRepository {
+
+    - addResponse(responseOfAppointmentRequest)
+    - validateResponse(responseOfAppointmentRequest))
+    + createResponseAccepted(appointmentRequestLocation, acceptAppointment)
+    + createResponseRejected(appointmentRequestLocation, acceptAppointment, reason)
+}
+
+class AppointmentRequestRepository {
+    + getAppointmentRequestByProperty(property)
+}
+
+class ClientRepository{
+    + getClientFromSession()
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+    + getAppointmentRequestRepository()
+    + getResponseAppointmentRequestRepository()
+    + getClientRepository()
+}
+
+class RespondAppointmentController {
+    + RespondAppointmentController(appointmentRequestRepository, responseOfAppointmentRequestRepository, clientRepository)
+    + getTaskCategories()
+    + createResponseAccepted(appointmentRequestLocation, acceptAppointment)
+    + createResponseRejected(appointmentRequestLocation, acceptAppointment, reason)
+    - getAppointmentRequestByProperty(property)
+    - getClientFromSession()
+}
+
+
+
+note bottom of AppointmentRequestRepository
+    - used for displaying
+    the appointment request list
+end note
+
+class RespondAppointmentUI {
+}
+
+Repositories -> Repositories : instance
+ApplicationSession -> ApplicationSession : instance
+
+RespondAppointmentUI .> RespondAppointmentController
+
+RespondAppointmentController .> Repositories : repositories
+
+Repositories -> "1" AppointmentRequestRepository
+
+RespondAppointmentController .> AppointmentRequest
+RespondAppointmentController ..> ClientRepository : clientRepository
+RespondAppointmentController .> AppointmentRequestRepository : AppointmentRequestRepository
+
+Repositories --> "1" ClientRepository
+
+ClientRepository --> "*" Client
+ApplicationSession --> "1" UserSession : userSession
+
+RespondAppointmentController .> "1" ResponseOfAppointmentRequestRepository : responseOfAppointmentRequestRepository
+RespondAppointmentController ..> ApplicationSession
+RespondAppointmentController ..> UserSession
+ResponseOfAppointmentRequest "*" --> "1" AppointmentRequest : appointmentRequest
+AppointmentRequestRepository "1" --> "*" AppointmentRequest : appointmentRequest
+AppointmentRequest --> Agent : createdBy
+ResponseOfAppointmentRequestRepository "1" --> "*" ResponseOfAppointmentRequest
+ResponseOfAppointmentRequest --> Client : createdBy
+
+AppointmentRequestRepository ..> Property : property
+Property "1" --> "1" Location : have
+Property --|> Land
+Property --|> Apartment
+Property --|> House
+@enduml

@@ -1,0 +1,78 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+class Client{
+}
+
+class Agent{
+    name
+    ccNumber
+    taxNumber
+    emailAddress
+    phoneNumber
+}
+
+class AppointmentRequest{
+    date
+}
+
+class Property {
+    type
+    area
+    location
+    distance_from_the_city_centre
+    requested_price
+    photos
+    }
+
+class Land {
+}
+
+class Apartment{
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking_spaces
+    existence_of_central_heating
+    existence_of_air_conditioning
+}
+
+class House{
+    number_of_bedrooms
+    number_of_bathrooms
+    number_of_parking spaces
+    existence_of_central heating
+    existence_of_air_conditioning
+    existence_of_a_basement
+    existence_of_an_inhabitable_loft
+    existence_of_sun_exposure
+}
+
+class Client{
+}
+
+class User {
+    name
+    email
+    password
+}
+
+Client "1" --> "1..*" AppointmentRequest: accepts or requests a
+AppointmentRequest "*" --> "1" Agent: created by
+AppointmentRequest "1" --> "1" Property: has a
+Property "1" --> "1" Land: can be a
+Property "1" --> "1" House: can be a
+Property "1" --> "1" Apartment: can be a
+Client "1" --> "1" User: is a
+Agent "1" --> "1" User: is a
+@enduml

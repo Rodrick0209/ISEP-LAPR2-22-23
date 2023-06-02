@@ -1,0 +1,211 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Client" as Client
+participant ":RespondAppointmentUI" as UI
+participant ":RespondAppointmentController" as CTRL
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSAO
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "appointmentRequestRepository:\nAppointmentRequestRepository" as AppointmentRequestRepository
+participant "clientRepository:\nClientRepository" as ClientRepository
+participant "responseAppointmentRequestRepository\n:responseAppointmentRequestRepository" as ORG
+participant "responseAppointmentRequestRepository\n:ResponseAppointmentRequestRepository" as ORG
+participant "responseAppointmentRequest\n:ResponseAppointmentRequest" as TAREFA
+
+activate Client
+
+    Client -> UI : asks to accept or reject the appointment request
+
+    activate UI
+
+    autonumber 1.1
+
+        UI -> CTRL** : respond
+        UI -> CTRL : getAppointmentRequests()
+        activate CTRL
+        autonumber 1.2.1
+        CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                        RepositorySingleton --> CTRL: repositories
+                    deactivate RepositorySingleton
+
+                    CTRL -> PLAT : getAppointmentRequestsRepository()
+                    activate PLAT
+
+                        PLAT --> CTRL: appointmentRequestRepository
+                    deactivate PLAT
+
+                    CTRL -> AppointmentRequestRepository : getAppointmentRequests()
+                    activate AppointmentRequestRepository
+
+                        AppointmentRequestRepository --> CTRL : appointmentRequestList
+                    deactivate AppointmentRequestRepository
+
+            autonumber 1.3
+            CTRL --> UI : appointmentRequestList
+        deactivate CTRL
+
+    autonumber 2
+
+        UI --> Client : shows appointment request list and asks to select one
+    deactivate UI
+
+    Client -> UI : selects a appointment request list
+    activate UI
+
+        UI --> Client : shows appointment request data (property information, \ndate of the appointment, agent name and phone number) \nand asks to accept or reject
+    deactivate UI
+
+    Client -> UI: accepts or rejects the appointment request
+    activate UI
+
+    alt reject the appointment request
+
+        UI --> Client: requests data (reason)
+        deactivate UI
+
+    Client -> UI: types requested data
+    activate UI
+
+    end
+
+        UI --> Client: shows data and asks to confirm
+        deactivate UI
+
+    Client -> UI: confirms data
+    activate UI
+
+    autonumber 9.1
+    alt acceptAppointment = false
+        UI -> CTRL : createResponse(appointmentRequestProperty, \nacceptAppointment, reason)
+        activate CTRL
+
+    end
+
+    autonumber 9.1
+    alt acceptAppointment = true
+        UI -> CTRL: createResponse(appointmentRequestProperty, \nacceptAppointment)
+
+    end
+            CTRL -> CTRL : getAppointmentRequestByProperty\n(appointmentRequestProperty)
+            activate CTRL
+
+    autonumber 9.2.1
+            CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                        RepositorySingleton --> CTRL: repositories
+                    deactivate RepositorySingleton
+
+                    CTRL -> PLAT : getAppointmentRequestRepository()
+                    activate PLAT
+
+                        PLAT -> CTRL : appointmentRequestRepository
+                    deactivate PLAT
+
+                    CTRL -> AppointmentRequestRepository : getAppointmentRequestByProperty(property)
+                    activate AppointmentRequestRepository
+
+                        AppointmentRequestRepository --> CTRL : appointmentRequest
+                    deactivate AppointmentRequestRepository
+
+            autonumber 9.3
+                CTRL --> CTRL : appointmentRequest
+            deactivate CTRL
+
+            CTRL -> CTRL : getClientFromSession()
+            activate CTRL
+
+            autonumber 9.4.1
+                CTRL -> _APP: getInstance()
+                        activate _APP
+                            _APP -> CTRL: appSession
+                        deactivate _APP
+
+                        CTRL -> APP: getCurrentSession()
+                        activate APP
+
+                            APP --> CTRL: currentSession
+                        deactivate APP
+
+                        CTRL -> SESSAO: email = getUserEmail()
+                        activate SESSAO
+
+                            SESSAO --> CTRL: email
+                        deactivate SESSAO
+
+                        CTRL -> PLAT: getClientRepository(email)
+                        activate PLAT
+
+                            PLAT --> CTRL: clientRepository
+                        deactivate PLAT
+
+                        CTRL -> ClientRepository: getClientByEmail(email)
+                        activate ClientRepository
+
+                            ClientRepository --> CTRL : client
+                        deactivate ClientRepository
+
+                autonumber 9.5
+                CTRL -> CTRL : client
+            deactivate CTRL
+
+    autonumber 9.6
+    alt acceptAppointment = false
+            CTRL -> ORG: createResponse(appointmentRequest, \nacceptAppointment, reason, client)
+            activate ORG
+
+    end
+
+    autonumber 9.6
+    alt acceptAppointment = true
+            CTRL -> ORG: createResponse(appointmentRequest, \nacceptAppointment, client)
+
+  end
+                autonumber 9.6.1
+                alt acceptAppointment = true
+
+                        ORG -> TAREFA**: create(appointmentRequest, acceptAppointment, client)
+                    end
+                autonumber 9.6.1
+
+                    alt acceptAppointment = false
+
+                        ORG -> TAREFA**: create(appointmentRequest, acceptAppointment, reason, client)
+                    end
+
+                        ORG -> ORG: addResponse(responseOfAppointmentRequest)
+
+                        activate ORG
+                            ORG -> ORG: validateResponse(responseOfAppointmentRequest)
+                            activate ORG
+                                ORG --> ORG
+                            deactivate ORG
+
+                            ORG --> ORG
+                        deactivate ORG
+
+            autonumber 9.7
+
+                ORG --> CTRL : responseOfAppointmentRequest
+            deactivate ORG
+
+            CTRL --> UI: responseOfAppointmentRequest
+            deactivate CTRL
+
+            autonumber 10
+            UI --> Client: shows operation success
+    deactivate UI
+
+deactivate Client
+
+@enduml

@@ -6,9 +6,6 @@ package pt.ipp.isep.dei.esoft.project.repository;
 public class Repositories {
 
     private static final Repositories instance = new Repositories();
-    /**
-     * The Organization repository.
-     */
 
     /**
      * The Agency repository.
@@ -34,13 +31,28 @@ public class Repositories {
      */
     PropertyTypeRepository propertyTypeRepository = new PropertyTypeRepository();
 
+    /**
+     * The Owner repository.
+     */
     OwnerRepository ownerRepository = new OwnerRepository();
 
+    /**
+     * The Type business repository.
+     */
     TypeBusinessRepository typeBusinessRepository = new TypeBusinessRepository();
+    /**
+     * The Employee repository.
+     */
     EmployeeRepository employeeRepository = new EmployeeRepository();
 
+    /**
+     * The Request repository.
+     */
     RequestRepository requestRepository = new RequestRepository();
 
+    /**
+     * The Announcement repository.
+     */
     AnnouncementRepository announcementRepository = new AnnouncementRepository();
 
     VisitRepository visitRepository =  new VisitRepository();
@@ -56,12 +68,6 @@ public class Repositories {
     public static Repositories getInstance() {
         return instance;
     }
-
-    /**
-     * Get organization repository organization repository.
-     *
-     * @return the organization repository
-     */
 
     /**
      * Gets agency repository.
@@ -104,18 +110,43 @@ public class Repositories {
         return propertyTypeRepository;
     }
 
+    /**
+     * Gets owner repository.
+     *
+     * @return the owner repository
+     */
     public OwnerRepository getOwnerRepository() { return ownerRepository; }
 
+    /**
+     * Gets employee repository.
+     *
+     * @return the employee repository
+     */
     public EmployeeRepository getEmployeeRepository() { return employeeRepository; }
 
+    /**
+     * Gets type business repository.
+     *
+     * @return the type business repository
+     */
     public TypeBusinessRepository getTypeBusinessRepository() {
         return typeBusinessRepository;
     }
 
+    /**
+     * Gets request repository.
+     *
+     * @return the request repository
+     */
     public RequestRepository getRequestRepository() {
         return requestRepository;
     }
 
+    /**
+     * Gets announcement repository.
+     *
+     * @return the announcement repository
+     */
     public AnnouncementRepository getAnnouncementRepository() {
         return announcementRepository;
     }

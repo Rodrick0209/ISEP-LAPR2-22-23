@@ -39,17 +39,20 @@ To identify domain conceptual classes, start by making a list of candidate conce
 * System Administrator
 * Employee
 * Store Manager
-* Agency
+* Network Manager
 * Agent
+* Owner
+* Client
 
 ---
 
 
 **Places**
 
-* Store
-* Home
+* Agency
+* Land
 * Apartment
+* House
 
 ---
 
@@ -70,7 +73,7 @@ To identify domain conceptual classes, start by making a list of candidate conce
 **Descriptions of Things**
 
 * Employee Role
-* Property Controller
+* Property Location
 
 
 ---
@@ -99,16 +102,13 @@ To identify domain conceptual classes, start by making a list of candidate conce
 
 **Organizations**
 
-* Company
-* Agency 
+*
 
 ---
 
 **Other External/Collaborating Systems**
 
-*  Owner
-*  Database
-*  Unregisted User
+
 
 
 ---
@@ -161,13 +161,18 @@ An association is a relationship between instances of objects that indicates a r
 | Agent                   |      Works for      | Agency              |
 | House                   | Is a description of | Property            |
 | Apartment               | Is a description of | Property            |
+| Land                    | Is a description of | Property            |
 | Agent                   |       Creates       | Announcement        |
-| System Administrator    |       Creates       | Store               |
-| Store Manager           |       Manages       | Store               |
-| Property                |    Contained in     | Property Controller |
-| Unregisted User         |      Requests       | Property Controller |
-| Property Controller     |      Requests       | Database            |
-| Database                |        Uses         | Property Controller |
+| System Administrator    |       Creates       | Agency              |
+| Agency Manager          |       Manages       | Agency              |
+| Network Manager         |       Manages       | Agencies            |
+| Client                  |         is          | User                |
+| Owner                   |         is          | User                |
+| System Administrator    |         is          | User                |
+| Agent                   |         is          | User                |
+| Agent                   |        sends        | Appointment Request |
+| Client                  | accepts or rejects  | Appointment Request |
+
 
 
 

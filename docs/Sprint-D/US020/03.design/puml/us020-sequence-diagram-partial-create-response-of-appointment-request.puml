@@ -1,0 +1,44 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant "responseAppointmentRequestRepository\n:ResponseAppointmentRequestRepository" as ORG
+participant "responseAppointmentRequest\n:ResponseAppointmentRequest" as TAREFA
+
+autonumber 9.6
+-> ORG: createResponseOfAppointmentRequest(appointmentRequest, acceptAppointment, reason, client)
+
+autonumber 9.6.1
+activate ORG
+    group Create Response Of Appointment Request
+
+    alt acceptAppointment = true
+
+        ORG -> TAREFA**: create(appointmentRequest, acceptAppointment, client)
+    end
+
+    autonumber 9.6.1
+    alt acceptAppointment = false
+
+        ORG -> TAREFA**: create(appointmentRequest, acceptAppointment, reason, client)
+    end
+
+        ORG -> ORG: addResponse(responseOfAppointmentRequest)
+
+        activate ORG
+            ORG -> ORG: validateResponse(responseOfAppointmentRequest)
+            activate ORG
+                ORG --> ORG
+            deactivate ORG
+
+            ORG --> ORG
+        deactivate ORG
+    end
+
+    autonumber 9.7
+    <-- ORG : responseOfAppointmentRequest
+deactivate ORG
+
+
+@enduml

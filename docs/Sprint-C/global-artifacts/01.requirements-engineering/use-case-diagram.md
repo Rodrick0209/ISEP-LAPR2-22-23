@@ -29,5 +29,6 @@ link as suggested below.**
 | US 011 | [List and decide (whether to accept or decline) a real estate purchase and send an email to the customer in case of acceptance](../../US011/Readme.md) |
 | US 012 | [Register a store](../../US012/Readme.md)                                                                                                              |
 | US 013 | [Register a store](../../US013/Readme.md)                                                                                                              |
+| US 020 | [Accept or reject Appointment Request](../../US020/Readme.md)                                                                                          |
 
 

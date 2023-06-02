@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 020 - To accept or reject a appointment request 
 
 ## 3. Design - User Story Realization 
 
@@ -6,69 +6,66 @@
 
 **SSD - Alternative 1 is adopted.**
 
-| Interaction ID | Question: Which class is responsible for... | Answer               | Justification (with patterns)                                                                                 |
-|:-------------  |:--------------------- |:---------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		 |	... interacting with the actor? | CreateTaskUI         | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 			  		 |	... coordinating the US? | CreateTaskController | Controller                                                                                                    |
-| 			  		 |	... instantiating a new Task? | Organization         | Creator (Rule 1): in the DM Organization has a Task.                                                          |
-| 			  		 | ... knowing the user using the system?  | UserSession          | IE: cf. A&A component documentation.                                                                          |
-| 			  		 |							 | Organization         | IE: knows/has its own Employees                                                                               |
-| 			  		 |							 | Employee             | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		 |							 |                      |                                                                                                               |
-| Step 3  		 |	...saving the inputted data? | Task                 | IE: object created in step 1 has its own data.                                                                |
-| Step 4  		 |	...knowing the task categories to show? | System               | IE: Task Categories are defined by the Administrators.                                                        |
-| Step 5  		 |	... saving the selected category? | Task                 | IE: object created in step 1 is classified in one Category.                                                   |
-| Step 6  		 |							 |                      |                                                                                                               |              
-| Step 7  		 |	... validating all data (local validation)? | Task                 | IE: owns its data.                                                                                            | 
-| 			  		 |	... validating all data (global validation)? | Organization         | IE: knows all its tasks.                                                                                      | 
-| 			  		 |	... saving the created task? | Organization         | IE: owns all its tasks.                                                                                       | 
-| Step 8  		 |	... informing operation success?| CreateTaskUI         | IE: is responsible for user interactions.                                                                     | 
+| Interaction ID | Question: Which class is responsible for...          | Answer                                 | Justification (with patterns)                                                                                 |
+|:---------------|:-----------------------------------------------------|:---------------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1  		     | 	... interacting with the actor?                     | RespondAppointmentUI                   | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+| 			  		        | 	... coordinating the US?                            | RespondAppointmentController           | Controller                                                                                                    |
+| 			  		        | 	... instantiating a new Response?                   | ResponseOfAppointmentRequestRepository | Creator (Rule 1): in the DM this Repository has a response of appointment request.                            |
+| 			  		        | ... knowing the user using the system?               | UserSession                            | IE: cf. A&A component documentation.                                                                          |
+| 			  		        | 							                                              | ClientRepository                       | IE:has its own Clients                                                                                        |
+| 			  		        | 							                                              | Client                                 | IE: knows its own data (e.g. email)                                                                           |
+| Step 2  		     | 	...knowing the appointment requests to show?						  | AppointmentRequestRepository           | IE: Appointment Requests are created by the agents and saved in this repository                               |
+| Step 3  		     | 	...saving the selected appointment request?         | ResponseOfAppointmentRequest           | IE: object created in step 1 is inserted in one appointment request                                           |
+| Step 4  		     | 	                                                    |                                        |                                                                                                               |
+| Step 5         | ...saving the inputted/selected data?                | ResponseOfAppointmentRequest           | IE: object created in step 1 knows its data                                                                   |
+|                | Alternative (Client rejects the Appointment Request) |                                        |                                                                                                               |
+| Step 6  		     | 							                                              |                                        |                                                                                                               |              
+| Step 8         | ...saving the inputted data?                         | ResponseOfAppointmentRequest           | IE: object created in step 1 knows its data                                                                   |
+| Step 9  		     | 	... validating all data (local validation)?         | ResponseOfAppointmentRequest           | IE: owns its data.                                                                                            | 
+| 			  		        | 	... validating all data (global validation)?        | ResponseOfAppointmentRequestRepository | IE: knows all its responses.                                                                                  | 
+| 			  		        | 	... saving the created task?                        | ResponseOfAppointmentRequestRepository | IE: owns all its responses.                                                                                   | 
+| Step 8  		     | 	... informing operation success?                    | RespondAppointmentUI                   | IE: is responsible for user interactions.                                                                     | 
 
 ### Systematization ##
 
 According to the taken rationale, the conceptual classes promoted to software classes are: 
 
- * Organization
- * Task
+ * ResponseAppointmentRequestRepository
+ * ResponseAppointmentRequest
 
 Other software classes (i.e. Pure Fabrication) identified: 
 
- * CreateTaskUI  
- * CreateTaskController
+ * RespondAppointmentUI  
+ * RespondAppointmentController
 
 
 ## 3.2. Sequence Diagram (SD)
 
 ### Alternative 1 - Full Diagram
 
-This diagram shows the full sequence of interactions between the classes involved in the realization of this user story.
 
-![Sequence Diagram - Full](svg/us006-sequence-diagram-full.svg)
+![Sequence Diagram - Full](svg/us020-sequence-diagram-full.svg)
 
 ### Alternative 2 - Split Diagram
 
-This diagram shows the same sequence of interactions between the classes involved in the realization of this user story, but it is split in partial diagrams to better illustrate the interactions between the classes.
+![Sequence Diagram - split](svg/us020-sequence-diagram-split.svg)
 
-It uses interaction ocurrence.
+**Get Appointment Request List Partial SD**
 
-![Sequence Diagram - split](svg/us006-sequence-diagram-split.svg)
+![Sequence Diagram - Partial](svg/us020-sequence-diagram-partial-get-appointment-request-list.svg)
 
-**Get Task Category List Partial SD**
+**Get Appointment Request**
 
-![Sequence Diagram - Partial - Get Task Category List](svg/us006-sequence-diagram-partial-get-task-category-list.svg)
+![Sequence Diagram - Partial](svg/us020-sequence-diagram-partial-get-appointment-request.svg)
 
-**Get Task Category Object**
+**Get Client**
 
-![Sequence Diagram - Partial - Get Task Category Object](svg/us006-sequence-diagram-partial-get-task-category.svg)
+![Sequence Diagram - Partial](svg/us020-sequence-diagram-partial-get-client.svg)
 
-**Get Employee**
+**Create Response Of Appointment Request**
 
-![Sequence Diagram - Partial - Get Employee](svg/us006-sequence-diagram-partial-get-employee.svg)
-
-**Create Task**
-
-![Sequence Diagram - Partial - Create Task](svg/us006-sequence-diagram-partial-create-task.svg)
+![Sequence Diagram - Partial](svg/us020-sequence-diagram-partial-create-response-of-appointment-request.svg)
 
 ## 3.3. Class Diagram (CD)
 
-![Class Diagram](svg/us006-class-diagram.svg)
+![Class Diagram](svg/us020-class-diagram.svg)
