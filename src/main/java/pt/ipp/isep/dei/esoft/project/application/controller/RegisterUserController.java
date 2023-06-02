@@ -29,7 +29,7 @@ public class RegisterUserController implements FileWriter {
     }
 
     public void writeFile(String email, String pwd) {
-        String fileName = Files.path + "passwords.txt";
+        String fileName = Files.path + "emailUser.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);
             pw.printf("Welcome to Real State USA! Your password to login in this application is:");
