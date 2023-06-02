@@ -22,10 +22,10 @@ public class PublishAnnouncementUI implements Runnable {
 
     public void run() {
 
-        requestsGettedById = displayAndSelectRequests();
-        confirmRequest();
+      requestsGettedById = displayAndSelectRequests();
+      confirmRequest();
 
-        submitOrNot();
+      submitOrNot();
     }
 
     private void submitData() {

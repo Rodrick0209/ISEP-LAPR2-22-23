@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.domain.Order;
 import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
@@ -30,6 +31,18 @@ public class OrderController {
 
     public Announcement getAnnouncementById(int announcementId) {
         return getAnnouncementRepository().getAnnouncementById(announcementId);
+    }
+
+    public void acceptOrder(int announcementId, Order acceptedOrder) {
+        Announcement announcement = getAnnouncementById(announcementId);
+        announcement.acceptOrder(acceptedOrder);
+
+    }
+
+    public void declineOrder(int announcementId, Order declinedOrder) {
+        Announcement announcement = getAnnouncementById(announcementId);
+        announcement.declineOrder(declinedOrder);
+
     }
 
     public List<Announcement> getAnnouncementsList() {

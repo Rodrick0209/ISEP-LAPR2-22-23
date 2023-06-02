@@ -14,6 +14,12 @@ public class Client {
     private Email clientEmail;
     List<String> mailbox = new ArrayList<>();
 
+    //for testing purposes
+
+    public Client() {
+
+    }
+
     public Client(String clientName, int phoneNumber, Email clientEmail) {
         this.clientName = clientName;
         this.phoneNumber = phoneNumber;

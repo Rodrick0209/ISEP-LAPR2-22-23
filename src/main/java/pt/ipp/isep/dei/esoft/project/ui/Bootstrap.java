@@ -4,8 +4,11 @@ import pt.ipp.isep.dei.esoft.project.application.controller.PublishAnnouncementC
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
+import pt.isep.lei.esoft.auth.domain.model.Email;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Bootstrap implements Runnable {
     private Employee agent = null;
@@ -22,7 +25,7 @@ public class Bootstrap implements Runnable {
         addPropertyTypes();
         addOwner();
         addRequests();
-        //addAnnouncements();
+        addAnnouncements();
         //addVisit();
     }
 
@@ -37,7 +40,6 @@ public class Bootstrap implements Runnable {
         employeeRepository.add(new Employee("storemanager@this.app"));
         employeeRepository.add(new Employee("agent@this.app"));
     }
-
 
     private void addAgencies() {
         //TODO: add bootstrap Agencies here
@@ -92,7 +94,6 @@ public class Bootstrap implements Runnable {
 
     private void addPropertyTypes() {
         PropertyTypeRepository propertyTypeRepository = Repositories.getInstance().getPropertyTypeRepository();
-
         propertyTypeRepository.add(new PropertyType("Land"));
         propertyTypeRepository.add(new PropertyType("Apartment"));
         propertyTypeRepository.add(new PropertyType("House"));
@@ -109,22 +110,28 @@ public class Bootstrap implements Runnable {
         savedRequests.add(request1);
     }
 
-    private void addAnnouncements() {
-        AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
-
-        //AnnouncementRequest announcementRequest = new AnnouncementRequest( new House(( new PropertyType("House")) , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")) , 3000.0 , "Sell" );
+    /*
         Repositories.getInstance().getAnnouncementRepository().addAnnouncement(new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage", 5), new Date(2023,05,31)));
-
-
-
-        //announcement 1
         Announcement announcement = new Announcement(new Request(new House( new PropertyType("House") , 120, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 12345), 12, 3, 2, 1, true, false, true, true, "N", new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023,05,31));
         announcementRepository.addAnnouncement(announcement);
 
-        Repositories.getInstance().getAnnouncementRepository().addAnnouncement(announcement);
-        //Repositories.getInstance().getRequestRepository().addRequests();
+     */
 
-        //agent.addAnnouncements();
+    private void addAnnouncements() {
+        AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
+        List<Announcement> announcements = announcementRepository.getAnnouncements();
+
+        Email orderClientEmail = new Email("joao@this.app");
+        Client orderClient = new Client("Joao", 919919919, orderClientEmail);
+        Order order1 = new Order(5000, orderClient);
+        Order order2 = new Order(3000, orderClient);
+        Date announcementDate = new Date(0, Calendar.JUNE, 23);
+        Announcement announcement1 = new Announcement(null, null, announcementDate);
+        Announcement announcement2 = new Announcement(null, null);
+        announcements.add(announcement1);
+        announcements.add(announcement2);
+        announcement1.addOrder(order1);
+        announcement1.addOrder(order2);
 
     }
 

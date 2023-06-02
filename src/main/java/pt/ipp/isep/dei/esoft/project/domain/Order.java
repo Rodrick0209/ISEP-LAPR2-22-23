@@ -7,16 +7,25 @@ public class Order {
     private int orderId;
     private double orderValue;
     private Date orderDate;
+    Client client;
 
-    public Order(double orderValue, Date orderDate) {
+    public Order(double orderValue, Client client) {
         this.orderValue = orderValue;
-        this.orderDate = orderDate;
+        this.client = client;
         this.orderId = orderIdCounter++;
         orderDate = new Date();
     }
 
     public double getOrderValue() {
         return orderValue;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public void setOrderValue(double orderValue) {
@@ -33,5 +42,15 @@ public class Order {
 
     public int getOrderId() {
         return orderId;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", orderValue=" + orderValue +
+                ", orderDate=" + orderDate +
+                ", clientEmail='" + client.toString() + '\'' +
+                '}';
     }
 }
