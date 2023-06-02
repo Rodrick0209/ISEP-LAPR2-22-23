@@ -110,10 +110,11 @@ public class RegisterEmployeeController implements FileWriter{
         String fileName = Files.path + "passwords.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);
-            pw.printf("Role: Employee%n" +
-                    "Email: %s%n" +
-                    "Password: %s%n", email, pwd);
+            pw.printf("Welcome to Real State USA! Your password to login in this application is:");
             pw.println();
+            pw.println(pwd);
+            pw.println();
+            pw.println("Real State USA Ltd.");
             pw.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found");

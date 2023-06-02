@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.FileWriter;
 import pt.ipp.isep.dei.esoft.project.domain.PasswordGenerator;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -28,13 +29,14 @@ public class RegisterUserController implements FileWriter {
     }
 
     public void writeFile(String email, String pwd) {
-        String fileName = "password.txt";
+        String fileName = Files.path + "passwords.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);
-            pw.printf("Role: User%n" +
-                    "Email: %s%n" +
-                    "Password: %s%n", email, pwd);
+            pw.printf("Welcome to Real State USA! Your password to login in this application is:");
             pw.println();
+            pw.println(pwd);
+            pw.println();
+            pw.println("Real State USA Ltd.");
             pw.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
