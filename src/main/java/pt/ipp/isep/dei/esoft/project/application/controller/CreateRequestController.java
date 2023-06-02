@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The type Create request controller.
@@ -21,6 +22,10 @@ public class CreateRequestController {
 
     private AuthenticationRepository authenticationRepository;
 
+    private RequestRepository requestRepository;
+
+
+
     /**
      * Instantiates a new Create request controller.
      */
@@ -28,34 +33,12 @@ public class CreateRequestController {
         getTypeBusinessRepository();
     }
 
-
-    /**
-     * Create request boolean.
-     *
-     * @param requestType      the request type
-     * @param propertyType     the property type
-     * @param area             the area
-     * @param location         the location
-     * @param distance         the distance
-     * @param photos           the photos
-     * @param n_bedrooms       the n bedrooms
-     * @param n_bathrooms      the n bathrooms
-     * @param n_parkingSpaces  the n parking spaces
-     * @param avaiableEquip    the avaiable equip
-     * @param price            the price
-     * @param rentprice        the rentprice
-     * @param contractduration the contractduration
-     * @return the boolean
-     */
-    public boolean createRequest(String requestType, String propertyType, String area, String location, double distance, int photos, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, String avaiableEquip, boolean price, boolean rentprice, String contractduration){
-        return createRequest(requestType, propertyType,area, location,distance,photos,n_bedrooms, n_bathrooms, n_parkingSpaces, avaiableEquip, price, rentprice,contractduration);
-    }
-
-    /**
-     * Add request.
-     */
-    public void addRequest() {
-
+    private PropertyRepository getPropertyRepository(){
+        if(propertyRepository == null){
+            Repositories repositories = Repositories.getInstance();
+            propertyRepository = repositories.getPropertyRepository();
+        }
+        return propertyRepository;
     }
 
     /**
@@ -67,17 +50,27 @@ public class CreateRequestController {
         return getTypeBusinessRepository().getTypeBusiness();
     }
 
+
+
     /**
      * Gets type business repository.
      *
      * @return the type business repository
      */
-    public TypeBusinessRepository getTypeBusinessRepository() {
+    private TypeBusinessRepository getTypeBusinessRepository() {
         if(typeBusinessRepository == null){
             Repositories repositories = Repositories.getInstance();
             typeBusinessRepository = repositories.getTypeBusinessRepository();
         }
         return typeBusinessRepository;
+    }
+
+    private RequestRepository getRequestRepository(){
+        if(requestRepository == null){
+            Repositories repositories = Repositories.getInstance();
+            requestRepository = repositories.getInstance().getRequestRepository();
+        }
+        return requestRepository;
     }
 
     /**
@@ -97,6 +90,7 @@ public class CreateRequestController {
         return  propertyTypeRepository;
     }
 
+
     /**
      * Gets sell land.
      *
@@ -112,8 +106,39 @@ public class CreateRequestController {
         Location location = new Location( street , city , state , zipCode);
         Owner owner = getOwnerFromSession();
         return new Land(new PropertyType("Land"), area, location, distance , owner);
+    }
 
+    public Optional<Property> createLand(String propertyTypeName, int area, Location location, int distance){
+        PropertyType propertyType = getPropertyTypeByName(propertyTypeName);
+        Owner owner = getOwnerFromSession();
+        Optional<Property> newProperty = Optional.empty();
 
+        if(getPropertyRepository() != null){
+            newProperty = getPropertyRepository().createLand(propertyType, area, location, distance, owner );
+        }
+        return newProperty;
+    }
+
+    public Optional<Property> createApartment(String propertyTypeName, int area, Location location, int distance){
+        PropertyType propertyType = getPropertyTypeByName(propertyTypeName);
+        Owner owner = getOwnerFromSession();
+        Optional<Property> newProperty = Optional.empty();
+
+        if(getPropertyRepository() != null){
+            newProperty = getPropertyRepository().createLand(propertyType, area, location, distance, owner );
+        }
+        return newProperty;
+    }
+
+    public Optional<Property> createHouse(String propertyTypeName, int area, Location location, int distance){
+        PropertyType propertyType = getPropertyTypeByName(propertyTypeName);
+        Owner owner = getOwnerFromSession();
+        Optional<Property> newProperty = Optional.empty();
+
+        if(getPropertyRepository() != null){
+            newProperty = getPropertyRepository().createLand(propertyType, area, location, distance, owner );
+        }
+        return newProperty;
     }
 
     /**
@@ -279,6 +304,7 @@ public class CreateRequestController {
         String sunExposure = Utils.readLineFromConsole("Direction of the sun exposure( N,S , W or E)");
         Owner owner = getOwnerFromSession();
         return new House(new PropertyType("House"), area , location, distance, n_bedrooms, n_bathrooms, n_parkingSpaces, centralHeating, airConditioning, existBasement , inhabitableLoft, sunExposure , owner );
+
     }
 
 
@@ -292,7 +318,7 @@ public class CreateRequestController {
 
     }
 
-     private Owner getOwnerFromSession(){
+     public Owner getOwnerFromSession(){
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new Owner(email.getEmail());
      }
@@ -304,4 +330,56 @@ public class CreateRequestController {
         }
         return authenticationRepository;
     }
+
+
+    public void addRequest() {
+
+    }
+
+
+
+    public Optional<Request> createRentRequest(String requestType, Location propertyLocation, int rentPrice, int contractDuration){
+        TypeBusiness typeBusiness = getTypeBusinessByName(requestType);
+        Property property = getPropertyByLocation(propertyLocation);
+        Owner owner = getOwnerFromSession();
+        Optional<Request> newRentRequest = Optional.empty();
+
+        if(getRequestRepository() != null){
+            newRentRequest = getRequestRepository().createRentRequest(property, typeBusiness, rentPrice, contractDuration, owner);
+        }
+        return newRentRequest;
+    }
+
+
+    private Property getPropertyByLocation(Location location){
+        return getPropertyRepository().getPropertyByLocation(location);
+    }
+
+    public Optional<Request> createSellRequest(String requestType  , Location propertyLocation , int  price) {
+        TypeBusiness typeBusiness = getTypeBusinessByName(requestType);
+        Property property = getPropertyByLocation(propertyLocation);
+        Owner owner = getOwnerFromSession();
+        Optional<Request> newSaleRequest = Optional.empty();
+
+        if(getRequestRepository() != null){
+            newSaleRequest = getRequestRepository().createSaleRequest(property, typeBusiness, price, owner);
+        }
+        return newSaleRequest;
+    }
+
+
+
+    public List<Property> getProperties(){
+        return getPropertyRepository().getProperties();
+    }
+
+    private TypeBusiness getTypeBusinessByName(String typeBusinessName){
+        return getTypeBusinessRepository().getTypeBusinessbyName(typeBusinessName);
+    }
+
+    private PropertyType getPropertyTypeByName(String propertyTypeName){
+        return getPropertyTypeRepository().getPropertyTypeByName(propertyTypeName);
+    }
+
+
 }

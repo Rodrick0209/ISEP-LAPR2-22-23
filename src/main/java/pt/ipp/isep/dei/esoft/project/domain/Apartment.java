@@ -9,13 +9,12 @@ import java.util.Objects;
 public class Apartment extends Property {
 
     private Owner owner ;
-    private String type;
+    private PropertyType typeName;
     private double area;
     private Location location;
 
     private double distance;
 
-    private List<String> photos;
 
     private int n_bedrooms;
     private int n_bathrooms;
@@ -41,6 +40,10 @@ public class Apartment extends Property {
 
     public Apartment(PropertyType typeName, double area, Location location, double distance , int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning , Owner owner) {
         super(typeName, area, location, distance, owner);
+        this.typeName = typeName;
+        this.area = area;
+        this.location = location;
+        this.distance = distance;
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -48,11 +51,6 @@ public class Apartment extends Property {
         this.airConditioning = airConditioning;
     }
 
-    public Apartment(int area, int distance, boolean centralHeating, boolean airConditioning) {
-        super(area, distance);
-        this.centralHeating = centralHeating;
-        this.airConditioning = airConditioning;
-    }
 
     /**
      * Gets n bedrooms.
@@ -150,18 +148,15 @@ public class Apartment extends Property {
 
     @Override
     public String toString() {
-        return ", type='" + type + '\'' +
-                ", area=" + area +
-                ", location=" + location +
-                ", distance=" + distance +
-                ", photos=" + photos +
-                ", n_bedrooms=" + n_bedrooms +
-                ", n_bathrooms=" + n_bathrooms +
-                ", n_parkingSpaces=" + n_parkingSpaces +
-                ", avaiableEquip='" + avaiableEquip + '\'' +
-                ", centralHeating=" + centralHeating +
-                ", airConditioning=" + airConditioning +
-                '}';
+        return "\nType: " + typeName +
+                "\nArea: " + area + "m2"+
+                "\nLocation: " + location +
+                "\nDistance of city centre: " + distance + "m" +
+                "\nNumber of bedrooms: " + n_bedrooms +
+                "\nNumber of bathrooms: " + n_bathrooms +
+                "\nNumber of parkingSpaces: " + n_parkingSpaces +
+                "\nExistence of central Heating: " + centralHeating +
+                "\nExistence of air Conditioning=" + airConditioning;
     }
 }
 

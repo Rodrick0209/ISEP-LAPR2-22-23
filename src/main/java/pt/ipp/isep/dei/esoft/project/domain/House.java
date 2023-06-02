@@ -6,6 +6,11 @@ package pt.ipp.isep.dei.esoft.project.domain;
 public class House extends Property {
 
     private  Owner owner ;
+    private double area;
+    private Location location;
+
+    private double distance;
+    private PropertyType typeName;
     private int n_bedrooms;
     private int n_bathrooms;
     private int n_parkingSpaces;
@@ -21,6 +26,10 @@ public class House extends Property {
 
     public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure , Owner owner) {
         super(typeName, area, location, distance, owner);
+        this.typeName = typeName;
+        this.area = area;
+        this.location = location;
+        this.distance = distance;
         this.n_bedrooms = n_bedrooms;
         this.n_bathrooms = n_bathrooms;
         this.n_parkingSpaces = n_parkingSpaces;
@@ -139,16 +148,17 @@ public class House extends Property {
 
     @Override
     public String toString() {
-        return
-                ", n_bedrooms=" + n_bedrooms +
-                ", n_bathrooms=" + n_bathrooms +
-                ", n_parkingSpaces=" + n_parkingSpaces +
-                ", avaiableEquip='" + avaiableEquip + '\'' +
-                ", centralHeating=" + centralHeating +
-                ", airConditioning=" + airConditioning +
-                ", existBasement=" + existBasement +
-                ", existinhabitableLoft=" + existinhabitableLoft +
-                ", sunExposure='" + sunExposure + '\'' +
-                '}';
+        return   "\nType: " + typeName +
+                 "Area: " + area + "m2"+
+                 "\nLocation: " + location +
+                 "\nDistance of city centre: " + distance + "m" +
+                 "\nNumber of bedrooms: " + n_bedrooms +
+                 "\nNumber of bathrooms: " + n_bathrooms +
+                 "\nNumber of parkingSpaces: " + n_parkingSpaces +
+                 "\nExistence of central Heating: " + centralHeating +
+                 "\nExistence of air Conditioning: " + airConditioning +
+                 "\nExistence of basement: " + existBasement +
+                 "\nExistince of inhabitableLoft: " + existinhabitableLoft +
+                 "\nSun exposure: " + sunExposure ;
     }
 }

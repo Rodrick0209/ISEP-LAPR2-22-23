@@ -121,4 +121,7 @@ public class Employee {
     }
 
 
+    public void addAnnouncements() {
+
+    }
 }

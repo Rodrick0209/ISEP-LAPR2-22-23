@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class CreateVisitUI implements Runnable {
+public class ScheduleVisitUI implements Runnable {
     private String date, message;
     private Announcement announcement;
     String name;
@@ -92,9 +92,6 @@ public class CreateVisitUI implements Runnable {
         }
         return number;
     }
-
-
-
     private String requestMessage() {
 
         System.out.println("Do you want to leave a message for the agent?\n" +
@@ -134,6 +131,11 @@ public class CreateVisitUI implements Runnable {
             message = requestMessage();
             System.out.println();
 
+        username = requestUsername();
+
+        phonenumber = requestPhonenumber();
+
+
             //request the user ID (name and phone number)
            // owner = requestID();
             //System.out.println(controller.getOwnerRepository());
@@ -145,24 +147,13 @@ public class CreateVisitUI implements Runnable {
         }
     }
 
-    private Owner requestID() {
-        return (Owner) controller.getOwnerRepository().getOwners();
-    }
-
-    private void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
-        controller.createVisitRequest(announcement,username, phonenumber, date, timeSlot, message);
-
-
+    private String requestPhonenumber() {
+        this.phonenumber = phonenumber;
+        return phonenumber;
     }
 
 
-
-
-
-
-
-
-    private String requestName() {
+    private String requestUsername() {
         String input = null;
         boolean valid = false;
         do {
@@ -176,6 +167,15 @@ public class CreateVisitUI implements Runnable {
         return input;
     }
 
+    private Owner requestID() {
+        return (Owner) controller.getOwnerRepository().getOwners();
+    }
+
+    private void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
+        controller.createVisitRequest(announcement,username, phonenumber, date, timeSlot, message);
+
+
+    }
 
     @Override
     public String toString() {

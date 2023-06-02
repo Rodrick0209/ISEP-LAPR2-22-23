@@ -2,29 +2,38 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 public class VisitRequest {
 
-    private Announcement announcement;
-    private String UserName;
+    private Announcement Announcement;
+    private String userName;
 
-    private String PhoneNumber;
+    private String phoneNumber;
 
-    private String Date;
+    private String date;
 
-    private int [][] TimeSlot;
+    private int [][] timeSlot;
+    private String message;
 
-    public VisitRequest(Announcement announcement, String userName, String phonenumber, String date , int[][] timeSlot  , String message) {
+    public VisitRequest(Announcement announcement, String userName, String phoneNumber, String date, int[][] timeSlot, String message) {
+        this.Announcement = announcement;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.date = date;
+        this.timeSlot = timeSlot;
+        this.message = message;
     }
+
 
     public int[][] getTimeSlot() {
     return getTimeSlot();
     }
 
+
     @Override
     public String toString() {
-        return "VisitRequest{" +
-                "UserName='" + UserName + '\'' +
-                ", PhoneNumber=" + PhoneNumber +
-                ", Date=" + Date +
-                ", TimeSlot=" + TimeSlot +
-                '}';
+        return "VisitRequest:" +
+                "\nAnnouncement" + Announcement +
+                "\nUserName:" + userName  +
+                "\nPhoneNumber: " + phoneNumber +
+                "\nDate: " + date +
+                "\nTimeSlot: " + timeSlot ;
     }
 }

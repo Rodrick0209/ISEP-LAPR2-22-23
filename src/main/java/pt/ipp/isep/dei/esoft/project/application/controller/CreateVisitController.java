@@ -26,25 +26,25 @@ public class CreateVisitController {
 
         List<Integer> userHoursTaked = new ArrayList<>();
 
-        for (VisitRequest v: list) {
+        for (VisitRequest v : list) {
 
-            for (int[] slot: v.getTimeSlot()
+            for (int[] slot : v.getTimeSlot()
             ) {
                 int firstHour = slot[0];
                 int finalHour = slot[1];
 
-                if (!hoursTaked.contains(firstHour)){
+                if (!hoursTaked.contains(firstHour)) {
                     hoursTaked.add(firstHour);
                 }
 
-                if (!hoursTaked.contains(finalHour)){
+                if (!hoursTaked.contains(finalHour)) {
                     hoursTaked.add(finalHour);
                 }
 
                 int hour = firstHour;
-                while (hour != finalHour){
+                while (hour != finalHour) {
                     hour++;
-                    if (!hoursTaked.contains(hour)){
+                    if (!hoursTaked.contains(hour)) {
                         hoursTaked.add(hour);
                     }
 
@@ -59,31 +59,31 @@ public class CreateVisitController {
 
 
         for (int i = 0; i < count; i++) {
-            int hour = timereal[i][0] ;
+            int hour = timereal[i][0];
 
-            if (!userHoursTaked.contains(hour)){
+            if (!userHoursTaked.contains(hour)) {
                 userHoursTaked.add(hour);
             }
 
-            while (hour != timereal[i][1]){
+            while (hour != timereal[i][1]) {
                 hour++;
-                if (!userHoursTaked.contains(hour)){
+                if (!userHoursTaked.contains(hour)) {
                     userHoursTaked.add(hour);
                 }
             }
 
-            for (Integer h: userHoursTaked
+            for (Integer h : userHoursTaked
             ) {
-                if(hoursTaked.contains(h)){
+                if (hoursTaked.contains(h)) {
                     impossible2Add = true;
                     //break;
                 }
             }
 
-            if(!impossible2Add){
-                for (int hourTakedByThisUser: userHoursTaked
+            if (!impossible2Add) {
+                for (int hourTakedByThisUser : userHoursTaked
                 ) {
-                    if (!hoursTaked.contains(hourTakedByThisUser)){
+                    if (!hoursTaked.contains(hourTakedByThisUser)) {
                         hoursTaked.add(hourTakedByThisUser);
                     }
                 }
@@ -97,23 +97,24 @@ public class CreateVisitController {
         }
         if (countValidSlots > 0) {
             System.out.println("Timeslots:");
-            for (int i = 0; i < countValidSlots; i++){
+            for (int i = 0; i < countValidSlots; i++) {
                 System.out.println(timeslot[i][0] + " - " + timeslot[i][1]);
             }
             return timeslot;
-        }else {
+        } else {
             return null;
         }
     }
 
 
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
+
     public List<Announcement> getAnnouncements() {
         return announcementRepository.getAnnouncements();
     }
 
     public void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
-        VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message );
+        VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message);
         visitRepository.addRequests(visit);
     }
 
@@ -121,12 +122,4 @@ public class CreateVisitController {
         return ownerRepository;
     }
 
-    @Override
-    public String toString() {
-        return "CreateVisitController{" +
-                "visitRepository=" + visitRepository +
-                ", ownerRepository=" + ownerRepository +
-                ", announcementRepository=" + announcementRepository +
-                '}';
-    }
 }

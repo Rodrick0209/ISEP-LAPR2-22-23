@@ -115,6 +115,7 @@ public class Property {
      * @param distance the distance
      * @param owner
      */
+
     public Property(PropertyType type, double area, Location location, double distance, Owner owner) {
         this.type = type;
         this.area = area;
@@ -142,9 +143,11 @@ public class Property {
     /*public void setPhotos(Object o) {
     }*/
 
-
+    @Override
     public String toString() {
-        return String.format("Type:%s " + "Area: %.2f cubic meters " + "Location: %s " + "Distance from City Centre: %.2f meters", type, area, location, distance);
+        return "\nType: " + type +
+                "\nArea: " + area + "m2"+
+                "\nLocation: " + location +
+                "\nDistance of city centre: " + distance + "m" ;
     }
-
 }

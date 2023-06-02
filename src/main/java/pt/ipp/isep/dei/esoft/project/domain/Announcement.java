@@ -2,18 +2,22 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The type Announcement.
  */
 public class Announcement {
 
-    private static int announcmentIdCounter = 1;
+    private static int announcmentIdCounter = 0;
     private int announcementId;
-    private final Request request;
-    private final Commission commission;
-    private final Date date;
+    private Request request;
+    private Commission commission;
+    private Date date;
+
+    private List<Order> announcementOrders = new ArrayList<>(); // initialize the empty list
 
     public Announcement(Request request, Commission commission) {
         this.request = request;
@@ -28,6 +32,9 @@ public class Announcement {
 
     }
 
+    public Announcement() {
+        this.announcementId = announcmentIdCounter++;
+    }
 
     public Announcement(Request request, Commission commission, Date date) {
         this.request = request;
@@ -39,6 +46,11 @@ public class Announcement {
             throw new IllegalArgumentException("Invalid date format");
         }
     }
+
+    public void addOrder(Order orderToAdd) {
+        announcementOrders.add(orderToAdd);
+    }
+
 
     public int getAnnouncementId() {
         return announcementId;

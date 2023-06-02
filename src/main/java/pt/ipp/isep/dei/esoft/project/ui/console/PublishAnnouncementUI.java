@@ -13,9 +13,8 @@ import java.util.List;
  */
 public class PublishAnnouncementUI implements Runnable {
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
-    private  int announcementGettedById;
+    private int announcementGettedById;
     private int requestsGettedById;
-    private Date date;
     private Commission commission;
     private PublishAnnouncementController getController() {
         return controller;
@@ -57,7 +56,7 @@ public class PublishAnnouncementUI implements Runnable {
 
     private void showData(){
         System.out.println();
-        System.out.println("Announcment Id: " + requestsGettedById);
+        System.out.println("Announcement Id: " + announcementGettedById);
         System.out.println("Commission Type: " + commission.getType());
         System.out.println("Commission Value: " + commission.getValue());
         System.out.println("Date of announcement: " + new Date());

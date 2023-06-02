@@ -52,6 +52,8 @@ public class RequestRepository {
         return optionalValue;
     }
 
+
+
     public boolean addRequest(Request request) {
         boolean success = false;
         if (validateRequest(request)) {
@@ -76,6 +78,7 @@ public class RequestRepository {
     }
     public List<Request> getRequests(){ return List.copyOf(requests); }
     private boolean validateRequest(Request request){ return !requests.contains(request);
+
 
     }
 }
