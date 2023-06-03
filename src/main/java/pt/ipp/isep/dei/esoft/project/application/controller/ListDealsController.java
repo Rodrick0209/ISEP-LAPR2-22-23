@@ -12,12 +12,11 @@ import java.util.Scanner;
 
 public class ListDealsController implements FileReader, BubbleSort {
 
-    private Integer[] propertyAreas;
+    private List<Integer> propertyAreas;
 
     @Override
     public boolean readFile(String fileName) {
         String file = Files.path + fileName;
-        List<Integer> propertyAreasList = new ArrayList<>();
         boolean operationSuccess = false;
         try{
             Scanner sc = new Scanner(new File(file));
@@ -25,9 +24,8 @@ public class ListDealsController implements FileReader, BubbleSort {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] information = line.split(";");
-                propertyAreasList.add(Integer.parseInt(information[7]));
+                propertyAreas.add(Integer.parseInt(information[7]));
             }
-            propertyAreas = propertyAreasList.toArray(new Integer[0]);
             operationSuccess = true;
         } catch (FileNotFoundException e){
             System.out.println("File not Found");
@@ -36,23 +34,23 @@ public class ListDealsController implements FileReader, BubbleSort {
     }
 
     public void bubbleSortAscending(){
-        for (int i = 0; i < propertyAreas.length - 1; i++) {
-            for (int j = 0; j < propertyAreas.length - i - i ; j++) {
-                if(propertyAreas[j] > propertyAreas[j+1]){
-                    int temp = propertyAreas[j];
-                    propertyAreas[j] = propertyAreas[j+1];
-                    propertyAreas[j+1] = temp;
+        for (int i = 0; i < propertyAreas.size() - 1; i++) {
+            for (int j = 0; j < propertyAreas.size() - i - i ; j++) {
+                if(propertyAreas.get(j) > propertyAreas.get(j+1)){
+                    int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
+                    propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    propertyAreas.set(j+1, temp); // // propertyAreas[j+1] = temp;
                 }
             }
         }
     }
     public void bubbleSortDescending(){
-        for (int i = 0; i < propertyAreas.length; i++) {
-           for (int j = 0; j < propertyAreas.length - i - i ; j++){
-               if(propertyAreas[j] < propertyAreas[j+1]){
-                   int temp = propertyAreas[j];
-                   propertyAreas[j] = propertyAreas[j+1];
-                   propertyAreas[j+1] = temp;
+        for (int i = 0; i < propertyAreas.size(); i++) {
+           for (int j = 0; j < propertyAreas.size() - i - i ; j++){
+               if(propertyAreas.get(j) < propertyAreas.get(j+1)){
+                   int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
+                   propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                   propertyAreas.set(j+1, temp); // propertyAreas[j+1] = temp;
                }
            }
         }
