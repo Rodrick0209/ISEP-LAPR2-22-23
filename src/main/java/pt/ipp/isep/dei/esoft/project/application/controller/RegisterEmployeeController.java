@@ -120,4 +120,8 @@ public class RegisterEmployeeController implements FileWriter{
             System.out.println("File not found");
         }
     }
+
+    public void sendEmailToEmployee(String email){
+        SendEmail.sendEmailToEmployee(email);
+    }
 }

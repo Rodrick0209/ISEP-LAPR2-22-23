@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.RegisterUserController;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.domain.SendEmail;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 public class RegisterUserUI implements Runnable {
@@ -30,6 +31,7 @@ public class RegisterUserUI implements Runnable {
         userPassword = controller.generatePassword();
         controller.addUserWithRole(userName, userEmail, userPassword, AuthenticationController.ROLE_CLIENT);
         controller.writeFile(userEmail, userPassword);
+        controller.sendEmailToUser(userEmail);
         System.out.println("User successfully registered! A password for your login will be sent to your email address.");
     }
 
@@ -98,4 +100,5 @@ public class RegisterUserUI implements Runnable {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return email.matches(emailRegex);
     }
+
 }

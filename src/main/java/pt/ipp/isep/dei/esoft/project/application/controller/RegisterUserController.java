@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.FileWriter;
 import pt.ipp.isep.dei.esoft.project.domain.PasswordGenerator;
+import pt.ipp.isep.dei.esoft.project.domain.SendEmail;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
@@ -52,4 +53,7 @@ public class RegisterUserController implements FileWriter {
         return getAuthenticationRepository().addUserWithRole(name, email, pwd, roleId);
     }
 
+    public void sendEmailToUser(String email){
+        SendEmail.sendEmailToUser(email);
+    }
 }

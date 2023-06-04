@@ -56,6 +56,7 @@ public class RegisterEmployeeUI implements Runnable {
             }
             System.out.println("Employee successfully registered! A password for the employee login the application will be sent to his email address.");
             controller.writeFile(employeeEmail, employeePassword);
+            controller.sendEmailToEmployee(employeeEmail);
         } else {
             System.out.println("Employee not registered!");
         }
