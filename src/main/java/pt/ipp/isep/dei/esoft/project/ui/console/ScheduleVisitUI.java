@@ -10,10 +10,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Schedule visit ui.
+ */
 public class ScheduleVisitUI implements Runnable {
     private String date, message;
     private Announcement announcement;
+    /**
+     * The Name.
+     */
     String name;
+    /**
+     * The Input.
+     */
     Scanner input = new Scanner(System.in);
 
     private int[][] timeSlot;
@@ -21,6 +30,9 @@ public class ScheduleVisitUI implements Runnable {
 
     private String username;
     private String phonenumber;
+    /**
+     * The Controller.
+     */
     CreateVisitController controller = new CreateVisitController();
 
     @Override

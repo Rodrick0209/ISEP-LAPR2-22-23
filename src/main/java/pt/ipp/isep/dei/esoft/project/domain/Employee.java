@@ -88,6 +88,11 @@ public class Employee {
         return email.equals(employee.email);
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public String getEmail() { return email;}
 
     public int hashCode() {
@@ -107,20 +112,39 @@ public class Employee {
         return new Employee(this.name, this.email, this.ccNumber, this.taxNumber, this.address, this.phoneNumber, this.role, this.agency, this.administrator);
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Compare to int.
+     *
+     * @param o the o
+     * @return the int
+     */
     public int compareTo(Employee o) {
         return this.name.compareTo(o.getName());
     }
 
 
+    /**
+     * Gets agency.
+     *
+     * @return the agency
+     */
     public Agency getAgency() {
         return agency;
     }
 
 
+    /**
+     * Add announcements.
+     */
     public void addAnnouncements() {
 
     }

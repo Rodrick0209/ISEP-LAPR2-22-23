@@ -7,10 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Agency repository.
+ */
 public class AgencyRepository {
     private final List<Agency> agencies = new ArrayList<>();
 
     /**
+     * Get agency by id agency.
      *
      * @param agencyID the agencyID inputted
      * @return agency by the agencyID
@@ -30,6 +34,7 @@ public class AgencyRepository {
     }
 
     /**
+     * Add optional.
      *
      * @param agency the agency registered/added
      * @return list of agency added
@@ -50,6 +55,17 @@ public class AgencyRepository {
         return newAgency;
     }
 
+    /**
+     * Create agency optional.
+     *
+     * @param id            the id
+     * @param designation   the designation
+     * @param location      the location
+     * @param emailAddress  the email address
+     * @param phoneNumber   the phone number
+     * @param administrator the administrator
+     * @return the optional
+     */
     public Optional<Agency> createAgency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
         Optional<Agency> optionalValue = Optional.empty();
 
@@ -61,6 +77,12 @@ public class AgencyRepository {
         return optionalValue;
     }
 
+    /**
+     * Add agency boolean.
+     *
+     * @param agency the agency
+     * @return the boolean
+     */
     public boolean addAgency(Agency agency) {
         boolean success = false;
         if(validateAgency(agency)) {
@@ -83,6 +105,7 @@ public class AgencyRepository {
 
 
     /**
+     * Get agencies list.
      *
      * @return a copy of the list of agencies
      */

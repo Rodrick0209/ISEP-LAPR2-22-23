@@ -10,11 +10,24 @@ import pt.ipp.isep.dei.esoft.project.repository.VisitRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Create visit controller.
+ */
 public class CreateVisitController {
 
     private VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
+    /**
+     * The Owner repository.
+     */
     OwnerRepository ownerRepository = Repositories.getInstance().getOwnerRepository();
 
+    /**
+     * Save time slot int [ ] [ ].
+     *
+     * @param timereal the timereal
+     * @param count    the count
+     * @return the int [ ] [ ]
+     */
     public int[][] saveTimeSlot(int[][] timereal, int count) {
 
 
@@ -107,17 +120,40 @@ public class CreateVisitController {
     }
 
 
+    /**
+     * The Announcement repository.
+     */
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
 
+    /**
+     * Gets announcements.
+     *
+     * @return the announcements
+     */
     public List<Announcement> getAnnouncements() {
         return announcementRepository.getAnnouncements();
     }
 
+    /**
+     * Create visit request.
+     *
+     * @param announcement the announcement
+     * @param username     the username
+     * @param phonenumber  the phonenumber
+     * @param date         the date
+     * @param timeSlot     the time slot
+     * @param message      the message
+     */
     public void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
         VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message);
         visitRepository.addRequests(visit);
     }
 
+    /**
+     * Gets owner repository.
+     *
+     * @return the owner repository
+     */
     public OwnerRepository getOwnerRepository() {
         return ownerRepository;
     }

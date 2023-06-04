@@ -24,9 +24,9 @@ public class Property {
     /**
      * Instantiates a new Property.
      *
-     * @param area
-     * @param distance
-     * @param photos
+     * @param area     the area
+     * @param distance the distance
+     * @param photos   the photos
      */
     public Property(double area,double distance, List<String> photos) {
         if (area <= 0) {
@@ -52,10 +52,14 @@ public class Property {
         this.distance = distance;
     }
 
+    /**
+     * Instantiates a new Property.
+     *
+     * @param area the area
+     */
     public Property(double area) {
         this.area = area;
     }
-
 
 
     /**
@@ -110,12 +114,12 @@ public class Property {
     /**
      * Instantiates a new Property.
      *
+     * @param type     the type
      * @param area     the area
      * @param location the location
      * @param distance the distance
-     * @param owner
+     * @param owner    the owner
      */
-
     public Property(PropertyType type, double area, Location location, double distance, Owner owner) {
         this.type = type;
         this.area = area;

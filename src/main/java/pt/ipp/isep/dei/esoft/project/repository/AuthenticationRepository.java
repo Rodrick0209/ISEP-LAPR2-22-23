@@ -61,6 +61,11 @@ public class AuthenticationRepository {
         return authenticationFacade.addUserWithRole(name, email, pwd, roleId);
     }
 
+    /**
+     * Gets authentication facade.
+     *
+     * @return the authentication facade
+     */
     public AuthFacade getAuthenticationFacade() { return authenticationFacade; }
 
 }

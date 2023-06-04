@@ -10,8 +10,14 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Register employee ui.
+ */
 public class RegisterEmployeeUI implements Runnable {
 
+    /**
+     * Instantiates a new Register employee ui.
+     */
     public RegisterEmployeeUI(){
 
     }

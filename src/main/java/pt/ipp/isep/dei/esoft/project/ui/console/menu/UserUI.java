@@ -6,8 +6,14 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type User ui.
+ */
 public class UserUI implements Runnable{
 
+    /**
+     * Instantiates a new User ui.
+     */
     public UserUI(){
 
     }

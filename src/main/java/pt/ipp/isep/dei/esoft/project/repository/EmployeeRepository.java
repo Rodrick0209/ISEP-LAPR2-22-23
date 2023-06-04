@@ -6,9 +6,18 @@ import pt.ipp.isep.dei.esoft.project.domain.Role;
 
 import java.util.*;
 
+/**
+ * The type Employee repository.
+ */
 public class EmployeeRepository {
     private final List<Employee> employees = new ArrayList<>();
 
+    /**
+     * Get employee by email employee.
+     *
+     * @param employeeEmail the employee email
+     * @return the employee
+     */
     public Employee getEmployeeByEmail(String employeeEmail){
         Employee employee = null;
         for(Employee e : employees){
@@ -22,6 +31,12 @@ public class EmployeeRepository {
         return employee;
     }
 
+    /**
+     * Add optional.
+     *
+     * @param employee the employee
+     * @return the optional
+     */
     public Optional<Employee> add(Employee employee){
         Optional<Employee> newEmployee = Optional.empty();
         boolean operationSuccess = false;
@@ -37,6 +52,20 @@ public class EmployeeRepository {
         return newEmployee;
     }
 
+    /**
+     * Create employee optional.
+     *
+     * @param name          the name
+     * @param email         the email
+     * @param ccNumber      the cc number
+     * @param taxNumber     the tax number
+     * @param address       the address
+     * @param phoneNumber   the phone number
+     * @param role          the role
+     * @param agency        the agency
+     * @param administrator the administrator
+     * @return the optional
+     */
     public Optional<Employee> createEmployee(String name, String email, int ccNumber, String taxNumber, String address, String phoneNumber, Role role, Agency agency, Employee administrator){
         Optional<Employee> optionalValue = Optional.empty();
 
@@ -48,6 +77,12 @@ public class EmployeeRepository {
         return optionalValue;
     }
 
+    /**
+     * Add employee boolean.
+     *
+     * @param employee the employee
+     * @return the boolean
+     */
     public boolean addEmployee(Employee employee){
         boolean operationSuccess = false;
         if(validateEmployee(employee)){
@@ -58,6 +93,11 @@ public class EmployeeRepository {
 
     private boolean validateEmployee(Employee employee){return !employees.contains(employee);}
 
+    /**
+     * Gets employee.
+     *
+     * @return the employee
+     */
     public List<Employee> getEmployee() {
         return List.copyOf(employees);
     }

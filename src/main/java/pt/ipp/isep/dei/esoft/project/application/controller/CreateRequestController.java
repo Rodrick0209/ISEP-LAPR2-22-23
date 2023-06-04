@@ -25,7 +25,6 @@ public class CreateRequestController {
     private RequestRepository requestRepository;
 
 
-
     /**
      * Instantiates a new Create request controller.
      */
@@ -108,6 +107,15 @@ public class CreateRequestController {
         return new Land(new PropertyType("Land"), area, location, distance , owner);
     }
 
+    /**
+     * Create land optional.
+     *
+     * @param propertyTypeName the property type name
+     * @param area             the area
+     * @param location         the location
+     * @param distance         the distance
+     * @return the optional
+     */
     public Optional<Property> createLand(String propertyTypeName, int area, Location location, int distance){
         PropertyType propertyType = getPropertyTypeByName(propertyTypeName);
         Owner owner = getOwnerFromSession();
@@ -119,6 +127,15 @@ public class CreateRequestController {
         return newProperty;
     }
 
+    /**
+     * Create apartment optional.
+     *
+     * @param propertyTypeName the property type name
+     * @param area             the area
+     * @param location         the location
+     * @param distance         the distance
+     * @return the optional
+     */
     public Optional<Property> createApartment(String propertyTypeName, int area, Location location, int distance){
         PropertyType propertyType = getPropertyTypeByName(propertyTypeName);
         Owner owner = getOwnerFromSession();
@@ -130,6 +147,15 @@ public class CreateRequestController {
         return newProperty;
     }
 
+    /**
+     * Create house optional.
+     *
+     * @param propertyTypeName the property type name
+     * @param area             the area
+     * @param location         the location
+     * @param distance         the distance
+     * @return the optional
+     */
     public Optional<Property> createHouse(String propertyTypeName, int area, Location location, int distance){
         PropertyType propertyType = getPropertyTypeByName(propertyTypeName);
         Owner owner = getOwnerFromSession();
@@ -318,7 +344,12 @@ public class CreateRequestController {
 
     }
 
-     public Owner getOwnerFromSession(){
+    /**
+     * Get owner from session owner.
+     *
+     * @return the owner
+     */
+    public Owner getOwnerFromSession(){
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new Owner(email.getEmail());
      }
@@ -332,12 +363,23 @@ public class CreateRequestController {
     }
 
 
+    /**
+     * Add request.
+     */
     public void addRequest() {
 
     }
 
 
-
+    /**
+     * Create rent request optional.
+     *
+     * @param requestType      the request type
+     * @param propertyLocation the property location
+     * @param rentPrice        the rent price
+     * @param contractDuration the contract duration
+     * @return the optional
+     */
     public Optional<Request> createRentRequest(String requestType, Location propertyLocation, int rentPrice, int contractDuration){
         TypeBusiness typeBusiness = getTypeBusinessByName(requestType);
         Property property = getPropertyByLocation(propertyLocation);
@@ -355,6 +397,14 @@ public class CreateRequestController {
         return getPropertyRepository().getPropertyByLocation(location);
     }
 
+    /**
+     * Create sell request optional.
+     *
+     * @param requestType      the request type
+     * @param propertyLocation the property location
+     * @param price            the price
+     * @return the optional
+     */
     public Optional<Request> createSellRequest(String requestType  , Location propertyLocation , int  price) {
         TypeBusiness typeBusiness = getTypeBusinessByName(requestType);
         Property property = getPropertyByLocation(propertyLocation);
@@ -368,7 +418,11 @@ public class CreateRequestController {
     }
 
 
-
+    /**
+     * Get properties list.
+     *
+     * @return the list
+     */
     public List<Property> getProperties(){
         return getPropertyRepository().getProperties();
     }

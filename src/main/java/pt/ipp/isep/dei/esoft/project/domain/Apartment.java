@@ -28,16 +28,17 @@ public class Apartment extends Property {
     /**
      * Instantiates a new Apartment.
      *
+     * @param typeName        the type name
      * @param area            the area
      * @param location        the location
      * @param distance        the distance
      * @param n_bedrooms      the n bedrooms
      * @param n_bathrooms     the n bathrooms
-     * @param n_parkingSpaces
+     * @param n_parkingSpaces the n parking spaces
+     * @param centralHeating  the central heating
+     * @param airConditioning the air conditioning
+     * @param owner           the owner
      */
-
-
-
     public Apartment(PropertyType typeName, double area, Location location, double distance , int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning , Owner owner) {
         super(typeName, area, location, distance, owner);
         this.typeName = typeName;
@@ -138,10 +139,20 @@ public class Apartment extends Property {
         return Objects.hash(super.hashCode(), n_bedrooms, n_bathrooms, n_parkingSpaces, avaiableEquip);
     }
 
+    /**
+     * Gets central heating.
+     *
+     * @return the central heating
+     */
     public boolean getCentralHeating() {
         return centralHeating;
     }
 
+    /**
+     * Gets air conditioning.
+     *
+     * @return the air conditioning
+     */
     public boolean getAirConditioning() {
         return airConditioning;
     }

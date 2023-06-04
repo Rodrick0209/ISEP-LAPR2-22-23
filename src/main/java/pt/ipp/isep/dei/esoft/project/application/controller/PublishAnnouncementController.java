@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Publish announcement controller.
+ */
 public class PublishAnnouncementController {
     private AuthenticationRepository authenticationRepository;
     private RequestRepository requestRepository;
@@ -15,6 +18,9 @@ public class PublishAnnouncementController {
     private PropertyRepository propertyRepository;
     private AnnouncementRepository announcementRepository;
 
+    /**
+     * Instantiates a new Publish announcement controller.
+     */
     public PublishAnnouncementController() {
         getAuthenticationRepository();
         getPropertyRepository();
@@ -22,6 +28,14 @@ public class PublishAnnouncementController {
         getAnnouncementRepository();
     }
 
+    /**
+     * Instantiates a new Publish announcement controller.
+     *
+     * @param authenticationRepository the authentication repository
+     * @param propertyRepository       the property repository
+     * @param requestRepository        the request repository
+     * @param announcementRepository   the announcement repository
+     */
     public PublishAnnouncementController(AuthenticationRepository authenticationRepository, PropertyRepository propertyRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository){
         this.authenticationRepository = authenticationRepository;
         this.propertyRepository = propertyRepository;
@@ -61,6 +75,13 @@ public class PublishAnnouncementController {
         return announcementRepository;
     }
 
+    /**
+     * Create announcement optional.
+     *
+     * @param requestId  the request id
+     * @param commission the commission
+     * @return the optional
+     */
     public Optional<Announcement> createAnnouncement(int requestId, Commission commission){
 
         Request request = getRequestById(requestId);
@@ -84,9 +105,20 @@ public class PublishAnnouncementController {
         return new Employee(email.getEmail());
     }
 
+    /**
+     * Get requests list.
+     *
+     * @return the list
+     */
     public List<Request> getRequests(){
         return getRequestRepository().getRequests();
     }
+
+    /**
+     * Get announcement list .
+     *
+     * @return the list
+     */
     public List <Announcement> getAnnouncement(){
         return getAnnouncementRepository().getAnnouncements();
     }

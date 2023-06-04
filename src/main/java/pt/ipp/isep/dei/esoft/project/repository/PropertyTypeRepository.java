@@ -13,6 +13,12 @@ import java.util.Optional;
 public class PropertyTypeRepository {
         private static final List<PropertyType> propertyTypeArrayList = new ArrayList<>();
 
+    /**
+     * Add optional.
+     *
+     * @param propertyType the property type
+     * @return the optional
+     */
     public Optional<PropertyType> add(PropertyType propertyType){
 
         Optional<PropertyType> newPropertyType = Optional.empty();
@@ -29,6 +35,12 @@ public class PropertyTypeRepository {
         return newPropertyType;
     }
 
+    /**
+     * Get property type by name property type.
+     *
+     * @param propertyTypeName the property type name
+     * @return the property type
+     */
     public PropertyType getPropertyTypeByName(String propertyTypeName){
         PropertyType propertyType = null;
         for(PropertyType p: propertyTypeArrayList){

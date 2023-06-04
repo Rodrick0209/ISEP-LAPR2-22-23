@@ -1,4 +1,4 @@
-# Glossary
+ # Glossary
 
 **Terms, Expressions and Acronyms (TEA) must be organized alphabetically.**
 
@@ -13,7 +13,7 @@
 | **Commission**            | A form of payment in a percentage or a fixed value received when a transaction is made.                                                                                                   |
 | **Company**               | An organization that sells services or assets to its clients.                                                                                                                             |
 | **ID**                    | Acronym for identification.                                                                                                                                                               |
-| **Loft**                  | A space at the top of a building under the roof used for storing things and usually entered by a ladder.                                                                                  |
+| **Loft**                  | A storage area located at the top of a building, beneath the roof, typically accessed by a ladder.                                                                                        |
 | **Network**               | A group or system of interconnected people or things.                                                                                                                                     |
 | **Property**              | A physical space or area ( house , apartment ,basement ...etc..) belonging to one or more subjects.                                                                                       |
 | **Real Estate Agent**     | An employee of a real estate company responsible for carrying out tasks such as contacting costumers and registering properties.                                                          |

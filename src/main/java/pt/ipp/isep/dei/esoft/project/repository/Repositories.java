@@ -8,6 +8,9 @@ import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestControl
 public class Repositories {
 
     private static final Repositories instance = new Repositories();
+    /**
+     * The Get request repository.
+     */
     public CreateRequestController getRequestRepository ;
     /**
      * The Organization repository.
@@ -61,6 +64,9 @@ public class Repositories {
      */
     AnnouncementRepository announcementRepository = new AnnouncementRepository();
 
+    /**
+     * The Visit repository.
+     */
     VisitRepository visitRepository =  new VisitRepository();
 
     private Repositories() {
@@ -157,6 +163,11 @@ public class Repositories {
         return announcementRepository;
     }
 
+    /**
+     * Gets visit repository.
+     *
+     * @return the visit repository
+     */
     public VisitRepository getVisitRepository() {
         return visitRepository;
     }

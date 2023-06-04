@@ -53,6 +53,16 @@ public class PropertyRepository {
         return newProperty;
     }
 
+    /**
+     * Create land optional.
+     *
+     * @param propertyType the property type
+     * @param area         the area
+     * @param location     the location
+     * @param distance     the distance
+     * @param owner        the owner
+     * @return the optional
+     */
     public Optional<Property> createLand(PropertyType propertyType, double area, Location location, double distance, Owner owner){
         Optional<Property> optionalValue = Optional.empty();
 
@@ -64,6 +74,21 @@ public class PropertyRepository {
         return optionalValue;
     }
 
+    /**
+     * Create apartment optional.
+     *
+     * @param propertyType          the property type
+     * @param area                  the area
+     * @param location              the location
+     * @param distance              the distance
+     * @param numberOfBedrooms      the number of bedrooms
+     * @param numberOfBathrooms     the number of bathrooms
+     * @param numberOfParkingSpaces the number of parking spaces
+     * @param centralHeating        the central heating
+     * @param airConditioning       the air conditioning
+     * @param owner                 the owner
+     * @return the optional
+     */
     public Optional<Property> createApartment(PropertyType propertyType, double area, Location location, double distance , int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning , Owner owner ){
         Optional<Property> optionalValue = Optional.empty();
 
@@ -75,6 +100,24 @@ public class PropertyRepository {
         return optionalValue;
     }
 
+    /**
+     * Create house optional.
+     *
+     * @param propertyType          the property type
+     * @param area                  the area
+     * @param location              the location
+     * @param distance              the distance
+     * @param numberOfBedrooms      the number of bedrooms
+     * @param numberOfBathrooms     the number of bathrooms
+     * @param numberOfParkingSpaces the number of parking spaces
+     * @param centralHeating        the central heating
+     * @param airConditioning       the air conditioning
+     * @param existenceOfAnBasement the existence of an basement
+     * @param inhabitableLoft       the inhabitable loft
+     * @param sunExposure           the sun exposure
+     * @param owner                 the owner
+     * @return the optional
+     */
     public Optional<Property> createHouse(PropertyType propertyType, double area, Location location, double distance, int numberOfBedrooms, int numberOfBathrooms, int numberOfParkingSpaces, boolean centralHeating, boolean airConditioning, boolean existenceOfAnBasement, boolean inhabitableLoft, String sunExposure , Owner owner){
         Optional<Property> optionalValue = Optional.empty();
 
@@ -86,6 +129,12 @@ public class PropertyRepository {
         return optionalValue;
     }
 
+    /**
+     * Add property boolean.
+     *
+     * @param property the property
+     * @return the boolean
+     */
     public boolean addProperty(Property property){
         boolean success = false;
         if(validateProperty(property)){

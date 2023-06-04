@@ -12,6 +12,9 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Register employee controller.
+ */
 public class RegisterEmployeeController implements FileWriter{
     private AgencyRepository agencyRepository;
     private RoleRepository roleRepository;
@@ -19,12 +22,22 @@ public class RegisterEmployeeController implements FileWriter{
 
     private EmployeeRepository employeeRepository;
 
+    /**
+     * Instantiates a new Register employee controller.
+     */
     public RegisterEmployeeController(){
         getAgencyRepository();
         getRoleRepository();
         getAuthenticationRepository();
     }
 
+    /**
+     * Instantiates a new Register employee controller.
+     *
+     * @param roleRepository           the role repository
+     * @param agencyRepository         the agency repository
+     * @param authenticationRepository the authentication repository
+     */
     public RegisterEmployeeController(RoleRepository roleRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository){
         this.roleRepository = roleRepository;
         this.agencyRepository = agencyRepository;
@@ -63,6 +76,19 @@ public class RegisterEmployeeController implements FileWriter{
     }
 
 
+    /**
+     * Create employee optional.
+     *
+     * @param name        the name
+     * @param email       the email
+     * @param ccNumber    the cc number
+     * @param taxNumber   the tax number
+     * @param address     the address
+     * @param phoneNumber the phone number
+     * @param roleName    the role name
+     * @param agencyID    the agency id
+     * @return the optional
+     */
     public Optional<Employee> createEmployee(String name, String email, int ccNumber, String taxNumber, String address, String phoneNumber, String roleName, int agencyID){
         Agency agency = getAgencyByID(agencyID);
         Role role = getRoleByName(roleName);
@@ -89,18 +115,42 @@ public class RegisterEmployeeController implements FileWriter{
         return getRoleRepository().getRoleByName(roleName);
     }
 
+    /**
+     * Get agencies list.
+     *
+     * @return the list
+     */
     public List<Agency> getAgencies(){
         return getAgencyRepository().getAgencies();
     }
 
+    /**
+     * Get roles list.
+     *
+     * @return the list
+     */
     public List<Role> getRoles(){
         return getRoleRepository().getRoles();
     }
 
+    /**
+     * Add user with role boolean.
+     *
+     * @param name   the name
+     * @param email  the email
+     * @param pwd    the pwd
+     * @param roleId the role id
+     * @return the boolean
+     */
     public boolean addUserWithRole(String name,String email, String pwd, String roleId){
         return getAuthenticationRepository().addUserWithRole(name, email, pwd, roleId);
     }
 
+    /**
+     * Generate password string.
+     *
+     * @return the string
+     */
     public String generatePassword(){
         PasswordGenerator passwordGenerator = new PasswordGenerator();
         return passwordGenerator.generatePassword();
@@ -121,6 +171,11 @@ public class RegisterEmployeeController implements FileWriter{
         }
     }
 
+    /**
+     * Send email to employee.
+     *
+     * @param email the email
+     */
     public void sendEmailToEmployee(String email){
         SendEmail.sendEmailToEmployee(email);
     }

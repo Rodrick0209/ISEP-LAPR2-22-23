@@ -6,11 +6,19 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.Optional;
 
+/**
+ * The type Import information ui.
+ */
 public class ImportInformationUI implements Runnable {
 
     private final ImportInformationController controller = new ImportInformationController();
     private String fileName;
 
+    /**
+     * Gets controller.
+     *
+     * @return the controller
+     */
     public ImportInformationController getController() {
         return controller;
     }

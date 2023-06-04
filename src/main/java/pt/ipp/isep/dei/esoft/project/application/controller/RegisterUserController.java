@@ -10,13 +10,24 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+/**
+ * The type Register user controller.
+ */
 public class RegisterUserController implements FileWriter {
     private AuthenticationRepository authenticationRepository;
 
+    /**
+     * Instantiates a new Register user controller.
+     */
     public RegisterUserController(){
 
     }
 
+    /**
+     * Instantiates a new Register user controller.
+     *
+     * @param authenticationRepository the authentication repository
+     */
     public RegisterUserController(AuthenticationRepository authenticationRepository) {
         this.authenticationRepository = authenticationRepository;
     }
@@ -44,15 +55,34 @@ public class RegisterUserController implements FileWriter {
         }
     }
 
+    /**
+     * Generate password string.
+     *
+     * @return the string
+     */
     public String generatePassword(){
         PasswordGenerator passwordGenerator = new PasswordGenerator();
         return passwordGenerator.generatePassword();
     }
 
+    /**
+     * Add user with role boolean.
+     *
+     * @param name   the name
+     * @param email  the email
+     * @param pwd    the pwd
+     * @param roleId the role id
+     * @return the boolean
+     */
     public boolean addUserWithRole(String name, String email, String pwd, String roleId){
         return getAuthenticationRepository().addUserWithRole(name, email, pwd, roleId);
     }
 
+    /**
+     * Send email to user.
+     *
+     * @param email the email
+     */
     public void sendEmailToUser(String email){
         SendEmail.sendEmailToUser(email);
     }

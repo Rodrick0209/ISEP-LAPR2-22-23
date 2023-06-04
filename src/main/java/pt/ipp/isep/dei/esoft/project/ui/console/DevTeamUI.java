@@ -1,9 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 /**
+ * The type Dev team ui.
+ *
  * @author Paulo Maio pam@isep.ipp.pt
  */
 public class DevTeamUI implements Runnable {
+
 
     public DevTeamUI() {
 

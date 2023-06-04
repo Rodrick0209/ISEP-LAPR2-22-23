@@ -14,8 +14,16 @@ import java.util.Properties;
 import static java.nio.file.Files.readAllBytes;
 import static pt.ipp.isep.dei.esoft.project.ui.console.utils.Files.*;
 
+/**
+ * The type Send email.
+ */
 public class SendEmail {
 
+    /**
+     * Send email to employee.
+     *
+     * @param email the email
+     */
     public static void sendEmailToEmployee(String email) {
         String to = email;
         String from = "noreply.realestate.isep@gmail.com";
@@ -46,6 +54,11 @@ public class SendEmail {
 
     }
 
+    /**
+     * Send email to user.
+     *
+     * @param email the email
+     */
     public static void sendEmailToUser(String email) {
         String to = email;
         String from = "noreply.realestate.isep@gmail.com";

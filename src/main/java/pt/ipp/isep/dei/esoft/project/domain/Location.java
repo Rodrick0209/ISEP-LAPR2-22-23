@@ -7,7 +7,6 @@ import java.util.Objects;
 /**
  * The type Location.
  */
-
 public class Location {
     private String street;
     private String city;
@@ -15,15 +14,14 @@ public class Location {
     private int zipCode;
 
 
-/**
+    /**
      * Instantiates a new Location.
      *
-     * @param street   the street
-     * @param city     the city
-     * @param state    the state
-     * @param zipCode  the zip code
+     * @param street  the street
+     * @param city    the city
+     * @param state   the state
+     * @param zipCode the zip code
      */
-
     public Location(String street, String city, String state, int zipCode){
         this.street = street;
         this.city = city;
@@ -37,95 +35,81 @@ public class Location {
     }
 
 
-/**
+    /**
      * Sets street.
      *
      * @param street the street
      */
-
     public void setStreet(String street) {
         this.street = street;
     }
 
 
-/**
+    /**
      * Sets city.
      *
      * @param city the city
      */
-
     public void setCity(String city) {
         this.city = city;
     }
 
 
-/**
-     * Sets district.
-     *
-
-
-/**
+    /**
      * Sets state.
      *
      * @param state the state
      */
-
     public void setState(String state) {
         this.state = state;
     }
 
 
-/**
+    /**
      * Sets zip code.
      *
      * @param zipCode the zip code
      */
-
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
 
-/**
+    /**
      * Gets street.
      *
      * @return the street
      */
-
     public String getStreet() {
         return street;
     }
 
 
-/**
+    /**
      * Gets city.
      *
      * @return the city
      */
-
     public String getCity() {
         return city;
     }
 
 
-
-/**
+    /**
      * Gets state.
      *
      * @return the state
      */
-
     public String getState() {
         return state;
     }
 
 
-/**
+    /**
      * Gets zip code.
      *
      * @return the zip code
      */
-
     public int getZipCode() {
         return zipCode;
     }

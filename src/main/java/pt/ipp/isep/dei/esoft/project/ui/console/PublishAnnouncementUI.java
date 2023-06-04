@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.List;
 
 /**
- * The type Publish announcement ui.
+ * After the agent on AgentUi select to publish an announcment he gets to this UI
  */
 public class PublishAnnouncementUI implements Runnable {
     private final PublishAnnouncementController controller = new PublishAnnouncementController();
@@ -86,7 +86,11 @@ public class PublishAnnouncementUI implements Runnable {
 
     /**
      *
-     * @return input of commission
+     * @return input  , selection and validation of commission
+     * Displays a simple UIi from Utils class to select  between two types of commision
+     * selection : either Fixed or Percentage
+     * The validation is apllied for both ,on fixed only accepts positive numbers or zero ,
+     * Same goes for percentage but on [0-100] since it is a percentage .
      */
     private Commission requestCommission() {
 

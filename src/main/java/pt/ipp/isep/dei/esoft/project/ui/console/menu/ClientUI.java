@@ -6,9 +6,15 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Client ui.
+ */
 public class ClientUI implements Runnable{
 
 
+    /**
+     * Instantiates a new Client ui.
+     */
     public ClientUI() {
 
     }

@@ -12,6 +12,9 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Agent ui.
+ */
 public class AgentUI implements Runnable {
 
     public void run() {
