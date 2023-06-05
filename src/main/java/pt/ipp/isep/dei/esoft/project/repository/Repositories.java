@@ -69,6 +69,8 @@ public class Repositories {
      */
     VisitRepository visitRepository =  new VisitRepository();
 
+    ClientRepository clientRepository = new ClientRepository();
+
     private Repositories() {
     }
 
@@ -172,6 +174,6 @@ public class Repositories {
         return visitRepository;
     }
 
-
+    public ClientRepository getClientRepository() {return clientRepository;}
 }
 

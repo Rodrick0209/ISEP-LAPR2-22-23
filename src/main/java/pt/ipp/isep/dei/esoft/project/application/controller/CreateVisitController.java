@@ -1,33 +1,21 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
-import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRepository;
-import pt.ipp.isep.dei.esoft.project.repository.OwnerRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.VisitRepository;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
-/**
- * The type Create visit controller.
- */
 public class CreateVisitController {
 
     private VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
-    /**
-     * The Owner repository.
-     */
     OwnerRepository ownerRepository = Repositories.getInstance().getOwnerRepository();
 
-    /**
-     * Save time slot int [ ] [ ].
-     *
-     * @param timereal the timereal
-     * @param count    the count
-     * @return the int [ ] [ ]
-     */
+
     public int[][] saveTimeSlot(int[][] timereal, int count) {
 
 
@@ -120,42 +108,25 @@ public class CreateVisitController {
     }
 
 
-    /**
-     * The Announcement repository.
-     */
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
+    ClientRepository clientRepository = Repositories.getInstance().getClientRepository();
 
-    /**
-     * Gets announcements.
-     *
-     * @return the announcements
-     */
     public List<Announcement> getAnnouncements() {
         return announcementRepository.getAnnouncements();
     }
 
-    /**
-     * Create visit request.
-     *
-     * @param announcement the announcement
-     * @param username     the username
-     * @param phonenumber  the phonenumber
-     * @param date         the date
-     * @param timeSlot     the time slot
-     * @param message      the message
-     */
-    public void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
+    public ClientRepository getClientRepository() { return clientRepository; }
+
+    public Optional<VisitRequest> createVisitRequest(Announcement announcement, String username, String phonenumber, Date date, int[][] timeSlot, String message) {
         VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message);
         visitRepository.addRequests(visit);
+        return Optional.of(visit);
     }
 
-    /**
-     * Gets owner repository.
-     *
-     * @return the owner repository
-     */
     public OwnerRepository getOwnerRepository() {
         return ownerRepository;
     }
+
+
 
 }

@@ -1,20 +1,21 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateVisitController;
-import pt.ipp.isep.dei.esoft.project.domain.Announcement;
-import pt.ipp.isep.dei.esoft.project.domain.Owner;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+import pt.isep.lei.esoft.auth.domain.model.User;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * The type Schedule visit ui.
  */
 public class ScheduleVisitUI implements Runnable {
-    private String date, message;
+    private Date date;
+    private String message;
     private Announcement announcement;
     /**
      * The Name.
@@ -29,16 +30,49 @@ public class ScheduleVisitUI implements Runnable {
     private Owner owner;
 
     private String username;
-    private String phonenumber;
+    private String phoneNumber;
     /**
      * The Controller.
      */
     CreateVisitController controller = new CreateVisitController();
+    private Request request;
+
+    private Commission commission;
+
+    private String prompt;
+
+
 
     @Override
     public void run() {
         requestData();
+        submitOrNot();
     }
+
+    private void submitOrNot() {
+            showsData();
+            boolean answer = Utils.confirm("Confirm Data? (type yes or no)");
+            if(answer){
+                submitData();
+            } else run();
+    }
+
+    private void showsData() {
+
+    }
+
+    private void submitData() {
+
+        Optional<VisitRequest> visitRequest = controller.createVisitRequest (new Announcement( request , commission ,date), username,phoneNumber,date, timeSlot,message);
+                if(visitRequest.isPresent()){
+                    System.out.println("Request was created");
+                }
+                else{
+                    System.out.println("Request not created");
+                }
+    }
+
+
 
 
     private Announcement requestAnnouncement() {
@@ -60,12 +94,14 @@ public class ScheduleVisitUI implements Runnable {
         return announcement;
     }
 
-    private String requestDate() {
-        System.out.println("Type the date you want to visit this property (dd/mm)");
-        date = input.nextLine();
-        return date;
-    }
+    /*private Date requestDate() {
+        System.out.println("Type the date you want to visit this property (dd-MM-yyyy)");
 
+        input = Utils.readLineFromConsole("Date");
+
+            return date;
+    }
+*/
     private String requestString(String print) {
         System.out.println(print);
         return input.nextLine();
@@ -137,31 +173,46 @@ public class ScheduleVisitUI implements Runnable {
         timeSlot = requestTimeSlot();
         System.out.println();
 
-        if (timeSlot != null) {
-
-            //request the message
-            message = requestMessage();
-            System.out.println();
+        message = requestMessage();
+        System.out.println();
 
         username = requestUsername();
 
-        phonenumber = requestPhonenumber();
+        phoneNumber = requestPhoneNumber();
+        if (timeSlot != null) {
+
+        /*request the user ID (name and phone number;
+         owner = requestID();
+        System.out.println(controller.getOwnerRepository());
+*/
 
 
-            //request the user ID (name and phone number)
-           // owner = requestID();
-            //System.out.println(controller.getOwnerRepository());
 
-
-            createVisitRequest(announcement,username, phonenumber , date, timeSlot, message);
+            createVisitRequest(announcement,username, phoneNumber , date, timeSlot, message);
         } else {
             System.out.println("The hour you've written is not available ");
         }
     }
 
-    private String requestPhonenumber() {
-        this.phonenumber = phonenumber;
-        return phonenumber;
+    private Date requestDate() {
+        System.out.println("Type the date you want to visit this property (dd/mm/yyyy)");
+        this.date = new Date();
+        return date;
+    }
+
+    private String requestPhoneNumber() {
+        String input = null;
+        boolean valid = false;
+        do {
+            try{
+                input = Utils.readStringFromConsole("Number of the client's phone: ");
+                phoneNumber = input.toString();
+                valid = true;
+            }catch (NullPointerException e){
+                System.out.println("Invalid phone number. Please enter a valid phone number.");
+            }
+        }while (!valid);
+        return input;
     }
 
 
@@ -171,6 +222,7 @@ public class ScheduleVisitUI implements Runnable {
         do {
             try{
                 input = Utils.readStringFromConsole("Name of the client: ");
+                username = input.toString();
                 valid = true;
             }catch (NullPointerException e){
                 System.out.println("Invalid name. Please enter a valid name.");
@@ -179,11 +231,14 @@ public class ScheduleVisitUI implements Runnable {
         return input;
     }
 
-    private Owner requestID() {
-        return (Owner) controller.getOwnerRepository().getOwners();
+
+    private Client requestID() {
+        return controller.getClientRepository().getClient();
     }
 
-    private void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
+
+
+    private void createVisitRequest(Announcement announcement, String username, String phonenumber, Date date, int[][] timeSlot, String message) {
         controller.createVisitRequest(announcement,username, phonenumber, date, timeSlot, message);
 
 
@@ -197,7 +252,7 @@ public class ScheduleVisitUI implements Runnable {
                 ", announcement=" + announcement +
                 ", name='" + name + '\'' +
                 ", input=" + input +
-                ", timeSlot=" + Arrays.toString(timeSlot) +
+                ", timeSlot=" +timeSlot +
                 ", owner=" + owner +
                 ", controller=" + controller +
                 '}';

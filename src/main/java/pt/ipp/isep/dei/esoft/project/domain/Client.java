@@ -113,4 +113,11 @@ public class Client {
     public int getClientId() {
         return clientId;
     }
+
+    public Email getEmailAddress() {
+        return clientEmail;
+    }
+
+    public Client clone(){return new Client(this.clientName, this.phoneNumber, this.clientEmail);
+    }
 }

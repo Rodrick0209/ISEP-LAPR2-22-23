@@ -15,11 +15,11 @@ public class Land extends Property {
      * @param distance the distance
      * @param photos   the photos
      */
-    public Land(double area, double distance, List<String> photos) {
+    /*public Land(double area, double distance, List<String> photos) {
 
         super(area, distance, photos);
     }
-
+*/
 
     /**
      * Instantiates a new Land.

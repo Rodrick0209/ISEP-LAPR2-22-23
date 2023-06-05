@@ -133,7 +133,7 @@ public class Request {
                 "\nProperty: " + property +
                 "\nTypeBusiness: " + typeBusiness.toString() +
                 "\nPrice: " + price +
-                "\nOwner: " + owner.toString() +
+                "\nOwner: " + owner +
                 "\nRequest Date: " + requestDate;
     }
 
