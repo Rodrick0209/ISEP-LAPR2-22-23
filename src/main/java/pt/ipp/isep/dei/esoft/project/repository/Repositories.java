@@ -2,16 +2,14 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestController;
 
+import java.io.Serializable;
+
 /**
  * The type Repositories.
  */
-public class Repositories {
+public class Repositories implements Serializable {
 
     private static final Repositories instance = new Repositories();
-    public CreateRequestController getRequestRepository ;
-    /**
-     * The Organization repository.
-     */
 
     /**
      * The Agency repository.
@@ -64,6 +62,20 @@ public class Repositories {
     VisitRepository visitRepository =  new VisitRepository();
 
     private Repositories() {
+    }
+
+    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, AuthenticationRepository authenticationRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository) {
+        this.agencyRepository = agencyRepository;
+        this.roleRepository = roleRepository;
+        this.propertyRepository = propertyRepository;
+        this.authenticationRepository = authenticationRepository;
+        this.propertyTypeRepository = propertyTypeRepository;
+        this.ownerRepository = ownerRepository;
+        this.typeBusinessRepository = typeBusinessRepository;
+        this.employeeRepository = employeeRepository;
+        this.requestRepository = requestRepository;
+        this.announcementRepository = announcementRepository;
+        this.visitRepository = visitRepository;
     }
 
     /**
@@ -161,6 +173,9 @@ public class Repositories {
         return visitRepository;
     }
 
-
+    @Override
+    public Repositories clone()  {
+        return new Repositories(this.agencyRepository, this.roleRepository, this.propertyRepository, this.authenticationRepository, this.propertyTypeRepository, this.ownerRepository, this.typeBusinessRepository, this.employeeRepository, this.requestRepository, this.announcementRepository, this.visitRepository);
+    }
 }
 

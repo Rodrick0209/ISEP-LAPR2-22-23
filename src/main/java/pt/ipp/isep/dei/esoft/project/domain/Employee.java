@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
 /**
  * The type Employee.
  */
-public class Employee {
+public class Employee implements Serializable {
     private final String name;
     private final String email;
     private final int ccNumber;

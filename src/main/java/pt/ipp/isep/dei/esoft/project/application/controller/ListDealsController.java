@@ -37,7 +37,7 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
     @Override
     public void bubbleSortAscending(){
         for (int i = 0; i < propertyAreas.size() - 1; i++) {
-            for (int j = 0; j < propertyAreas.size() - i - i ; j++) {
+            for (int j = 0; j < propertyAreas.size() - i - 1; j++) {
                 if(propertyAreas.get(j) > propertyAreas.get(j+1)){
                     int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
                     propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
@@ -48,8 +48,8 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
     }
     @Override
     public void bubbleSortDescending(){
-        for (int i = 0; i < propertyAreas.size(); i++) {
-           for (int j = 0; j < propertyAreas.size() - i - i ; j++){
+        for (int i = 0; i < propertyAreas.size() - 1; i++) {
+           for (int j = 0; j < propertyAreas.size() - i - 1; j++){
                if(propertyAreas.get(j) < propertyAreas.get(j+1)){
                    int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
                    propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];

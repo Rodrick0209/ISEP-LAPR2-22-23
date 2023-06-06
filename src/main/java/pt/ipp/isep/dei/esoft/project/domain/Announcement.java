@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * The type Announcement.
  */
-public class Announcement {
+public class Announcement implements Serializable {
 
     private static int announcmentIdCounter = 0;
     private int announcementId;

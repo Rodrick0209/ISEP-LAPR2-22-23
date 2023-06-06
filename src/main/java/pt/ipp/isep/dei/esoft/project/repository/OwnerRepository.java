@@ -2,11 +2,12 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class OwnerRepository {
+public class OwnerRepository implements Serializable {
     private final List<Owner> owners = new ArrayList<>();
 
     public Owner getOwnerByEmail(String ownerEmailAddress){

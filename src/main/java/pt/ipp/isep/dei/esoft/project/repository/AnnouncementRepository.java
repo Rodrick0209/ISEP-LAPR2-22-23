@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Commission;
 import pt.ipp.isep.dei.esoft.project.domain.Request;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Optional;
 /**
  * The type Annoucements request repository.
  */
-public class AnnouncementRepository {
+public class AnnouncementRepository implements Serializable {
 
     private final List<Announcement> announcements = new ArrayList<>();
 

@@ -71,6 +71,9 @@ public class AnalyseDealsController implements FileReader {
         }
         SimpleRegression regression = new SimpleRegression();
         regression.addData(data);
+        double intercept = regression.getIntercept();
+        double slope = regression.getSlope();
+        System.out.printf("y = %.2fx + %.2f", slope, intercept);
     }
 
     public void simpleRegressionPropertyDistance(){

@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The type Agency.
  */
-public class Agency {
+public class Agency implements Serializable {
 
     private final int id;
     private String designation;

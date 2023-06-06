@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-public class VisitRequest {
+import java.io.Serializable;
+
+public class VisitRequest implements Serializable {
 
     private Announcement Announcement;
     private String userName;

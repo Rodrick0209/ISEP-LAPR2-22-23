@@ -4,9 +4,10 @@ import pt.ipp.isep.dei.esoft.project.domain.Agency;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Role;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class EmployeeRepository {
+public class EmployeeRepository implements Serializable {
     private final List<Employee> employees = new ArrayList<>();
 
     public Employee getEmployeeByEmail(String employeeEmail){

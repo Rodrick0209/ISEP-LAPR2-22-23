@@ -3,16 +3,17 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The type Visit repository.
  */
-public class VisitRepository {
+public class VisitRepository implements Serializable {
 
 
-    private  List<VisitRequest> visitRequests = new ArrayList<>();
+    private final List<VisitRequest> visitRequests = new ArrayList<>();
 
     /**
      * Get list visit repository list.

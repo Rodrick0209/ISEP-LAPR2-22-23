@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.List;
 
 /**
  * The type Property.
  */
-public class Property {
+public class Property implements Serializable {
 
     private PropertyType type;
     private double area;

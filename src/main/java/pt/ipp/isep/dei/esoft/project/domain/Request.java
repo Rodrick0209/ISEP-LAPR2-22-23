@@ -1,9 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Request {
+public class Request implements Serializable {
     private static int requestIdCounter = 0;
     private int requestId;
     private final Property property;

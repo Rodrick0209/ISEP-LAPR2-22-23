@@ -3,11 +3,12 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Agency;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AgencyRepository {
+public class AgencyRepository implements Serializable {
     private final List<Agency> agencies = new ArrayList<>();
 
     /**

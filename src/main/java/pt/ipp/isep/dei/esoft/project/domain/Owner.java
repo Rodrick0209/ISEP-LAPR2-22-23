@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The type Owner.
  */
-public class Owner {
+public class Owner implements Serializable {
     private String name;
     private int ccNumber;
     private String  taxNumber;
