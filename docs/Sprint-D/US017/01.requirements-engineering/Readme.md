@@ -72,7 +72,7 @@ purchase order for a property... - It is necessary to have deals to list them.
 
 #### Alternative One
 
-![System Sequence Diagram](docs/Sprint-D/US017/01.requirements-engineering/svg/us006-system-sequence-diagram.svg)
+![System Sequence Diagram](svg/us006-system-sequence-diagram.svg)
 
 ### 1.7 Other Relevant Remarks
 

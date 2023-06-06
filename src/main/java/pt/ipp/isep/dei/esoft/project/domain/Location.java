@@ -129,7 +129,7 @@ public class Location {
     @Override
     public String toString() {
         return String.format (
-                "Street: %s%n" + "City: %sn" + "State: %s%n"+ "ZipCode:%s",street,city, state,zipCode);
+                "Street: %s%n" + "City: %s%n" + "State: %s%n"+ "ZipCode:%s",street,city, state,zipCode);
 
     }
 

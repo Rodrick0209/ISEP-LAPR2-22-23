@@ -24,7 +24,7 @@ public class OrderUI implements Runnable {
         int announementId = displayAnnouncementsAndSelectAnnouncementById();
         Order orderSelected = displayAndSelectOrderFromSpecificAnnouncement(announementId);
         acceptOrder(announementId, orderSelected);
-        System.out.println("Order was accepted with success!");
+
     }
 
     /**
