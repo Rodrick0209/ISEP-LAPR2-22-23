@@ -26,7 +26,13 @@ activate Employee
     Employee -> System : submit the end date of the requests
     activate System
 
-        System --> Employee : shows the list sorted by date(ascending)
+    System --> Employee : shows sorting algorithm through a configuration file
+    deactivate System
+
+    Employee --> System : selects two sorting algorithm
+    activate System
+
+    System --> Employee : shows the list sorted by date(ascending)
     deactivate System
 
 
