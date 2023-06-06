@@ -58,6 +58,6 @@ public class Commission {
     @Override
     public String toString() {
         return "\nType:" + type +
-                "\nValue: " + value ;
+                "\nValue: " + value +"$" ;
     }
 }
