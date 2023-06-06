@@ -78,6 +78,7 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
      * Finds the minimum element from the unsorted part and places it at the beginning.
      * Does that to the second element and further and until the full list is sorted
      */
+    @Override
     public  void selectionSortAscending() {
         for (int i = 0; i < propertyAreas.size() - 1; i++) {
             int minIndex = i;
@@ -97,6 +98,7 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
      * Exact same process but with  sort algorithm in descending order.
      * Finds the maximum element from the unsorted part and places it at the beginning.
      */
+    @Override
     public  void selectionSortDescending() {
         for (int i = 0; i < propertyAreas.size() - 1; i++) {
             int maxIndex = i;
