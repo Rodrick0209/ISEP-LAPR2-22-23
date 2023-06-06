@@ -1,0 +1,30 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Alternative One
+
+autonumber
+
+actor "Network Manager" as Manager
+participant ":System" as System
+
+activate Manager
+
+    Manager -> System : asks to list all deals made in all branches
+    activate System
+
+    System --> Manager : asks to select sorting option (ascending or descending by area)
+    deactivate System
+
+    Manager -> System : selects sorting option
+    activate System
+
+    System --> Manager : shows list of all deals made in all branches in chronological order, ordered by selected option
+    deactivate System
+
+    System --> Manager : displays operation success
+    deactivate System
+
+@enduml
