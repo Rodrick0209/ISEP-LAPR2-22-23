@@ -34,10 +34,18 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
         return operationSuccess;
     }
 
+
+    /**
+     * Bubblesort algorithm in ascending order.
+     * Compares adjacent elements and swaps them if they are in the wrong order.
+     * Sorts by comparing the number with its right neighbor in the list.
+     *
+     */
     @Override
-    public void bubbleSortAscending(){
-        for (int i = 0; i < propertyAreas.size() - 1; i++) {
-            for (int j = 0; j < propertyAreas.size() - i - i ; j++) {
+    public  void bubbleSortAscending(){
+
+        for (int i = 0; i < propertyAreas.size() -1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisza
+            for (int j = 0; j < propertyAreas.size() - i -1; j++) { //propertyAreas.length
                 if(propertyAreas.get(j) > propertyAreas.get(j+1)){
                     int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
                     propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
@@ -45,46 +53,62 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
                 }
             }
         }
+
     }
+
+    /**
+     * The exact the process but with descending order
+     * Changes if the previous number is smaller than the next.
+     */
     @Override
-    public void bubbleSortDescending(){
-        for (int i = 0; i < propertyAreas.size(); i++) {
-           for (int j = 0; j < propertyAreas.size() - i - i ; j++){
-               if(propertyAreas.get(j) < propertyAreas.get(j+1)){
-                   int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
-                   propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
-                   propertyAreas.set(j+1, temp); // propertyAreas[j+1] = temp;
-               }
-           }
+    public  void bubbleSortDescending(){
+        for (int i = 0; i < propertyAreas.size() -1; i++) {
+            for (int j = 0; j < propertyAreas.size() -i-1 ; j++){
+                if(propertyAreas.get(j) < propertyAreas.get(j+1)){
+                    int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
+                    propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    propertyAreas.set(j+1, temp); // propertyAreas[j+1] = temp;
+                }
+            }
         }
     }
 
-    @Override
-    public void selectionSortAscending() {
-        for (int i = 0; i < propertyAreas.size()-1; i++) {
+    /**
+     *  Selection sort algorithm in ascending order.
+     * Finds the minimum element from the unsorted part and places it at the beginning.
+     * Does that to the second element and further and until the full list is sorted
+     */
+    public  void selectionSortAscending() {
+        for (int i = 0; i < propertyAreas.size() - 1; i++) {
             int minIndex = i;
-            for (int j = 0; j < propertyAreas.size(); j++) {
-                if(propertyAreas.get(j) < propertyAreas.get(j+1)){
+            for (int j = i + 1; j < propertyAreas.size(); j++) {
+                if (propertyAreas.get(j) < propertyAreas.get(minIndex)) {
                     minIndex = j;
                 }
             }
-            int temp = propertyAreas.get(i); // int temp = propertyAreas[i]
-            propertyAreas.set(i, propertyAreas.get(minIndex)); // propertyAreas[i] = propertyAreas[minIndex]
-            propertyAreas.set(minIndex, temp); // propertyAreas[minIndex] = temp
+            int temp = propertyAreas.get(i);
+            propertyAreas.set(i, propertyAreas.get(minIndex));
+            propertyAreas.set(minIndex, temp);
         }
     }
-    @Override
-    public void selectionSortDescending() {
-        for (int i = 0; i < propertyAreas.size()-1; i++) {
+
+
+    /**
+     * Exact same process but with  sort algorithm in descending order.
+     * Finds the maximum element from the unsorted part and places it at the beginning.
+     */
+    public  void selectionSortDescending() {
+        for (int i = 0; i < propertyAreas.size() - 1; i++) {
             int maxIndex = i;
-            for (int j = 0; j < propertyAreas.size(); j++) {
-                if(propertyAreas.get(j) > propertyAreas.get(j+1)){
+            for (int j = i + 1; j < propertyAreas.size(); j++) {
+                if (propertyAreas.get(j) > propertyAreas.get(maxIndex)) {
                     maxIndex = j;
                 }
             }
-            int temp = propertyAreas.get(i); // int temp = propertyAreas[i]
-            propertyAreas.set(i, propertyAreas.get(maxIndex)); // propertyAreas[i] = propertyAreas[minIndex]
-            propertyAreas.set(maxIndex, temp); // propertyAreas[minIndex] = temp
+            int temp = propertyAreas.get(i);
+            propertyAreas.set(i, propertyAreas.get(maxIndex));
+            propertyAreas.set(maxIndex, temp);
         }
     }
+
 }

@@ -18,7 +18,7 @@ import java.util.List;
 public class AgentUI implements Runnable {
 
     public void run() {
-        addAnnouncements();
+        //addAnnouncements();
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI())); // us 002 and 009 combined
         options.add(new MenuItem("Manage purchase orders", new OrderUI())); // us 011
@@ -35,13 +35,13 @@ public class AgentUI implements Runnable {
         } while (option != -1);
     }
 
-    private void addAnnouncements() {
+   /* private void addAnnouncements() {
         OrderController orderController = new OrderController();
         Announcement announcement1 = new Announcement();
-        //Announcement announcement2 = new Announcement();     // tava
-        //Announcement announcement3 = new Announcement();
-        //orderController.getAnnouncementsList().add(announcement1);
-        //orderController.getAnnouncementsList().add(announcement3);
+        Announcement announcement3 = new Announcement();
+        orderController.getAnnouncementsList().add(announcement1);
+    orderController.getAnnouncementsList().add(announcement3);
 
+
+    */
     }
-}

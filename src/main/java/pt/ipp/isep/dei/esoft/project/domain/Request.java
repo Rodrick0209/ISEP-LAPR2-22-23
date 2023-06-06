@@ -132,7 +132,7 @@ public class Request {
         return "\nRequest Id: " + requestId +
                 "\nProperty: " + property +
                 "\nTypeBusiness: " + typeBusiness.toString() +
-                "\nPrice: " + price +
+                "\nPrice: " + price +"$" +
                 "\nOwner: " + owner +
                 "\nRequest Date: " + requestDate;
     }
