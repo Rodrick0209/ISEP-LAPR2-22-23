@@ -5,6 +5,9 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.Authen
 import pt.ipp.isep.dei.esoft.project.domain.SendEmail;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
+/**
+ * The type Register user ui.
+ */
 public class RegisterUserUI implements Runnable {
 
     private final RegisterUserController controller = new RegisterUserController();
@@ -67,11 +70,18 @@ public class RegisterUserUI implements Runnable {
         return userName;
     }
 
+    /**
+     * Validate name boolean.
+     * Name needs to be a string and has to have at least a letter (Capital or not )
+     *
+     * @param name the name
+     * @return the boolean
+     */
     public boolean validateName(String name) {
         if (name == null || name.trim().isEmpty()) {
             return false;
         }
-        if (!name.matches("[a-zA-Z\\s]+")) {
+        if (!name.matches("[a-zA-Z\\s]+")) {  //validating by checking if is only is a-z characters
             return false;
         }
         return true;
@@ -82,6 +92,12 @@ public class RegisterUserUI implements Runnable {
         userEmail = inputAndValidateUserName();
         return userEmail;
     }
+
+    /**
+     * Input and validate user name string.
+     *
+     * @return the string
+     */
     public String inputAndValidateUserName() {
         do {
             userEmail = Utils.readLineFromConsole("Your Email Address: ");
@@ -93,7 +109,10 @@ public class RegisterUserUI implements Runnable {
     }
 
     /**
-     * Email validiation , email need to have A-Z can or not contain a number a  @ and A-Z  letter can or not contain a number  ,
+     * Email validiation , email needs to have A-Z can or not contain a number a  @ and A-Z  letter can or not contain a number  ,
+     *
+     * @param email the email
+     * @return the boolean
      */
     public static boolean validateEmail(String email) {
 

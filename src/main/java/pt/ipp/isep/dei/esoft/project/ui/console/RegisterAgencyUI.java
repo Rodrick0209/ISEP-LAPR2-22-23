@@ -6,6 +6,9 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.Optional;
 
+/**
+ * The type Register agency ui.
+ */
 public class RegisterAgencyUI implements Runnable {
     private final RegisterAgencyController controller = new RegisterAgencyController();
     private int agencyID;

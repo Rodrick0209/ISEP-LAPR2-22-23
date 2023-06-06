@@ -1,14 +1,34 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 
+import pt.ipp.isep.dei.esoft.project.domain.Owner;
 import pt.ipp.isep.dei.esoft.project.ui.console.CreateRequestUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Owner ui.
+ */
 public class OwnerUI implements Runnable{
+    /**
+     * The Owner.
+     */
+    Owner owner;
 
+    /**
+     * Instantiates a new Owner ui.
+     *
+     * @param owner the owner
+     */
+    public OwnerUI(Owner owner) {
+        this.owner = owner;
+    }
+
+    /**
+     * Instantiates a new Owner ui.
+     */
     public OwnerUI() {
 
     }

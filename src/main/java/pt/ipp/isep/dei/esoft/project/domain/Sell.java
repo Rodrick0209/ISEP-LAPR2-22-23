@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+/**
+ * The type Sell.
+ */
 public class Sell  implements Runnable{
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
@@ -39,6 +41,9 @@ public class Sell  implements Runnable{
         }
 
 
+    /**
+     * Land.
+     */
     public void Land() {
         int area = Utils.readIntegerFromConsole("Area in squad meters");
         String street = Utils.readLineFromConsole("Street");
@@ -56,6 +61,9 @@ public class Sell  implements Runnable{
         System.out.println("Distance: " + distance + " km");
     }
 
+    /**
+     * Apartment.
+     */
     public void Apartment(){
 
         int price = Utils.readIntegerFromConsole("Price");
@@ -96,7 +104,10 @@ public class Sell  implements Runnable{
 
 }
 
-public void House() {
+    /**
+     * House.
+     */
+    public void House() {
     int price = Utils.readIntegerFromConsole("Price");
     int area = Utils.readIntegerFromConsole("Area in squad meters");
     String street = Utils.readLineFromConsole("Street");

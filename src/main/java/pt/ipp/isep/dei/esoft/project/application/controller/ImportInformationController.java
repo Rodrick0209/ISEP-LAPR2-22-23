@@ -13,6 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * The type Import information controller.
+ */
 public class ImportInformationController implements FileReader {
     private PropertyTypeRepository propertyTypeRepository;
 
@@ -31,42 +34,92 @@ public class ImportInformationController implements FileReader {
 
     private Optional<Owner> owner;
 
+    /**
+     * Gets owner.
+     *
+     * @return the owner
+     */
     public Optional<Owner> getOwner() {
         return owner;
     }
 
+    /**
+     * Sets owner.
+     *
+     * @param owner the owner
+     */
     public void setOwner(Optional<Owner> owner) {
         this.owner = owner;
     }
 
+    /**
+     * Gets property.
+     *
+     * @return the property
+     */
     public Optional<Property> getProperty() {
         return property;
     }
 
+    /**
+     * Sets property.
+     *
+     * @param property the property
+     */
     public void setProperty(Optional<Property> property) {
         this.property = property;
     }
 
+    /**
+     * Gets agency.
+     *
+     * @return the agency
+     */
     public Optional<Agency> getAgency() {
         return agency;
     }
 
+    /**
+     * Sets agency.
+     *
+     * @param agency the agency
+     */
     public void setAgency(Optional<Agency> agency) {
         this.agency = agency;
     }
 
+    /**
+     * Gets request.
+     *
+     * @return the request
+     */
     public Optional<Request> getRequest() {
         return request;
     }
 
+    /**
+     * Sets request.
+     *
+     * @param request the request
+     */
     public void setRequest(Optional<Request> request) {
         this.request = request;
     }
 
+    /**
+     * Gets announcement.
+     *
+     * @return the announcement
+     */
     public Optional<Announcement> getAnnouncement() {
         return announcement;
     }
 
+    /**
+     * Sets announcement.
+     *
+     * @param announcement the announcement
+     */
     public void setAnnouncement(Optional<Announcement> announcement) {
         this.announcement = announcement;
     }
@@ -79,6 +132,9 @@ public class ImportInformationController implements FileReader {
 
     private Optional<Announcement> announcement;
 
+    /**
+     * Instantiates a new Import information controller.
+     */
     public ImportInformationController() {
         getOwnerRepository();
         getEmployeeRepository();
@@ -90,6 +146,19 @@ public class ImportInformationController implements FileReader {
         getTypeOfBusinessRepository();
     }
 
+    /**
+     * Instantiates a new Import information controller.
+     *
+     * @param propertyTypeRepository   the property type repository
+     * @param typeBusinessRepository   the type business repository
+     * @param employeeRepository       the employee repository
+     * @param propertyRepository       the property repository
+     * @param requestRepository        the request repository
+     * @param announcementRepository   the announcement repository
+     * @param agencyRepository         the agency repository
+     * @param authenticationRepository the authentication repository
+     * @param ownerRepository          the owner repository
+     */
     public ImportInformationController(PropertyTypeRepository propertyTypeRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, PropertyRepository propertyRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository, OwnerRepository ownerRepository) {
         this.propertyTypeRepository = propertyTypeRepository;
         this.typeBusinessRepository = typeBusinessRepository;
@@ -126,6 +195,11 @@ public class ImportInformationController implements FileReader {
         return ownerRepository;
     }
 
+    /**
+     * Gets type of business repository.
+     *
+     * @return the type of business repository
+     */
     public TypeBusinessRepository getTypeOfBusinessRepository() {
         if (typeBusinessRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -134,6 +208,11 @@ public class ImportInformationController implements FileReader {
         return typeBusinessRepository;
     }
 
+    /**
+     * Gets employee repository.
+     *
+     * @return the employee repository
+     */
     public EmployeeRepository getEmployeeRepository() {
         if (employeeRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -142,6 +221,11 @@ public class ImportInformationController implements FileReader {
         return employeeRepository;
     }
 
+    /**
+     * Gets request repository.
+     *
+     * @return the request repository
+     */
     public RequestRepository getRequestRepository() {
         if (requestRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -150,6 +234,11 @@ public class ImportInformationController implements FileReader {
         return requestRepository;
     }
 
+    /**
+     * Gets property repository.
+     *
+     * @return the property repository
+     */
     public PropertyRepository getPropertyRepository() {
         if (propertyRepository == null) {
             Repositories repositories = Repositories.getInstance();
@@ -158,7 +247,12 @@ public class ImportInformationController implements FileReader {
         return propertyRepository;
     }
 
-        public AnnouncementRepository getAnnouncementRepository () {
+    /**
+     * Gets announcement repository.
+     *
+     * @return the announcement repository
+     */
+    public AnnouncementRepository getAnnouncementRepository () {
             if (announcementRepository == null) {
                 Repositories repositories = Repositories.getInstance();
                 announcementRepository = repositories.getAnnouncementRepository();
@@ -166,7 +260,12 @@ public class ImportInformationController implements FileReader {
             return announcementRepository;
         }
 
-        public AgencyRepository getAgencyRepository() {
+    /**
+     * Gets agency repository.
+     *
+     * @return the agency repository
+     */
+    public AgencyRepository getAgencyRepository() {
             if (agencyRepository == null) {
                 Repositories repositories = Repositories.getInstance();
                 agencyRepository = repositories.getAgencyRepository();
@@ -204,6 +303,12 @@ public class ImportInformationController implements FileReader {
             return operationSuccess;
         }
 
+    /**
+     * Create owner optional.
+     *
+     * @param information the information
+     * @return the optional
+     */
     public Optional<Owner> createOwner(String[] information) {
         if (ownerRepository != null) {
             return ownerRepository.createOwner(information[1], Integer.parseInt(information[2]), information[3], information[4], information[5]);
@@ -211,6 +316,12 @@ public class ImportInformationController implements FileReader {
         return Optional.empty();
     }
 
+    /**
+     * Create agency optional.
+     *
+     * @param information the information
+     * @return the optional
+     */
     public Optional<Agency> createAgency (String[] information){
         Employee administrator = getAdministratorFromSession();
         Optional<Agency> newAgency = Optional.empty();
@@ -220,7 +331,13 @@ public class ImportInformationController implements FileReader {
         return newAgency;
         }
 
-        public Optional<Property> createProperty(String[] information) {
+    /**
+     * Create property optional.
+     *
+     * @param information the information
+     * @return the optional
+     */
+    public Optional<Property> createProperty(String[] information) {
         double squareFeetConverter = 0.0929;
         double mileConverter = 1.609;
             Owner owner = getOwnerByEmail(information[4]);
@@ -256,7 +373,13 @@ public class ImportInformationController implements FileReader {
             return newProperty;
         }
 
-        public Optional<Request> createRequest(String[] information) {
+    /**
+     * Create request optional.
+     *
+     * @param information the information
+     * @return the optional
+     */
+    public Optional<Request> createRequest(String[] information) {
             Optional<Request> newRequest = Optional.empty();
             Owner owner = getOwnerByEmail(information[4]);
             String[] informationLocation = information[8].split(",");
@@ -299,7 +422,13 @@ public class ImportInformationController implements FileReader {
             return newRequest;
         }
 
-        public Optional<Announcement> createAnnoouncement(String[] information){
+    /**
+     * Create annoouncement optional.
+     *
+     * @param information the information
+     * @return the optional
+     */
+    public Optional<Announcement> createAnnoouncement(String[] information){
             Optional<Announcement> newAnnouncement = Optional.empty();
             String[] informationLocation = information[8].split(",");
             switch(information[6]){

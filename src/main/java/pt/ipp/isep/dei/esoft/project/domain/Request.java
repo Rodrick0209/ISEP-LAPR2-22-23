@@ -1,10 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Request implements Serializable {
+/**
+ * The type Request.
+ */
+public class Request {
     private static int requestIdCounter = 0;
     private int requestId;
     private final Property property;
@@ -16,27 +18,60 @@ public class Request implements Serializable {
     private int contractDuration=0;
 
 
+    /**
+     * Gets contract duration.
+     *
+     * @return the contract duration
+     */
     public int getContractDuration() {
         return contractDuration;
     }
 
+    /**
+     * Set contract duration.
+     *
+     * @param contractduration the contractduration
+     */
     public void setContractDuration(int contractduration){
         this.contractDuration = contractduration;
     }
 
+    /**
+     * Gets request date.
+     *
+     * @return the request date
+     */
     public Date getRequestDate() {
         return requestDate;
     }
 
+    /**
+     * Gets owner.
+     *
+     * @return the owner
+     */
     public Owner getOwner() {
         return owner;
     }
 
 
+    /**
+     * Gets request id.
+     *
+     * @return the request id
+     */
     public int getRequestId() {
         return requestId;
     }
 
+    /**
+     * Instantiates a new Request.
+     *
+     * @param property     the property
+     * @param typeBusiness the type business
+     * @param price        the price
+     * @param owner        the owner
+     */
     public Request(Property property, TypeBusiness typeBusiness, double price, Owner owner) {
         this.property = property;
         this.typeBusiness = typeBusiness;
@@ -47,7 +82,11 @@ public class Request implements Serializable {
     }
 
 
-
+    /**
+     * Gets property.
+     *
+     * @return the property
+     */
     public Property getProperty() {
         return property;
     }
@@ -70,10 +109,20 @@ public class Request implements Serializable {
     }
 
 
+    /**
+     * Gets price.
+     *
+     * @return the price
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Gets type business.
+     *
+     * @return the type business
+     */
     public TypeBusiness getTypeBusiness() {
         return typeBusiness;
     }
@@ -84,7 +133,7 @@ public class Request implements Serializable {
                 "\nProperty: " + property +
                 "\nTypeBusiness: " + typeBusiness.toString() +
                 "\nPrice: " + price +
-                "\nOwner: " + owner.toString() +
+                "\nOwner: " + owner +
                 "\nRequest Date: " + requestDate;
     }
 

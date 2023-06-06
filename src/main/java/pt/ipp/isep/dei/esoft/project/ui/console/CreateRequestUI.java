@@ -235,6 +235,11 @@ public class CreateRequestUI implements Runnable {
         return typeBusiness.get(answer).getName();
     }
 
+    /**
+     * Request data 1 int.
+     *
+     * @return the int
+     */
     public int requestData1(){
         price = requestPrice();
         return price;

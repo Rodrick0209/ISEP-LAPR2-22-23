@@ -7,9 +7,9 @@ autonumber
 
 'hide footbox
 actor "Organization Employee" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
-participant ":Repositories" as RepositorySingleton
+participant "ListVisitRequestUI" as UI
+participant "ListVisitRequestController" as CTRL
+participant "Repositories" as Rep
 participant "repositories\n:Repositories" as PLAT
 participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
 participant ":ApplicationSession" as _APP
@@ -18,10 +18,11 @@ participant "currentSession\n:UserSession" as SESSAO
 participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
 participant "organization\n:Organization" as ORG
 participant "task\n:Task" as TAREFA
+participant "visitRepository: \nVisitRepository" as VisRep
 
 activate ADM
 
-        ADM -> UI : asks to create a new task
+        ADM -> UI : request to list booking requests
 
         activate UI
 
@@ -29,150 +30,74 @@ activate ADM
             'create CTRL
             UI -> CTRL** : create
 
-            UI -> CTRL : getTaskCategories()
+
             activate CTRL
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
+                CTRL -> Rep : getInstance()
+                activate Rep
 
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
+                    Rep --> CTRL: repositories
+                deactivate Rep
 
-                CTRL -> PLAT : getTaskCategoryRepository()
+
+            CTRL -> _APP : getInstance()
+            activate _APP
+
+            _APP --> CTRL : appSession
+            deactivate _APP
+
+            CTRL -> APP : getCurrentSession()
+            activate APP
+
+            APP --> CTRL : currentSession
+            deactivate APP
+
+                CTRL -> PLAT : getVisitRepository()
                 activate PLAT
 
-                    PLAT --> CTRL: taskCategoryRepository
+                    PLAT --> CTRL: visitRepository
                 deactivate PLAT
 
-                CTRL -> TaskCategoryRepository : getTaskCategories()
-                activate TaskCategoryRepository
+                CTRL -> VisRep : getVisitList()
+                activate VisRep
 
-                    TaskCategoryRepository --> CTRL : taskCategoryList
-                deactivate TaskCategoryRepository
+                    VisRep --> CTRL : visitList
+                deactivate VisRep
 
-                CTRL --> UI : taskCategoryList
+                CTRL --> UI : visitList
+
+
             deactivate CTRL
 
-            UI --> ADM : shows task category list\n and asks to sleect one
+            UI --> ADM : Asks to submit the file with the algorithm
         deactivate UI
 
-    ADM -> UI : selects a task category
+    ADM -> UI : submits the file name
     activate UI
 
-        UI --> ADM : requests data
+    UI--> UI : Saves the data
+
+        UI --> ADM : asks the begin date
     deactivate UI
 
-    ADM -> UI : types requested data (reference, description, \ninformal description, technical description,\nduration, cost)
+    ADM -> UI :  submits the begin date
     activate UI
 
-        UI --> ADM : shows selected category and requested data
+    UI--> UI : save the begin date
+
+        UI --> ADM : asks the end date
     deactivate UI
 
-    ADM -> UI : submits data
+    ADM -> UI : submits the end  date
     activate UI
 
-        UI -> CTRL : createTask(reference,\ndescription,\ninformalDescription,\ntechnicalDescription,\nduration, cost,\ntaskCategoryDescription)
-        activate CTRL
+     UI--> UI : save the end date
 
-            CTRL -> CTRL : getTaskCategoryByDescription(taskCategoryDescription)
-            activate CTRL
+    UI --> ADM : asks to confirm the file name and types of algorithm
 
-                CTRL -> RepositorySingleton : getInstance()
-                activate RepositorySingleton
-
-                    RepositorySingleton --> CTRL: repositories
-                deactivate RepositorySingleton
-
-                CTRL -> PLAT : getTaskCategoryRepository()
-                activate PLAT
-
-                    PLAT -> CTRL : taskCategoryRepository
-                deactivate PLAT
-
-                CTRL -> TaskCategoryRepository : getTaskCategoryByDescription(taskCategoryDescription)
-                activate TaskCategoryRepository
-
-                    TaskCategoryRepository --> CTRL : taskCategory
-                deactivate TaskCategoryRepository
-                    CTRL --> CTRL : taskCategory
-            deactivate CTRL
-
-            |||
-            CTRL -> CTRL : getEmployeeFromSession()
-            activate CTRL
-
-                CTRL -> _APP: getInstance()
-                activate _APP
-                    _APP -> CTRL: appSession
-                deactivate _APP
+    ADM -> UI : Confirms the file name and types of algorithm
 
 
-                CTRL -> APP: getCurrentSession()
-                activate APP
-
-                    APP --> CTRL: currentSession
-                deactivate APP
-
-                CTRL -> SESSAO: email = getUserEmail()
-                activate SESSAO
-
-                    SESSAO --> CTRL: email
-                deactivate SESSAO
-
-
-                CTRL -> PLAT: getOrganizationRepository(email)
-                activate PLAT
-
-                    PLAT --> CTRL: organizationRepository
-                deactivate PLAT
-
-
-                CTRL -> OrganizationRepository: getOrganizationByEmployeeEmail(email)
-                activate OrganizationRepository
-
-                    loop [for each organization
-                        OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
-                        activate ORG
-
-                             ORG --> OrganizationRepository : true/false
-                        deactivate ORG
-                    end
-                    OrganizationRepository --> CTRL : organization
-                deactivate OrganizationRepository
-
-                CTRL -> ORG: getEmployeeByEmail(email)
-                activate ORG
-
-                    ORG --> CTRL : employee
-                deactivate ORG
-
-                CTRL --> CTRL : employee
-            deactivate CTRL
-
-            |||
-            CTRL -> ORG: createTask(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, , taskCategory, employee)
-            activate ORG
-
-                ORG -> TAREFA**: create(employee, reference, description,\ninformalDescription, technicalDescription,\nduration, cost, taskCategory, employee)
-                ORG -> ORG: addTask (task)
-
-
-                activate ORG
-                    ORG -> ORG: validateTask(task)
-                    activate ORG
-                        ORG --> ORG
-                    deactivate ORG
-
-                    ORG --> ORG
-                deactivate ORG
-
-                ORG --> CTRL : task
-
-            deactivate ORG
-
-            CTRL --> UI: task
-            deactivate CTRL
-            UI --> ADM: displays operation success
     deactivate UI
 
 deactivate ADM

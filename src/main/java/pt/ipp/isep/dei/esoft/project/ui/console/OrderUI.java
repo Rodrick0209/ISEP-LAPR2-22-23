@@ -8,8 +8,14 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * The type Order ui.
+ */
 public class OrderUI implements Runnable {
 
+    /**
+     * The Order controller.
+     */
     OrderController orderController = new OrderController();
 
 
@@ -21,10 +27,20 @@ public class OrderUI implements Runnable {
         System.out.println("Order was accepted with success!");
     }
 
+    /**
+     * Sort by oldest date.
+     *
+     * @param list the list
+     */
     public static void sortByOldestDate(List<Announcement> list) {
         list.sort(Comparator.comparing(Announcement::getDate));
     }
 
+    /**
+     * Sort by highest price.
+     *
+     * @param list the list
+     */
     public static void sortByHighestPrice(List<Order> list) {
         list.sort(Comparator.comparing(Order::getOrderValue).reversed());
     }

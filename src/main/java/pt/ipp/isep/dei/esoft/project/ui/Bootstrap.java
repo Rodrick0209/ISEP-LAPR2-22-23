@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
 public class Bootstrap implements Runnable {
     private Employee agent = null;
 
@@ -125,11 +126,13 @@ public class Bootstrap implements Runnable {
         Client orderClient = new Client("Joao", 919919919, orderClientEmail);
         Order order1 = new Order(5000, orderClient);
         Order order2 = new Order(3000, orderClient);
-        Date announcementDate = new Date(0, Calendar.JUNE, 23);
+        Date announcementDate = new Date(2023, Calendar.JUNE, 23);
         Announcement announcement1 = new Announcement(null, null, announcementDate);
         Announcement announcement2 = new Announcement(null, null);
-        announcements.add(announcement1);
-        announcements.add(announcement2);
+        Announcement announcement = new Announcement(new Request( new Land ( new PropertyType("Land"), 120, new Location("rua Professor Laurentino Monteiro", "Póvoa", "Porto", 12345) , 1.3, new Owner("owner@this.app")), new TypeBusiness("Sell"), 130000 ,new Owner("owner@this.app")), new Commission("Percentage", 5), announcementDate);
+        Announcement announcement3 = new Announcement(new Request( new Land ( new PropertyType("Land"), 134, new Location("rua António Costa", "Póvoa", "Porto", 43236) , 2.7, new Owner("owner@this.app")), new TypeBusiness("Sell"), 150000 ,new Owner("owner@this.app")), new Commission("Percentage", 5), announcementDate);
+        announcements.add(announcement);
+        announcements.add(announcement3);
         announcement1.addOrder(order1);
         announcement1.addOrder(order2);
 

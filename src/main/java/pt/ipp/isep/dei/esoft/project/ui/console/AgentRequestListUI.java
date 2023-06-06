@@ -6,6 +6,9 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.List;
 
+/**
+ * The type Agent request list ui.
+ */
 public class AgentRequestListUI implements Runnable {
 
     private final PublishAnnouncementController controller = new PublishAnnouncementController();

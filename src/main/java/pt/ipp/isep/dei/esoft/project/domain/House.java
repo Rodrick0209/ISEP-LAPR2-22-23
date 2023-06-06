@@ -23,7 +23,23 @@ public class House extends Property {
     private String sunExposure;
 
 
-
+    /**
+     * Instantiates a new House.
+     *
+     * @param typeName             the type name
+     * @param area                 the area
+     * @param location             the location
+     * @param distance             the distance
+     * @param n_bedrooms           the n bedrooms
+     * @param n_bathrooms          the n bathrooms
+     * @param n_parkingSpaces      the n parking spaces
+     * @param centralHeating       the central heating
+     * @param airConditioning      the air conditioning
+     * @param existBasement        the exist basement
+     * @param existinhabitableLoft the existinhabitable loft
+     * @param sunExposure          the sun exposure
+     * @param owner                the owner
+     */
     public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure , Owner owner) {
         super(typeName, area, location, distance, owner);
         this.typeName = typeName;
@@ -41,53 +57,111 @@ public class House extends Property {
     }
 
 
-
+    /**
+     * Gets n bedrooms.
+     *
+     * @return the n bedrooms
+     */
     public int getN_bedrooms() {
         return n_bedrooms;
     }
 
 
-
+    /**
+     * Sets n bedrooms.
+     *
+     * @param n_bedrooms the n bedrooms
+     */
     public void setN_bedrooms(int n_bedrooms) {
         this.n_bedrooms = n_bedrooms;
     }
 
+    /**
+     * Gets n bathrooms.
+     *
+     * @return the n bathrooms
+     */
     public int getN_bathrooms() {
         return n_bathrooms;
     }
 
+    /**
+     * Sets n bathrooms.
+     *
+     * @param n_bathrooms the n bathrooms
+     */
     public void setN_bathrooms(int n_bathrooms) {
         this.n_bathrooms = n_bathrooms;
     }
 
+    /**
+     * Gets n parking spaces.
+     *
+     * @return the n parking spaces
+     */
     public int getN_parkingSpaces() {
         return n_parkingSpaces;
     }
 
+    /**
+     * Sets n parking spaces.
+     *
+     * @param n_parkingSpaces the n parking spaces
+     */
     public void setN_parkingSpaces(int n_parkingSpaces) {
         this.n_parkingSpaces = n_parkingSpaces;
     }
 
+    /**
+     * Gets avaiable equip.
+     *
+     * @return the avaiable equip
+     */
     public String getAvaiableEquip() {
         return avaiableEquip;
     }
 
+    /**
+     * Sets avaiable equip.
+     *
+     * @param avaiableEquip the avaiable equip
+     */
     public void setAvaiableEquip(String avaiableEquip) {
         this.avaiableEquip = avaiableEquip;
     }
 
+    /**
+     * Is central heating boolean.
+     *
+     * @return the boolean
+     */
     public boolean isCentralHeating() {
         return centralHeating;
     }
 
+    /**
+     * Sets central heating.
+     *
+     * @param centralHeating the central heating
+     */
     public void setCentralHeating(boolean centralHeating) {
         this.centralHeating = centralHeating;
     }
 
+    /**
+     * Is air conditioning boolean.
+     *
+     * @return the boolean
+     */
     public boolean isAirConditioning() {
         return airConditioning;
     }
 
+    /**
+     * Sets air conditioning.
+     *
+     * @param airConditioning the air conditioning
+     */
     public void setAirConditioning(boolean airConditioning) {
         this.airConditioning = airConditioning;
     }

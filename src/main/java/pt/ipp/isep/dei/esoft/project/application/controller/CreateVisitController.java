@@ -1,19 +1,20 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
-import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRepository;
-import pt.ipp.isep.dei.esoft.project.repository.OwnerRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.VisitRepository;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class CreateVisitController {
 
     private VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
     OwnerRepository ownerRepository = Repositories.getInstance().getOwnerRepository();
+
 
     public int[][] saveTimeSlot(int[][] timereal, int count) {
 
@@ -108,18 +109,24 @@ public class CreateVisitController {
 
 
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
+    ClientRepository clientRepository = Repositories.getInstance().getClientRepository();
 
     public List<Announcement> getAnnouncements() {
         return announcementRepository.getAnnouncements();
     }
 
-    public void createVisitRequest(Announcement announcement, String username, String phonenumber, String date, int[][] timeSlot, String message) {
+    public ClientRepository getClientRepository() { return clientRepository; }
+
+    public Optional<VisitRequest> createVisitRequest(Announcement announcement, String username, String phonenumber, Date date, int[][] timeSlot, String message) {
         VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message);
         visitRepository.addRequests(visit);
+        return Optional.of(visit);
     }
 
     public OwnerRepository getOwnerRepository() {
         return ownerRepository;
     }
+
+
 
 }

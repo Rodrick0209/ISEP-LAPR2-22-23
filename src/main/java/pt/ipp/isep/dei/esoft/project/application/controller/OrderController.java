@@ -8,6 +8,9 @@ import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.util.List;
 
+/**
+ * The type Order controller.
+ */
 public class OrderController {
 
     private AuthenticationRepository authenticationRepository = null;
@@ -29,22 +32,45 @@ public class OrderController {
         return announcementRepository;
     }
 
+    /**
+     * Gets announcement by id.
+     *
+     * @param announcementId the announcement id
+     * @return the announcement by id
+     */
     public Announcement getAnnouncementById(int announcementId) {
         return getAnnouncementRepository().getAnnouncementById(announcementId);
     }
 
+    /**
+     * Accept order.
+     *
+     * @param announcementId the announcement id
+     * @param acceptedOrder  the accepted order
+     */
     public void acceptOrder(int announcementId, Order acceptedOrder) {
         Announcement announcement = getAnnouncementById(announcementId);
         announcement.acceptOrder(acceptedOrder);
 
     }
 
+    /**
+     * Decline order.
+     *
+     * @param announcementId the announcement id
+     * @param declinedOrder  the declined order
+     */
     public void declineOrder(int announcementId, Order declinedOrder) {
         Announcement announcement = getAnnouncementById(announcementId);
         announcement.declineOrder(declinedOrder);
 
     }
 
+    /**
+     * Gets announcements list.
+     *
+     * @return the announcements list
+     */
     public List<Announcement> getAnnouncementsList() {
         return getAnnouncementRepository().getAnnouncements();
     }
