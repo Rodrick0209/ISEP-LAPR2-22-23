@@ -1,20 +1,14 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.application.controller.CreateRequestController;
+import java.io.Serializable;
 
 /**
  * The type Repositories.
  */
-public class Repositories {
+public class Repositories implements Serializable {
 
     private static final Repositories instance = new Repositories();
-    /**
-     * The Get request repository.
-     */
-    public CreateRequestController getRequestRepository ;
-    /**
-     * The Organization repository.
-     */
+
 
     /**
      * The Agency repository.
@@ -175,5 +169,24 @@ public class Repositories {
     }
 
     public ClientRepository getClientRepository() {return clientRepository;}
+
+    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, AuthenticationRepository authenticationRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository, ClientRepository clientRepository) {
+        this.agencyRepository = agencyRepository;
+        this.roleRepository = roleRepository;
+        this.propertyRepository = propertyRepository;
+        this.authenticationRepository = authenticationRepository;
+        this.propertyTypeRepository = propertyTypeRepository;
+        this.ownerRepository = ownerRepository;
+        this.typeBusinessRepository = typeBusinessRepository;
+        this.employeeRepository = employeeRepository;
+        this.requestRepository = requestRepository;
+        this.announcementRepository = announcementRepository;
+        this.visitRepository = visitRepository;
+        this.clientRepository = clientRepository;
+    }
+
+    public Repositories clone(){
+        return new Repositories(agencyRepository, roleRepository, propertyRepository, authenticationRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository);
+    }
 }
 

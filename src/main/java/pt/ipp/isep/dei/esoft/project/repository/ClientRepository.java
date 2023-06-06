@@ -4,11 +4,12 @@ import pt.ipp.isep.dei.esoft.project.domain.Client;
 import pt.ipp.isep.dei.esoft.project.domain.CurrentSession;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ClientRepository {
+public class ClientRepository implements Serializable {
 
     private final List<Client> clients = new ArrayList<>();
 

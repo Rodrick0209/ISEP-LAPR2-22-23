@@ -2,13 +2,14 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The type Client.
  */
-public class Client {
+public class Client implements Serializable {
 
     private static int clientIdCounter = 0;
     private int clientId;

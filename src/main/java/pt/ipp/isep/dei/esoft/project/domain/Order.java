@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Order {
     private static int orderIdCounter = 0;
-    private int orderId;
+    private final int orderId;
     private double orderValue;
     private Date orderDate;
     /**

@@ -1,9 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class VisitRequest {
+public class VisitRequest implements Serializable {
 
     private Announcement Announcement;
     private String userName;
