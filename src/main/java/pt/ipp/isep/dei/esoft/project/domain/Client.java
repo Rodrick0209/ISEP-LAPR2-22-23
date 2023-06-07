@@ -30,6 +30,8 @@ public class Client implements Serializable {
 
     }
 
+
+
     /**
      * Instantiates a new Client.
      *
@@ -120,5 +122,10 @@ public class Client implements Serializable {
     }
 
     public Client clone(){return new Client(this.clientName, this.phoneNumber, this.clientEmail);
+    }
+
+    @Override
+    public String toString() {
+        return "" +clientEmail ;
     }
 }

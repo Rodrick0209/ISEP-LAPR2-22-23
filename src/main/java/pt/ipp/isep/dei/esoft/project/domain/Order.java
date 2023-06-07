@@ -94,10 +94,9 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + orderId +
-                ", orderValue=" + orderValue +
-                ", orderDate=" + orderDate +
-                ", clientEmail='" + client.toString() + '\'' +
-                '}';
+                "orderId = " + orderId +
+                ", orderValue = " + orderValue+"$" +
+                ", orderDate = " + orderDate +
+                ", clientEmail = " + client.toString()+"}";
     }
 }
