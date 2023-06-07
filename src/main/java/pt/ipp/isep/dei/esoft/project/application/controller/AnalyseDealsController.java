@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import org.apache.commons.math4.legacy.stat.regression.OLSMultipleLinearRegression;
 import org.apache.commons.math4.legacy.stat.regression.SimpleRegression;
 import pt.ipp.isep.dei.esoft.project.domain.FileReader;
+import pt.ipp.isep.dei.esoft.project.domain.RegressionResults;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
 
 
@@ -64,7 +65,7 @@ public class AnalyseDealsController implements FileReader {
         } return operationSuccess;
     }
 
-    public void simpleRegressionPropertyArea(){
+    public RegressionResults simpleRegressionPropertyArea(){
         Double[][] dataArray = { propertiesArea, salePrices};
         double[][] data = new double[propertiesArea.length][salePrices.length];
         for (int i = 0; i < propertiesArea.length; i++) {
@@ -76,10 +77,10 @@ public class AnalyseDealsController implements FileReader {
         regression.addData(data);
         double intercept = regression.getIntercept();
         double slope = regression.getSlope();
-        System.out.printf("y = %.2fx + %.2f", slope, intercept);
+        return new RegressionResults(slope, intercept);
     }
 
-    public void simpleRegressionPropertyDistance(){
+    public RegressionResults simpleRegressionPropertyDistance(){
         Double[][] dataArray = { propertiesDistanceFromCityCentre, salePrices};
         double[][] data = new double[propertiesDistanceFromCityCentre.length][salePrices.length];
         for (int i = 0; i < propertiesDistanceFromCityCentre.length; i++) {
@@ -89,9 +90,12 @@ public class AnalyseDealsController implements FileReader {
         }
         SimpleRegression regression = new SimpleRegression();
         regression.addData(data);
+        double intercept = regression.getIntercept();
+        double slope = regression.getSlope();
+        return new RegressionResults(slope, intercept);
     }
 
-    public void simpleRegressionPropertyNumberBedrooms(){
+    public RegressionResults simpleRegressionPropertyNumberBedrooms(){
         Double[][] dataArray = {propertiesNumberOfBedrooms, salePrices};
         double[][] data = new double[propertiesNumberOfBedrooms.length][salePrices.length];
         for (int i = 0; i < propertiesNumberOfBedrooms.length; i++) {
@@ -101,9 +105,12 @@ public class AnalyseDealsController implements FileReader {
         }
         SimpleRegression regression = new SimpleRegression();
         regression.addData(data);
+        double intercept = regression.getIntercept();
+        double slope = regression.getSlope();
+        return new RegressionResults(slope, intercept);
     }
 
-    public void simpleRegressionPropertyNumberBathrooms(){
+    public RegressionResults simpleRegressionPropertyNumberBathrooms(){
         Double[][] dataArray = {propertiesNumberOfBathrooms, salePrices};
         double[][] data = new double[propertiesNumberOfBathrooms.length][salePrices.length];
         for (int i = 0; i < propertiesNumberOfBathrooms.length; i++) {
@@ -113,9 +120,12 @@ public class AnalyseDealsController implements FileReader {
         }
         SimpleRegression regression = new SimpleRegression();
         regression.addData(data);
+        double intercept = regression.getIntercept();
+        double slope = regression.getSlope();
+        return new RegressionResults(slope, intercept);
     }
 
-    public void simpleRegressionNumberOfParkingSpaces(){
+    public RegressionResults simpleRegressionNumberOfParkingSpaces(){
         Double[][] dataArray = {propertiesNumberOfParkingSpaces, salePrices};
         double[][] data = new double[propertiesNumberOfParkingSpaces.length][salePrices.length];
         for (int i = 0; i < propertiesNumberOfParkingSpaces.length; i++) {
@@ -125,9 +135,12 @@ public class AnalyseDealsController implements FileReader {
         }
         SimpleRegression regression = new SimpleRegression();
         regression.addData(data);
+        double intercept = regression.getIntercept();
+        double slope = regression.getSlope();
+        return new RegressionResults(slope, intercept);
     }
 
-    public void multiRegression(){
+    public RegressionResults multiRegression(){
         double[] salePrices = new double[this.salePrices.length];
         for (int i = 0; i < salePrices.length; i++) {
             this.salePrices[i] = salePrices[i];
@@ -150,5 +163,7 @@ public class AnalyseDealsController implements FileReader {
         }
         OLSMultipleLinearRegression regression = new OLSMultipleLinearRegression();
         regression.newSampleData(salePrices, propertiesData);
+        double[] parameters = regression.estimateRegressionParameters();
+        return new RegressionResults(parameters);
     }
 }

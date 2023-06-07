@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.Role;
 import pt.ipp.isep.dei.esoft.project.domain.TypeBusiness;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.Optional;
 /**
  * The type Type business repository.
  */
-public class TypeBusinessRepository {
+public class TypeBusinessRepository implements Serializable {
 
     private static final List<TypeBusiness> businessTypeArrayList = new ArrayList<>();
 

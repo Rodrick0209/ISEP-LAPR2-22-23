@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 /**
  * The type Request repository.
  */
-public class RequestRepository {
+public class RequestRepository implements Serializable {
 
     private final List<Request> requests = new ArrayList<>();
 
