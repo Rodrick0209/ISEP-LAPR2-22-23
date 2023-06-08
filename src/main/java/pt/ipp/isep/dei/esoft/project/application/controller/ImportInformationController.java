@@ -32,6 +32,8 @@ public class ImportInformationController implements FileReader {
     private AuthenticationRepository authenticationRepository;
     private OwnerRepository ownerRepository;
 
+    private DealRepository dealRepository;
+
     private Optional<Owner> owner;
 
     /**
@@ -132,6 +134,8 @@ public class ImportInformationController implements FileReader {
 
     private Optional<Announcement> announcement;
 
+    private Optional<Deal> deal;
+
     /**
      * Instantiates a new Import information controller.
      */
@@ -144,6 +148,7 @@ public class ImportInformationController implements FileReader {
         getPropertyRepository();
         getPropertyTypeRepository();
         getTypeOfBusinessRepository();
+        getDealRepository();
     }
 
     /**
@@ -159,7 +164,7 @@ public class ImportInformationController implements FileReader {
      * @param authenticationRepository the authentication repository
      * @param ownerRepository          the owner repository
      */
-    public ImportInformationController(PropertyTypeRepository propertyTypeRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, PropertyRepository propertyRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository, OwnerRepository ownerRepository) {
+    public ImportInformationController(PropertyTypeRepository propertyTypeRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, PropertyRepository propertyRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, AgencyRepository agencyRepository, AuthenticationRepository authenticationRepository, OwnerRepository ownerRepository, DealRepository dealRepository) {
         this.propertyTypeRepository = propertyTypeRepository;
         this.typeBusinessRepository = typeBusinessRepository;
         this.employeeRepository = employeeRepository;
@@ -169,6 +174,7 @@ public class ImportInformationController implements FileReader {
         this.agencyRepository = agencyRepository;
         this.authenticationRepository = authenticationRepository;
         this.ownerRepository = ownerRepository;
+        this.dealRepository = dealRepository;
     }
 
     private AuthenticationRepository getAuthenticationRepository() {
@@ -266,12 +272,20 @@ public class ImportInformationController implements FileReader {
      * @return the agency repository
      */
     public AgencyRepository getAgencyRepository() {
-            if (agencyRepository == null) {
-                Repositories repositories = Repositories.getInstance();
-                agencyRepository = repositories.getAgencyRepository();
-            }
-            return agencyRepository;
+        if (agencyRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            agencyRepository = repositories.getAgencyRepository();
         }
+        return agencyRepository;
+    }
+
+    public DealRepository getDealRepository(){
+        if(dealRepository == null){
+            Repositories repositories = Repositories.getInstance();
+            dealRepository = repositories.getDealRepository();
+        }
+        return dealRepository;
+    }
 
         public boolean readFile(String fileName){
             String csvFile = Files.path + fileName;
@@ -293,6 +307,7 @@ public class ImportInformationController implements FileReader {
                         agency = createAgency(information);
                         request = createRequest(information);
                         announcement = createAnnoouncement(information);
+                        deal = createDeal(information);
                     }
                 }
                 sc.close();
@@ -466,6 +481,45 @@ public class ImportInformationController implements FileReader {
             }
             return newAnnouncement;
         }
+        public Optional<Deal> createDeal(String[] information){
+            Optional<Deal> newDeal = Optional.empty();
+            String[] informationLocation = information[8].split(",");
+            Agency agency = getAgencyByID(Integer.parseInt(information[25]));
+            switch(information[6]){
+                case "land":
+                case "house":
+                    Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3].trim()));
+                    Property property = getPropertyByLocation(location);
+                    Request request = getRequestByProperty(property);
+                    Announcement announcement = getAnnouncementByRequest(request);
+                    if (getDealRepository() != null) {
+                        try {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            Date dateOfSale = sdf.parse(information[23]);
+                            newDeal = getDealRepository().createDeal(announcement, dateOfSale, agency);
+                        } catch (ParseException e) {
+                            throw new IllegalArgumentException("Invalid Date Format");
+                        }
+                    }
+                    break;
+                case "apartment":
+                    location = new Location(informationLocation[0], informationLocation[4], informationLocation[5], Integer.parseInt(informationLocation[6].trim()));
+                    property = getPropertyByLocation(location);
+                    request = getRequestByProperty(property);
+                    announcement = getAnnouncementByRequest(request);
+                    if (getDealRepository() != null) {
+                        try {
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            Date dateOfSale = sdf.parse(information[23]);
+                            newDeal = getDealRepository().createDeal(announcement, dateOfSale, agency);
+                        } catch (ParseException e) {
+                            throw new IllegalArgumentException("Invalid Date Format");
+                        }
+                    }
+                    break;
+            }
+            return newDeal;
+        }
 
 
         private Employee getAdministratorFromSession() {
@@ -493,6 +547,21 @@ public class ImportInformationController implements FileReader {
             return getTypeOfBusinessRepository().getTypeBusinessbyName(typeBusinessName);
         }
 
+        private Announcement getAnnouncementByRequest(Request request){
+            return getAnnouncementRepository().getAnnouncementByRequest(request);
+        }
+
+        private Agency getAgencyByID(int agencyID){
+            return getAgencyRepository().getAgencyByID(agencyID);
+        }
+
+    public Optional<Deal> getDeal() {
+        return deal;
+    }
+
+    public void setDeal(Optional<Deal> deal) {
+        this.deal = deal;
+    }
 }
 
 

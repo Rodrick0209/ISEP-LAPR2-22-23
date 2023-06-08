@@ -33,6 +33,16 @@ public class AnnouncementRepository implements Serializable {
         return announcementReturn;
     }
 
+    public Announcement getAnnouncementByRequest(Request request){
+        Announcement announcement = null;
+        for (Announcement a: announcements) {
+                if (a.getRequest().equals(request)) {
+                    announcement = a;
+                }
+            }
+        return announcement;
+    }
+
     /**
      * Create announcement optional.
      *

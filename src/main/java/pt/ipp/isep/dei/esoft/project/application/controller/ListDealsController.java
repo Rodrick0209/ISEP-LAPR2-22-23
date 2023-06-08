@@ -1,55 +1,57 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.BubbleSort;
+import pt.ipp.isep.dei.esoft.project.domain.Deal;
 import pt.ipp.isep.dei.esoft.project.domain.FileReader;
 import pt.ipp.isep.dei.esoft.project.domain.SelectionSort;
-import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
+import pt.ipp.isep.dei.esoft.project.repository.DealRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class ListDealsController implements FileReader, BubbleSort, SelectionSort {
 
-    private List<Integer> propertyAreas;
+    private ImportInformationController importInformation;
+    private DealRepository dealRepository;
 
-    @Override
-    public boolean readFile(String fileName) {
-        String file = Files.path + fileName;
-        boolean operationSuccess = false;
-        try{
-            Scanner sc = new Scanner(new File(file));
-            String headLine = sc.nextLine();
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] information = line.split(";");
-                propertyAreas.add(Integer.parseInt(information[7]));
-            }
-            operationSuccess = true;
-        } catch (FileNotFoundException e){
-            System.out.println("File not Found");
+    public ListDealsController(){
+        getDealRepository();
+    }
+
+    public ListDealsController(DealRepository dealRepository){
+        this.dealRepository = dealRepository;
+    }
+
+    public ImportInformationController getImportInformation(){
+        return importInformation;
+    }
+
+    private DealRepository getDealRepository(){
+        if(dealRepository == null){
+            Repositories repositories = Repositories.getInstance();
+            dealRepository = repositories.getDealRepository();
         }
-        return operationSuccess;
+        return dealRepository;
     }
 
 
     /**
-     * Bubblesort algorithm in ascending order.
+     * Bubble sort algorithm in ascending order.
      * Compares adjacent elements and swaps them if they are in the wrong order.
      * Sorts by comparing the number with its right neighbor in the list.
      *
      */
     @Override
-    public  void bubbleSortAscending(){
+    public void bubbleSortAscending(){
+        List<Deal> deals = getDeals();
 
-        for (int i = 0; i < propertyAreas.size() -1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisza
-            for (int j = 0; j < propertyAreas.size() - i -1; j++) { //propertyAreas.length
-                if(propertyAreas.get(j) > propertyAreas.get(j+1)){
-                    int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
-                    propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
-                    propertyAreas.set(j+1, temp); // propertyAreas[j+1] = temp;
+        for (int i = 0; i < deals.size() -1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisza
+            for (int j = 0; j < deals.size() - i -1; j++) { //propertyAreas.length
+                if(deals.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
+                    Deal temp = deals.get(j); // int temp = propertyAreas[j];
+                    deals.set(j, deals.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    deals.set(j+1, temp); // propertyAreas[j+1] = temp;
                 }
             }
         }
@@ -62,12 +64,13 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
      */
     @Override
     public  void bubbleSortDescending(){
-        for (int i = 0; i < propertyAreas.size() -1; i++) {
-            for (int j = 0; j < propertyAreas.size() -i-1 ; j++){
-                if(propertyAreas.get(j) < propertyAreas.get(j+1)){
-                    int temp = propertyAreas.get(j); // int temp = propertyAreas[j];
-                    propertyAreas.set(j, propertyAreas.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
-                    propertyAreas.set(j+1, temp); // propertyAreas[j+1] = temp;
+        List<Deal> deals = getDeals();
+        for (int i = 0; i < deals.size() -1; i++) {
+            for (int j = 0; j < deals.size() -i-1 ; j++){
+                if(deals.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
+                    Deal temp = deals.get(j); // int temp = propertyAreas[j];
+                    deals.set(j, deals.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    deals.set(j+1, temp); // propertyAreas[j+1] = temp;
                 }
             }
         }
@@ -79,17 +82,18 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
      * Does that to the second element and further and until the full list is sorted
      */
     @Override
-    public  void selectionSortAscending() {
-        for (int i = 0; i < propertyAreas.size() - 1; i++) {
+    public void selectionSortAscending() {
+        List<Deal> deals = getDeals();
+        for (int i = 0; i < deals.size() - 1; i++) {
             int minIndex = i;
-            for (int j = i + 1; j < propertyAreas.size(); j++) {
-                if (propertyAreas.get(j) < propertyAreas.get(minIndex)) {
+            for (int j = i + 1; j < deals.size(); j++) {
+                if (deals.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals.get(minIndex).getAnnouncement().getRequest().getProperty().getArea()) {
                     minIndex = j;
                 }
             }
-            int temp = propertyAreas.get(i);
-            propertyAreas.set(i, propertyAreas.get(minIndex));
-            propertyAreas.set(minIndex, temp);
+            Deal temp = deals.get(i);
+            deals.set(i, deals.get(minIndex));
+            deals.set(minIndex, temp);
         }
     }
 
@@ -100,17 +104,26 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
      */
     @Override
     public  void selectionSortDescending() {
-        for (int i = 0; i < propertyAreas.size() - 1; i++) {
+        List<Deal> deals = getDeals();
+        for (int i = 0; i < deals.size() - 1; i++) {
             int maxIndex = i;
-            for (int j = i + 1; j < propertyAreas.size(); j++) {
-                if (propertyAreas.get(j) > propertyAreas.get(maxIndex)) {
+            for (int j = i + 1; j < deals.size(); j++) {
+                if (deals.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals.get(maxIndex).getAnnouncement().getRequest().getProperty().getArea()) {
                     maxIndex = j;
                 }
             }
-            int temp = propertyAreas.get(i);
-            propertyAreas.set(i, propertyAreas.get(maxIndex));
-            propertyAreas.set(maxIndex, temp);
+            Deal temp = deals.get(i);
+            deals.set(i, deals.get(maxIndex));
+            deals.set(maxIndex, temp);
         }
     }
 
+    @Override
+    public boolean readFile(String fileName) {
+        return importInformation.readFile(fileName);
+    }
+
+    public List<Deal> getDeals(){
+        return getDealRepository().getDeals();
+    }
 }
