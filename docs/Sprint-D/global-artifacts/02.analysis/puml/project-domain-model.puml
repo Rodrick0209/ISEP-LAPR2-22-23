@@ -35,16 +35,16 @@ password
 }
 
 class Land{
-
+property
 }
 
 
 class Agency{
-Id
+id
 designation
 location
 phone_number
-email
+email_address
 }
 
 class UnregisteredUser{
@@ -63,10 +63,14 @@ class Property {
     }
 
 class Announcement {
-       property
-         description
-            type_of_comission
-           comissionValue
+       AnnouncementId;
+           request;
+          commission;
+        date;
+          announcementOrdersAvailable
+         announcementOrdersAccepted
+
+
       }
 
 class Apartment{
@@ -89,11 +93,15 @@ class House{
 }
 
 
-class  AgentRequestList{
-request
-
-}
 class Request{
+RequestId;
+ property;
+ typeBusiness;
+ price;
+owner;
+requestDate
+contractDuration
+
 date
 }
 
@@ -106,25 +114,20 @@ zip code
 }
 
 class Owner{
-id/email
-password
+   name;
+     ccNumber;
+   taxNumber;
+     emailAddress;
+ phoneNumber;
 }
 
-class City{
-cityName
+
+class Commission {
+type
+value
 }
 
-class State{
-stateAddress
-}
 
-class Message {
-    property
-    client's name
-    phoneNumber
-    date
-    time slot
-}
 
 class Information {
 file
@@ -134,22 +137,34 @@ class PropertyType{
 name
 }
 
-class TypeOfBusiness{
+class TypeBusiness{
 name
+}
+class Order{
+OrderId;
+ orderValue;
+ orderDate;
+}
+class Client{
+clientId;
+ clientName;
+ phoneNumber;
+ clientEmail;
 }
 
 
+
+
 Agent "1..*" -- "1..*" Request : receives a  >
-Agent "1..*" -- "1" AgentRequestList: selects a request from >
+Agent "1..*" -- "1" Request: selects a request from >
 Property "1"-- "1..*"Announcement: is needed for  >
 Property "1"-- "1"Request: is needed for  >
-Request "1..*"-- "1"AgentRequestList: is needed for  >
-Request "1..*"-- "1..*"Announcement: converts to  >
+
+Request "1..*"-- "1..*"Announcement: can be converted  to  >
 Location "1"--"1" Property : is needed for >
 
 Agent "1" -- "1..*" Announcement : publishes an >
 
-Agent "1" -- "1..*" Announcement : publishes an >
 Agent "1..*" -- "1..*" Agency : works for >
 SystemAdministrator "1" -- "*" Employee : registers an >
 
@@ -168,31 +183,26 @@ UnregisteredUser "1..*" -- "1..*" SystemAdministrator :  can be a >
 
 Owner "1" -- "1..*" Agent : selects an  >
 
-Agency "1" -- "1" AgencyManager : managed by >
-Agency "*" -- "1" AgencyNetworkManager : managed by >
 
-Employee "1" -- "1" AgencyManager : can be >
-Employee "1" -- "1" AgencyNetworkManager : can be >
 Employee "1" -- "1" Agent : can be >
-
-City "1..*" -- "1" State : belongs >
-Location "*" -- "1" City
 
 Agency "1" -- "1..*" Property : lists >
 
 Agent "1" -- "1..*" Property : reservs a property >
 Agent "1" -- "1" Owner :  answer the visit request >
-Owner "1" -- "0..*" Message: send  >
+Agent "1" -- "1" Owner :  sends a message to  >
 Message "0..*" -- "1" Agent :  are received by the >
 Agent "1" -- "1" Property : reserve a >
 SystemAdministrator "1" -- "1" Information: imports >
-Information "1" -- "*" Agency: contains >
-Information "1" -- "*" Property: contains >
 Information "1" -- "*" Owner: contains >
 Property "1" --> "1" PropertyType : have >
-Request "1" --> "1" Property: have >
-Request "1" --> "1" TypeOfBusiness: have >
-Announcement "1" --> "1" Request: have >
-Request "1" --> "1" Agency : have >
+Request "1" --> "1" Property: is needed for  <
+TypeBusiness "1" --> "1" Request: is needed for >
+Request"1" --> "1" Announcement: is needed for  >
+Commission "1"  --> "1"Announcement : is needed for >
+Client "1" -- "1..*" Order : places a >
+Agent "1" -- "1..*" Order : lists>
+Agent "1" -- "1*" Order : accepts or declines >
+
 
 @enduml

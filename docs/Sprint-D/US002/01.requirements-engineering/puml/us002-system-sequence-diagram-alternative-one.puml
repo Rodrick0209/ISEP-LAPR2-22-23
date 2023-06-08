@@ -17,25 +17,61 @@ participant "System" as System
 
 activate Agent
 
-Agent -> System : requests to publish an announcment
+loop While login data is  not valid
+activate System
+System --> Agent : requests login
+deactivate System
+Agent -> System : inserts loign data (id/email , password )
+alt login is not valid
+activate System
+System --> Agent : displays error message
+
+end
+end
 
 activate System
-
-    System --> Agent: asks for property data
-    deactivate System
+loop while the agent declines the announcement submission
 
 
-    Agent -> System :registers  all necessary property data
+System --> Agent: displays agent menu
 
-    activate System
+deactivate System
+ Agent -> System : selects to publish an announcement
 
-    System--> Agent:asks for a  comission
-     deactivate System
-   Agent-> System:sends comission
+ activate System
 
-   activate System
-System --> Agent : informs the agent the announcment  has been published
+ System --> Agent: asks for the type of commission (fixed value  or percentage)
 
+   deactivate System
+    Agent-> System: selects the type of commission.
+
+
+
+      loop While commission is not valid
+      activate System
+      System --> Agent: Asks to insert commission.
+      deactivate System
+
+       Agent -> System:  inserts commission.
+
+       alt commission is not valid
+       activate System
+       System --> Agent : displays error message
+       end
+       end
+
+
+   System --> Agent : displays announcement  data(id,type of commisson,commisson value ,date) and asks for announcement publishment confirmation
+   deactivate System
+
+alt
+  Agent -> System : declines the announcement confirmation
+  activate System
+  end
+  end
+  System --> Agent: displays success message  (informs the agent the announc,ment has been published)
+   deactivate System
+deactivate Agent
 
 
 

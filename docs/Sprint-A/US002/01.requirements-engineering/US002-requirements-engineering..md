@@ -53,7 +53,7 @@ The owner submits the company agency data to the agent through a phone call , wi
 * Typed data:
 
 * Commision
-* agency data for annoucment publishment
+* announcment description
 
 
 * Selected data:

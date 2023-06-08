@@ -10,4 +10,4 @@
 ### 2.2. Other Remarks
 
 This domain model has its basis on the US002 domain model since both user stories have the same user ( the agent ) that does the same action
-(publish an announcment).In this user story the agent does his task in just in a slighly different way,therefore the domain model differenciates from the US002
+(publish an announcment).HoweverIn this user story the agent does his task in just in a slighly different way,therefore the domain model differenciates from the US002

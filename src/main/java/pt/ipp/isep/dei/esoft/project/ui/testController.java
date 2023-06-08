@@ -16,7 +16,7 @@ public class testController {
 
     @FXML
     void buttonPressed(ActionEvent event) {
-        this.label.setText("Ola");
+        this.label.setText("hey");
     }
 
 }

@@ -6,26 +6,23 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Real Estate Agent" as ADM
-participant ":CreateTaskUI" as UI
-participant ":CreateTaskController" as CTRL
+actor "Real Estate Agent" as Agent
+participant ":PublishAnnouncementUI" as UI
+participant ":PublishAnnouncmentController" as CTRL
 participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "propertyRepository:\nPropertyRepository" as PropertyRepository
-participant ":ApplicationSession" as _APP
-participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "announcement\n:Announcement" as ANNOUNCE
+participant "repositories :Repositories" as RPS
+participant "AuthenticationRepository" as AuthenticationRepository
 
-activate ADM
 
-    ADM -> UI : asks to publish a new announcement
+participant "AnnouncemntRepository" as AnnouncemntRepository
+activate Agent
+
+
+    Agent -> UI : displayAndSelectAnnouncments()
 
     activate UI
 
-        UI -> CTRL** : create
+        UI --> CTRL** : new PublishAnnouncementController()
         UI -> CTRL : getProperties()
         activate CTRL
                     CTRL -> RepositorySingleton : getInstance()

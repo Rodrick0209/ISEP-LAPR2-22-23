@@ -1,4 +1,4 @@
-# US 015 - List all booking requests
+# US 015 - to list all booking requests
 
 ## 1. Requirements Engineering
 

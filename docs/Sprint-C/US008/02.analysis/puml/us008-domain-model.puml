@@ -45,9 +45,8 @@ class Property {
 
 class Announcement {
   property
-    description
-           type_of_comission
-           comissionValue
+    type_of_comission
+    comissionValue
   }
 
 Agent "1*" -- "1" Agency : works for  >
