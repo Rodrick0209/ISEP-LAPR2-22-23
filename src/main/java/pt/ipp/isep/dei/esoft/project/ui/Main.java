@@ -6,13 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.commons.math4.legacy.stat.regression.SimpleRegression;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MainMenuUI;
+
+import java.io.IOException;
 
 
 public class Main extends Application  {
 
     public static void main(String[] args) {
-        //launch(args);
+        launch(args);
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();
@@ -26,11 +29,13 @@ public class Main extends Application  {
     }
 
 
-@FXML
-    public void start(Stage stage) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
-        stage.setScene(new Scene(parent));
-        stage.show();
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("src/main/resources/mainMenu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        primaryStage.setTitle("Real Estate USA App");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
 }

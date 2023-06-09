@@ -1,32 +1,40 @@
 package pt.ipp.isep.dei.esoft.project.ui.gui;
 
-import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.application.controller.MainMenuController;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.Objects;
 
-public class MainMenuUI extends Application {
+public class MainMenuUI {
 
-    private final MainMenuController controller = new MainMenuController();
+    @FXML
+    private Button btnShowDevelopmentTeam;
 
-    public static void main(String[] args) {
-        launch(args);
+    @FXML
+    private Button btnLogIn;
+
+    @FXML
+    private Button btnSignUp;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    @FXML
+    public void onLogInButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("src/main/resources/mainMenu.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("src/main/resources/main menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        primaryStage.setTitle("Real Estate USA App");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    private void onLogInButton(ActionEvent actionEvent) throws IOException{
-        controller.onLogInButton(actionEvent);
-    }
 }
+
