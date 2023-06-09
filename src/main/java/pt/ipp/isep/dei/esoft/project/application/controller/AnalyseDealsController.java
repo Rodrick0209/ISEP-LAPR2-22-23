@@ -145,25 +145,37 @@ public class AnalyseDealsController implements FileReader {
         for (int i = 0; i < salePrices.length; i++) {
             this.salePrices[i] = salePrices[i];
         }
-        double[][] propertiesData = new double[5][];
+        double[][] propertiesData = new double[this.salePrices.length][5];
         for (int i = 0; i < propertiesArea.length ; i++) {
-            propertiesData[0][i] = propertiesArea[i];
+            propertiesData[i][0] = propertiesArea[i];
         }
         for (int i = 0; i < propertiesDistanceFromCityCentre.length; i++) {
-            propertiesData[1][i] = propertiesDistanceFromCityCentre[i];
+            propertiesData[i][1] = propertiesDistanceFromCityCentre[i];
         }
         for (int i = 0; i < propertiesNumberOfBedrooms.length; i++) {
-            propertiesData[2][i] = propertiesNumberOfBedrooms[i];
+            propertiesData[i][2] = propertiesNumberOfBedrooms[i];
         }
         for (int i = 0; i < propertiesNumberOfBathrooms.length ; i++) {
-            propertiesData[3][i] = propertiesNumberOfBathrooms[i];
+            propertiesData[i][3] = propertiesNumberOfBathrooms[i];
         }
         for (int i = 0; i < propertiesNumberOfParkingSpaces.length; i++) {
-            propertiesData[4][i] = propertiesNumberOfParkingSpaces[i];
+            propertiesData[i][4] = propertiesNumberOfParkingSpaces[i];
         }
         OLSMultipleLinearRegression regression = new OLSMultipleLinearRegression();
         regression.newSampleData(salePrices, propertiesData);
         double[] parameters = regression.estimateRegressionParameters();
         return new RegressionResults(parameters);
+    }
+
+    public double getEstimatedSalePriceForSimpleRegression(RegressionResults regressionResults, double propertyValue){
+        return regressionResults.getSlope() * propertyValue + regressionResults.getIntercept();
+    }
+
+    public double[] getEstimatedSalePriceForMultiRegression(RegressionResults regressionResults, double[] propertyValues) {
+        double[] salePrices = new double[regressionResults.getParameters().length];
+        for (int i = 0; i < salePrices.length; i++) {
+            salePrices[i] = regressionResults.getParameters()[i] * propertyValues[i];
+        }
+        return salePrices;
     }
 }

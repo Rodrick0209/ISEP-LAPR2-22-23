@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogInContr">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <PasswordField fx:id="passwordField" maxHeight="40.0" maxWidth="220.0" promptText="Enter your password..." translateY="30.0" BorderPane.alignment="CENTER" />
+         </center>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <top>
+            <TextField fx:id="emailField" maxHeight="40.0" maxWidth="220.0" promptText="Enter your email..." translateY="170.0" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
