@@ -1,0 +1,84 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Agent{
+    -String name
+    -String phoneNumber
+}
+
+
+
+class VisitRepository{
+}
+
+class VisitRequest{
+    -message
+    -date
+    -timeSlot
+    -clientName
+    -clientPhoneNumber
+    -agent
+    -property
+}
+
+class VisitRepository{
+    -add(visitRequest)
+}
+
+class ApplicationSession{
+    Repositories()
+    +getInstance() : Repositories
+    +getVisitRepository()
+}
+
+
+class BubbleSort{
+    sort()
+}
+
+class SelectionSort{
+    sort()
+}
+
+class SortingAlgorithm{
+        sort()
+    }
+
+class CreateVisitController{
+    getListVisitRequest(fileName)
+    +ScheduleVisitController(visitRepository, appSession)
+}
+
+class UserSession{
+    +getUserEmail
+}
+
+class ApplicationSession{
+    +getInstance()
+    +getCurrentSession()
+}
+
+class Repositories{
+-Repositories()
++getInstance() : Repositories
++getVisitRepository()
+}
+VisitRepository "1" ->  "0..*" VisitRequest :  has
+SelectionSort -l-> SortingAlgorithm : implements
+BubbleSort -> SortingAlgorithm : implements
+VisitRepository --> SortingAlgorithm: sorting algorithm
+VisitRequest -> Agent : has an
+CreateVisitController -d-> VisitRequest : visit request
+CreateVisitController -> UserSession
+CreateVisitController -l-> ApplicationSession
+CreateVisitController -u-> Repositories : repositories
+
+@enduml
