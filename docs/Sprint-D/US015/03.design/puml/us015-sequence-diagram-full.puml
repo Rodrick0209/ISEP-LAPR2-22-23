@@ -12,13 +12,16 @@ participant "ListVisitRequestController" as CTRL
 participant "Repositories" as Rep
 participant "repositories\n:Repositories" as PLAT
 participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant "visitRequest " as VisReq
 participant ":ApplicationSession" as _APP
 participant "appSession\n:ApplicationSession" as APP
-participant "currentSession\n:UserSession" as SESSAO
+participant "currentSession\n:UserSession" as SESS
 participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
 participant "organization\n:Organization" as ORG
 participant "task\n:Task" as TAREFA
 participant "visitRepository: \nVisitRepository" as VisRep
+participant "visitRequestList\n List<VisitRequest>" as VisReqList
+participant "algorithm: \n SortingAlgorithm" as ALG
 
 activate ADM
 
@@ -69,13 +72,7 @@ activate ADM
 
             deactivate CTRL
 
-            UI --> ADM : Asks to submit the file with the algorithm
-        deactivate UI
 
-    ADM -> UI : submits the file name
-    activate UI
-
-    UI--> UI : Saves the data
 
         UI --> ADM : asks the begin date
     deactivate UI
@@ -94,11 +91,44 @@ activate ADM
      UI--> UI : save the end date
 
     UI --> ADM : asks to confirm the file name and types of algorithm
+    deactivate UI
 
     ADM -> UI : Confirms the file name and types of algorithm
+    activate UI
 
+    UI -> CTRL : getListVisit(fileName, startDate, endDate)
+    activate CTRL
 
-    deactivate UI
+    CTRL -> SESS : getUserEmail()
+    activate SESS
+
+    SESS --> CTRL : getUserEmail
+    deactivate SESS
+
+    CTRL -> VisRep : getListVisitRequest(userEmail, fileName, startDate, endDate)
+    activate VisRep
+
+loop for each visit request
+
+    VisRep -> VisReqList : creates()
+
+    alt visitRequest.getAgentEmail() == userm«Email
+
+    VisRep -> VisReqList : add(visitRequest)
+    activate VisReqList
+    deactivate VisReqList
+
+end
+end
+
+    VisRep -> VisRep : sortList
+
+    VisRep -> VisRep : filterByDate(visitRequestList, beginDate , endDate)
+
+    VisRep -> ALG : sort(beginDate, endDate)
+
+    VisRep --> CTRL : visitRequestList
+
 
 deactivate ADM
 

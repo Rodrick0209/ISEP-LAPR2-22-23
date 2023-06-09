@@ -32,16 +32,22 @@ As an agent, I can publish any sale announcement on the system, for example rece
 > **Question:** According to the Project Description, the agent when selling a agency can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
 > 
 > **Answer:** There is no maximum and the minimum is 0.
+> > **Question:** In this User Story it is requested that "All deals made" are listed. Are these deals just accepted purchase requests, or are declined purchase requests also included?
+> 
+> **Answer:**  A deal takes place when the proposed purchase/renting is accepted.
 
 
 ### 1.3. Acceptance Criteria 
 
-Acceptencre criterias were not mentioned on this user story description.
+* **AC1** An SMS notification should be sent to the owner when the listing of the property becomes available.
+* **AC2** The notification must include the property identification and the date it became available.
+* **AC3** The Notification must include the name and phone number of theresponsible Agent.
 
 ### 1.4. Found out Dependencies 
 
-* There is a dependency on US004 in which the owner submits a request for a agency sale or rent, choosing the responsible agent .
-The owner submits the company agency data to the agent through a phone call , without the agency data the USS02 can't proceed because the agent can't publish any announcement.
+* There is a dependency on US004 and also to the actor : "Owner" in which the owner submits a request for an agency sale or rent, choosing the responsible agent .
+* The agent itself also has to communicate with the owner ,sending him a message when the listing of the property becomes avaible ,hence the owner is also has a dependency on the agent .
+* The agent works as a bridge between the client and the owner.
 
 ### 1.5 Input and Output Data
 
@@ -51,14 +57,14 @@ The owner submits the company agency data to the agent through a phone call , wi
 - Password
 
 *After login*
-- Selection of the land 
-- Announcment descrition
-- Comission
+- Type of Commison 
+- Comission Value
 
 
 **Output Data:**
-* Announcment display
-* Announcment Statement display (publhsed/not published)
+
+* Announcment data (id, type of commission,commission value,date)d display
+* Announcment status dispplayd
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -66,4 +72,4 @@ The owner submits the company agency data to the agent through a phone call , wi
 
 ### 1.7 Other Relevant Remarks
 
-* It is important to know that a person can play different roles on these user stories ,a client and a store manager can also be agents for example.
+* It is important to note that the main objective of the agent is to publish an announcement on the system, as demonstrated in this user story. However, the same actor may have additional requirements or demands in other user stories.

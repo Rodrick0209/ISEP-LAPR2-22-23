@@ -1,4 +1,4 @@
-    @startuml
+@startuml
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
@@ -10,35 +10,55 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
-
-'class Platform {
-'  -description
-'}
-
+class Agency{
+    location
+    emailAddres;
+    phoneNumber
+}
 class Agent {
 id/email
 password
 }
 
+class Location{
+street
+city
+state
+zip code
+}
+
 class Owner {
+id/email
+password
+emailAddres
+
+emailAddress;
+phoneNumber;
 }
 
 class Property {
+   type
    area
    location
     distance_from_the_city_center
 }
 
 class Announcement {
-    description
-    comission
-    property
+announcementId
+     property
   }
+ class Commision {
+     type_of_comission
+     comissionValue
+     }
 
-Owner "1" -- "1..*" Agent : selects >
+Owner "1" -- "1..*" Agent : selects an >
 Owner "1" -- "1..*" Property : owns a >
-Agent "1" -- "1..*" Announcement : publishes >
+Agent "1" -- "1..*" Announcement : publishes an >
 Agent "1..*" -- "1" Agency : works for >
 Property "1"-- "1..*"Announcement: is needed for  >
+Location "1"--"1" Property : is needed for >
+Location "1"--"1" Agency : is needed for >
+Commision "1"--"1" Announcement : is needed for >
+Agent "1"--"1" Owner : sends a message to >
 @enduml

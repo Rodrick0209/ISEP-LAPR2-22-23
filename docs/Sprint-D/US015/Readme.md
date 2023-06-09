@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 015 - to list all booking requests
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

@@ -41,6 +41,8 @@ so that I can post the announcement.
 > **Answer:** There is no maximum and the minimum is 0.
 
 
+
+
 ### 1.3. Acceptance Criteria
 
 * **AC1:** The list of land announcement request should be sorted by the date they were created, with the most recent requests appearing first.
@@ -71,8 +73,8 @@ so that I can post the announcement.
 **Output Data:**
 
 * Agent request list
-* Announcment status dispplay
 * Announcment data display
+* Announcment status dispplay
 
 ### 1.6. System Sequence Diagram (SSD) 
 
@@ -82,4 +84,4 @@ so that I can post the announcement.
 ### 1.7 Other Relevant Remarks
 
 * After The real estate agent receives one (or more) announcment requests,he selects one and accepts it ,than publishing  an announcment into the system.
-* Is important to know that an agent can (in some cases) decline the request if he includes a good reason to justify that.
+* Is important to know that an agent can (in some cases) decline the request if he includes a good reason to justify it.

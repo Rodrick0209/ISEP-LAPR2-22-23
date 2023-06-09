@@ -28,9 +28,8 @@ public class Main extends Application  {
 
 @FXML
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("src/main/java/pt/ipp/isep/dei/esoft/project/ui/fxml/test.fxml"));
-        Parent root = fxmlLoader.load();
-        stage.setScene(new Scene(root));
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
+        stage.setScene(new Scene(parent));
         stage.show();
     }
 

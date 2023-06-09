@@ -71,18 +71,7 @@ public class PublishAnnouncementUI implements Runnable {
      *
      * @return input of the announcement description
      */
-     /*private Date requestDate() {
-        Date input;
-        do{
-            input = Utils.readDateFromConsole("Date of Request: ");
-            if (input == null) {
-                System.out.println("Invalid input. Please try again.");
-            }
-        } while(input == null);
-        return input;
-    }
 
-      */
 
     /**
      *

@@ -1,6 +1,6 @@
 # US 002 - To publish an announcement
 
-[Requirements Engineering](01.requirements-engineering/US002-requirements-engineering..md)
+[Requirements Engineering](/Users/admin/IdeaProjects/PPROG-teste/docs/Sprint-D/US002/01.requirements-engineering/US002-Readme.md)
 
 [Analysis](02.analysis/US002-analysis.md)
 
