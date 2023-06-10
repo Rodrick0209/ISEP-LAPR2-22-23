@@ -1,0 +1,38 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Organization Employee" as Employee
+participant ":System" as System
+
+activate Employee
+
+    Employee -> System : asks to see the booking request
+    activate System
+
+        System --> Employee : shows the booking request
+    deactivate System
+
+opt want to responde to scheduled request
+loop want to responde to scheduled request
+    Employee -> System : selects the email service
+        activate System
+
+        System --> Employee : enter in the email service
+    deactivate System
+
+    Employee -> System : write the response to the user
+    activate System
+
+        System --> Employee : send the response
+    deactivate System
+
+ end
+ end
+
+@enduml

@@ -21,21 +21,32 @@ class Property{
 }
 
 
-class Request {
-       type_of_request
-       owner
+class VisitRequest {
+       message
+       date
+       timeSlot
 }
 class Land{
 
 }
 
 class Agent{
-    userName
+    name
+    email
+    passportCardNumber
+    taxNumber
     phoneNumber
-    é mais fofo que a jeanette
+
 }
 
-class Request_Repository{
+class Client{
+    name
+    passportCardNumber
+    taxNumber
+    email
+    phoneNumber
+}
+class VisitRepository{
 }
 
 class Apartment{
@@ -60,8 +71,8 @@ class House{
 Property -u-> Land: can be a
 Property -l-> Apartment : can be an
 Property -r-> House : can be an
-Request-u->Property : of
-Request_Repository->Request
-Agent -l-> Request : list
-
+VisitRequest-u->Property : of
+VisitRepository-> VisitRequest
+Agent -l-> VisitRequest : submits
+Client -u-> VisitRequest :  do
 @enduml

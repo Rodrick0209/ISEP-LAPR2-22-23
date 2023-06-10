@@ -194,9 +194,12 @@ public class ScheduleVisitUI implements Runnable {
     }
 
     private Date requestDate() {
-        System.out.println("Type the date you want to visit this property (dd/mm/yyyy)");
-        this.date = new Date();
-        return date;
+        System.out.println("Type the date you want to visit this property (yyyy/mm/dd)");
+        //Date date2 =  new Date(2000, 1, 1);
+        int year = Utils.readIntegerFromConsole("year");
+        int month = Utils.readIntegerFromConsole("month");
+        int day = Utils.readIntegerFromConsole("day");
+        return new Date( year,month,day);
     }
 
     private String requestPhoneNumber() {
