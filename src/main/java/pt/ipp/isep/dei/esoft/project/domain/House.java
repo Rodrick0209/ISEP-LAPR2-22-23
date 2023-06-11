@@ -5,7 +5,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
  */
 public class House extends Property {
 
-    private  Owner owner ;
+    private  Owner owner;
     private double area;
     private String location;
 
@@ -40,7 +40,7 @@ public class House extends Property {
      * @param sunExposure          the sun exposure
      * @param owner                the owner
      */
-    public House(PropertyType typeName, double area, Location location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure , Owner owner) {
+    public House(PropertyType typeName, double area, String location, double distance, int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning, boolean existBasement,boolean existinhabitableLoft, String sunExposure , Owner owner) {
         super(typeName, area, location, distance, owner);
         this.typeName = typeName;
         this.area = area;

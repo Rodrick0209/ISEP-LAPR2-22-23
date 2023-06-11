@@ -95,11 +95,6 @@ public class PublishAnnouncementController {
     }
 
 
-
-    private Property getPropertyByLocation(Location propertyLocation){
-        return getPropertyRepository().getPropertyByLocation(propertyLocation);
-    }
-
     private Employee getAgentFromSession() {
         Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
         return new Employee(email.getEmail());

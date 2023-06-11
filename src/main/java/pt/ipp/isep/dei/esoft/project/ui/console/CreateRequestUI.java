@@ -45,16 +45,7 @@ public class CreateRequestUI implements Runnable {
     private boolean existBasement;
     private boolean existinhabitableLoft;
 
-
-
-
-
-
-    private String street;
-    private String city;
-    private String district;
-    private String state;
-    private int zipCode;
+    private String location;
 
     private List<String> photos = new ArrayList<>();
 
@@ -76,7 +67,6 @@ public class CreateRequestUI implements Runnable {
         propertyType = displayAndSelectTypeProperty();
         if ( propertyType.equalsIgnoreCase("Land")){
             requestLandData();
-            Location location = new Location(street, city, state, zipCode);
             Optional<Property> land = controller.createLand(propertyType, area, location, distance);
             if(land.isPresent()){
                 System.out.println("Property created... Redirecting to create request." );
@@ -88,7 +78,6 @@ public class CreateRequestUI implements Runnable {
         }
         if ( propertyType.equalsIgnoreCase("Apartment")){
             requestApartmentData();
-            Location location = new Location(street, city, state, zipCode);
             Optional<Property> apartment = controller.createApartment(propertyType, area, location, distance);
             if(apartment.isPresent()){
                 System.out.println("Property created... Redirecting to create request." );
@@ -99,7 +88,6 @@ public class CreateRequestUI implements Runnable {
         }
         if ( propertyType.equalsIgnoreCase("House")) {
             requestHouseData();
-            Location location = new Location(street, city, state, zipCode);
             Optional<Property> house = controller.createHouse(propertyType, area, location, distance);
             if(house.isPresent()){
                 System.out.println("Property created... Redirecting to create request." );
@@ -112,7 +100,6 @@ public class CreateRequestUI implements Runnable {
     }
 
     private void submitProperty() {
-        Location location = new Location(street, city, state, zipCode);
         if (propertyType.equalsIgnoreCase("Land")) {
             Optional<Property> land = controller.createLand(propertyType, area, location, distance);
             if (land.isPresent()) {
@@ -161,7 +148,7 @@ public class CreateRequestUI implements Runnable {
         System.out.println("Type of request: " + requestType);
         System.out.println("Type of property: " + propertyType);
         System.out.println("Area: " + area);
-        System.out.println("LOCATION:" + street +","+ city+"," + state+"," + zipCode);
+        System.out.println("Location: " + location);
         System.out.println("Distance from the city centre: " + distance);
         System.out.println("Number of bedrooms: "+ n_bedrooms);
         System.out.println("Number of bathrooms: "+ n_bathrooms);
@@ -178,7 +165,7 @@ public class CreateRequestUI implements Runnable {
         System.out.println("Type of request: " + requestType);
         System.out.println("Type of property: " + propertyType);
         System.out.println("Area: " + area);
-        System.out.println("LOCATION:" + street +","+ city+"," + state+"," + zipCode);
+        System.out.println("Location: " + location);
         System.out.println("Distance from the city centre: " + distance);
         System.out.println("Number of bedrooms: "+ n_bedrooms);
         System.out.println("Number of bathrooms: "+ n_bathrooms);
@@ -189,7 +176,7 @@ public class CreateRequestUI implements Runnable {
 
     private void submitData() {
         if(requestType.equalsIgnoreCase("Rent")){
-            Optional<Request> rentRequest = controller.createRentRequest("Rent", new Location(street,city,state,zipCode),rentprice,contractDuraction);
+            Optional<Request> rentRequest = controller.createRentRequest("Rent", location,rentprice,contractDuraction);
         if(rentRequest.isPresent()){
             System.out.println("Request was created");
         }
@@ -204,7 +191,7 @@ public class CreateRequestUI implements Runnable {
         System.out.println("Type of request: " + requestType);
         System.out.println("Type of property: " + propertyType);
         System.out.println("Area: " + area);
-        System.out.println("LOCATION:" + street +","+ city+"," + state+"," + zipCode);
+        System.out.println("Location: " + location);
         System.out.println("Distance from the city centre: " + distance);
     }
 
@@ -228,7 +215,7 @@ public class CreateRequestUI implements Runnable {
 
     private  String displayAndSelectTypeBusiness() {
         List<TypeBusiness> typeBusiness = controller.getTypeBusiness();
-        int answer = Utils.showAndSelectIndex(typeBusiness, "Type of business:");
+        int answer = Utils.showAndSelectIndex(typeBusiness, "Type of business");
 
 
         return typeBusiness.get(answer).getName();
@@ -255,25 +242,17 @@ public class CreateRequestUI implements Runnable {
     }
 
     private void requestLandData(){
-        area = Utils.readIntegerFromConsole("Area in squad meters");
-        street = Utils.readLineFromConsole("Street");
-        city = Utils.readLineFromConsole("City");
-        state = Utils.readLineFromConsole("State");
-        zipCode = Utils.readIntegerFromConsole("Zipcode");
-        distance = Utils.readIntegerFromConsole("Distance from the city center");
+        location = Utils.readLineFromConsole("Location: ");
+        distance = Utils.readIntegerFromConsole("Distance from the city center: ");
         }
 
     private void requestApartmentData() {
-        area = Utils.readIntegerFromConsole("Area in squad meters");
-        street = Utils.readLineFromConsole("Street");
-        city = Utils.readLineFromConsole("City");
-        state = Utils.readLineFromConsole("State");
-        zipCode = Utils.readIntegerFromConsole("Zipcode");
-        distance = Utils.readIntegerFromConsole("Distance from the city center");
-        int n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
-        int n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
-        int n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-        String flag = Utils.readLineFromConsole("central heating ");
+        location = Utils.readLineFromConsole("Location: ");
+        distance = Utils.readIntegerFromConsole("Distance from the city center: ");
+        int n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms: ");
+        int n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms: ");
+        int n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces: ");
+        String flag = Utils.readLineFromConsole("Central heating: ");
         boolean centralHeating;
         if( flag.equalsIgnoreCase("true")){
             centralHeating = true;
@@ -290,23 +269,15 @@ public class CreateRequestUI implements Runnable {
     }
 
     private void requestHouseData() {
-        int area = Utils.readIntegerFromConsole("Area in squad meters");
-        String street = Utils.readLineFromConsole("Street");
-        String city = Utils.readLineFromConsole("City");
-        String state = Utils.readLineFromConsole("State");
-        int zipCode = Utils.readIntegerFromConsole("Zipcode");
-        int distance = Utils.readIntegerFromConsole("Distance from the city center");
-        int n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms");
-        int n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms");
-        int n_parkingSpaces = Utils.readIntegerFromConsole("Number of parking spaces");
-        String flag = Utils.readLineFromConsole("central heating ");
+        location = Utils.readLineFromConsole("Location: ");
+        String flag = Utils.readLineFromConsole("Central heating ");
         boolean centralHeating;
         if( flag.equalsIgnoreCase("true")){
             centralHeating = true;
         }else {
             centralHeating = false;
         }
-        String flag2 = Utils.readLineFromConsole("air conditioning ");
+        String flag2 = Utils.readLineFromConsole("Air Conditioning: ");
         boolean airConditioning;
         if( flag2.equalsIgnoreCase("true")){
             airConditioning = true;

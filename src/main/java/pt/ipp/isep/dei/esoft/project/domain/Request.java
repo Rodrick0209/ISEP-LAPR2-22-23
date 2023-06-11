@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class Request {
     private static int requestIdCounter = 0;
-    private int requestId;
+    private final int requestId;
     private final Property property;
     private final TypeBusiness typeBusiness;
     private final double price;

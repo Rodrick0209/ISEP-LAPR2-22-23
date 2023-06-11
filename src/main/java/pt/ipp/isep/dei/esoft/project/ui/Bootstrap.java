@@ -57,9 +57,9 @@ public class Bootstrap implements Runnable {
         // get agency Proprety
 
         PropertyRepository propertyRepository = Repositories.getInstance().getPropertyRepository();
-        propertyRepository.add(new Land(new PropertyType("Land"), 123, new Location("Lol Street", "Porto", "Portugal", 12345), 23, new Owner("owner@this.app")));
-        propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, new Location("God Street", "Porto", "Portugal", 12345), 23, 3, 3, 1, false, true, new Owner("owner@this.app")));
-        propertyRepository.add(new House(new PropertyType("House"), 90, new Location("Rua Professor Laurentino Monteiro", "Póvoa de Varzim", "Porto", 14490), 37, 3, 2, 1, true, true, true, true, "N", new Owner("owner@this.app")));
+        propertyRepository.add(new Land(new PropertyType("Land"), 123, "Lol Street ,Porto, Portugal, 12345", 23, new Owner("owner@this.app")));
+        propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, "God Street ,Porto, Portugal, 12345", 23, 3, 3, 1, false, true, new Owner("owner@this.app")));
+        propertyRepository.add(new House(new PropertyType("House"), 90, "Rua Professor Laurentino Monteiro, Póvoa de Varzim, Porto, 14490", 37, 3, 2, 1, true, true, true, true, "N", new Owner("owner@this.app")));
     }
 
     private void addRoles() {
