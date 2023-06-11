@@ -8,4 +8,4 @@
 
 ### 2.2. Other Remarks
 
-n/a
+Each Box represents a class ,each association

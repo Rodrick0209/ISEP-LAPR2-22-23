@@ -126,9 +126,13 @@ end
     VisRep -> VisRep : filterByDate(visitRequestList, beginDate , endDate)
 
     VisRep -> ALG : sort(beginDate, endDate)
+    activate ALG
+
+    ALG --> VisRep : visitRequestList
+    deactivate ALG
 
     VisRep --> CTRL : visitRequestList
-
+    deactivate VisRep
 
 deactivate ADM
 

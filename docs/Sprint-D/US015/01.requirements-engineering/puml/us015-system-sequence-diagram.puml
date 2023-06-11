@@ -11,28 +11,28 @@ participant ":System" as System
 
 activate Employee
 
-    Employee -> System : request a list of booking requests for properties managed by him
+    Employee -> System : Request a list of booking requests for properties managed by him
     activate System
 
-        System --> Employee : request the begin date of the requests
+        System --> Employee : Request the begin date of the requests
     deactivate System
 
-    Employee -> System : submit the begin date of the requests
+    Employee -> System : Submit the begin date of the requests
     activate System
 
-        System --> Employee : request the end date of the requests
+        System --> Employee : Request the end date of the requests
     deactivate System
 
-    Employee -> System : submit the end date of the requests
+    Employee -> System : Submit the end date of the requests
     activate System
 
-    System --> Employee : shows sorting algorithm through a configuration file
+    System --> Employee : Shows details and asks confirmation
     deactivate System
 
-    Employee --> System : selects two sorting algorithm
+    Employee --> System : Confirms all data
     activate System
 
-    System --> Employee : shows the list sorted by date(ascending)
+    System --> Employee : Shows the sorted list of all booking requests
     deactivate System
 
 

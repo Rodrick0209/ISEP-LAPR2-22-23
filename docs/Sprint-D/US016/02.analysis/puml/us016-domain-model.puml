@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+
+class Agent{
+    userName
+    phoneNumber
+}
+
+class VisitRequest{
+    property
+    type of business
+    owner
+}
+
+class Owner{
+    userName
+    phoneNumber
+}
+
+class Response {
+    -typeEmail
+    -response
+    -AgentName
+    -AgentPhoneNumber
+}
+
+class TypeEmail{
+    typeEmail
+}
+
+Agent -l-> VisitRequest :  view
+Agent -> Response : write
+Response -> Owner : is sent
+Response -u-> TypeEmail
+@enduml
