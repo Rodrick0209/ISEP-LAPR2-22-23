@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -61,6 +62,7 @@ public class Bootstrap implements Runnable {
         propertyRepository.add(new Apartment(new PropertyType("Apartment"), 123, "God Street ,Porto, Portugal, 12345", 23, 3, 3, 1, false, true, new Owner("owner@this.app")));
         propertyRepository.add(new House(new PropertyType("House"), 90, "Rua Professor Laurentino Monteiro, Póvoa de Varzim, Porto, 14490", 37, 3, 2, 1, true, true, true, true, "N", new Owner("owner@this.app")));
     }
+
 
     private void addRoles() {
         //TODO: add bootstrap Roles here
@@ -120,34 +122,10 @@ public class Bootstrap implements Runnable {
      */
 
     private void addAnnouncementsAndOrders() {
-        OrderController orderController = new OrderController();
-        List<Announcement> announcements = orderController.getAnnouncementsList();
-        RequestRepository requestRepository = Repositories.getInstance().getRequestRepository();
-        List<Request> requests = requestRepository.getRequests();
-
-
-        Email orderClientEmail = new Email("joao@this.app");
-        Client orderClient = new Client("Joao", 919919919, orderClientEmail);
-        Property property2 = new Property(100);
-        Request request1 = requests.get(0);
-        Owner owner2 = new Owner("wisePirates@gmail,com");
-        Request request2 = new Request(property2,new TypeBusiness("Sale"),5000,owner2);
-
-        Order order1 = new Order(5000, orderClient);
-        Order order2 = new Order(3000, orderClient);
-
-        Commission commission1 = new Commission("Fixed,",10000);
-        Commission commission2 = new Commission("Fixed,",4000);
-        Date announcementDate = new Date(125, Calendar.APRIL, 2);
-        Announcement announcement1 = new Announcement(request1, commission1);
-        Announcement announcement2 = new Announcement(null,commission2);
-        //Announcement announcement3 = new Announcement(new Request( new Land ( new PropertyType("Land"), 120, new Location("rua Professor Laurentino Monteiro", "Póvoa", "Porto", 12345) , 1.3, new Owner("owner@this.app")), new TypeBusiness("Sell"), 130000 ,new Owner("owner@this.app")), new Commission("Percentage", 5), announcementDate);
-        //Announcement announcement4 = new Announcement(new Request( new Land ( new PropertyType("Land"), 134, new Location("rua António Costa", "Póvoa", "Porto", 43236) , 2.7, new Owner("owner@this.app")), new TypeBusiness("Sell"), 150000 ,new Owner("owner@this.app")), new Commission("Percentage", 5), announcementDate);
-        announcements.add(announcement1);
-        announcements.add(announcement2);
-        announcement1.addOrder(order1);
-        announcement1.addOrder(order2);
-
+        AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
+        Property property = new Land(new PropertyType("Land"), 123, "Lol Street ,Porto, Portugal, 12345", 23, new Owner("owner@this.app"));
+        Request request = new Request(property, new TypeBusiness("Sale"), 4500, new Owner("owner@this.app"));
+        announcementRepository.add(new Announcement(request, new Commission("Percentage Commission", 12), new Date()));
     }
 
 

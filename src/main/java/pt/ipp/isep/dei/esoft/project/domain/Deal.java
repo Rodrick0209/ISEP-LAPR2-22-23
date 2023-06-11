@@ -27,6 +27,10 @@ public class Deal implements Serializable {
         return announcement.equals(deal.announcement);
     }
 
+    public Agency getAgency() {
+        return agency;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(announcement);

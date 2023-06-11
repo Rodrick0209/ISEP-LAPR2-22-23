@@ -14,7 +14,6 @@ public class House extends Property {
     private int n_bedrooms;
     private int n_bathrooms;
     private int n_parkingSpaces;
-    private String avaiableEquip;
 
     private boolean centralHeating ;
     private boolean airConditioning ;
@@ -112,23 +111,6 @@ public class House extends Property {
         this.n_parkingSpaces = n_parkingSpaces;
     }
 
-    /**
-     * Gets avaiable equip.
-     *
-     * @return the avaiable equip
-     */
-    public String getAvaiableEquip() {
-        return avaiableEquip;
-    }
-
-    /**
-     * Sets avaiable equip.
-     *
-     * @param avaiableEquip the avaiable equip
-     */
-    public void setAvaiableEquip(String avaiableEquip) {
-        this.avaiableEquip = avaiableEquip;
-    }
 
     /**
      * Is central heating boolean.
@@ -223,7 +205,7 @@ public class House extends Property {
     @Override
     public String toString() {
         return   "\nType: " + typeName +
-                 "Area: " + area + "m2"+
+                 "\nArea: " + area + "m2"+
                  "\nLocation: " + location +
                  "\nDistance of city centre: " + distance + "miles" +
                  "\nNumber of bedrooms: " + n_bedrooms +

@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 
-import pt.ipp.isep.dei.esoft.project.ui.console.ImportInformationUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterAgencyUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.RegisterEmployeeUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -24,6 +21,7 @@ public class AdminUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
+        options.add(new MenuItem("List all Properties", new ListPropertiesUI()));
         options.add(new MenuItem("Register Employee", new RegisterEmployeeUI()));
         options.add(new MenuItem("Register Agency", new RegisterAgencyUI()));
         options.add(new MenuItem("Import Information from a legacy system", new ImportInformationUI()));

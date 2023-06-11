@@ -1,0 +1,37 @@
+package pt.ipp.isep.dei.esoft.project.ui.console;
+
+import pt.ipp.isep.dei.esoft.project.application.controller.ListPropertiesController;
+import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListPropertiesUI implements Runnable{
+    private final ListPropertiesController controller = new ListPropertiesController();
+
+    @Override
+    public void run() {
+        showAnnouncements();
+        selectSortingElement();
+    }
+
+    private void showAnnouncements(){
+        List<Announcement> announcements = controller.getAnnouncements();
+        Utils.showList(announcements, "Properties");
+    }
+
+    private void selectSortingElement() {
+        List<Announcement> announcements = controller.getAnnouncements();
+        List<String> sortOptions = new ArrayList<>();
+        sortOptions.add("Most recent date - Oldest date");
+        sortOptions.add("Oldest date - Most recent date");
+        int answer = Utils.showAndSelectIndex(sortOptions, "Select your sorting option: ");
+        if (answer == 1) {
+            announcements = controller.sortAnnouncementsByMostRecentDate();
+        } else {
+            if (answer == 2) announcements = controller.sortAnnouncementByOldestDate();
+        }
+        Utils.showList(announcements, "Properties");
+    }
+}

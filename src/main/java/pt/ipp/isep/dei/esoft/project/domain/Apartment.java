@@ -10,17 +10,16 @@ import java.util.Objects;
 public class Apartment extends Property {
 
     private Owner owner ;
-    private PropertyType typeName;
-    private double area;
-    private String location;
+    private final PropertyType typeName;
+    private final double area;
+    private final String location;
 
-    private double distance;
+    private final double distance;
 
 
     private int n_bedrooms;
     private int n_bathrooms;
     private int n_parkingSpaces;
-    private String avaiableEquip;
 
     private final boolean centralHeating;
     private final boolean airConditioning;
@@ -108,23 +107,6 @@ public class Apartment extends Property {
         this.n_parkingSpaces = n_parkingSpaces;
     }
 
-    /**
-     * Gets avaiable equip.
-     *
-     * @return the avaiable equip
-     */
-    public String getAvaiableEquip() {
-        return avaiableEquip;
-    }
-
-    /**
-     * Sets avaiable equip.
-     *
-     * @param avaiableEquip the avaiable equip
-     */
-    public void setAvaiableEquip(String avaiableEquip) {
-        this.avaiableEquip = avaiableEquip;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -132,12 +114,12 @@ public class Apartment extends Property {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Apartment apartment = (Apartment) o;
-        return n_bedrooms == apartment.n_bedrooms && n_bathrooms == apartment.n_bathrooms && n_parkingSpaces == apartment.n_parkingSpaces && avaiableEquip.equals(apartment.avaiableEquip);
+        return n_bedrooms == apartment.n_bedrooms && n_bathrooms == apartment.n_bathrooms && n_parkingSpaces == apartment.n_parkingSpaces;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), n_bedrooms, n_bathrooms, n_parkingSpaces, avaiableEquip);
+        return Objects.hash(super.hashCode(), n_bedrooms, n_bathrooms, n_parkingSpaces);
     }
 
     /**
@@ -168,7 +150,7 @@ public class Apartment extends Property {
                 "\nNumber of bathrooms: " + n_bathrooms +
                 "\nNumber of parkingSpaces: " + n_parkingSpaces +
                 "\nExistence of central Heating: " + centralHeating +
-                "\nExistence of air Conditioning:" + airConditioning;
+                "\nExistence of air Conditioning: " + airConditioning;
     }
 }
 

@@ -11,13 +11,13 @@ import java.util.*;
 public class Announcement implements Serializable, Comparable<Announcement>{
 
     private static int announcmentIdCounter = 0;
-    private int announcementId;
+    private final int announcementId;
     private Request request;
     private Commission commission;
     private Date date;
-    private List<Order> announcementOrdersAvailable = new ArrayList<>(); // initialize the empty list
+    private final List<Order> announcementOrdersAvailable = new ArrayList<>(); // initialize the empty list
 
-    private List<Order> announcementOrdersAccepted = new ArrayList<>();
+    private final List<Order> announcementOrdersAccepted = new ArrayList<>();
 
     /**
      * Instantiates a new Announcement.
@@ -26,6 +26,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
      * @param commission the commission
      */
     public Announcement(Request request, Commission commission) {
+        this.announcementId = announcmentIdCounter++;
         this.request = request;
         this.commission = commission;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -34,7 +35,6 @@ public class Announcement implements Serializable, Comparable<Announcement>{
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format");
         }
-        this.announcementId = announcmentIdCounter++;
 
     }
 
@@ -186,7 +186,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     @Override
     public String toString() {
         return "\nId:" + announcementId +
-                "\n" + request.getProperty().toString() +
+                "" + request.getProperty().toString() +
                 "\nType of Business:" + request.getTypeBusiness().toString() +
                 "\nDate of announcement: " + date;
     }
@@ -194,6 +194,10 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     @Override
     public int compareTo(Announcement o) {
         return this.getDate().compareTo(o.getDate());
+    }
+
+    public Announcement clone(){
+        return new Announcement(this.request, this.commission, this.date);
     }
 
 }

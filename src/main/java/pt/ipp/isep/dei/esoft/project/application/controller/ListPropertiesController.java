@@ -36,7 +36,7 @@ public class ListPropertiesController {
     }
 
     public List<Announcement> sortAnnouncementByOldestDate(){
-        getAnnouncements().sort(Collections.reverseOrder());
+        Collections.sort(getAnnouncements(), Collections.reverseOrder());
         return getAnnouncements();
     }
 

@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 /**
  * The type Request.
  */
-public class Request {
+public class Request implements Serializable {
     private static int requestIdCounter = 0;
     private final int requestId;
     private final Property property;
@@ -16,32 +17,7 @@ public class Request {
 
     private final Date requestDate;
 
-    private int contractDuration=0;
 
-
-    /**
-     * Gets contract duration.
-     *
-     * @return the contract duration
-     */
-    public int getContractDuration() {
-        return contractDuration;
-    }
-
-    /**
-     * Set contract duration.
-     *
-     * @param contractduration the contractduration
-     */
-    public void setContractDuration(int contractduration){
-        this.contractDuration = contractduration;
-    }
-
-    /**
-     * Gets request date.
-     *
-     * @return the request date
-     */
 //    public Date getRequestDate() {
 //        return requestDate;
 //    }
@@ -93,19 +69,6 @@ public class Request {
         return property;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Request request = (Request) o;
-        return property.equals(request.property);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(property);
-    }
-
     public Request clone(){
         return new Request(property, typeBusiness, price, owner);
     }
@@ -127,6 +90,19 @@ public class Request {
      */
     public TypeBusiness getTypeBusiness() {
         return typeBusiness;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return requestId == request.requestId && Double.compare(request.price, price) == 0 && Objects.equals(property, request.property) && Objects.equals(typeBusiness, request.typeBusiness) && Objects.equals(owner, request.owner) && Objects.equals(requestDate, request.requestDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(requestId, property, typeBusiness, price, owner, requestDate);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
+import pt.ipp.isep.dei.esoft.project.ui.console.ListPropertiesUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.ScheduleVisitUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
@@ -20,6 +21,7 @@ public class ClientUI implements Runnable{
     }
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
+        options.add(new MenuItem("List all Properties", new ListPropertiesUI()));
         options.add(new MenuItem("Schedule a visit", new ScheduleVisitUI()));
 
         int option = 0;

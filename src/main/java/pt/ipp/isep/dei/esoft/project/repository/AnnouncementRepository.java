@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Commission;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Request;
 
 import java.io.Serializable;
@@ -35,8 +36,8 @@ public class AnnouncementRepository implements Serializable {
 
     public Announcement getAnnouncementByRequest(Request request){
         Announcement announcement = null;
-        for (Announcement a: announcements) {
-                if (a.getRequest().equals(request)) {
+        for (Announcement a : announcements) {
+                if (a.getRequest() != null && a.getRequest().equals(request)) {
                     announcement = a;
                 }
             }
@@ -71,12 +72,27 @@ public class AnnouncementRepository implements Serializable {
     public Optional<Announcement> createAnnouncementWithInputDate(Request request, Commission commission, Date date){
         Optional<Announcement> optionalValue = Optional.empty();
 
-        Announcement announcement = new Announcement(request, commission);
+        Announcement announcement = new Announcement(request, commission, date);
 
         if(addAnnouncement(announcement)){
             optionalValue = Optional.of(announcement);
         }
         return optionalValue;
+    }
+
+    public Optional<Announcement> add(Announcement announcement){
+        Optional<Announcement> newAnnouncement = Optional.empty();
+        boolean operationSuccess = false;
+
+        if(validateAnnouncement(announcement)){
+            newAnnouncement = Optional.of(announcement.clone());
+            operationSuccess = announcements.add(newAnnouncement.get());
+        }
+
+        if(!operationSuccess){
+            newAnnouncement = Optional.empty();
+        }
+        return newAnnouncement;
     }
 
     /**
@@ -101,6 +117,6 @@ public class AnnouncementRepository implements Serializable {
      * @return the announcements
      */
     public List<Announcement> getAnnouncements() {
-        return announcements;
+        return List.copyOf(announcements);
     }
 }

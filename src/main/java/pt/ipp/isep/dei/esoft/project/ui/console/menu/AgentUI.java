@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 import pt.ipp.isep.dei.esoft.project.application.controller.OrderController;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRepository;
-import pt.ipp.isep.dei.esoft.project.ui.console.AgentRequestListUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.OrderUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.PublishAnnouncementUI;
-import pt.ipp.isep.dei.esoft.project.ui.console.ShowTextUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -20,6 +17,7 @@ public class AgentUI implements Runnable {
     public void run() {
         //addAnnouncements();
         List<MenuItem> options = new ArrayList<MenuItem>();
+        options.add(new MenuItem("List all Properties", new ListPropertiesUI()));
         options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI())); // us 002 and 009 combined
         options.add(new MenuItem("Manage purchase orders", new OrderUI())); // us 011
         //options.add(new MenuItem("See property requests ",new AgentRequestListUI()));  // us009;

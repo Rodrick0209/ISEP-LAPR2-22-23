@@ -17,4 +17,5 @@ public class Sale extends Request{
         super(property, typeBusiness, price, owner);
     }
 
+
 }
