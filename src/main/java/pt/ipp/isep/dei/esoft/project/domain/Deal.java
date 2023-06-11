@@ -34,5 +34,11 @@ public class Deal implements Serializable {
 
     public Deal clone(){
         return new Deal(this.announcement, this.dateOfSale, this.agency);
+}
+
+    public String toString(){
+        return "" + announcement.toString() +
+               "\nDate of Sale: " + dateOfSale +
+               "\nAgency assigned " + agency.toString();
     }
 }

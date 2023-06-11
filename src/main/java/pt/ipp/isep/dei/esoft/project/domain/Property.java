@@ -11,7 +11,7 @@ public class Property implements Serializable {
 
     private PropertyType type;
     private double area;
-    private Location location;
+    private String location;
 
     private double distance;
 
@@ -121,14 +121,12 @@ public class Property implements Serializable {
      * @param distance the distance
      * @param owner    the owner
      */
-    public Property(PropertyType type, double area, Location location, double distance, Owner owner) {
+    public Property(PropertyType type, double area, String location, double distance, Owner owner) {
         this.type = type;
         this.area = area;
-        if (location == null) {
-            throw new NullPointerException("Invalid address. This must not be null.");
-        }
         this.location = location;
         this.distance = distance;
+        this.owner = owner;
     }
 
 
@@ -141,7 +139,7 @@ public class Property implements Serializable {
      *
      * @return the location
      */
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
@@ -151,8 +149,8 @@ public class Property implements Serializable {
     @Override
     public String toString() {
         return "\nType: " + type +
-                "\nArea: " + area + "m2"+
+                "\nArea: " + area + " m2"+
                 "\nLocation: " + location +
-                "\nDistance of city centre: " + distance + "m" ;
+                "\nDistance of city centre: " + distance + " miles" ;
     }
 }

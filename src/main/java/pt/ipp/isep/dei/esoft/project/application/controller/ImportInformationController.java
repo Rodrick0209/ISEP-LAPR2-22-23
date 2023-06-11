@@ -142,12 +142,12 @@ public class ImportInformationController implements FileReader {
     public ImportInformationController() {
         getOwnerRepository();
         getEmployeeRepository();
-        getOwnerRepository();
         getAuthenticationRepository();
         getRequestRepository();
         getPropertyRepository();
         getPropertyTypeRepository();
         getTypeOfBusinessRepository();
+        getAnnouncementRepository();
         getDealRepository();
     }
 
@@ -288,7 +288,7 @@ public class ImportInformationController implements FileReader {
     }
 
         public boolean readFile(String fileName){
-            String csvFile = Files.path + fileName;
+            String csvFile = Files.pathCSV + fileName;
             boolean operationSuccess = false;
             try {
                 Scanner sc = new Scanner(new File(csvFile));
@@ -306,7 +306,7 @@ public class ImportInformationController implements FileReader {
                         property = createProperty(information);
                         agency = createAgency(information);
                         request = createRequest(information);
-                        announcement = createAnnoouncement(information);
+                        announcement = createAnnouncement(information);
                         deal = createDeal(information);
                     }
                 }
@@ -325,8 +325,8 @@ public class ImportInformationController implements FileReader {
      * @return the optional
      */
     public Optional<Owner> createOwner(String[] information) {
-        if (ownerRepository != null) {
-            return ownerRepository.createOwner(information[1], Integer.parseInt(information[2]), information[3], information[4], information[5]);
+        if (getOwnerRepository() != null) {
+            return getOwnerRepository().createOwner(information[1], Integer.parseInt(information[2]), information[3], information[4], information[5]);
         }
         return Optional.empty();
     }
@@ -354,7 +354,6 @@ public class ImportInformationController implements FileReader {
      */
     public Optional<Property> createProperty(String[] information) {
         double squareFeetConverter = 0.0929;
-        double mileConverter = 1.609;
             Owner owner = getOwnerByEmail(information[4]);
             Optional<Property> newProperty = Optional.empty();
             PropertyType propertyType = getPropertyTypeByName(information[6]);
@@ -363,7 +362,7 @@ public class ImportInformationController implements FileReader {
                 case "land":
                     if (getPropertyRepository() != null) {
                         Location location = new Location(informationLocation[0], informationLocation[1], informationLocation[2], Integer.parseInt(informationLocation[3].trim()));
-                        newProperty = getPropertyRepository().createLand(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]) * mileConverter, owner);
+                        newProperty = getPropertyRepository().createLand(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]), owner);
                     }
                     break;
                 case "apartment":
@@ -371,7 +370,7 @@ public class ImportInformationController implements FileReader {
                         Location location = new Location(informationLocation[0], informationLocation[4], informationLocation[5], Integer.parseInt(informationLocation[6].trim()));
                         boolean centralHeating = information[13].equalsIgnoreCase("Y");
                         boolean airConditioning = information[14].equalsIgnoreCase("Y");
-                        newProperty = getPropertyRepository().createApartment(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]) * mileConverter, Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, owner);
+                        newProperty = getPropertyRepository().createApartment(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, owner);
                     }
                     break;
                 case "house":
@@ -381,7 +380,7 @@ public class ImportInformationController implements FileReader {
                         boolean airConditioning = information[14].equalsIgnoreCase("Y");
                         boolean existenceOfAnBasement = information[15].equalsIgnoreCase("Y");
                         boolean inhabitableLoft = information[16].equalsIgnoreCase("Y");
-                        newProperty = getPropertyRepository().createHouse(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]) * mileConverter, Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, information[17], owner);
+                        newProperty = getPropertyRepository().createHouse(propertyType, Double.parseDouble(information[7]) * squareFeetConverter, location, Double.parseDouble(information[9]), Integer.parseInt(information[10]), Integer.parseInt(information[11]), Integer.parseInt(information[12]), centralHeating, airConditioning, existenceOfAnBasement, inhabitableLoft, information[17], owner);
                     }
                     break;
             }
@@ -443,7 +442,7 @@ public class ImportInformationController implements FileReader {
      * @param information the information
      * @return the optional
      */
-    public Optional<Announcement> createAnnoouncement(String[] information){
+    public Optional<Announcement> createAnnouncement(String[] information){
             Optional<Announcement> newAnnouncement = Optional.empty();
             String[] informationLocation = information[8].split(",");
             switch(information[6]){

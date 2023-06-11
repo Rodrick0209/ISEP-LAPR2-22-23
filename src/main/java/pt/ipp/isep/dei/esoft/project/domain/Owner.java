@@ -13,6 +13,8 @@ public class Owner implements Serializable {
     private final String emailAddress;
     private String phoneNumber;
 
+    private static final String initialInput = "n/a";
+
     /**
      * Instantiates a new Owner.
      *
@@ -26,15 +28,7 @@ public class Owner implements Serializable {
         this.name = name;
         this.ccNumber = ccNumber;
         this.taxNumber = taxNumber;
-        int count = 0;
-        for (char c : emailAddress.toCharArray()) {
-            if (c == '@') {
-                count++;
-            }
-        }
-        if (count != 1) {
-            throw new IllegalArgumentException("Invalid email address");
-        } else this.emailAddress = emailAddress;
+        this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
     }
 
@@ -44,15 +38,7 @@ public class Owner implements Serializable {
      * @param emailAddress the email address
      */
     public Owner(String emailAddress) {
-        int count = 0;
-        for (char c : emailAddress.toCharArray()) {
-            if (c == '@') {
-                count++;
-            }
-        }
-        if (count != 1) {
-            throw new IllegalArgumentException("Invalid email address");
-        } else this.emailAddress = emailAddress;
+        this.emailAddress = emailAddress;
     }
 
     /**
@@ -94,6 +80,6 @@ public class Owner implements Serializable {
 
     @Override
     public String toString() {
-        return "emailAddress:" + emailAddress ;
+        return "Email Address:" + emailAddress ;
     }
 }

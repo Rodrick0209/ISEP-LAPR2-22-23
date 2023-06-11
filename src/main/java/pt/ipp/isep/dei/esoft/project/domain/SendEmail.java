@@ -27,7 +27,7 @@ public class SendEmail {
     public static void sendEmailToEmployee(String email) {
         String to = email;
         String from = "noreply.realestate.isep@gmail.com";
-        String file = path + "emailEmployee.txt";
+        String file = pathTXT + "emailEmployee.txt";
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
@@ -62,7 +62,7 @@ public class SendEmail {
     public static void sendEmailToUser(String email) {
         String to = email;
         String from = "noreply.realestate.isep@gmail.com";
-        String file = path + "emailUser.txt";
+        String file = pathTXT  + "emailUser.txt";
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");

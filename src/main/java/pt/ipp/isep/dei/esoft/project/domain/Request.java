@@ -13,6 +13,7 @@ public class Request {
     private final TypeBusiness typeBusiness;
     private final double price;
     private final Owner owner;
+
     private final Date requestDate;
 
     private int contractDuration=0;
@@ -41,9 +42,9 @@ public class Request {
      *
      * @return the request date
      */
-    public Date getRequestDate() {
-        return requestDate;
-    }
+//    public Date getRequestDate() {
+//        return requestDate;
+//    }
 
     /**
      * Gets owner.
@@ -80,6 +81,7 @@ public class Request {
         this.requestId = requestIdCounter++;
         this.requestDate = new Date();
     }
+
 
 
     /**
@@ -129,9 +131,8 @@ public class Request {
 
     @Override
     public String toString() {  // method to convert into displayable
-        return "\nRequest Id: " + requestId +
-                "\nProperty: " + property +
-                "\nTypeBusiness: " + typeBusiness.toString() +
+        return  "" + property.toString() +
+                "\nType of Business: " + typeBusiness.toString() +
                 "\nPrice: " + price +"$" +
                 "\nOwner: " + owner +
                 "\nRequest Date: " + requestDate;

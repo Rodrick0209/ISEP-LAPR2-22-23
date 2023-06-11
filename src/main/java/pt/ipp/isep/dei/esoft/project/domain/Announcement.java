@@ -3,15 +3,12 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * The type Announcement.
  */
-public class Announcement implements Serializable {
+public class Announcement implements Serializable, Comparable<Announcement>{
 
     private static int announcmentIdCounter = 0;
     private int announcementId;
@@ -68,7 +65,7 @@ public class Announcement implements Serializable {
      */
     public Order getOrderById(int orderId) {
         Order orderToGet = null;
-        for (Order order: this.announcementOrdersAvailable) {
+        for (Order order : this.announcementOrdersAvailable) {
             if (order.getOrderId() == orderId) {
                 orderToGet = order;
             }
@@ -188,12 +185,16 @@ public class Announcement implements Serializable {
 
     @Override
     public String toString() {
-        return "Announcement{" +
-                "announcementId=" + announcementId +
-                ", request=" + request +
-                ", commission=" + commission +
-                ", date=" + date +
-                '}';
+        return "\nId:" + announcementId +
+                "\n" + request.getProperty().toString() +
+                "\nType of Business:" + request.getTypeBusiness().toString() +
+                "\nDate of announcement: " + date;
     }
+
+    @Override
+    public int compareTo(Announcement o) {
+        return this.getDate().compareTo(o.getDate());
+    }
+
 }
 

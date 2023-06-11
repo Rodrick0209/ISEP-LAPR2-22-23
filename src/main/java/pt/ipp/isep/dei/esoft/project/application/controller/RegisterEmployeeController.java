@@ -156,7 +156,7 @@ public class RegisterEmployeeController implements FileWriter{
     }
 
     public void writeFile(String email, String pwd) {
-        String fileName = Files.path + "emailEmployee.txt";
+        String fileName = Files.pathTXT + "emailEmployee.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);
             pw.printf("Welcome to Real State USA! Your password to login in this application is:");

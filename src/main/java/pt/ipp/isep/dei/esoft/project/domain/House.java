@@ -7,7 +7,7 @@ public class House extends Property {
 
     private  Owner owner ;
     private double area;
-    private Location location;
+    private String location;
 
     private double distance;
     private PropertyType typeName;
@@ -225,7 +225,7 @@ public class House extends Property {
         return   "\nType: " + typeName +
                  "Area: " + area + "m2"+
                  "\nLocation: " + location +
-                 "\nDistance of city centre: " + distance + "m" +
+                 "\nDistance of city centre: " + distance + "miles" +
                  "\nNumber of bedrooms: " + n_bedrooms +
                  "\nNumber of bathrooms: " + n_bathrooms +
                  "\nNumber of parkingSpaces: " + n_parkingSpaces +

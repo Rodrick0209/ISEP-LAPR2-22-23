@@ -12,7 +12,7 @@ public class Apartment extends Property {
     private Owner owner ;
     private PropertyType typeName;
     private double area;
-    private Location location;
+    private String location;
 
     private double distance;
 
@@ -40,7 +40,7 @@ public class Apartment extends Property {
      * @param airConditioning the air conditioning
      * @param owner           the owner
      */
-    public Apartment(PropertyType typeName, double area, Location location, double distance , int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning , Owner owner) {
+    public Apartment(PropertyType typeName, double area, String location, double distance , int n_bedrooms, int n_bathrooms, int n_parkingSpaces, boolean centralHeating, boolean airConditioning , Owner owner) {
         super(typeName, area, location, distance, owner);
         this.typeName = typeName;
         this.area = area;
@@ -163,12 +163,12 @@ public class Apartment extends Property {
         return "\nType: " + typeName +
                 "\nArea: " + area + "m2"+
                 "\nLocation: " + location +
-                "\nDistance of city centre: " + distance + "m" +
+                "\nDistance of city centre: " + distance + "miles" +
                 "\nNumber of bedrooms: " + n_bedrooms +
                 "\nNumber of bathrooms: " + n_bathrooms +
                 "\nNumber of parkingSpaces: " + n_parkingSpaces +
                 "\nExistence of central Heating: " + centralHeating +
-                "\nExistence of air Conditioning=" + airConditioning;
+                "\nExistence of air Conditioning:" + airConditioning;
     }
 }
 

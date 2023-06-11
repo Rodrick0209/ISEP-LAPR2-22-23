@@ -89,6 +89,7 @@ public class Bootstrap implements Runnable {
     private void addTypeBusiness() {
         TypeBusinessRepository typeBusinessRepository = Repositories.getInstance().getTypeBusinessRepository();
 
+        typeBusinessRepository.add(new TypeBusiness("Sale"));
         typeBusinessRepository.add(new TypeBusiness("Sell"));
         typeBusinessRepository.add(new TypeBusiness("Rent"));
     }

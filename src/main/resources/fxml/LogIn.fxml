@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.application.controller.LogInController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.LogInUI">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <PasswordField fx:id="passwordField" maxHeight="40.0" maxWidth="220.0" promptText="Enter your password..." translateY="30.0" BorderPane.alignment="CENTER" />
+            <PasswordField fx:id="passwordField" maxHeight="40.0" maxWidth="220.0" promptText="Enter your password..." translateX="100.0" translateY="50.0" BorderPane.alignment="CENTER" />
          </center>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <top>
-            <TextField fx:id="emailField" maxHeight="40.0" maxWidth="220.0" promptText="Enter your email..." translateY="170.0" BorderPane.alignment="CENTER" />
+            <TextField fx:id="emailField" maxHeight="40.0" maxWidth="220.0" promptText="Enter your email..." translateX="100.0" translateY="170.0" BorderPane.alignment="CENTER" />
          </top>
+         <bottom>
+            <Button fx:id="btnLogIn" mnemonicParsing="false" text="Log In" translateY="-40.0" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
+      <Text layoutX="-23.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" translateX="235.0" translateY="25.0">
+         <font>
+            <Font name="Arial Narrow Bold" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Text>
+      <Text layoutX="-13.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" translateX="185.0" translateY="73.0">
+         <font>
+            <Font name="Arial Narrow Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="-155.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Real Estate USA Ltd." translateX="290.0" translateY="-20.0">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

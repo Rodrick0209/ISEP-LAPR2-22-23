@@ -27,7 +27,7 @@ public class AnalyseDealsController implements FileReader {
 
     @Override
     public boolean readFile(String fileName){
-        String file = Files.path + fileName;
+        String file = Files.pathCSV + fileName;
         double squareFeetConverter = 0.0929;
         List<Double> salePrices = new ArrayList<>();
         List<Double> propertiesArea = new ArrayList<>();

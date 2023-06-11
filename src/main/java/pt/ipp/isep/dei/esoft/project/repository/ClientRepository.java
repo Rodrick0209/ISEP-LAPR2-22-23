@@ -21,7 +21,7 @@ public class ClientRepository implements Serializable {
             }
         }
         if(client == null){
-            throw new IllegalArgumentException("Owner not found");
+            throw new IllegalArgumentException("Client not found");
         }
         return client;
     }

@@ -6,6 +6,11 @@ import java.util.List;
  * The type Property.
  */
 public class Land extends Property {
+    private double area;
+    private String location;
+
+    private double distance;
+    private PropertyType typeName;
 
 
     /**
@@ -30,13 +35,16 @@ public class Land extends Property {
      * @param distance     the distance
      * @param owner        the owner
      */
-    public Land(PropertyType propertytype, double area, Location location, double distance, Owner owner) {
+    public Land(PropertyType propertytype, double area, String location, double distance, Owner owner) {
         super(propertytype, area, location, distance , owner);
     }
 
     @Override
     public String toString() {
-        return String.format("%s%n", super.toString());
+        return "\nType: " + typeName +
+                "\nArea: " + area + "m2"+
+                "\nLocation: " + location +
+                "\nDistance of city centre: " + distance + "miles" ;
     }
 
 }
