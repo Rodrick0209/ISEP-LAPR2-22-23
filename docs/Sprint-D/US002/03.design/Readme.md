@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# UUS 002 - To publish an announcement
 
 ## 3. Design - User Story Realization 
 

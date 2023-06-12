@@ -1,4 +1,4 @@
-# US 004 - submit a request
+# US 004 - Submit a request.
 
 ## 2. Analysis
 

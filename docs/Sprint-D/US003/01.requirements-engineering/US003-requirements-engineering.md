@@ -1,4 +1,4 @@
-# US03 - As a system administrator, I want to register a new employee.
+# US 003 - To Register an Employee.
 
 ## 1. Requirements Engineering
 

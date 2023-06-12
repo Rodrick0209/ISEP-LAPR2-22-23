@@ -1,4 +1,4 @@
-# US 006 - To submit a request
+# US 018 - To analyze the deals made and to compare  the properties' sale values with the forecast ones.
 
 ## 1. Requirements Engineering
 

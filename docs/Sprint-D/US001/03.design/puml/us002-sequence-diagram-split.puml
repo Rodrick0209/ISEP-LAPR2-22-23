@@ -1,0 +1,98 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Real Estate Agent" as ADM
+participant ":PublishAnnouncementUI" as UI
+participant ":PublishAnnouncementUIController" as CTRL
+participant "organization\n:Organization" as ORG
+
+activate ADM
+
+    ADM -> UI : asks to publish a new announcement
+
+    activate UI
+
+        UI -> CTRL** : create
+        UI -> CTRL : getProperties()
+        ref over CTRL
+            Get Property List
+
+        end ref
+
+        activate CTRL
+
+            CTRL --> UI : propertyList
+        deactivate CTRL
+
+        UI --> ADM : shows property list and asks to select one
+    deactivate UI
+
+    ADM -> UI : selects a property
+    activate UI
+
+        UI --> ADM : requests data
+    deactivate UI
+
+    ADM -> UI : types announcement data (description)
+    activate UI
+
+        UI --> ADM : requests commission
+    deactivate UI
+
+    ADM -> UI : sets commission
+    activate UI
+
+        UI ---> ADM : shows selected and typed data
+        deactivate UI
+
+    ADM -> UI : submits data
+    activate UI
+
+        UI -> CTRL : createAnnouncement(propertyLocation, description, commission)
+        activate CTRL
+
+            CTRL -> CTRL : getPropertyByLocation(propertyLocation)
+            activate CTRL
+
+                ref over CTRL
+                    Get Property
+
+                end ref
+
+                CTRL --> CTRL : property
+            deactivate CTRL
+
+            CTRL -> CTRL : getAgentFromSession()
+            activate CTRL
+
+                ref over CTRL
+                    Get Agent
+
+                end ref
+                CTRL -> CTRL : agent
+            deactivate CTRL
+
+            CTRL -> ORG: createAnnouncement(property, \ndescription, commission, agent)
+            activate ORG
+
+                ref over ORG
+                    Create Announcement
+
+                end
+
+                ORG --> CTRL : announcement
+            deactivate ORG
+
+            CTRL --> UI: announcement
+            deactivate CTRL
+            UI --> ADM: informs the agent when the \nannouncment has been published
+    deactivate UI
+
+deactivate ADM
+
+@enduml

@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US18 - To analyze the deals made and  to compare the properties' sale values with the forecast ones.
 
 ## 2. Analysis
 

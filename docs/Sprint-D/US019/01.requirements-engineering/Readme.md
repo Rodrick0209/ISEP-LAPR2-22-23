@@ -1,4 +1,4 @@
-# US 006 - To submit a request
+# US 019 - To divide all stores into two subsets to minimize \n the difference of number of properties between the two subsets.
 
 ## 1. Requirements Engineering
 

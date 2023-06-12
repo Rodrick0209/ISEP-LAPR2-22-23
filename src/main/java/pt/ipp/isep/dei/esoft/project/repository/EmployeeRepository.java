@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Agency;
+import pt.ipp.isep.dei.esoft.project.domain.Agent;
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Role;
+import java.util.stream.Collectors;
 
 import java.util.*;
 
@@ -101,4 +103,15 @@ public class EmployeeRepository {
     public List<Employee> getEmployee() {
         return List.copyOf(employees);
     }
+
+
+    /*public List<String> getAgent() {
+        List<Employee> filteredAgents = employees.stream()
+                .filter(name -> name.startsWith("A"))
+                .collect(Collectors.toList());
+
+        System.out.println("Filtered Agents:");
+        for (String  : filteredAgents) {
+            System.out.println(name);
+    }*/
 }

@@ -7,11 +7,12 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.*;
 
 /**
  * The type Schedule visit ui.
- */
+ **/
 public class ScheduleVisitUI implements Runnable {
     private Date date;
     private String message;
@@ -49,16 +50,16 @@ public class ScheduleVisitUI implements Runnable {
     }
 
     private void submitOrNot() {
-            showsData();
+            //showsData();
             boolean answer = Utils.confirm("Confirm Data? (type yes or no)");
             if(answer){
                 submitData();
             } else run();
     }
 
-    private void showsData() {
+    /*private void showsData() {
 
-    }
+    }*/
 
     private void submitData() {
 
@@ -197,9 +198,12 @@ public class ScheduleVisitUI implements Runnable {
         System.out.println("Type the date you want to visit this property (yyyy/mm/dd)");
         //Date date2 =  new Date(2000, 1, 1);
         int year = Utils.readIntegerFromConsole("year");
+        Calendar calendar = Calendar.getInstance();
         int month = Utils.readIntegerFromConsole("month");
+        month = calendar.get(Calendar.MONTH) + 1;
         int day = Utils.readIntegerFromConsole("day");
-        return new Date( year,month,day);
+        Date date = new Date(year, month, day);
+        return date;
     }
 
     private String requestPhoneNumber() {

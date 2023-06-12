@@ -17,9 +17,10 @@ public class AgentUI implements Runnable {
     public void run() {
         //addAnnouncements();
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("List all Properties", new ListPropertiesUI()));
+
         options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI())); // us 002 and 009 combined
         options.add(new MenuItem("Manage purchase orders", new OrderUI())); // us 011
+        options.add(new MenuItem("List all booking requests", new ListVisitRequestUI())); // us 015
         //options.add(new MenuItem("See property requests ",new AgentRequestListUI()));  // us009;
 
 
@@ -33,13 +34,4 @@ public class AgentUI implements Runnable {
         } while (option != -1);
     }
 
-   /* private void addAnnouncements() {
-        OrderController orderController = new OrderController();
-        Announcement announcement1 = new Announcement();
-        Announcement announcement3 = new Announcement();
-        orderController.getAnnouncementsList().add(announcement1);
-    orderController.getAnnouncementsList().add(announcement3);
-
-
-    */
-    }
+}

@@ -1,4 +1,4 @@
-# US 006 - To submit a request
+# US 016 - To respond to the User that scheduled the visit when viewing a booking request.
 
 ## 1. Requirements Engineering
 

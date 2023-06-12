@@ -1,4 +1,4 @@
-# US 017 - As a network manager, I want to list all deals made.
+# US 017 - To List all deals made.
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

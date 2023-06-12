@@ -1,4 +1,4 @@
-# US 004 - Submit a request
+# US 004 - To Submit a request.
 
 ## 3. Design - User Story Realization 
 

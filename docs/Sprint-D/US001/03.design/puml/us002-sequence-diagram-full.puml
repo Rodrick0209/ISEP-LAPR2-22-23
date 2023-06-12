@@ -1,0 +1,176 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Real Estate Agent" as ADM
+participant ":CreateTaskUI" as UI
+participant ":CreateTaskController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "propertyRepository:\nPropertyRepository" as PropertyRepository
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSAO
+participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
+participant "organization\n:Organization" as ORG
+participant "announcement\n:Announcement" as ANNOUNCE
+
+activate ADM
+
+    ADM -> UI : asks to publish a new announcement
+
+    activate UI
+
+        UI -> CTRL** : create
+        UI -> CTRL : getProperties()
+        activate CTRL
+                    CTRL -> RepositorySingleton : getInstance()
+                    activate RepositorySingleton
+
+                        RepositorySingleton --> CTRL: repositories
+                    deactivate RepositorySingleton
+
+                    CTRL -> PLAT : getPropertyRepository()
+                    activate PLAT
+
+                        PLAT --> CTRL: propertyRepository
+                    deactivate PLAT
+
+                    CTRL -> PropertyRepository : getProperties()
+                    activate PropertyRepository
+
+                        PropertyRepository --> CTRL : propertyList
+                    deactivate PropertyRepository
+
+            CTRL --> UI : propertyList
+        deactivate CTRL
+
+        UI --> ADM : shows property list and asks to select one
+    deactivate UI
+
+    ADM -> UI : selects a property
+    activate UI
+
+        UI --> ADM : requests data
+    deactivate UI
+
+    ADM -> UI : types announcement data (description)
+    activate UI
+
+        UI --> ADM : requests commission
+    deactivate UI
+
+    ADM -> UI : sets commission
+    activate UI
+
+        UI ---> ADM : shows selected and typed data
+        deactivate UI
+
+    ADM -> UI : submits data
+    activate UI
+
+        UI -> CTRL : createAnnouncement(propertyLocation, \ndescription, commission)
+        activate CTRL
+
+            CTRL -> CTRL : getPropertyByLocation(propertyLocation)
+            activate CTRL
+
+               CTRL -> RepositorySingleton : getInstance()
+               activate RepositorySingleton
+
+                   RepositorySingleton --> CTRL: repositories
+               deactivate RepositorySingleton
+
+               CTRL -> PLAT : getPropertyRepository()
+               activate PLAT
+
+                   PLAT -> CTRL : propertyRepository
+               deactivate PLAT
+
+               CTRL -> PropertyRepository : getPropertyByLocation(propertyLocation)
+               activate PropertyRepository
+
+                   PropertyRepository --> CTRL : property
+               deactivate PropertyRepository
+
+                CTRL --> CTRL : property
+            deactivate CTRL
+
+            CTRL -> CTRL : getEmployeeFromSession()
+            activate CTRL
+
+                CTRL -> _APP: getInstance()
+                        activate _APP
+                            _APP -> CTRL: appSession
+                        deactivate _APP
+
+                        CTRL -> APP: getCurrentSession()
+                        activate APP
+
+                            APP --> CTRL: currentSession
+                        deactivate APP
+
+                        CTRL -> SESSAO: email = getUserEmail()
+                        activate SESSAO
+
+                            SESSAO --> CTRL: email
+                        deactivate SESSAO
+
+                        CTRL -> PLAT: getOrganizationRepository(email)
+                        activate PLAT
+
+                            PLAT --> CTRL: organizationRepository
+                        deactivate PLAT
+
+                        CTRL -> OrganizationRepository: getOrganizationByUserEmail(email)
+                        activate OrganizationRepository
+
+                            loop [for each organization
+                                OrganizationRepository -> ORG : anyEmployeeHasEmail(email)
+                                activate ORG
+
+                                     ORG --> OrganizationRepository : true/false
+                                deactivate ORG
+                            end
+
+                            OrganizationRepository --> CTRL : organization
+
+                        deactivate OrganizationRepository
+
+                        CTRL -> ORG: getEmployeeByEmail(email)
+                        activate ORG
+
+                            ORG --> CTRL : employee
+                        deactivate ORG
+                CTRL -> CTRL : agent
+            deactivate CTRL
+
+            CTRL -> ORG: createAnnouncement(property, \ndescription, comission, agent)
+            activate ORG
+
+                ORG -> ANNOUNCE**: createAnnouncement(property, \ndescription, commission, agent)
+                        ORG -> ORG: addAnnouncement(announcement)
+
+                        activate ORG
+                            ORG -> ORG: validateAnnouncement(announcement)
+                            activate ORG
+                                ORG --> ORG
+                            deactivate ORG
+
+                            ORG --> ORG
+                        deactivate ORG
+
+                ORG --> CTRL : announcement
+            deactivate ORG
+
+            CTRL --> UI: announcement
+            deactivate CTRL
+            UI --> ADM: informs the agent when the \nannouncment has been published
+    deactivate UI
+
+deactivate ADM
+@enduml

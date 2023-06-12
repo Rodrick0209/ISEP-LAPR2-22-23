@@ -60,6 +60,7 @@ class Property {
     distance_from_the_city_centre
     requested_price
     photos
+    propertyType
     }
 
 class Announcement {
@@ -106,12 +107,7 @@ date
 }
 
 
-class Location{
-street
-city
-state
-zip code
-}
+
 
 class Owner{
    name;
@@ -122,24 +118,9 @@ class Owner{
 }
 
 
-class Commission {
-type
-value
-}
 
 
 
-class Information {
-file
-}
-
-class PropertyType{
-name
-}
-
-class TypeBusiness{
-name
-}
 class Order{
 OrderId;
  orderValue;
@@ -155,19 +136,16 @@ clientId;
 
 
 
+
 Agent "1..*" -- "1..*" Request : receives a  >
 Agent "1..*" -- "1" Request: selects a request from >
 Property "1"-- "1..*"Announcement: is needed for  >
 Property "1"-- "1"Request: is needed for  >
-
 Request "1..*"-- "1..*"Announcement: can be converted  to  >
-Location "1"--"1" Property : is needed for >
-
 Agent "1" -- "1..*" Announcement : publishes an >
 
 Agent "1..*" -- "1..*" Agency : works for >
 SystemAdministrator "1" -- "*" Employee : registers an >
-
 SystemAdministrator "1" -- "*" Employee : defines the role for >
 Owner "1" -- "1..*" Property : owns a >
 Property "1" -- "1" House :  can be a >
@@ -178,9 +156,6 @@ UnregisteredUser "1..*" -- "1::*" Owner :  can be an >
 UnregisteredUser "1..*" -- "1..*" Employee :  can be an >
 UnregisteredUser "1..*" -- "1..*" SystemAdministrator :  can be a >
 
-
-
-
 Owner "1" -- "1..*" Agent : selects an  >
 
 
@@ -188,20 +163,14 @@ Employee "1" -- "1" Agent : can be >
 
 Agency "1" -- "1..*" Property : lists >
 
-Agent "1" -- "1..*" Property : reservs a property >
 Agent "1" -- "1" Owner :  answer the visit request >
 Agent "1" -- "1" Owner :  sends a message to  >
-Message "0..*" -- "1" Agent :  are received by the >
-Agent "1" -- "1" Property : reserve a >
-SystemAdministrator "1" -- "1" Information: imports >
-Information "1" -- "*" Owner: contains >
-Property "1" --> "1" PropertyType : have >
+Agent "1" -- "1" Property : reservs a >
+
 Request "1" --> "1" Property: is needed for  <
-TypeBusiness "1" --> "1" Request: is needed for >
 Request"1" --> "1" Announcement: is needed for  >
-Commission "1"  --> "1"Announcement : is needed for >
 Client "1" -- "1..*" Order : places a >
-Agent "1" -- "1..*" Order : lists>
+Agent "1" -- "1..*" Order : lists >
 Agent "1" -- "1*" Order : accepts or declines >
 
 

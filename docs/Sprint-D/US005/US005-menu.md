@@ -1,4 +1,4 @@
-# US 005 - To register a Store
+# US 005 - To register a Store.
 
 [Requirements Engineering](01.requirements-engineering/US005-requirements-engineering.md)
 

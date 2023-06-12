@@ -1,0 +1,95 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class Owner {
+    -String name
+    -int phoneNumber
+}
+
+
+class Property{
+    - int area
+    - String location
+    - String distanceFromTheCityCentre
+
+    + createAddress(streetm zip_code, state, district(opt), city)
+    + addPhoto(url)
+    + addPhotoList(photography)
+}
+
+class Apartment{
+    - int numberOfBedrooms
+    - int numberOfBathrooms
+    - int numberOfParkingSpaces
+    - boolean avaliableEquipement
+
+    + getAvaliableEquipement()
+}
+
+class House{
+    - boolean existenceOfABasement
+    - boolean inhabitableLoft
+    - String sunExpousere
+}
+
+class Repositories {
+    - Repositories()
+    + getInstance() : Repositories
+}
+
+class PropertyRepository{
+
+}
+
+class OwnerRepository{
+    getUserName()
+    getUserPhonenumber()
+}
+
+class ResponseRepository{
+}
+
+class VisitRepository{
+}
+
+class Agent {
+        -String name
+        -int passport number
+}
+
+class Visit{
+    client's name
+    client's phoneNumber
+    date
+    time slot
+}
+
+class Response{
+    valid or not
+}
+
+Owner "1"-> "0..*" Property : owns >
+Property -> House : can be an >
+Property -l-> Apartment : can be an >
+OwnerRepository -> "0..*" Owner
+Repositories --> OwnerRepository
+Repositories --> PropertyRepository
+PropertyRepository --> Property
+Owner -> Agent : send a message >
+Agent ->Visit : verify the availability
+VisitRepository -l-> Visit
+Repositories --> VisitRepository
+Agent "1"-u-> "1" Response : send a success message if the visit request is valid
+Response "1"-> "1" Owner
+Repositories -r-> ResponseRepository
+ResponseRepository --> Response
+
+@enduml

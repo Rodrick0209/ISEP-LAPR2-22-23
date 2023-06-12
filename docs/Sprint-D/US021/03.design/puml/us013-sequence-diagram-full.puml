@@ -1,0 +1,63 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "AgencyNetworkManager" as Manager
+participant ":ListEmployeesUI" as UI
+participant ":ListEmployeesController" as CTRL
+participant ":Repositories" as Repositories
+participant "EmployeesRepository:\nEmployeesRepository" as EmployeesRepository
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSAO
+participant "AgencyRepository:\nAgencyRepository" as AgencyRepository
+participant "PropertyRepository:\nPropertyRepository" as PropertyRepository
+participant "AgencyNetworkManagerRepository:\nAgencyNetworkManagerRepository" as AgencyNetworkManagerRepository
+
+activate Manager
+Manager -> UI : asks to list all employees
+activate UI
+UI -> CTRL : create()
+activate CTRL
+CTRL -> Repositories : Repositories
+activate Repositories
+Repositories -> AgencyRepository : create()
+Repositories -> EmployeesRepository : create()
+Repositories -> PropertyRepository : create()
+deactivate Repositories
+CTRL -> APP : appSession = getCurrentAppSession()
+activate APP
+APP --> CTRL : appSession
+deactivate APP
+CTRL -> SESSAO : currentSession = getCurrentSession()
+activate SESSAO
+SESSAO --> CTRL : currentSession
+deactivate SESSAO
+CTRL -> AgencyNetworkManagerRepository : manager = getAgencyNetworkManagerByID(currentSession.getUserID())
+activate AgencyNetworkManagerRepository
+AgencyNetworkManagerRepository --> CTRL : manager
+deactivate AgencyNetworkManagerRepository
+CTRL -> AgencyRepository : agenciesList = getAgenciesByNetworkManagerID(manager.getID())
+activate AgencyRepository
+AgencyRepository --> CTRL : agenciesList
+deactivate AgencyRepository
+CTRL -> PropertyRepository : propertiesList = getSortedPropertiesByAgencyID()
+activate PropertyRepository
+PropertyRepository --> CTRL : propertiesList
+deactivate PropertyRepository
+CTRL -> EmployeesRepository : employeesList = getSortedEmployeesByAgencyID()
+activate EmployeesRepository
+EmployeesRepository --> CTRL : employeesList
+deactivate EmployeesRepository
+CTRL -> UI : toString(employeeList)
+deactivate CTRL
+UI --> Manager : toString(employeeList)
+UI --> Manager : informs operation in(succes)
+
+deactivate Manager
+
+@enduml

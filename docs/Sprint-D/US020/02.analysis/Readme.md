@@ -1,4 +1,4 @@
-# US 020 - To accept or reject the appointment request
+# US 020 - To accept or reject an appointment request.
 
 ## 2. Analysis
 

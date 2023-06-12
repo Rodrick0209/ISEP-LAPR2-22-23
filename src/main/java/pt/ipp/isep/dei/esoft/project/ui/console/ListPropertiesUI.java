@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ListPropertiesUI implements Runnable{
+public class    ListPropertiesUI implements Runnable{
     private final ListPropertiesController controller = new ListPropertiesController();
 
     @Override

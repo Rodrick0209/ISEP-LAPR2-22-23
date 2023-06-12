@@ -1,4 +1,4 @@
-# US 005 - To register a Store
+# US 005 - To register a Store.
 
 ## 3. Design - User Story Realization 
 

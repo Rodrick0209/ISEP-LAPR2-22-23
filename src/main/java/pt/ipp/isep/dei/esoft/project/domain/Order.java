@@ -6,7 +6,10 @@ import java.util.Date;
  * The type Order.
  */
 public class Order {
-    private static int orderIdCounter = 0;
+    private static int orderIdCounter = 1;
+
+
+
     private final int orderId;
     private double orderValue;
     private Date orderDate;
@@ -24,8 +27,26 @@ public class Order {
     public Order(double orderValue, Client client) {
         this.orderValue = orderValue;
         this.client = client;
-        this.orderId = orderIdCounter++;
-        orderDate = new Date();
+        this.orderDate = new Date();
+        orderId = orderIdCounter++;
+    }
+
+    public Order(double orderValue, Date orderDate) {
+        this.orderValue = orderValue;
+        this.orderDate = orderDate;
+        orderId = orderIdCounter++;
+    }
+    public Order(double orderValue, Date orderDate, Client client) {
+        this.orderValue = orderValue;
+        this.orderDate = orderDate;
+        this.client = client;
+       orderId = orderIdCounter++;
+    }
+
+    public Order(Client client,Date orderDate) {
+        this.client = client;
+        this.orderDate = orderDate;
+        orderId = orderIdCounter++;
     }
 
     /**

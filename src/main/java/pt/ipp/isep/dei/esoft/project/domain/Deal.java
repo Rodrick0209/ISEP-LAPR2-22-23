@@ -36,6 +36,8 @@ public class Deal implements Serializable {
         return Objects.hash(announcement);
     }
 
+
+
     public Deal clone(){
         return new Deal(this.announcement, this.dateOfSale, this.agency);
 }
