@@ -21,7 +21,7 @@ public class ListVisitRequestUI implements Runnable {
     }
 
     private void configurationFile() {
-        sortingAlgorithm=Repositories.getInstance().getSortingMethod();
+        //sortingAlgorithm=Repositories.getInstance().getSortingMethod();
 
     }
 

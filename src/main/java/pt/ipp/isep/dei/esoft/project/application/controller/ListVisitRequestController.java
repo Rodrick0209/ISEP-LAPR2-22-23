@@ -30,7 +30,7 @@ public class ListVisitRequestController {
     public ListVisitRequestController() {
         getVisitRepository();
         getEmployeeRepository();
-        sortingAlgorithm=Repositories.getInstance().getSortingMethod();
+        //sortingAlgorithm=Repositories.getInstance().getSortingMethod();
     }
 
     private VisitRepository getVisitRepository(){
