@@ -10,7 +10,7 @@ import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import java.util.List;
 
 
-public class ListDealsController implements FileReader {
+public class ListDealsController implements FileReader, BubbleSort, SelectionSort {
 
     private ImportInformationController importInformation;
     private DealRepository dealRepository;
@@ -36,29 +36,65 @@ public class ListDealsController implements FileReader {
     }
 
 
-    /**
-     * Bubble sort algorithm in ascending order.
-     * Compares adjacent elements and swaps them if they are in the wrong order.
-     * Sorts by comparing the number with its right neighbor in the list.
-     *
-     */
+    @Override
+    public void bubbleSortAscending(){
+        List<Deal> deals = getDeals();
+        for (int i = 0; i < deals.size() -1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisza
+            for (int j = 0; j < deals.size() - i -1; j++) { //propertyAreas.length
+                if(deals.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
+                    Deal temp = deals.get(j); // int temp = propertyAreas[j];
+                    deals.set(j, deals.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    deals.set(j+1, temp); // propertyAreas[j+1] = temp;
+                }
+            }
+        }
+    }
 
-    /**
-     * The exact the process but with descending order
-     * Changes if the previous number is smaller than the next.
-     */
+    @Override
+    public  void bubbleSortDescending(){
+        List<Deal> deals = getDeals();
+        for (int i = 0; i < deals.size() -1; i++) {
+            for (int j = 0; j < deals.size() -i-1 ; j++){
+                if(deals.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
+                    Deal temp = deals.get(j); // int temp = propertyAreas[j];
+                    deals.set(j, deals.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    deals.set(j+1, temp); // propertyAreas[j+1] = temp;
+                }
+            }
+        }
+    }
 
-    /**
-     *  Selection sort algorithm in ascending order.
-     * Finds the minimum element from the unsorted part and places it at the beginning.
-     * Does that to the second element and further and until the full list is sorted
-     */
+    @Override
+    public void selectionSortAscending() {
+        List<Deal> deals = getDeals();
+        for (int i = 0; i < deals.size() - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < deals.size(); j++) {
+                if (deals.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals.get(minIndex).getAnnouncement().getRequest().getProperty().getArea()) {
+                    minIndex = j;
+                }
+            }
+            Deal temp = deals.get(i);
+            deals.set(i, deals.get(minIndex));
+            deals.set(minIndex, temp);
+        }
+    }
 
-
-    /**
-     * Exact same process but with  sort algorithm in descending order.
-     * Finds the maximum element from the unsorted part and places it at the beginning.
-     */
+    @Override
+    public  void selectionSortDescending() {
+        List<Deal> deals = getDeals();
+        for (int i = 0; i < deals.size() - 1; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < deals.size(); j++) {
+                if (deals.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals.get(maxIndex).getAnnouncement().getRequest().getProperty().getArea()) {
+                    maxIndex = j;
+                }
+            }
+            Deal temp = deals.get(i);
+            deals.set(i, deals.get(maxIndex));
+            deals.set(maxIndex, temp);
+        }
+    }
 
     @Override
     public boolean readFile(String fileName) {

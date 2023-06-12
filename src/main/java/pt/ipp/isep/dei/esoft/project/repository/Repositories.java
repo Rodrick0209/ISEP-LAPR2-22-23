@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.repository;
 import pt.ipp.isep.dei.esoft.project.domain.BubbleSort;
 import pt.ipp.isep.dei.esoft.project.domain.SelectionSort;
 import pt.ipp.isep.dei.esoft.project.domain.Sort;
+import pt.ipp.isep.dei.esoft.project.domain.Order;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -74,6 +75,10 @@ public class Repositories implements Serializable {
 
     ClientRepository clientRepository = new ClientRepository();
     DealRepository dealRepository = new DealRepository();
+
+
+
+
 
     private Repositories() {
         initProps();
@@ -217,7 +222,7 @@ public class Repositories implements Serializable {
         }
     }
 
-    public Sort getSortingMethod(){
+    /*public Sort getSortingMethod(){
         String property = properties.getProperty("sorting.algorithms", DEFAULT_SORTING_ALGORITHM);
         switch (property.toUpperCase()){
             case "BUBBLE":
@@ -226,7 +231,7 @@ public class Repositories implements Serializable {
             default:
                 return new SelectionSort();
         }
-    }
+    }*/
 
 
     public OrderRepository getOrderRepository() {

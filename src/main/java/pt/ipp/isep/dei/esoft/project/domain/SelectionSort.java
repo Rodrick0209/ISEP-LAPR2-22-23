@@ -6,13 +6,17 @@ import java.util.List;
 /**
  * The interface Selection sort.
  */
-public class SelectionSort implements Sort {
+public interface SelectionSort {
     /**
      * Selection sort ascending.
      *
      * @return
      */
-    @Override
+
+    void selectionSortAscending();
+
+    void selectionSortDescending();
+    /*@Override
     public List<Deal> sortAscending(List<Deal> unsorted) {
         List<Deal> deals = new ArrayList<>(unsorted);
         for (int i = 0; i < deals.size() - 1; i++) {
@@ -27,13 +31,13 @@ public class SelectionSort implements Sort {
             deals.set(minIndex, temp);
         }
         return deals;
-    }
+    }*/
     /**
      * Selection sort descending.
      *
      * @return
      */
-    @Override
+    /*@Override
     public List<Deal> sortDescending(List<Deal> unsorted) {
         List<Deal> deals = new ArrayList<>(unsorted);
         for (int i = 0; i < deals.size() - 1; i++) {
@@ -48,5 +52,5 @@ public class SelectionSort implements Sort {
             deals.set(maxIndex, temp);
         }
         return deals;
-    }
+    }*/
 }

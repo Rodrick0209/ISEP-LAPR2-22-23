@@ -3,9 +3,13 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BubbleSort implements Sort {
+public interface BubbleSort {
+    void bubbleSortAscending();
+    void bubbleSortDescending();
 
-    @Override
+
+
+    /*@Override
     public List<Deal> sortAscending(List<Deal> unsorted) {
         List<Deal> deals = new ArrayList<>(unsorted);
         for (int i = 0; i < deals.size() - 1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisza
@@ -18,9 +22,9 @@ public class BubbleSort implements Sort {
             }
         }
         return deals;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public List<Deal> sortDescending(List<Deal> unsorted) {
         List<Deal> deals = new ArrayList<>(unsorted);
         for (int i = 0; i < deals.size() - 1; i++) {
@@ -33,5 +37,5 @@ public class BubbleSort implements Sort {
             }
         }
         return deals;
-    }
+    }*/
 }
