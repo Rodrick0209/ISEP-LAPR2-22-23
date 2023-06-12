@@ -30,7 +30,7 @@ class Land{
 
 }
 
-class Agent{
+class Employee{
     name
     email
     passportCardNumber
@@ -73,6 +73,6 @@ Property -l-> Apartment : can be an
 Property -r-> House : can be an
 VisitRequest-u->Property : of
 VisitRepository-> VisitRequest
-Agent -l-> VisitRequest : submits
+Employee -l-> VisitRequest : submits
 Client -u-> VisitRequest :  do
 @enduml

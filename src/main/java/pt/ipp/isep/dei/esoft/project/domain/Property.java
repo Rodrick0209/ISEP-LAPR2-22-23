@@ -37,9 +37,8 @@ public class Property implements Serializable {
             throw new IllegalArgumentException("Distance from the city center must be greater than 0.");
         }
         if (photos == null) {
-            throw new IllegalArgumentException("Is necesssary more than 0 photos");
+            throw new IllegalArgumentException("Is necessary more than 0 photos");
         }
-
     }
 
     /**

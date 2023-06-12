@@ -96,6 +96,8 @@ public class Announcement implements Serializable, Comparable<Announcement>{
         return announcementId;
     }
 
+
+
     /**
      * Gets request.
      *

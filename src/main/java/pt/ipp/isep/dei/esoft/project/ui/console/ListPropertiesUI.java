@@ -7,7 +7,7 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListPropertiesUI implements Runnable{
+public class    ListPropertiesUI implements Runnable{
     private final ListPropertiesController controller = new ListPropertiesController();
 
     @Override

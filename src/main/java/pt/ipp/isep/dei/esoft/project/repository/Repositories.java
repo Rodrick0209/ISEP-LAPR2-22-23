@@ -1,8 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.Order;
+import pt.ipp.isep.dei.esoft.project.domain.BubbleSort;
+import pt.ipp.isep.dei.esoft.project.domain.SelectionSort;
+import pt.ipp.isep.dei.esoft.project.domain.Sort;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Properties;
 
 /**
  * The type Repositories.
@@ -10,7 +14,8 @@ import java.io.Serializable;
 public class Repositories implements Serializable {
 
     private static final Repositories instance = new Repositories();
-
+    private static final String DEFAULT_SORTING_ALGORITHM = "MERGE";
+    private Properties properties = new Properties();
 
     /**
      * The Agency repository.
@@ -20,6 +25,8 @@ public class Repositories implements Serializable {
      * The Role repository.
      */
     RoleRepository roleRepository = new RoleRepository();
+
+    OrderRepository orderRepository = new OrderRepository();
 
     /**
      * The Property repository.
@@ -65,12 +72,11 @@ public class Repositories implements Serializable {
      */
     VisitRepository visitRepository =  new VisitRepository();
 
-    OrderRepository orderRepository= new OrderRepository();
-
     ClientRepository clientRepository = new ClientRepository();
     DealRepository dealRepository = new DealRepository();
 
     private Repositories() {
+        initProps();
     }
 
     /**
@@ -81,11 +87,6 @@ public class Repositories implements Serializable {
     public static Repositories getInstance() {
         return instance;
     }
-
-    public OrderRepository getOrderRepository() {
-        return orderRepository;
-    }
-
 
     /**
      * Gets agency repository.
@@ -184,7 +185,7 @@ public class Repositories implements Serializable {
         return dealRepository;
     }
 
-    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, AuthenticationRepository authenticationRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository, ClientRepository clientRepository, DealRepository dealRepository) {
+    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, AuthenticationRepository authenticationRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository, ClientRepository clientRepository, DealRepository dealRepository, OrderRepository orderRepository) {
         this.agencyRepository = agencyRepository;
         this.roleRepository = roleRepository;
         this.propertyRepository = propertyRepository;
@@ -198,10 +199,38 @@ public class Repositories implements Serializable {
         this.visitRepository = visitRepository;
         this.clientRepository = clientRepository;
         this.dealRepository = dealRepository;
+        this.orderRepository = orderRepository;
     }
 
     public Repositories clone(){
-        return new Repositories(agencyRepository, roleRepository, propertyRepository, authenticationRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository);
+        return new Repositories(agencyRepository, roleRepository, propertyRepository, authenticationRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository);
+    }
+
+    private void initProps(){
+        if(properties==null){
+            properties = System.getProperties();
+            try {
+                properties.load(getClass().getClassLoader().getResourceAsStream("application.properties"));
+            } catch (IOException e) {
+                throw new RuntimeException("Could not load the properties!",e);
+            }
+        }
+    }
+
+    public Sort getSortingMethod(){
+        String property = properties.getProperty("sorting.algorithms", DEFAULT_SORTING_ALGORITHM);
+        switch (property.toUpperCase()){
+            case "BUBBLE":
+                return new BubbleSort();
+            case "SELECTION":
+            default:
+                return new SelectionSort();
+        }
+    }
+
+
+    public OrderRepository getOrderRepository() {
+        return orderRepository;
     }
 }
 

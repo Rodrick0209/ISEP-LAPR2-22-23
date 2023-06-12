@@ -1,9 +1,10 @@
-package pt.ipp.isep.dei.esoft.project.ui;
+package pt.ipp.isep.dei.esoft.project.ui.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.ui.MainConsole;
 
 import java.io.IOException;
 
