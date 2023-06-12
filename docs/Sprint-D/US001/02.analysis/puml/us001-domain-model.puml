@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+class Database {
+    proprety_table
+    user_table
+}
+
+class UnregisteredUser {
+}
+
+UnregisteredUser "1" - "0..*" PropertyController : request >
+PropertyController "1." -- "*" Database : request >
+PropertyController "1." -- "*" Database : sends necessary information to <
+
+
+@enduml

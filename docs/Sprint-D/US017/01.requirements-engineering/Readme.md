@@ -1,4 +1,4 @@
-# US 017 - List all deals made.
+# US 017 - To List all deals made.
 
 ## 1. Requirements Engineering
 

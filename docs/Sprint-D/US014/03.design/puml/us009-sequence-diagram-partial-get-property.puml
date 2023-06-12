@@ -1,0 +1,37 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":CreateRequestUI" as UI
+participant ":CreateRequestController" as CTRL
+participant ":Repositories" as Rep
+participant "repositories\n:Repositories" as PLAT
+
+
+
+UI -> CTRL : get a property
+        activate UI
+        activate CTRL
+        CTRL-> Rep : get Instance
+                activate Rep
+                Rep --> CTRL :repositories
+                deactivate Rep
+
+
+        CTRL -> PLAT : getProperty
+                activate PLAT
+                PLAT--> CTRL : propertiesRepositories
+                deactivate PLAT
+
+        CTRL -> PropRep : getPropertyList
+        activate PropRep
+        PropRep --> CTRL: propertylist
+        deactivate PropRep
+
+        CTRL --> UI : propertylist
+        deactivate CTRL
+        deactivate UI
+
+
+@enduml

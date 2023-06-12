@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
+import pt.ipp.isep.dei.esoft.project.domain.Order;
+
 import java.io.Serializable;
 
 /**
@@ -63,6 +65,8 @@ public class Repositories implements Serializable {
      */
     VisitRepository visitRepository =  new VisitRepository();
 
+    OrderRepository orderRepository= new OrderRepository();
+
     ClientRepository clientRepository = new ClientRepository();
     DealRepository dealRepository = new DealRepository();
 
@@ -77,6 +81,11 @@ public class Repositories implements Serializable {
     public static Repositories getInstance() {
         return instance;
     }
+
+    public OrderRepository getOrderRepository() {
+        return orderRepository;
+    }
+
 
     /**
      * Gets agency repository.

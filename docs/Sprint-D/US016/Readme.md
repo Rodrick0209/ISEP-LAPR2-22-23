@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 016 - To respond to the User that scheduled the visit when viewing a booking request.
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

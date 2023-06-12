@@ -1,4 +1,4 @@
-# US 006 - To create a Task 
+# US 007 - To register a new user in the system.
 
 # 4. Tests 
 

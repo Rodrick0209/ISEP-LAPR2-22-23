@@ -1,0 +1,101 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class ApplicationSession
+{
+    + static getInstance()
+    + getCurrentSession()
+}
+
+class UserSession
+{
+    + getUserID()
+}
+
+class Employee {
+    - name
+    - email
+    - position
+    - phone
+}
+
+class AgencyNetworkManager{
+}
+
+class AgencyNetworkManagerRepository{
+    + create(AgencyNetworkManager)
+    + get(AgencyNetworkManager)
+}
+
+class AgencyRepository{
+    + create(Agency)
+    + get(Agency)
+}
+
+class PropertyRepository{
+    + create(Property)
+    + get(Property)
+}
+
+class EmployeesRepository{
+    + create(Employee)
+    + get(Employee)
+}
+
+class ListEmployeesUI{
+}
+
+class ListEmployeesController{
+}
+
+class Agency{
+}
+
+class Property{
+}
+
+AgencyNetworkManager "1" --> "1..*" Agency : manages
+Agency "1" --> "1..*" Property : lists
+Agency "1" --> "1..*" Employee : has
+
+ListEmployeesUI -->  ListEmployeesController
+
+Repositories -> Repositories : instance
+ApplicationSession -> ApplicationSession : instance
+ApplicationSession --> UserSession : currentSession
+UserSession -> UserSession : instance
+
+ListEmployeesController --> Repositories : repositories
+Repositories --> EmployeesRepository
+EmployeesRepository -> EmployeesRepository : instance
+Repositories --> AgencyRepository
+AgencyRepository -> AgencyRepository : instance
+Repositories --> PropertyRepository
+PropertyRepository -> PropertyRepository : instance
+Repositories --> AgencyNetworkManagerRepository
+AgencyNetworkManagerRepository -> AgencyNetworkManagerRepository : instance
+ListEmployeesController --> ApplicationSession : appSession
+ListEmployeesController --> CurrentSession : currentSession
+
+
+@enduml
+
+actor "AgencyNetworkManager" as Manager
+participant ":ListEmployeesUI" as UI
+participant ":ListEmployeesController" as CTRL
+participant ":Repositories" as Repositories
+participant "EmployeesRepository:\nEmployeesRepository" as EmployeesRepository
+participant ":ApplicationSession" as _APP
+participant "appSession\n:ApplicationSession" as APP
+participant "currentSession\n:UserSession" as SESSAO
+participant "AgencyRepository:\nAgencyRepository" as AgencyRepository
+participant "PropertyRepository:\nPropertyRepository" as PropertyRepository
+participant "AgencyNetworkManagerRepository:\nAgencyNetworkManagerRepository" as AgencyNetworkManagerRepository

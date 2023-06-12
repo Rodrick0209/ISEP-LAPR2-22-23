@@ -1,4 +1,4 @@
-# US 007 - To register a new user in the system 
+# US 007 - To register a new user in the system. 
 
 ## 1. Requirements Engineering
 

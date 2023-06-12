@@ -45,6 +45,10 @@ public class Client implements Serializable {
         this.clientEmail = clientEmail;
     }
 
+    public Client(String clientName) {
+        this.clientName = clientName;
+    }
+
     /**
      * Add email.
      *

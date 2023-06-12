@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Order;
 import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.repository.OrderRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.util.List;
@@ -49,8 +50,10 @@ public class OrderController {
      * @param acceptedOrder  the accepted order
      */
     public void acceptOrder(int announcementId, Order acceptedOrder) {
+        OrderRepository orderRepository = Repositories.getInstance().getOrderRepository();
         Announcement announcement = getAnnouncementById(announcementId);
-        announcement.acceptOrder(acceptedOrder);
+
+        orderRepository.acceptOrder(acceptedOrder);
 
     }
 
@@ -61,8 +64,9 @@ public class OrderController {
      * @param declinedOrder  the declined order
      */
     public void declineOrder(int announcementId, Order declinedOrder) {
+        OrderRepository orderRepository =Repositories.getInstance().getOrderRepository();
         Announcement announcement = getAnnouncementById(announcementId);
-        announcement.declineOrder(declinedOrder);
+        orderRepository.declineOrder(declinedOrder);
 
     }
 

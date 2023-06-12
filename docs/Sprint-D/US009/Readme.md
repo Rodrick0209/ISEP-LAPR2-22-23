@@ -1,4 +1,4 @@
-# US 009 - To request a visit to a land
+# US09 - To message the agent to schedule a visit to property of my interest.
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

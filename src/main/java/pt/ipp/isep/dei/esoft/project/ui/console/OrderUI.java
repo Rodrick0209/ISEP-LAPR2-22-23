@@ -3,8 +3,11 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.OrderController;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Order;
+import pt.ipp.isep.dei.esoft.project.repository.OrderRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -32,9 +35,12 @@ public class OrderUI implements Runnable {
      *
      * @param list the list
      */
-    public static void sortByOldestDate(List<Announcement> list) {
-        list.sort(Comparator.comparing(Announcement::getDate));
+    public static List<Announcement> sortByOldestDate(List<Announcement> list) {
+        List<Announcement> announcement = new ArrayList<>(list);
+        announcement.sort(Comparator.comparing(Announcement::getDate));
+        return List.copyOf(announcement);
     }
+
 
     /**
      * Sort by highest price.
@@ -54,10 +60,11 @@ public class OrderUI implements Runnable {
 
     private Order displayAndSelectOrderFromSpecificAnnouncement(int announcementId) {
         Announcement announcement = orderController.getAnnouncementById(announcementId);
-        List<Order> orders = announcement.getAnnouncementOrdersAvailable();
+        OrderRepository orderRepository = Repositories.getInstance().getOrderRepository();
+        List<Order> orders = orderRepository.getAnnouncementOrdersAvailable();
         sortByHighestPrice(orders);
         int answer = Utils.showAndSelectIndex(orders, "Select the order: ");
-        return announcement.getOrderById(answer);
+        return orderRepository.getOrderById(answer);
     }
 
 
@@ -70,4 +77,5 @@ public class OrderUI implements Runnable {
             orderController.declineOrder(announcementId, acceptedOrder);
         }
     }
+
 }

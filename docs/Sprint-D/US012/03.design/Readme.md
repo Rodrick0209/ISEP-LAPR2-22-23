@@ -1,4 +1,4 @@
-# US 012 - To import information from a legacy system
+# US 012 - To import information from a legacy system.
 
 ## 3. Design - User Story Realization 
 

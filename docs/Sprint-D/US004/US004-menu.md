@@ -1,4 +1,4 @@
-# US 004 - To submit a request
+# US 004 - To submit a request.
 
 [Requirements Engineering](01.requirements-engineering/US004-requiremements-engineering.md)
 

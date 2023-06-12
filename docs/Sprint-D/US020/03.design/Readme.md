@@ -1,4 +1,4 @@
-# US 020 - To accept or reject a appointment request 
+# US 020 - To accept or reject an appointment request.
 
 ## 3. Design - User Story Realization 
 

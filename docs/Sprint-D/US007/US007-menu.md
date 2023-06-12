@@ -1,4 +1,4 @@
-# US 007 - To register a new user in the system
+# US 007 - To register a new user in the system.
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 

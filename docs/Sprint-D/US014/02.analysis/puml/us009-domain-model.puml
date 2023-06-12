@@ -1,0 +1,55 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+
+class Owner {
+    name
+    phoneNumber
+}
+
+
+class Message {
+    property
+    client's name
+    phoneNumber
+    date
+    time slot
+}
+
+
+
+class Agent {
+    name
+    email
+    ccNumber
+    taxNumber
+    address
+    phoneNumber
+    role
+    agency
+}
+
+class Property{
+}
+
+
+Owner "1" -- "0..*" Message: send  >
+Message "0..*" -- "1" Agent :  are received by the >
+Agent "1" -- "1" Owner : book a visit with the >
+Message "1" -- "1" Property : to visit a property >
+Agent "1" -- "1" Property : reserve a >
+Agent "1" -- "1" Owner : send a message >
+
+
+@enduml

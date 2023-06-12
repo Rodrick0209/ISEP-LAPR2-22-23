@@ -13,7 +13,6 @@ top to bottom direction
 
 rectangle "Use Cases" as usecases{
     usecase "UC13" as UC13
-    usecase "UC12 - To import information from a legacy system" as UC12
     SystemAdministrator--> UC12
     usecase "UC11" as UC11
     usecase "UC10" as UC10
@@ -45,23 +44,24 @@ rectangle "Use Cases" as usecases{
         usecase "UC7 -  To register a new user in the system" as UC7
           UnregisteredUser --> UC7
 
-         usecase "UC11 - To list and decide (whether to accept or decline)  real estate purchase \nand to send an email to the customer in case of acceptance" as UC11
+         usecase "UC11 - To list and decide (whether to accept or decline) real estate purchase \nand to send an email to the customer in case of acceptance" as UC11
              Agent--> UC11
 
              usecase "UC10 - To place and submit a purchase order \n (with the respective amoount)" as UC10
              Client --> UC10
 
-             usecase "UC9 To request a visit to a land" as UC9
+             usecase "UC9 To message the agent to schedule a visit to property of my interest" as UC9
              Client --> UC9
-             usecase "UC13 To list all employes working on the current network" as UC13
+             usecase "UC12 - To import information from a legacy system" as UC12
+             usecase "UC13 To list all employees working of the network" as UC13
              NetworkManager --> UC13
-             usecase "UC14 To read the appointment requests response \n in order to then accept or decline them" as UC14
+             usecase "UC14 and UC20 To read the appointment requests response \n in order to then accept or decline them" as UC14
              Client --> UC14
 
-             usecase "UC15 to list all booking requests" as UC15
+             usecase "UC15 To list all booking requests" as UC15
              Agent --> UC15
 
-              usecase "UC16 to respond to the User that scheduled the visit when viewing a booking request" as UC16
+              usecase "UC16 To respond to the User that scheduled the visit when viewing a booking request" as UC16
                           Agent --> UC16
 
              usecase "UC17 To list all deals made" as UC17
@@ -70,9 +70,8 @@ rectangle "Use Cases" as usecases{
                           StoreManager --> UC18
               usecase "UC19 To divide all stores into two subsets to minimize \n the difference of number of properties between the two subsets." as UC19
                           NetworkManager --> UC19
-               usecase "UC20 To accept or reject an appointment request" as UC20
-                                       Client --> UC20
-                                       usecase "UC21 To register a visit and an opinion about the business"  as UC21
+
+                                       usecase "UC21 To register visit and an opinion about the business"  as UC21
                                        Agent --> UC21
 
 

@@ -8,4 +8,5 @@
 
 ### 2.2. Other Remarks
 
-Each Box represents a class ,each association
+* Each Box represents a class an important class on the code ,
+each word inside each box reprsents a local instance (variable) of the respective class.

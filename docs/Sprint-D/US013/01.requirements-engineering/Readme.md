@@ -1,4 +1,4 @@
-# US 013 - List all employees working in every store 
+# US 013 - To list all employees working of the network.
 
 ## 1. Requirements Engineering
 

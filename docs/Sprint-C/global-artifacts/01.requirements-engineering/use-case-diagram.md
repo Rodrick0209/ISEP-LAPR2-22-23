@@ -24,8 +24,8 @@ link as suggested below.**
 | US 005 | [Register a store](../../us005/US005-menu.md)                                                                                                          |
 | US 007 | [Register a new user in the system](../../us007/US007-menu.md)                                                                                         |                                                    |
 | US 008 | [Select a request and publish an announcement](../../US008/Readme.md)                                                                                  |
-| US 009 | [Request a visit to a land](../../US009/Readme.md)                                                                                                     |
-| US 010 | [Place and submit a purchase order (with the respective amoount)](../../US010/Readme.md)                                                               | 
+| US 009 | [Request a visit to a land](../../../Sprint-D/US010/Readme.md)                                                                                                     |
+| US 010 | [Place and submit a purchase order (with the respective amoount)](../../../Sprint-D/US010/Readme.md)                                                               | 
 | US 011 | [List and decide (whether to accept or decline) a real estate purchase and send an email to the customer in case of acceptance](../../US011/Readme.md) |
 | US 012 | [Register a store](../../US012/Readme.md)                                                                                                              |
 | US 013 | [Register a store](../../US013/Readme.md)                                                                                                              |

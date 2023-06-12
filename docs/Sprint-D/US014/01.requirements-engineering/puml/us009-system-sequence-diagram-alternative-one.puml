@@ -1,0 +1,73 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Organization Employee" as Employee
+participant ":System" as System
+
+activate Employee
+
+
+    Employee -> System : request a list of available properties sorted\n from the most recent entries to the oldest
+    activate System
+
+        System --> Employee : shows the list of available properties
+    deactivate System
+
+    Employee -> System :  choose a property
+    activate System
+
+        System --> Employee : requests property visit data (client's name,\n phone number , preferred date and time slot)
+    deactivate System
+
+    Employee -> System : types requested data
+    activate System
+
+opt the requests don't overlap each other
+
+        System --> Employee : asks to confirm data
+    deactivate System
+
+    Employee -> System : confirm data
+    activate System
+
+opt request is acecpted
+    System --> Employee :sends a sucess message
+end
+end
+
+opt requests overlap each other
+
+    System --> Employee : send a message to choose another data
+    deactivate System
+
+    Employee -> System : types a different time slot / date
+    activate System
+
+    System --> Employee : asks to confirm data
+    deactivate System
+
+    opt requests don't overlap and request is acecpted
+        Employee -> System : confirm data
+            activate System
+
+        System --> Employee :sends a sucess message
+            deactivate System
+    end
+
+end
+
+    deactivate System
+
+     Employee -> System : confirm data
+
+     activate System
+
+            System --> Employee : display operation sucess
+     deactivate System
+@enduml
