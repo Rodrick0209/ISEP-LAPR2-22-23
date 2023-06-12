@@ -37,7 +37,7 @@ public class AnnouncementRepository implements Serializable {
     public Announcement getAnnouncementByRequest(Request request){
         Announcement announcement = null;
         for (Announcement a : announcements) {
-                if (a.getRequest() != null && a.getRequest().equals(request)) {
+                if (a.getRequest().equals(request)) {
                     announcement = a;
                 }
             }
@@ -119,4 +119,6 @@ public class AnnouncementRepository implements Serializable {
     public List<Announcement> getAnnouncements() {
         return List.copyOf(announcements);
     }
+
+
 }

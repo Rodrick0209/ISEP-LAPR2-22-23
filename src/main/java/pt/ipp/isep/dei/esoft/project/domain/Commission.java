@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
+
 /**
  * The type Commission.
  */
-public class Commission {
+public class Commission implements Serializable {
 
     private String type;
     private double value;

@@ -30,15 +30,6 @@ public class ListPropertiesController {
         return getAnnouncementRepository().getAnnouncements();
     }
 
-    public List<Announcement> sortAnnouncementsByMostRecentDate(){
-        Collections.sort(getAnnouncements());
-        return getAnnouncements();
-    }
-
-    public List<Announcement> sortAnnouncementByOldestDate(){
-        Collections.sort(getAnnouncements(), Collections.reverseOrder());
-        return getAnnouncements();
-    }
 
 }
 
