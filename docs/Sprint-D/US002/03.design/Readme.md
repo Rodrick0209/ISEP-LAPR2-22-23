@@ -5,19 +5,18 @@
 ### 3.1. Rationale
 
 
-| Interaction ID | Question: Which class is responsible for...  | Answer                        | Justification (with patterns)                                                                                 |
-|:---------------|:---------------------------------------------|:------------------------------|:--------------------------------------------------------------------------------------------------------------|
-| Step 1  		     | 	... requesting login of the US?             | AgentUI                       | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
-| 		             | 	... validating the login of the Us?         | PublishAnnouncementController | Controller                                                                                                    |
-| 			  		        | 	... instantiating a new Announcement?       | Organization                  | Creator (Rule 1): in the DM Organization has a Announcement.                                                  |
-| 			  		        | ... knowing the user using the system?       | UserSession                   | IE: cf. A&A component documentation.                                                                          |
-| 			  		        | 							                                      | Organization                  | IE: knows/has its own Agents                                                                                  |
-| 			  		        | 							                                      | Agent                         | IE: knows its own data (e.g. email)                                                                           |
-| Step 2  		     | 	...knowing the properties to show? 						   | System                        | IE: IE: Properties are defined by the Owners, who sent a request to an Agent.                                 |
-| Step 3 		      | 	...saving the seletcted agency?             | Announcement                  | IE: object created in step 1 is classified in one Property.                                                   |
-| Step 4  		     | 	                                            |                               |                                                                                                               |
-| Step 5	        | 	... saving the inputted data?               | Announcement                  | IE: objects created in step 1 has its own data.                                                               |
-| 	              | 	... validating all data (local validation)? | Annoncement                   | IE: owns its data.                                                                                            | 
+| Interaction ID | Question: Which class is responsible for... | Answer                        | Justification (with patterns)                                                                                 |
+|:---------------|:--------------------------------------------|:------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Step 1  		     | 	... requesting login of the US?            | AgentUI                       | Pure Fabrication: there is no reason to assign this responsibility to any existing class in the Domain Model. |
+| 		             | 	... validating the login of the Us?        | PublishAnnouncementController | Controller                                                                                                    |
+| 			  		        | 	... instantiating a new Announcement?      | Organization                  | Creator (Rule 1): in the DM Organization has a Announcement.                                                  |
+| 			  		        | ... knowing the user using the system?      | UserSession                   | IE: cf. A&A component documentation.                                                                          |
+| 			  		        | 							                                     | Organization                  | IE: knows/has its own Agents                                                                                  |
+| 			  		        | 							                                     | Agent                         | IE: knows its own data (e.g. email)                                                                           |
+| Step 3 		      | 	...saving the seletcted agency?            | Announcement                  | IE: object created in step 1 is classified in one Property.                                                   |
+| Step 4  		     | 	                                           |                               |                                                                                                               |
+| Step 5	        | 	... saving the inputted data?              | AnnouncementRepository        | IE: objects created in step 1 has its own data.                                                               |
+| 	              | 	... validating the commision               | PublishAnnouncmentUI          | IE: owns its data.                                                                                            | 
 
 | Step 6  		     | 	... informing that the announcement is published? | PublishAnnouncementUI         | IE: is responsible for user interactions.                                                                     | 
 

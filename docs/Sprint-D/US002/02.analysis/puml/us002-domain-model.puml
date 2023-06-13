@@ -10,55 +10,55 @@ skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-class Agency{
-    location
-    emailAddres;
-    phoneNumber
-}
 class Agent {
+name
+phoneNumber
+role;
 id/email
 password
 }
+class Owner{
+name
+phoneNumber
 
-class Location{
-street
-city
-state
-zip code
+
+}
+class Message{
+agent
+owner
+property
+
 }
 
-class Owner {
-id/email
-password
-emailAddres
 
-emailAddress;
-phoneNumber;
-}
+
+
+
 
 class Property {
    type
    area
    location
     distance_from_the_city_center
+    propertyId
+
 }
 
 class Announcement {
 announcementId
-     property
+commision
+property
   }
  class Commision {
      type_of_comission
      comissionValue
      }
 
-Owner "1" -- "1..*" Agent : selects an >
 Owner "1" -- "1..*" Property : owns a >
 Agent "1" -- "1..*" Announcement : publishes an >
-Agent "1..*" -- "1" Agency : works for >
-Property "1"-- "1..*"Announcement: is a requirement for  >
-Location "1"--"1" Property : is a requirement for >
-Location "1"--"1" Agency : is requirement for >
-Commision "1"--"1" Announcement : is requierment  for >
-Agent "1"--"1" Owner : sends a message to >
+Announcement "1"-- "1..*" Property: contains >
+Announcement"1"--"1" Commision : needs >
+Owner "1"--"1" Message : receives a >
+Agent "1"--"1" Message : sends a
+Message "1"--"1" Property : has information of >
 @enduml
