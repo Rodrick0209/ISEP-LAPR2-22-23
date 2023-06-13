@@ -20,12 +20,7 @@ id/email
 password
 }
 
-class Location{
-street
-city
-state
-zip code
-}
+
 
 class Owner {
 id/email
@@ -55,10 +50,8 @@ announcementId
 Owner "1" -- "1..*" Agent : selects an >
 Owner "1" -- "1..*" Property : owns a >
 Agent "1" -- "1..*" Announcement : publishes an >
-Agent "1..*" -- "1" Agency : works for >
-Property "1"-- "1..*"Announcement: is a requirement for  >
-Location "1"--"1" Property : is a requirement for >
-Location "1"--"1" Agency : is requirement for >
+Agent "1..*" -- "1" Agency : has <
+Property "1"-- "1..*"Announcement: is a logically part of  >
 Commision "1"--"1" Announcement : is requierment  for >
 Agent "1"--"1" Owner : sends a message to >
 @enduml

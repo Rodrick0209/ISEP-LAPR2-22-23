@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Main-Class: pt.ipp.isep.dei.esoft.project.ui.MainConsole
+Class-Path: AuthLib-1.0-20220308.131530-2.jar commons-math4-core-4.0-bet
+ a1.jar commons-math4-legacy-4.0-beta1.jar commons-math4-neuralnet-4.0-b
+ eta1.jar commons-math4-transform-4.0-beta1.jar commons-math4-legacy-cor
+ e-4.0-beta1.jar commons-math4-core-4.0-beta1-javadoc.jar commons-math4-
+ core-4.0-beta1-sources.jar commons-math4-legacy-4.0-beta1-javadoc.jar c
+ ommons-math4-legacy-4.0-beta1-sources.jar commons-math4-legacy-exceptio
+ n-4.0-beta1.jar commons-math4-neuralnet-4.0-beta1-javadoc.jar commons-m
+ ath4-neuralnet-4.0-beta1-sources.jar commons-math4-transform-4.0-beta1-
+ javadoc.jar commons-math4-transform-4.0-beta1-sources.jar commons-math4
+ -legacy-core-4.0-beta1-javadoc.jar commons-math4-legacy-core-4.0-beta1-
+ sources.jar commons-math4-legacy-exception-4.0-beta1-javadoc.jar common
+ s-math4-legacy-exception-4.0-beta1-sources.jar bytes-1.3.0.jar javafx-s
+ wt.jar javafx.web.jar javafx.base.jar javafx.fxml.jar javafx.media.jar 
+ javafx.swing.jar javafx.controls.jar javafx.graphics.jar mail.jar bcryp
+ t-0.9.0.jar commons-lang3-3.12.0.jar
+
