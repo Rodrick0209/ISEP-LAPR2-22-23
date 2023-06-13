@@ -16,7 +16,7 @@ public class Repositories implements Serializable {
 
     private static final Repositories instance = new Repositories();
     private static final String DEFAULT_SORTING_ALGORITHM = "MERGE";
-    private Properties properties = new Properties();
+   // private Properties properties = new Properties();
 
     /**
      * The Agency repository.
@@ -37,7 +37,7 @@ public class Repositories implements Serializable {
     /**
      * The Authentication repository.
      */
-    AuthenticationRepository authenticationRepository = new AuthenticationRepository();
+    transient AuthenticationRepository authenticationRepository = new AuthenticationRepository();
 
     /**
      * The Property type repository.
@@ -83,7 +83,7 @@ public class Repositories implements Serializable {
 
 
     private Repositories() {
-        initProps();
+        //initProps();
     }
 
     /**
@@ -215,16 +215,16 @@ public class Repositories implements Serializable {
         return new Repositories(agencyRepository, roleRepository, propertyRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository, userRepository);
     }
 
-    private void initProps(){
-        if(properties==null){
-            properties = System.getProperties();
-            try {
-                properties.load(getClass().getClassLoader().getResourceAsStream("application.properties"));
-            } catch (IOException e) {
-                throw new RuntimeException("Could not load the properties!",e);
-            }
-        }
-    }
+//    private void initProps(){
+//        if(properties==null){
+//            properties = System.getProperties();
+//            try {
+//                properties.load(getClass().getClassLoader().getResourceAsStream("application.properties"));
+//            } catch (IOException e) {
+//                throw new RuntimeException("Could not load the properties!",e);
+//            }
+//        }
+//    }
 
     /*public Sort getSortingMethod(){
         String property = properties.getProperty("sorting.algorithms", DEFAULT_SORTING_ALGORITHM);

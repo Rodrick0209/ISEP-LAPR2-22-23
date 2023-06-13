@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * The type Order.
  */
-public class Order {
+public class Order implements Serializable {
     private static int orderIdCounter = 1;
 
 

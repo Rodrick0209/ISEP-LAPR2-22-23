@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * The type Authentication repository.
  */
-public class AuthenticationRepository implements Serializable {
+public class AuthenticationRepository {
     private final AuthFacade authenticationFacade = new AuthFacade();
 
     /**
