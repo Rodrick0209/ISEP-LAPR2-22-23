@@ -242,12 +242,12 @@ public class CreateRequestUI implements Runnable {
     }
 
     private void requestLandData(){
-        location = Utils.readLineFromConsole("Location: ");
+        location = Utils.readLineFromConsole("Location (street, city, state, zipcode): ");
         distance = Utils.readIntegerFromConsole("Distance from the city center: ");
         }
 
     private void requestApartmentData() {
-        location = Utils.readLineFromConsole("Location: ");
+        location = Utils.readLineFromConsole("Location (street, city, state, zipcode): ");
         distance = Utils.readIntegerFromConsole("Distance from the city center: ");
         int n_bedrooms = Utils.readIntegerFromConsole("Number of bedrooms: ");
         int n_bathrooms = Utils.readIntegerFromConsole("Number of bathrooms: ");
@@ -269,7 +269,7 @@ public class CreateRequestUI implements Runnable {
     }
 
     private void requestHouseData() {
-        location = Utils.readLineFromConsole("Location: ");
+        location = Utils.readLineFromConsole("Location (street, city, state, zipcode): ");
         String flag = Utils.readLineFromConsole("Central heating ");
         boolean centralHeating;
         if( flag.equalsIgnoreCase("true")){

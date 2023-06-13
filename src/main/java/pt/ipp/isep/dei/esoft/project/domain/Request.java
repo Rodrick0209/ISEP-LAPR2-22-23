@@ -107,8 +107,8 @@ public class Request implements Serializable {
 
     @Override
     public String toString() {  // method to convert into displayable
-        return  "" + property.toString() +
-                "\nType of Business: " + typeBusiness.toString() +
+        return  "Property: "  + property +
+                "\nType of Business: " + typeBusiness +
                 "\nPrice: " + price +"$" +
                 "\nOwner: " + owner +
                 "\nRequest Date: " + requestDate;
