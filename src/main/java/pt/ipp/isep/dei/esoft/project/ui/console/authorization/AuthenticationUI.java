@@ -1,6 +1,9 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.authorization;
 
 
+
+
+
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.*;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -10,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import javafx.scene.text.Font;
 
 /**
  * The type Authentication ui.
@@ -17,7 +21,9 @@ import java.util.Objects;
  * @author Paulo Maio pam@isep.ipp.pt
  */
 public class AuthenticationUI implements Runnable {
-    private final AuthenticationController ctrl;
+
+
+    private AuthenticationController ctrl;
 
     /**
      * Instantiates a new Authentication ui.
@@ -105,4 +111,11 @@ public class AuthenticationUI implements Runnable {
         }
     }
 
+
+
+
+
 }
+
+
+

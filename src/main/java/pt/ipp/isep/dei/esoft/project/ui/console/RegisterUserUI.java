@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 /**
  * The type Register user ui.
  */
+
 public class RegisterUserUI implements Runnable {
 
     private final RegisterUserController controller = new RegisterUserController();
@@ -87,6 +88,7 @@ public class RegisterUserUI implements Runnable {
         }
         return true;
     }
+
 
 
     private String requestUserEmailAddress() {
