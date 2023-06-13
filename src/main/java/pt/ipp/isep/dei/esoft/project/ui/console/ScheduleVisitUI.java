@@ -179,6 +179,7 @@ public class ScheduleVisitUI implements Runnable {
         username = requestUsername();
 
         phoneNumber = requestPhoneNumber();
+
         if (timeSlot != null) {
 
         /*request the user ID (name and phone number;
@@ -196,13 +197,10 @@ public class ScheduleVisitUI implements Runnable {
 
     private Date requestDate() {
         System.out.println("Type the date you want to visit this property (yyyy/mm/dd)");
-        //Date date2 =  new Date(2000, 1, 1);
         int year = Utils.readIntegerFromConsole("year");
-        Calendar calendar = Calendar.getInstance();
         int month = Utils.readIntegerFromConsole("month");
-        month = calendar.get(Calendar.MONTH) + 1;
         int day = Utils.readIntegerFromConsole("day");
-        Date date = new Date(year, month, day);
+        Date date1 = new Date (year, month, day);
         return date;
     }
 

@@ -38,6 +38,8 @@ public class VisitRequest implements Serializable {
                 "\nUserName: " + userName  +
                 "\nPhoneNumber: " + phoneNumber +
                 "\nDate: " + date +
-                "\nTimeSlot: " + timeSlot ;
+                "\nTimeSlot: " + timeSlot +
+                "\nMessage: " + message;
+
     }
 }

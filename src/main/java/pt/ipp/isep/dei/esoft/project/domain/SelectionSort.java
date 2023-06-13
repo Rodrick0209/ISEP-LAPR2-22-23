@@ -16,6 +16,7 @@ public interface SelectionSort {
     void selectionSortAscending();
 
     void selectionSortDescending();
+
     /*@Override
     public List<Deal> sortAscending(List<Deal> unsorted) {
         List<Deal> deals = new ArrayList<>(unsorted);

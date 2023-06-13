@@ -10,6 +10,7 @@ import pt.ipp.isep.dei.esoft.project.repository.VisitRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -21,7 +22,7 @@ public class ListVisitRequestController {
     private EmployeeRepository employeeRepository;
     private Sort sortingAlgorithm;
 
-    public ListVisitRequestController(VisitRepository visitRepository, EmployeeRepository employeeRepository, Sort sortingAlgorithm){
+    public ListVisitRequestController(VisitRepository visitRepository, EmployeeRepository employeeRepository, Sort sortingAlgorithm) {
         this.visitRepository = visitRepository;
         this.employeeRepository = employeeRepository;
         this.sortingAlgorithm = sortingAlgorithm;
@@ -33,16 +34,16 @@ public class ListVisitRequestController {
         //sortingAlgorithm=Repositories.getInstance().getSortingMethod();
     }
 
-    private VisitRepository getVisitRepository(){
-        if(visitRepository == null){
+    private VisitRepository getVisitRepository() {
+        if (visitRepository == null) {
             Repositories repositories = Repositories.getInstance();
             visitRepository = repositories.getVisitRepository();
         }
         return visitRepository;
     }
 
-    public EmployeeRepository getEmployeeRepository(){
-        if(employeeRepository == null){
+    public EmployeeRepository getEmployeeRepository() {
+        if (employeeRepository == null) {
             Repositories repositories = Repositories.getInstance();
             employeeRepository = repositories.getEmployeeRepository();
         }
@@ -52,29 +53,29 @@ public class ListVisitRequestController {
     public void getBeginDate() {
         System.out.println("Begin Date (year, month, day");
         int year = Utils.readIntegerFromConsole("year");
-        Calendar calendar = Calendar.getInstance();
         int month = Utils.readIntegerFromConsole("month");
-        month = calendar.get(Calendar.MONTH) + 1;
         int day = Utils.readIntegerFromConsole("day");
-        Date beginDate = new Date ( year, month ,day);
+        Date beginDate = new Date(year, month, day);
     }
 
     public void getEndDate() {
         System.out.println("End Date (year, month, day");
         int year = Utils.readIntegerFromConsole("year");
-        Calendar calendar = Calendar.getInstance();
         int month = Utils.readIntegerFromConsole("month");
-        month = calendar.get(Calendar.MONTH) + 1;
         int day = Utils.readIntegerFromConsole("day");
-        Date endDate = new Date(year , month , day);
+        Date endDate = new Date(year, month, day);
     }
+}
 
 
-    /*private Employee agentInfo() {
-
-
-        return controller.getEmployeeRepository().getAgent();
+    /*public void BookingRequest() {
+        List<BookingRequests> bookingRequestsList = getBookingRequestRepository().getBookingRequests();
+        List<BookingRequests> agentBookingRequestsList = new ArrayList<>();
+        for (BookingRequest br : bookingRequestsList) {
+            if (br.getAgent().equals(getAgentFromSession())) {
+                agentBookingRequestsList.add(br);
+            }
+        }
+        return agentBookingRequestsList;
     }*/
 
-
-}

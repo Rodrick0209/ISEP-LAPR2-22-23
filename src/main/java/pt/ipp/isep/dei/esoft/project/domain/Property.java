@@ -15,7 +15,7 @@ public class Property implements Serializable {
 
     private double distance;
 
-    private List<String> photos;
+    //private List<String> photos;
 
     private Owner owner;
 
@@ -103,12 +103,12 @@ public class Property implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return area == property.area && distance == property.distance && Objects.equals(location, property.location) && Objects.equals(photos, property.photos);
+        return area == property.area && distance == property.distance && Objects.equals(location, property.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(area, location, distance, photos);
+        return Objects.hash(area, location, distance);
     }
 
     /**
