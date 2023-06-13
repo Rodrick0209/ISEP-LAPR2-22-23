@@ -14,20 +14,7 @@ actor "Real Estate Agent" as Agent
 participant "System" as System
 
 
-
 activate Agent
-
-loop While login data is  not valid
-activate System
-System --> Agent : requests login
-deactivate System
-Agent -> System : inserts loign data (id/email , password )
-alt login is not valid
-activate System
-System --> Agent : displays error message
-
-end
-end
 
 activate System
 loop while the agent declines the announcement submission
@@ -69,8 +56,7 @@ alt
   activate System
   end
   end
-  System --> Agent: displays success message  (informs the agent the announc,ment has been published)
-   deactivate System
+  System --> Agent: displays success message (informs the agent the announcment has been published and a message has been sent to the Owner with the property Id ,agent name and phone number)
 deactivate Agent
 
 
