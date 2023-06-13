@@ -109,6 +109,10 @@ public class AnnouncementRepository implements Serializable {
         return operationSuccess;
     }
 
+    public boolean removeAnnouncement(Announcement announcement){
+        return announcements.remove(announcement);
+    }
+
     private boolean validateAnnouncement(Announcement announcement){ return !announcements.contains(announcement);}
 
     /**

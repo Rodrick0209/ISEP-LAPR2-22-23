@@ -343,6 +343,8 @@ public class ImportInformationController implements FileReader {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 Date dateOfSale = sdf.parse(information[23]);
                 newDeal = getDealRepository().createDeal(announcement, dateOfSale, agency);
+                removeRequest(request);
+                removeAnnouncement(announcement);
             } catch (ParseException e) {
                 throw new IllegalArgumentException("Invalid Date Format");
             }
@@ -384,6 +386,9 @@ public class ImportInformationController implements FileReader {
         return getAgencyRepository().getAgencyByID(agencyID);
     }
 
+    private boolean removeRequest(Request request){ return getRequestRepository().removeRequest(request);}
+
+    private boolean removeAnnouncement(Announcement announcement){ return getAnnouncementRepository().removeAnnouncement(announcement);}
 }
 
 

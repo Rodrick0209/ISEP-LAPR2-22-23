@@ -76,6 +76,8 @@ public class Repositories implements Serializable {
     ClientRepository clientRepository = new ClientRepository();
     DealRepository dealRepository = new DealRepository();
 
+    UserRepository userRepository = new UserRepository();
+
 
 
 
@@ -190,11 +192,12 @@ public class Repositories implements Serializable {
         return dealRepository;
     }
 
-    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, AuthenticationRepository authenticationRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository, ClientRepository clientRepository, DealRepository dealRepository, OrderRepository orderRepository) {
+    public UserRepository getUserRepository() { return userRepository; }
+
+    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository, ClientRepository clientRepository, DealRepository dealRepository, OrderRepository orderRepository, UserRepository userRepository) {
         this.agencyRepository = agencyRepository;
         this.roleRepository = roleRepository;
         this.propertyRepository = propertyRepository;
-        this.authenticationRepository = authenticationRepository;
         this.propertyTypeRepository = propertyTypeRepository;
         this.ownerRepository = ownerRepository;
         this.typeBusinessRepository = typeBusinessRepository;
@@ -205,10 +208,11 @@ public class Repositories implements Serializable {
         this.clientRepository = clientRepository;
         this.dealRepository = dealRepository;
         this.orderRepository = orderRepository;
+        this.userRepository = userRepository;
     }
 
     public Repositories clone(){
-        return new Repositories(agencyRepository, roleRepository, propertyRepository, authenticationRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository);
+        return new Repositories(agencyRepository, roleRepository, propertyRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository, userRepository);
     }
 
     private void initProps(){

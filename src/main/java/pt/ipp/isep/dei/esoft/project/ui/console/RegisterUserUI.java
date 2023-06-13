@@ -32,6 +32,7 @@ public class RegisterUserUI implements Runnable {
 
     private void submitData() {
         userPassword = controller.generatePassword();
+        controller.createUser(userName, userEmail, userPassword, AuthenticationController.ROLE_CLIENT);
         controller.addUserWithRole(userName, userEmail, userPassword, AuthenticationController.ROLE_CLIENT);
         controller.writeFile(userEmail, userPassword);
         controller.sendEmailToUser(userEmail);

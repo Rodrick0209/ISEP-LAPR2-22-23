@@ -142,15 +142,16 @@ public class Apartment extends Property {
 
     @Override
     public String toString() {
-        return "\nType: " + typeName +
-                "\nArea: " + area + "m2"+
+        return "Type: " + typeName +
+                "\nArea: " + area + " m2"+
                 "\nLocation: " + location +
-                "\nDistance of city centre: " + distance + "miles" +
+                "\nDistance of city centre: " + distance + " miles" +
                 "\nNumber of bedrooms: " + n_bedrooms +
                 "\nNumber of bathrooms: " + n_bathrooms +
                 "\nNumber of parkingSpaces: " + n_parkingSpaces +
                 "\nExistence of central Heating: " + centralHeating +
-                "\nExistence of air Conditioning: " + airConditioning;
+                "\nExistence of air Conditioning: " + airConditioning +
+                "\n";
     }
 }
 

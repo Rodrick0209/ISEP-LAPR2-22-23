@@ -127,9 +127,10 @@ public class Announcement implements Serializable, Comparable<Announcement>{
 
     @Override
     public String toString() {
-        return "\nId:" + announcementId +
-                "" + request.getProperty().toString() +
-                "\nType of Business:" + request.getTypeBusiness().toString() +
+        return "\nId: " + announcementId +
+                "\n" + request.getProperty().toString() +
+                "Type of Business: " + request.getTypeBusiness().toString() +
+                "\nPrice: " + request.getPrice() +
                 "\nDate of announcement: " + date;
     }
 

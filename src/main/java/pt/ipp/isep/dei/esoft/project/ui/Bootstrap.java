@@ -75,6 +75,7 @@ public class Bootstrap implements Runnable {
     private void addUsers() {
         //TODO: add Authentication users here: should be created for each user in the organization
         AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
+        UserRepository userRepository = Repositories.getInstance().getUserRepository();
         authenticationRepository.addUserRole(AuthenticationController.ROLE_ADMIN, AuthenticationController.ROLE_ADMIN);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_AGENT, AuthenticationController.ROLE_AGENT);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
@@ -82,9 +83,13 @@ public class Bootstrap implements Runnable {
 
 
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN);
+        userRepository.add(new User("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN));
         authenticationRepository.addUserWithRole("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT);
+        userRepository.add(new User("Agent", "agent@this.app", "agent", AuthenticationController.ROLE_AGENT));
         authenticationRepository.addUserWithRole("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER);
+        userRepository.add(new User("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER));
         authenticationRepository.addUserWithRole("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT);
+        userRepository.add(new User("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT));
 
     }
 
@@ -105,7 +110,7 @@ public class Bootstrap implements Runnable {
 
     private void  addRequests() {
         RequestRepository savedRequests = Repositories.getInstance().getRequestRepository();
-       Owner owner = new Owner("owner@gmail.com");
+        Owner owner = new Owner("owner@gmail.com");
         Property property = new Property(200);
         TypeBusiness typeBusiness = new TypeBusiness("Sale");
 
@@ -131,7 +136,7 @@ public class Bootstrap implements Runnable {
 
         // Create an order and add it to the order repository
         Client client1 = new Client("client@this.app");
-        Date date1 = new Date(123,5,12,17,45);
+        Date date1 = new Date(123,5,12);
         Date date2 = new Date();
 
 
@@ -155,7 +160,7 @@ public class Bootstrap implements Runnable {
         VisitRequest visitRequest;
         Owner owner1 = new Owner("Joao", 1234567, "1234567", "joao@this.app", "1234567");
         Property land1 = new Land(new PropertyType("Land"), 150, "Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345",12, owner1 );
-        Request request1 = new Request(land1 , new TypeBusiness("Sell") , 120000, owner1);
+        Request request1 = new Request(land1 , new TypeBusiness("Sale") , 120000, owner1);
         Commission commission1 = new Commission("percentage", 5);
         Date date1 = new Date(2022, 6, 23);
         Announcement announcement1 = new Announcement(request1, commission1);

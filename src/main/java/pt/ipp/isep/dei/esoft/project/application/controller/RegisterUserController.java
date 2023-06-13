@@ -3,24 +3,28 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 import pt.ipp.isep.dei.esoft.project.domain.FileWriter;
 import pt.ipp.isep.dei.esoft.project.domain.PasswordGenerator;
 import pt.ipp.isep.dei.esoft.project.domain.SendEmail;
+import pt.ipp.isep.dei.esoft.project.domain.User;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Optional;
 
 /**
  * The type Register user controller.
  */
 public class RegisterUserController implements FileWriter {
     private AuthenticationRepository authenticationRepository;
+    private UserRepository userRepository;
 
     /**
      * Instantiates a new Register user controller.
      */
     public RegisterUserController(){
-
+        getAuthenticationRepository();
     }
 
     /**
@@ -40,11 +44,19 @@ public class RegisterUserController implements FileWriter {
         return authenticationRepository;
     }
 
+    private UserRepository getUserRepository(){
+        if(userRepository == null){
+            Repositories repositories = Repositories.getInstance();
+            userRepository = repositories.getUserRepository();
+        }
+        return userRepository;
+    }
+
     public void writeFile(String email, String pwd) {
         String fileName = Files.pathTXT + "emailUser.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);
-            pw.printf("Welcome to Real State USA! Your password to login in this application is:");
+            pw.println("Welcome to Real State USA! Your password to login in this application is:");
             pw.println();
             pw.println(pwd);
             pw.println();
@@ -53,6 +65,14 @@ public class RegisterUserController implements FileWriter {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
+    }
+
+    public Optional<User> createUser(String name, String email, String pwd, String role){
+        Optional<User> newUser = Optional.empty();
+        if(getUserRepository() != null){
+            newUser = getUserRepository().createUser(name, email, pwd, role);
+        }
+        return newUser;
     }
 
     /**

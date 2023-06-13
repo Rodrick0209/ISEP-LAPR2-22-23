@@ -102,6 +102,10 @@ public class RequestRepository implements Serializable {
         return success;
     }
 
+    public boolean removeRequest(Request request){
+        return requests.remove(request);
+    }
+
     /**
      * Add optional.
      *
