@@ -28,7 +28,7 @@ public class MainMenuUI implements Runnable {
         options.add(new MenuItem("Login", new AuthenticationUI()));
         options.add(new MenuItem("List all Properties", new ListPropertiesUI()));
         options.add(new MenuItem("Sign Up", new RegisterUserUI()));
-        options.add(new MenuItem("Display Development Team", new DevTeamUI()));
+        options.add(new MenuItem("Show Development Team", new DevTeamUI()));
         int option = 0;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nMain Menu");

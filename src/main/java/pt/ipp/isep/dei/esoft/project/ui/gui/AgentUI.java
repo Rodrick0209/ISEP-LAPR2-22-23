@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ShowDevelopmentTeamUI implements Initializable {
+public class AgentUI implements Initializable {
     public Button doLogout;
     private Stage stage;
     @Override

@@ -1,43 +1,33 @@
-#US 002 - To publish an announcement
+# US 002 - To publish an announcement
 
 # 4. Tests 
+**Test 1:**  Check if an SMS notification is sent to the owner .
 
-**Test 1:** Check that it is not possible to create an instance of the Task class with null values. 
-
-	@Test(expected = IllegalArgumentException.class)
-		public void ensureNullIsNotAllowed() {
-		Announcement instance = new Announcement(null, null, null, null)
-	}
-
-
+    @Test
+    boolean isSMSSent = NotificationService.sendSMS(owner.getPhoneNumber(), "Your property listing is now available.");
+    assertTrue(isSMSSent);
+    
+**Test 2:** Check if the SMS notification content matches the expected content.
+   
+     @Test           
+    String actualContent = NotificationService.getNotificationContent();
+    public class    assertEquals(expectedContent, actualContent); MessageController testSMSNotificationContent() {
+}
+**Test 3:** Check if the SMS notification content contains the agent information.
+                       
+        @Test
+        String actualContent = NotificationService.getNotificationContent();
+        assertTrue(actualContent.contains(expectedContent))
 
 *It is also recommended to organize this content by subsections.* 
 
 # 5. Construction (Implementation)
-
-
-## Class CreateTaskController 
-
-```java
-
-public class Announcement createAnnouncement(String propertyLocation, String description, double comission)
-
-	Property location = getPropertyByLocation(propertyLocation);
-
-	Employee agent = getEmployeeFromSession();
-	Organization organization = getOrganizationRepository().getOrganizationByEmployee(agent);
-
-	newAnnouncement = organization.createAnnouncement(agency, description, commission, agent);
-    
-	return newAnnouncement;
-}
-```
-
-
+**Test 1**: An SMS notification should be sent to the owner when the listing of the
+        property becomes available.
 ## Class MessageController
 ``` java
-@Test
-Test 1: An SMS notification is sent to the owner when the listing of the property becomes available.
+
+
 
 public class MessageController testSMSNotificationContent() {
 // Create a new property
@@ -62,11 +52,12 @@ Property property = new Property("123 ABC Street");
     assertTrue(isSMSSent);
 }
 ```
-## Class
 
-Test 2: The SMS notification includes the property identification and the date it became available.
-@Test
-public class message() {
+**Test 2:** The SMS notification includes the property identification and the date it became available.  
+
+## Class MessageController
+```java
+public class MessageController() {
 // Create a new  property
 Property property = new Property("123 ABC Street");
 
@@ -89,12 +80,11 @@ Property property = new Property("123 ABC Street");
     String actualContent = NotificationService.getNotificationContent();
     assertEquals(expectedContent, actualContent);
 }
-````
+```
 
-## Class
-
-Test 3: The SMS notification includes the name and phone number of the responsible Agent.
-@Test
+**Test 3:** The SMS notification includes the name and phone number of the responsible Agent.   
+## Class MessageController
+``` java
 public void testSMSNotificationContainsAgentInfo() {
 // Create a new property
 Property property = new Property("123 ABC Street");
@@ -118,17 +108,13 @@ Property property = new Property("123 ABC Street");
     String actualContent = NotificationService.getNotificationContent();
     assertTrue(actualContent.contains(expectedContent));
 }
+```
 
+# 6. Integration and Demo
 
+- A new option, "Publish Announcement," has been added to the Agent menu options. This option allows agents to publish sale announcements received through various channels, such as phone calls.
 
-
-
-
-# 6. Integration and Demo 
-
-* A new option on the Agent menu options was added.
-
-* Some demo purposes some announcements are bootstrapped while system starts.
+- As part of the system demonstration, a set of sample announcements are bootstrapped when the system starts. These announcements serve the purpose of showcasing the system's functionality and can be used for testing or demonstration purposes. The bootstrapped announcements may include properties with different attributes and serve as initial examples for agents to work with.
 
 
 # 7. Observations

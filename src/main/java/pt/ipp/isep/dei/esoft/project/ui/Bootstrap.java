@@ -80,7 +80,8 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserRole(AuthenticationController.ROLE_AGENT, AuthenticationController.ROLE_AGENT);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_OWNER, AuthenticationController.ROLE_OWNER);
         authenticationRepository.addUserRole(AuthenticationController.ROLE_CLIENT, AuthenticationController.ROLE_CLIENT);
-
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_NETWORK_MANAGER, AuthenticationController.ROLE_NETWORK_MANAGER);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_STORE_MANAGER, AuthenticationController.ROLE_STORE_MANAGER);
 
         authenticationRepository.addUserWithRole("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN);
         userRepository.add(new User("Main Administrator", "admin@this.app", "admin", AuthenticationController.ROLE_ADMIN));
@@ -90,6 +91,10 @@ public class Bootstrap implements Runnable {
         userRepository.add(new User("Owner", "owner@this.app", "owner", AuthenticationController.ROLE_OWNER));
         authenticationRepository.addUserWithRole("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT);
         userRepository.add(new User("Client", "client@this.app", "client", AuthenticationController.ROLE_CLIENT));
+        authenticationRepository.addUserWithRole("Network manager", "networkmanager@this.app", "networkmanager", AuthenticationController.ROLE_NETWORK_MANAGER);
+        userRepository.add(new User("Network manager", "networkmanager@this.app", "networkmanager", AuthenticationController.ROLE_NETWORK_MANAGER));
+        authenticationRepository.addUserWithRole("Store manager", "storemanager@this.app", "storemanager", AuthenticationController.ROLE_STORE_MANAGER);
+        userRepository.add(new User("Store manager", "storemanager@this.app", "storemanager", AuthenticationController.ROLE_STORE_MANAGER));
 
     }
 

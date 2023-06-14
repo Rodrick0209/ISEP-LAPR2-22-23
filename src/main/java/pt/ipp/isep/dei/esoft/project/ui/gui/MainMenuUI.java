@@ -56,7 +56,7 @@ public class MainMenuUI {
 
     @FXML
     public void onLoginButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/AuthenticationUi.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/LogIn.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
         stage.setTitle("List all Properties");
@@ -107,7 +107,7 @@ public class MainMenuUI {
      */
     @FXML
     public void onShowDevelopmentTeamButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ShowDevelopmentTeamUI.class.getResource("/fxml/ShowDevelopmentTeamUI.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ShowDevelopmentTeamUI.class.getResource("/fxml/ShowDevelopmentTeam.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
         stage.setTitle("Show Development Team");
@@ -115,22 +115,7 @@ public class MainMenuUI {
         stage.show();
     }
 
-   /* /**
-     * Validate name boolean.
-     * Name needs to be a string and has to have at least a letter (Capital or not )
-     *
-     * @param email the name
-     * @return the boolean
 
-   private boolean isValidEmail(String email) {
-        // Simple email validation using regular expression
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        return email.matches(emailRegex);
-    }
-
-
-
-    */
 
 
 

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pt.ipp.isep.dei.esoft.project.ui.Bootstrap;
 import pt.ipp.isep.dei.esoft.project.ui.MainConsole;
 
 import java.io.IOException;
@@ -11,6 +12,8 @@ import java.io.IOException;
 public class MainGUI extends Application {
 
     public static void main(String[] args) {
+        Bootstrap bootstrap = new Bootstrap();
+        bootstrap.run();
         launch(args);
     }
 

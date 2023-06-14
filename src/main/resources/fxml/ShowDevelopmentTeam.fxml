@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ShowDevelopmentTeamUI"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="242.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.ShowDevelopmentTeamUI">
+    <stylesheets>
+        <URL value="@ShowDevolpmenTeamst.css" />
+    </stylesheets>
+    <children>
+        <Label layoutX="119.0" layoutY="35.0" prefHeight="0.0" prefWidth="257.0" styleClass="title-label" text="Development Team:" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+        <Label layoutX="89.0" layoutY="78.0" prefHeight="20.0" prefWidth="287.0" styleClass="name-label" text="Bernardo Barbosa - 1220741@isep.ipp.pt" textAlignment="CENTER" />
+        <Label layoutX="88.0" layoutY="106.0" styleClass="name-label" text="Rodrigo Cardoso - 1221083@isep.ipp.pt" textAlignment="CENTER" />
+        <Label layoutX="85.0" layoutY="134.0" styleClass="name-label" text="Tomás Gonçalves - 1220917@isep.ipp.pt" textAlignment="CENTER" />
+        <Button fx:id="doLogout" layoutX="126.0" layoutY="184.0" mnemonicParsing="false" onAction="#doLogout" prefHeight="20.0" prefWidth="196.0" text="Back to Main Menu" />
+    </children>
 </AnchorPane>
