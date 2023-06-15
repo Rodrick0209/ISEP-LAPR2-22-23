@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
 import pt.ipp.isep.dei.esoft.project.domain.Owner;
 import pt.ipp.isep.dei.esoft.project.ui.console.CreateRequestUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.ListPropertiesUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class OwnerUI implements Runnable{
 
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
+        options.add(new MenuItem("List all properties", new ListPropertiesUI()));
         options.add(new MenuItem("Submit a request", new CreateRequestUI()));
 
         int option = 0;
