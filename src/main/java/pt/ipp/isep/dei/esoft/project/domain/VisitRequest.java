@@ -6,15 +6,16 @@ import java.util.Date;
 
 public class VisitRequest implements Serializable {
 
-    private Announcement announcement;
-    private String userName;
+    private final Announcement announcement;
+    private final String userName;
 
-    private String phoneNumber;
+    private final String phoneNumber;
 
     private Date date;
 
-    private int [][] timeSlot;
-    private String message;
+    private final int [][] timeSlot;
+    private final String message;
+    private Employee agent;
 
     public VisitRequest(Announcement announcement, String userName, String phoneNumber, Date date, int[][] timeSlot, String message) {
         this.announcement = announcement;
@@ -32,7 +33,6 @@ public class VisitRequest implements Serializable {
 
     public Announcement getAnnouncement(){ return announcement; }
 
-
     @Override
     public String toString() {
         return "VisitRequest: " +
@@ -43,5 +43,15 @@ public class VisitRequest implements Serializable {
                 "\nTimeSlot: " + timeSlot +
                 "\nMessage: " + message;
 
+    }
+
+    public Employee getAgent() {
+        return agent;
+    }
+
+
+
+    public Date getDate() {
+        return date;
     }
 }

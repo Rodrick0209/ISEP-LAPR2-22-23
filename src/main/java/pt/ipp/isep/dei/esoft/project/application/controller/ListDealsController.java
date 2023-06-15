@@ -1,16 +1,15 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import pt.ipp.isep.dei.esoft.project.domain.BubbleSort;
+import pt.ipp.isep.dei.esoft.project.domain.Sort;
 import pt.ipp.isep.dei.esoft.project.domain.Deal;
 import pt.ipp.isep.dei.esoft.project.domain.FileReader;
-import pt.ipp.isep.dei.esoft.project.domain.SelectionSort;
 import pt.ipp.isep.dei.esoft.project.repository.DealRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.util.List;
 
 
-public class ListDealsController implements FileReader, BubbleSort, SelectionSort {
+public class ListDealsController implements FileReader{
 
     private ImportInformationController importInformation;
     private DealRepository dealRepository;
@@ -36,7 +35,7 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
     }
 
 
-    @Override
+    /*@Override
     public void bubbleSortAscending(){
         List<Deal> deals = getDeals();
         for (int i = 0; i < deals.size() -1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisza
@@ -94,7 +93,7 @@ public class ListDealsController implements FileReader, BubbleSort, SelectionSor
             deals.set(i, deals.get(maxIndex));
             deals.set(maxIndex, temp);
         }
-    }
+    }*/
 
     @Override
     public boolean readFile(String fileName) {

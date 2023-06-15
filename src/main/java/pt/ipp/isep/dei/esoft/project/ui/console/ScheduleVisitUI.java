@@ -2,7 +2,10 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateVisitController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
+import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -31,10 +34,14 @@ public class ScheduleVisitUI implements Runnable {
 
     private String username;
     private String phoneNumber;
+
+    private Employee agent;
     /**
      * The Controller.
      */
     CreateVisitController controller = new CreateVisitController();
+
+    private AuthenticationRepository authenticationRepository;
     private Request request;
 
     private Commission commission;
@@ -94,14 +101,7 @@ public class ScheduleVisitUI implements Runnable {
         return announcement;
     }
 
-    /*private Date requestDate() {
-        System.out.println("Type the date you want to visit this property (dd-MM-yyyy)");
 
-        input = Utils.readLineFromConsole("Date");
-
-            return date;
-    }
-*/
     private String requestString(String print) {
         System.out.println(print);
         return input.nextLine();
@@ -238,6 +238,19 @@ public class ScheduleVisitUI implements Runnable {
 
     private Client requestID() {
         return controller.getClientRepository().getClient();
+    }
+
+
+    private AuthenticationRepository getAuthenticationRepository() {
+        if (authenticationRepository == null) {
+            Repositories repositories = Repositories.getInstance();
+            authenticationRepository = repositories.getAuthenticationRepository();
+        }
+        return authenticationRepository;
+    }
+    private Client getClientFromSession() {
+        Email email = getAuthenticationRepository().getCurrentUserSession().getUserId();
+        return new Client(email.getEmail());
     }
 
 
