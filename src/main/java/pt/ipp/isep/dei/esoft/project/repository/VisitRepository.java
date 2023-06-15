@@ -3,8 +3,11 @@ package pt.ipp.isep.dei.esoft.project.repository;
 
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Request;
+import pt.ipp.isep.dei.esoft.project.domain.Sort;
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +16,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * The type Visit repository.
@@ -61,6 +65,29 @@ public class VisitRepository implements Serializable {
     public void addRequests(VisitRequest visit) {
     }
 
+
+    public List<Request> getRequestsSorted(List<Request> requestList) throws IOException {
+        Properties properties = System.getProperties();
+        properties.load(new FileReader("src/main/resources/sortingMethods.properties"));
+        String algorithm = properties.getProperty("sorting.algorithm");
+
+        if ( algorithm.toUpperCase().equalsIgnoreCase("BUBBLE")) {
+
+        }
+
+        Sort sort = new Sort();
+        switch (algorithm.toUpperCase()) {
+            case "BUBBLE":
+                sort.bubbleSort();
+                break;
+            case "SELECTION":
+                sort.selectionSort();
+                break;
+            default:
+                System.out.println("Warning: invalid");
+        }
+        return getRequestsSorted(requestList);
+    }
     public List<VisitRequest> getSortedVisitRequestList(List<VisitRequest> list, LocalDate begin, LocalDate end) {
         List<VisitRequest> newList = new ArrayList<>();
         ZoneId zId = ZoneId.systemDefault();

@@ -23,7 +23,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
      * @param request    the request
      * @param commission the commission
      */
-    public Announcement(Request request, Commission commission) {
+    public Announcement( Request request, Commission commission) {
         this.announcementId = announcmentIdCounter++;
         this.request = request;
         this.commission = commission;
@@ -128,11 +128,13 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     @Override
     public String toString() {
         return "\nId: " + announcementId +
-                "\n" + request.getProperty() +
+                "\nRequest: " + request +
                 "\nType of Business: " + request.getTypeBusiness() +
                 "\nPrice: " + request.getPrice() +
                 "\nDate of announcement: " + date;
     }
+
+
 
     @Override
     public int compareTo(Announcement o) {
@@ -142,6 +144,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     public Announcement clone(){
         return new Announcement(this.request, this.commission, this.date);
     }
+
 
 }
 

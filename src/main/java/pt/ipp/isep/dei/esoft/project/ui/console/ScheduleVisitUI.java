@@ -17,16 +17,12 @@ public class ScheduleVisitUI implements Runnable {
     private Announcement announcement;
     private Date date;
     /**
-     * The Name.
-     */
-    String name;
-    /**
      * The Input.
      */
     Scanner input = new Scanner(System.in);
 
     private int[][] timeSlot;
-    private Owner owner;
+    //private Owner owner;
 
     private String clientUserName;
     private String clientPhoneNumber;
@@ -266,7 +262,8 @@ public class ScheduleVisitUI implements Runnable {
 
     @Override
     public String toString() {
-        return  "Date: " + requestDate +
+        return  "Visit Request: " +
+                "Date: " + requestDate +
                 "Message;" + message +
                 "Announcement: " + announcement +
                 "ClientUserName: " + clientUserName +

@@ -107,8 +107,6 @@ public class ListVisitRequestController {
         int month = month1 - 1;
         int day = Utils.readIntegerFromConsole("day");
         Date beginDate1= new Date (year, month, day);
-        //Date beginDate = java.sql.Date.valueOf(localDate);
-        //LocalDate beginDate = null;
         LocalDate beginDate = beginDate1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         return beginDate ;
     }
@@ -145,7 +143,7 @@ public class ListVisitRequestController {
     }
 
 
-    public Properties getConfigurationFile() {
+    public String getConfigurationFile() {
         Properties properties = new Properties();
         try {
             FileInputStream file = new FileInputStream("C:\\Users\\tomas\\OneDrive\\Ambiente de Trabalho\\submissãoSprintC\\src\\main\\resources\\application.properties");
@@ -155,16 +153,9 @@ public class ListVisitRequestController {
             e.printStackTrace();
         }
 
-        String algorithm = properties.getProperty("sorting.algorithms");
+        return properties.getProperty("sorting.algorithms");
 
-        return sortingAlgorithm.getConfigurationFile();
     }
-        //System.out.println("Sorting algorithm: " + sortingAlgorithm)
-        /*if (properties.toString().equals("BUBBLE")) {
-            bubbleSort()
-        } else {
-            selectionSort( );
-        }*/
 
 
 

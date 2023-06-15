@@ -129,5 +129,8 @@ public class CreateVisitController {
         return ownerRepository;
     }
 
-
+    @Override
+    public String toString() {
+        return "CreateVisitController{}";
+    }
 }
