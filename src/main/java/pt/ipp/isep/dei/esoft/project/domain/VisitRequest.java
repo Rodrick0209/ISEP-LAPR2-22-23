@@ -2,22 +2,26 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class VisitRequest implements Serializable {
 
-    private Announcement Announcement;
-    private String userName;
+    private final Announcement announcement;
+    private final String userName;
 
-    private String phoneNumber;
+    private final String phoneNumber;
 
     private Date date;
 
-    private int [][] timeSlot;
-    private String message;
+    private final int [][] timeSlot;
+    private final String message;
+    private Employee agent;
+
+
 
     public VisitRequest(Announcement announcement, String userName, String phoneNumber, Date date, int[][] timeSlot, String message) {
-        this.Announcement = announcement;
+        this.announcement = announcement;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -27,19 +31,29 @@ public class VisitRequest implements Serializable {
 
 
     public int[][] getTimeSlot() {
-    return getTimeSlot();
+    return timeSlot;
     }
 
 
     @Override
     public String toString() {
         return "VisitRequest: " +
-                "\nAnnouncement: " + Announcement +
+                "\nAnnouncement: " + announcement +
                 "\nUserName: " + userName  +
                 "\nPhoneNumber: " + phoneNumber +
                 "\nDate: " + date +
-                "\nTimeSlot: " + timeSlot +
+                "\nTimeSlot: " + Arrays.deepToString(timeSlot) +
                 "\nMessage: " + message;
 
+    }
+
+    public Employee getAgent() {
+        return agent;
+    }
+
+
+
+    public Date getDate() {
+        return date;
     }
 }

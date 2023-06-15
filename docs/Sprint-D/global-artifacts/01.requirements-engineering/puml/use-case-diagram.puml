@@ -13,11 +13,11 @@ top to bottom direction
 
 rectangle "Use Cases" as usecases{
     usecase "UC13" as UC13
-    SystemAdministrator--> UC12
     usecase "UC11" as UC11
     usecase "UC10" as UC10
     usecase "UC9" as UC9
     usecase "UC8" as UC8
+    usecase "UC12" as UC12
     usecase "UC14" as UC14
     usecase "UC15" as UC15
     usecase "UC16" as UC16
@@ -52,7 +52,8 @@ rectangle "Use Cases" as usecases{
 
              usecase "UC9 To message the agent to schedule a visit to property of my interest" as UC9
              Client --> UC9
-             usecase "UC12 - To import information from a legacy system" as UC12
+             usecase "UC12 To import information from a legacy system" as UC12
+             SystemAdministrator --> UC12
              usecase "UC13 To list all employees working of the network" as UC13
              NetworkManager --> UC13
              usecase "UC14 and UC20 To read the appointment requests response \n in order to then accept or decline them" as UC14

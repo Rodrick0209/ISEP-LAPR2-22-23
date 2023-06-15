@@ -1,13 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.BubbleSort;
-import pt.ipp.isep.dei.esoft.project.domain.SelectionSort;
 import pt.ipp.isep.dei.esoft.project.domain.Sort;
-import pt.ipp.isep.dei.esoft.project.domain.Order;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.Properties;
 
 /**
  * The type Repositories.
@@ -28,6 +23,7 @@ public class Repositories implements Serializable {
     RoleRepository roleRepository = new RoleRepository();
 
     OrderRepository orderRepository = new OrderRepository();
+
 
     /**
      * The Property repository.
@@ -241,5 +237,9 @@ public class Repositories implements Serializable {
     public OrderRepository getOrderRepository() {
         return orderRepository;
     }
+
+
+
+
 }
 

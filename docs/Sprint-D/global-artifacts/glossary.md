@@ -14,6 +14,7 @@
 | **Company**               | An organization that sells services or assets to its clients.                                                                                                                             |
 | **ID**                    | Acronym for identification.                                                                                                                                                               |
 | **Loft**                  | A storage area located at the top of a building, beneath the roof, typically accessed by a ladder.                                                                                        |
+| **Lease**                 | A legal contract in which you agree to pay to use 				 someone else’s building, land, or equipment for a specific period of time.                                                         |
 | **Network**               | A group or system of interconnected people or things.                                                                                                                                     |
 | **Property**              | A physical space or area ( house , apartment ,basement ...etc..) belonging to one or more subjects.                                                                                       |
 | **Real Estate Agent**     | An employee of a real estate company responsible for carrying out tasks such as contacting costumers and registering properties.                                                          |
