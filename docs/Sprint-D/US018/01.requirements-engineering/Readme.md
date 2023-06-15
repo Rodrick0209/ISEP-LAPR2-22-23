@@ -6,7 +6,7 @@
 ### 1.1. User Story Description
 
 
-As an organization employee, I want to create a new task in order to be further published.
+As a store manager, I intend to analyse the deals (only sale of houses and apartments) made. In particular, I intend to compare property sale values with the forecast values.
 
 
 
@@ -62,13 +62,15 @@ As an organization employee, I want to create a new task in order to be further 
 	* an estimated cost
 	
 * Selected data:
-	* Classifying task category 
+	* Type of regression
+    * Variables type and input size
 
 
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* Forecast property price value
+* simple and multiple regression graph
+* Success message
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -76,11 +78,8 @@ As an organization employee, I want to create a new task in order to be further 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram - Alternative One](svg/us018-system-sequence-diagram-alternative-one.svg)
 
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 

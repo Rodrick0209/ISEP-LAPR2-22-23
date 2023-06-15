@@ -6,8 +6,7 @@
 ### 1.1. User Story Description
 
 
-As a network manager, I want to list all employees working in every store
-of the network
+As an agent, at the end of the visit, I want to register the visit and the opinion about the business.
 
 
 ### 1.2. Customer Specifications and Clarifications 
@@ -36,10 +35,9 @@ of employees
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** The list of employees should be alphabetically sorted and grouped by store.
-* **AC2:** Stores should be sorted according to their land listings, from the one with more listings to the one with less listings.
-* **AC3:** Each store should state how many land listings it has.
-
+* **AC1** The opinion must be an alphanumeric type with 200 characters.
+* **AC2** A classification scale from 1 (most improbable) to 5 (most probable) stating the agent opinion whether the deal will go through.
+* **AC3** No duplicate entries for the same visit should be allowed.
 
 ### 1.4. Found out Dependencies
 

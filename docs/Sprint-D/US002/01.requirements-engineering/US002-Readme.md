@@ -67,8 +67,7 @@ As an agent, I can publish any sale announcement on the system, for example rece
 * Announcment status dispplayd
 
 ### 1.6. System Sequence Diagram (SSD)
-
-![System Sequence Diagram - Alternative One](svg/us002-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us002-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 

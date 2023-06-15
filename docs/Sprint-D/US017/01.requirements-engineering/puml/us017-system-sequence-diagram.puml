@@ -22,9 +22,9 @@ activate Manager
     activate System
 
     System --> Manager : shows list of all deals made in all branches in chronological order, ordered by selected option
-    deactivate System
 
-    System --> Manager : displays operation success
+
+    System --> Manager : displays operation success message
     deactivate System
 
 @enduml

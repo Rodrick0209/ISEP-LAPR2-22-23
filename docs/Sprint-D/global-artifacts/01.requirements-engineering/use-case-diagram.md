@@ -29,7 +29,7 @@ link as suggested below.**
 | US 011 | [List and decide (whether to accept or decline) a real estate purchase and send an email to the customer in case of acceptance](../../US011/Readme.md) |
 | US 012 | [ To import information from a legacy system](../../US012/Readme.md)                                                                                   ||        |                                                                                                                                                        |
 | US 013 | [To list all employes working on the current network](../../US013/Readme.md)                                                                           |
-| US 014 | [To read the appointment requests response ,in order to then accept or decline them]() (our goup did not implement this us)                            |
+| US 014 | [To read the appointment requests response ,in order to then accept or decline them]()                                                                 |
 | US 015 | [ To list all booking requests ](../../US015/Readme.md)                                                                                                | 
 | US 016 | [To respond to the User that scheduled the visit when viewing a booking request ](../../US016/Readme.md)                                               |
 | US 017 | [ To list all deals made ](../../US017/Readme.md)                                                                                                      |

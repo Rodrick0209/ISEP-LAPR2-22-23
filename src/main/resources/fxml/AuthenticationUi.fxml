@@ -8,16 +8,7 @@
 <AnchorPane  prefHeight="257.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.MainMenuUI">
 
    <children>
-      <Label layoutX="141.0" layoutY="35.0" prefHeight="47.0" prefWidth="146.0" text="Log in ">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
-      <TextField layoutX="112.0" layoutY="124.0" prefHeight="31.0" prefWidth="146.0" promptText="Write your email here" />
-      <Label layoutX="112.0" layoutY="82.0" prefHeight="47.0" prefWidth="176.0" text="Type your email address">
-         <font>
-            <Font size="11.0" />
-         </font>
+      <Label layoutX="141.0" layoutY="35.0" prefHeight="47.0" prefWidth="146.0" text="AuthenTHICATION ">
       </Label>
    </children>
 </AnchorPane>

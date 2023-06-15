@@ -59,7 +59,7 @@ public class MainMenuUI {
         Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/LogIn.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("List all Properties");
+        stage.setTitle("Real Estate USA");
         stage.setScene(mainScene);
         stage.show();
 
@@ -78,7 +78,7 @@ public class MainMenuUI {
         Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/ListAllProperties.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("List all Properties");
+        stage.setTitle("Real Estate USA");
         stage.setScene(mainScene);
         stage.show();
     }
@@ -94,7 +94,7 @@ public class MainMenuUI {
         Parent root = FXMLLoader.load(Objects.requireNonNull(RegisterUserUI.class.getResource("/fxml/RegisterUser.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("Sign Up");
+        stage.setTitle("Real Estate USA");
         stage.setScene(mainScene);
         stage.show();
     }
@@ -110,7 +110,7 @@ public class MainMenuUI {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ShowDevelopmentTeamUI.class.getResource("/fxml/ShowDevelopmentTeam.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("Show Development Team");
+        stage.setTitle("Real Estate USA");
         stage.setScene(mainScene);
         stage.show();
     }
