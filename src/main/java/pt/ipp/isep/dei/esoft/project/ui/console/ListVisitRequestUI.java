@@ -1,8 +1,15 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.ListVisitRequestController;
+import pt.ipp.isep.dei.esoft.project.domain.Request;
 import pt.ipp.isep.dei.esoft.project.domain.Sort;
+import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.List;
 
 public class ListVisitRequestUI implements Runnable {
 
@@ -12,13 +19,21 @@ public class ListVisitRequestUI implements Runnable {
 
     @Override
     public void run() {
+        requestAgentList();
         requestDate();
         configurationFile();
-        requestAgentList();
+        visitList();
+
     }
 
-    private void requestAgentList() {
-        controller.VisitRequest();
+    private void visitList() {
+        controller.getSortedVisitRequestList(requestAgentList(), controller.getBeginDate(), controller.getEndDate());
+    }
+
+
+
+    private List<VisitRequest> requestAgentList() {
+        return controller.AgentVisitRequest();
     }
 
     private void configurationFile() {

@@ -134,14 +134,15 @@ public class Bootstrap implements Runnable {
         AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
         OrderRepository orderRepository = Repositories.getInstance().getOrderRepository();
 
-        Property property = new Land(new PropertyType("Land"), 123, "Lol Street, Porto, Portugal, 12345", 23, new Owner("owner@this.app"));
-        Request request = new Request(property, new TypeBusiness("Sale"), 4500, new Owner("owner@this.app"));
-        Announcement announcement = new Announcement(request, new Commission("Percentage Commission", 12), new Date());
+        Property property1 = new Land(new PropertyType("Land"), 123, "Lol Street, Porto, Portugal, 12345", 23, new Owner("owner@this.app"));
+        Request request1 = new Request(property1, new TypeBusiness("Sale"), 4500, new Owner("owner@this.app"));
+        Date date1 = new Date(2023,6,17);
+        Announcement announcement = new Announcement(request1, new Commission("Percentage Commission", 12), date1);
         announcementRepository.add(announcement);
 
         // Create an order and add it to the order repository
         Client client1 = new Client("client@this.app");
-        Date date1 = new Date(123,5,12);
+        //Date date1 = new Date(2023,6 , 17);
         Date date2 = new Date();
 
 

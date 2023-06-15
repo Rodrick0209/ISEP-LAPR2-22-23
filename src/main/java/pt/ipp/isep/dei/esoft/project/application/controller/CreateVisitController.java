@@ -108,6 +108,8 @@ public class CreateVisitController {
     }
 
 
+
+
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
     ClientRepository clientRepository = Repositories.getInstance().getClientRepository();
 
@@ -117,16 +119,15 @@ public class CreateVisitController {
 
     public ClientRepository getClientRepository() { return clientRepository; }
 
-    public Optional<VisitRequest> createVisitRequest(Announcement announcement, String username, String phonenumber, Date date, int[][] timeSlot, String message) {
-        VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message);
-        visitRepository.addRequest(visit);
+    public Optional<VisitRequest> createVisitRequest(Announcement announcement, String username, String phonenumber, Date requestDate, int[][] timeSlot, String message) {
+        VisitRequest visit = new VisitRequest(announcement, username, phonenumber, requestDate, timeSlot, message);
+        visitRepository.addRequests(visit);
         return Optional.of(visit);
     }
 
     public OwnerRepository getOwnerRepository() {
         return ownerRepository;
     }
-
 
 
 }

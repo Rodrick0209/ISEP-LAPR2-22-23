@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
-import pt.ipp.isep.dei.esoft.project.domain.Request;
 import pt.ipp.isep.dei.esoft.project.domain.Sort;
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
@@ -14,7 +13,6 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +29,9 @@ public class ListVisitRequestController {
     private EmployeeRepository employeeRepository;
     private AuthenticationRepository authenticationRepository;
     private Sort sortingAlgorithm;
+    private LocalDate begin;
+    private LocalDate end;
+    private List<VisitRequest> list;
 
     public ListVisitRequestController(VisitRepository visitRepository, EmployeeRepository employeeRepository, Sort sortingAlgorithm) {
         this.visitRepository = visitRepository;
@@ -39,24 +40,20 @@ public class ListVisitRequestController {
     }
 
 
-    /*try {
-        FileInputStream file = new FileInputStream("config.properties");
-        properties.load(file);
-        file.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }*/
-
-    public ListVisitRequestController()  {
+    public ListVisitRequestController() {
         getVisitRepository();
         getEmployeeRepository();
+        getSortedVisitRequestList(begin, end);
+        getConfigurationFile();
     }
 
-    private List<VisitRequest> getSortedVisitRequestList(List<VisitRequest> list, LocalDate begin, LocalDate end) {
+
+    private List<VisitRequest> getSortedVisitRequestList(LocalDate begin, LocalDate end) {
+        List<VisitRequest> list = new ArrayList<>();
         List<VisitRequest> newList = new ArrayList<>();
         ZoneId zId = ZoneId.systemDefault();
 
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             Date beginDate = Date.from(begin.atStartOfDay(zId).toInstant());
             Date endDate = Date.from(end.atStartOfDay(zId).toInstant());
 
@@ -70,10 +67,9 @@ public class ListVisitRequestController {
                 throw new RuntimeException("The date format in the system is wrong!");
             }
 
-            if(dateRequest.after(beginDate) && dateRequest.before(endDate)){
+            if (dateRequest.after(beginDate) && dateRequest.before(endDate)) {
                 newList.add(list.get(i));
             }
-
         }
         return newList;
     }
@@ -103,31 +99,36 @@ public class ListVisitRequestController {
         return authenticationRepository;
     }
 
-    public Date getBeginDate() {
+    public LocalDate getBeginDate() {
         System.out.println("Begin Date (year, month, day):");
-        Date beginDate = new Date(2020,0,1);
         int year1 = Utils.readIntegerFromConsole("year");
         int year = year1 - 1900;
         int month1 = Utils.readIntegerFromConsole("month");
         int month = month1 - 1;
         int day = Utils.readIntegerFromConsole("day");
-        return beginDate = new Date(year, month, day);
+        Date beginDate1= new Date (year, month, day);
+        //Date beginDate = java.sql.Date.valueOf(localDate);
+        //LocalDate beginDate = null;
+        LocalDate beginDate = beginDate1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return beginDate ;
     }
+    
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         System.out.println("End Date (year, month, day):");
-        Date endDate = new Date(2020,0,1);
         int year1 = Utils.readIntegerFromConsole("year");
         int year = year1 - 1900;
         int month1 = Utils.readIntegerFromConsole("month");
         int month = month1 - 1;
         int day = Utils.readIntegerFromConsole("day");
-        return endDate = new Date(year, month, day);
+        Date endDate1= new Date(year, month, day);
+        LocalDate endDate = endDate1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return endDate ;
+
     }
 
 
-
-    public List<VisitRequest> VisitRequest() {
+    public List<VisitRequest> AgentVisitRequest() {
         List<VisitRequest> visitRequests = getVisitRepository().getListVisitRepository();
         List<VisitRequest> agentVisitRequestsList = new ArrayList<>();
         for (VisitRequest vr : visitRequests) {
@@ -144,21 +145,64 @@ public class ListVisitRequestController {
     }
 
 
-
-    public void getConfigurationFile() {
+    public Properties getConfigurationFile() {
         Properties properties = new Properties();
         try {
-            FileInputStream file = new FileInputStream("application.properties");
+            FileInputStream file = new FileInputStream("C:\\Users\\tomas\\OneDrive\\Ambiente de Trabalho\\submissãoSprintC\\src\\main\\resources\\application.properties");
             properties.load(file);
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        String algorithm = properties.getProperty("sorting.algorithms");
+
+        return sortingAlgorithm.getConfigurationFile();
+    }
+        //System.out.println("Sorting algorithm: " + sortingAlgorithm)
+        /*if (properties.toString().equals("BUBBLE")) {
+            bubbleSort()
+        } else {
+            selectionSort( );
+        }*/
+
+
+
+
+    public List<VisitRequest> getSortedVisitRequestList(List<VisitRequest> list, LocalDate begin, LocalDate end){
+        return Repositories.getVisitRepository().getSortedVisitRequestList(list, begin, end);
+    }
+    public List<VisitRequest> bubbleSort(List<VisitRequest> unsorted) {
+        List<VisitRequest> sorted = new ArrayList<>(unsorted);
+        for (int i = 0; i < sorted.size() - 1; i++) {
+            for (int j = 0; j < sorted.size() - i - 1; j++) {
+                if (sorted.get(j).getDate().after(sorted.get(j + 1).getDate())) {
+                    VisitRequest temp = sorted.get(j);
+                    sorted.set(j, sorted.get(j + 1));
+                    sorted.set(j + 1, temp);
+                }
+            }
+        }
+        return sorted;
     }
 
+    public List<VisitRequest> selectionSort(List<VisitRequest> unsorted) {
+        List<VisitRequest> sorted = new ArrayList<>(unsorted);
+        for (int i = 0; i < sorted.size() - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < sorted.size(); j++) {
+                if (sorted.get(j).getDate().after(sorted.get(j + 1).getDate())) {
+                    minIndex = j;
+                }
+            }
+            VisitRequest temp = sorted.get(i);
+            sorted.set(i, sorted.get(minIndex));
+            sorted.set(minIndex, temp);
+        }
+        return sorted;
+    }
 
 }
-
 
 
 
