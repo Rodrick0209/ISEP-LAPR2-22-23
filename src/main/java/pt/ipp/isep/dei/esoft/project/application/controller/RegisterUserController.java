@@ -1,9 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import pt.ipp.isep.dei.esoft.project.domain.FileWriter;
-import pt.ipp.isep.dei.esoft.project.domain.PasswordGenerator;
-import pt.ipp.isep.dei.esoft.project.domain.SendEmail;
-import pt.ipp.isep.dei.esoft.project.domain.User;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.UserRepository;
@@ -52,7 +49,7 @@ public class RegisterUserController implements FileWriter {
         return userRepository;
     }
 
-    public void writeFile(String email, String pwd) {
+    public void writeFile(VisitRequest visitRequest, String pwd) {
         String fileName = Files.pathTXT + "emailUser.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);

@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class VisitRequest implements Serializable {
 
-    private Announcement Announcement;
+    private Announcement announcement;
     private String userName;
 
     private String phoneNumber;
@@ -17,7 +17,7 @@ public class VisitRequest implements Serializable {
     private String message;
 
     public VisitRequest(Announcement announcement, String userName, String phoneNumber, Date date, int[][] timeSlot, String message) {
-        this.Announcement = announcement;
+        this.announcement = announcement;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -30,11 +30,13 @@ public class VisitRequest implements Serializable {
     return getTimeSlot();
     }
 
+    public Announcement getAnnouncement(){ return announcement; }
+
 
     @Override
     public String toString() {
         return "VisitRequest: " +
-                "\nAnnouncement: " + Announcement +
+                "\nAnnouncement: " + announcement +
                 "\nUserName: " + userName  +
                 "\nPhoneNumber: " + phoneNumber +
                 "\nDate: " + date +

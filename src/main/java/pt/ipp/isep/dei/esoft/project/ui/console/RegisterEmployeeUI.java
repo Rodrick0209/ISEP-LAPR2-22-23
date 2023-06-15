@@ -61,7 +61,7 @@ public class RegisterEmployeeUI implements Runnable {
                 controller.addUserWithRole(employeeName, employeeEmail, employeePassword, AuthenticationController.ROLE_NETWORK_MANAGER);
             }
             System.out.println("Employee successfully registered! A password for the employee login the application will be sent to his email address.");
-            controller.writeFile(employeeEmail, employeePassword);
+            controller.writeFile(null, employeePassword);
             controller.sendEmailToEmployee(employeeEmail);
         } else {
             System.out.println("Employee not registered!");

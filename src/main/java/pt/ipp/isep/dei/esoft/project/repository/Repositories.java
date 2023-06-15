@@ -1,9 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.domain.BubbleSort;
-import pt.ipp.isep.dei.esoft.project.domain.SelectionSort;
-import pt.ipp.isep.dei.esoft.project.domain.Sort;
-import pt.ipp.isep.dei.esoft.project.domain.Order;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -77,6 +74,8 @@ public class Repositories implements Serializable {
     DealRepository dealRepository = new DealRepository();
 
     UserRepository userRepository = new UserRepository();
+
+    AppointmentRequestRepository appointmentRequestRepository = new AppointmentRequestRepository();
 
 
 
@@ -194,7 +193,13 @@ public class Repositories implements Serializable {
 
     public UserRepository getUserRepository() { return userRepository; }
 
-    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository, ClientRepository clientRepository, DealRepository dealRepository, OrderRepository orderRepository, UserRepository userRepository) {
+    public OrderRepository getOrderRepository() {
+        return orderRepository;
+    }
+
+    public AppointmentRequestRepository getAppointmentRequestRepository(){ return appointmentRequestRepository;}
+
+    private Repositories(AgencyRepository agencyRepository, RoleRepository roleRepository, PropertyRepository propertyRepository, PropertyTypeRepository propertyTypeRepository, OwnerRepository ownerRepository, TypeBusinessRepository typeBusinessRepository, EmployeeRepository employeeRepository, RequestRepository requestRepository, AnnouncementRepository announcementRepository, VisitRepository visitRepository, ClientRepository clientRepository, DealRepository dealRepository, OrderRepository orderRepository, UserRepository userRepository, AppointmentRequestRepository appointmentRequestRepository) {
         this.agencyRepository = agencyRepository;
         this.roleRepository = roleRepository;
         this.propertyRepository = propertyRepository;
@@ -209,10 +214,11 @@ public class Repositories implements Serializable {
         this.dealRepository = dealRepository;
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
+        this.appointmentRequestRepository = appointmentRequestRepository;
     }
 
     public Repositories clone(){
-        return new Repositories(agencyRepository, roleRepository, propertyRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository, userRepository);
+        return new Repositories(agencyRepository, roleRepository, propertyRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository, userRepository, appointmentRequestRepository);
     }
 
 //    private void initProps(){
@@ -238,8 +244,5 @@ public class Repositories implements Serializable {
     }*/
 
 
-    public OrderRepository getOrderRepository() {
-        return orderRepository;
-    }
 }
 

@@ -13,7 +13,6 @@ import java.util.List;
 
 
 public class Bootstrap implements Runnable {
-    private Employee agent = null;
 
 
     //Add some task categories to the repository as bootstrap

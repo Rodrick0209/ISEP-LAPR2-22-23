@@ -119,7 +119,7 @@ public class CreateVisitController {
 
     public Optional<VisitRequest> createVisitRequest(Announcement announcement, String username, String phonenumber, Date date, int[][] timeSlot, String message) {
         VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message);
-        visitRepository.addRequests(visit);
+        visitRepository.addRequest(visit);
         return Optional.of(visit);
     }
 

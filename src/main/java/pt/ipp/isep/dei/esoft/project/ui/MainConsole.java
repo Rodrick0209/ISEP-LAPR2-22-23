@@ -10,7 +10,6 @@ public class MainConsole {
 
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.run();
-        Database.saveData();
         Database.readData();
 
         try {
@@ -19,6 +18,7 @@ public class MainConsole {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Database.saveData();
     }
 
 

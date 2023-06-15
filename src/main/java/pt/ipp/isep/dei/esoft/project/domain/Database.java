@@ -24,8 +24,6 @@ public class Database {
     }
 
     public static void readData() {
-        AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
-
         try {
            ObjectInputStream in = new ObjectInputStream(new FileInputStream(Files.pathSER + "data.ser"));
            Repositories repositories = (Repositories) in.readObject();
@@ -33,6 +31,7 @@ public class Database {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
         UserRepository userRepository = Repositories.getInstance().getUserRepository();
         List<User> users = userRepository.getUsers();
         for (User u: users){

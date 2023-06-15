@@ -155,7 +155,7 @@ public class RegisterEmployeeController implements FileWriter{
         return passwordGenerator.generatePassword();
     }
 
-    public void writeFile(String email, String pwd) {
+    public void writeFile(VisitRequest visitRequest, String pwd) {
         String fileName = Files.pathTXT + "emailEmployee.txt";
         try {
             PrintWriter pw = new PrintWriter(fileName);
