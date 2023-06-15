@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.esoft.project.domain.FileReader;
 import pt.ipp.isep.dei.esoft.project.repository.DealRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
+import java.io.File;
 import java.util.List;
 
 
@@ -96,8 +97,8 @@ public class ListDealsController implements FileReader{
     }*/
 
     @Override
-    public boolean readFile(String fileName) {
-        return importInformation.readFile(fileName);
+    public boolean readFile(File file) {
+        return importInformation.readFile(file);
     }
 
     public List<Deal> getDeals(){

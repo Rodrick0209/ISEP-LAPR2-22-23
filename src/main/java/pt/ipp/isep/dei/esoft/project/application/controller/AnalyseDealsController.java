@@ -26,8 +26,7 @@ public class AnalyseDealsController implements FileReader {
     private Double[] propertiesNumberOfParkingSpaces;
 
     @Override
-    public boolean readFile(String fileName){
-        String file = Files.pathCSV + fileName;
+    public boolean readFile(File file){
         double squareFeetConverter = 0.0929;
         List<Double> salePrices = new ArrayList<>();
         List<Double> propertiesArea = new ArrayList<>();
@@ -37,7 +36,7 @@ public class AnalyseDealsController implements FileReader {
         List<Double> propertiesNumberOfParkingSpaces = new ArrayList<>();
         boolean operationSuccess = false;
         try{
-            Scanner sc = new Scanner(new File(file));
+            Scanner sc = new Scanner(file);
             String headLine = sc.nextLine();
             while(sc.hasNextLine()){
                 String line = sc.nextLine();

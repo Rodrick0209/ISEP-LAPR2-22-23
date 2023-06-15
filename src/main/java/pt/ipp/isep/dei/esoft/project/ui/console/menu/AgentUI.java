@@ -20,7 +20,7 @@ public class AgentUI implements Runnable {
 
         options.add(new MenuItem("Publish Announcement", new PublishAnnouncementUI())); // us 002 and 009 combined
         options.add(new MenuItem("Manage purchase orders", new OrderUI())); // us 011
-        options.add(new MenuItem("List all booking requests", new ListVisitRequestUI())); // us 015
+        //options.add(new MenuItem("List all booking requests", new ListVisitRequestUI())); // us 015
         //options.add(new MenuItem("See property requests ",new AgentRequestListUI()));  // us009;
 
 

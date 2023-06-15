@@ -187,14 +187,24 @@ public class ImportInformationController implements FileReader {
         return dealRepository;
     }
 
-    public boolean readFile(String fileName) {
-        String csvFile = Files.pathCSV + fileName;
+    public boolean receiveFile(String fileName) {
         boolean operationSuccess = false;
         try {
-            Scanner sc = new Scanner(new File(csvFile));
             if (!fileName.contains(".csv")) {
                 throw new FileNotFoundException("File is not on the correct format");
             }
+            File file = new File(Files.pathCSV + fileName);
+            operationSuccess = readFile(file);
+        } catch (FileNotFoundException e){
+            System.out.println("File not found");
+        }
+        return operationSuccess;
+    }
+
+    public boolean readFile(File file) {
+        boolean operationSuccess = false;
+        try {
+            Scanner sc = new Scanner(file);
             String headLine = sc.nextLine();
             if (headLine == null) {
                 throw new FileNotFoundException("File is Empty");
@@ -213,7 +223,7 @@ public class ImportInformationController implements FileReader {
             sc.close();
             operationSuccess = true;
         } catch (FileNotFoundException e) {
-            System.out.println("File not Found");
+            System.out.println("File not found");
         }
         return operationSuccess;
     }
