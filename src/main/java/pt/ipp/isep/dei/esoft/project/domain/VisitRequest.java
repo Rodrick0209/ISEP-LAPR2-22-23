@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 public class VisitRequest implements Serializable {
@@ -18,8 +17,6 @@ public class VisitRequest implements Serializable {
     private final String message;
     private Employee agent;
 
-
-
     public VisitRequest(Announcement announcement, String userName, String phoneNumber, Date date, int[][] timeSlot, String message) {
         this.announcement = announcement;
         this.userName = userName;
@@ -31,9 +28,10 @@ public class VisitRequest implements Serializable {
 
 
     public int[][] getTimeSlot() {
-    return timeSlot;
+    return getTimeSlot();
     }
 
+    public Announcement getAnnouncement(){ return announcement; }
 
     @Override
     public String toString() {
@@ -42,7 +40,7 @@ public class VisitRequest implements Serializable {
                 "\nUserName: " + userName  +
                 "\nPhoneNumber: " + phoneNumber +
                 "\nDate: " + date +
-                "\nTimeSlot: " + Arrays.deepToString(timeSlot) +
+                "\nTimeSlot: " + timeSlot +
                 "\nMessage: " + message;
 
     }

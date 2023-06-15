@@ -11,5 +11,5 @@ public interface FileWriter {
      * @param email the email
      * @param pwd   the pwd
      */
-    void writeFile(String email, String pwd);
+    void writeFile(VisitRequest visitRequest, String pwd);
 }

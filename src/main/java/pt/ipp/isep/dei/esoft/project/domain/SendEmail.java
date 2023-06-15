@@ -44,7 +44,7 @@ public class SendEmail {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("This is test subject line");
+            message.setSubject("Your password to log in the app");
             String content = readFile(file);
             message.setText(content);
             Transport.send(message);
@@ -79,7 +79,37 @@ public class SendEmail {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("This is test subject line");
+            message.setSubject("Your password to log in the app");
+            String content = readFile(file);
+            message.setText(content);
+            Transport.send(message);
+        } catch (MessagingException | IOException e) {
+            System.out.println("Error. Email not sent.");
+        }
+
+    }
+
+    public static void sendEmailToClient(String email) {
+        String to = email;
+        String from = "noreply.realestate.isep@gmail.com";
+        String file = pathTXT  + "emailClient.txt";
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("noreply.realestate.isep@gmail.com", "gighmvaxdiidrhaj");
+            }
+        });
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Respond of appointment request");
             String content = readFile(file);
             message.setText(content);
             Transport.send(message);

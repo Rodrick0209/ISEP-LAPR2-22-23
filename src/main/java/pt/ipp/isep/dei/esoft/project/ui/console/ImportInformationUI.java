@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.esoft.project.application.controller.ImportInformationCon
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 
+import java.io.FileNotFoundException;
 import java.util.Optional;
 
 /**
@@ -25,15 +26,19 @@ public class ImportInformationUI implements Runnable {
 
     public void run(){
         requestData();
-        submitOrNot();
+        try {
+            submitOrNot();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void requestData(){
         fileName = requestFileName();
     }
 
-    private void submitData() {
-        boolean operationSuccess = getController().readFile(fileName);
+    private void submitData() throws FileNotFoundException {
+        boolean operationSuccess = getController().receiveFile(fileName);
 
         if (operationSuccess) {
             System.out.println("Information successfully inserted in the system");
@@ -42,7 +47,7 @@ public class ImportInformationUI implements Runnable {
         }
     }
 
-    private void submitOrNot() {
+    private void submitOrNot() throws FileNotFoundException {
         boolean answer = Utils.confirm("Confirm data? (type yes or no)");
         if(answer){
             submitData();

@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.esoft.project.repository.AgencyRepository;
 import pt.ipp.isep.dei.esoft.project.repository.DealRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,8 +127,8 @@ public class DivideStoresSubSetsController implements FileReader {
 
 
     @Override
-    public boolean readFile(String fileName) {
-        return importInformationController.readFile(fileName);
+    public boolean readFile(File file) {
+        return importInformationController.readFile(file);
     }
 
 }
