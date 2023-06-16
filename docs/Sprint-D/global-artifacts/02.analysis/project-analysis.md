@@ -152,25 +152,34 @@ An association is a relationship between instances of objects that indicates a r
 
 
 
-| Concept (A) 		          |   Association   	    | Concept (B)  |
-|-------------------------|:--------------------:|--------------|
-| Agent                   |      Publishes       | Announcement |
-| Agent                   |      Works for       | Agency       |
-| Agent                   |     is a type of     | Employee     |
-| Owner                   |     is a type of     | Employee     |
-| Network manager         |     is a type of     | Employee     |
-| Apartment               | Is a description of  | Property     |
-| System Administrator  	 |  defines/creates  	  | Employee     |
-| Owner                   |         Owns         | Property     |
-| Owner                   |       Selects        | Agent        |
-| House                   | Is a description of  | Property     |
-| Land                    | Is a  description of | Property     |
-| Location                | is a description for | Property     |
-|                         |                      |              |
-| Comission               |   is cointaned on    | Announcement |
-| Agent                   |       manages        | Order        |
-| Client                  |                      |              |
-| Request                 |                      | TypeBusiness |
+| Concept (A) 		          |   Association   	    | Concept (B)        |
+|-------------------------|:--------------------:|--------------------|
+| Agent                   |      Publishes       | Announcement       |
+| Agent                   |      Works for       | Agency             |
+| Agent                   |     is a type of     | Employee           |
+| Owner                   |     is a type of     | Employee           |
+| Network manager         |     is a type of     | Employee           |
+| Apartment               | Is a description of  | Property           |
+| System Administrator  	 |  defines/creates  	  | Employee           |
+| Owner                   |         Owns         | Property           |
+| Owner                   |       Selects        | Agent              |
+| House                   | Is a description of  | Property           |
+| Land                    | Is a  description of | Property           |
+| Location                | is a description for | Property           |
+|                         |                      |                    |
+| Comission               |   is cointaned on    | Announcement       |
+| Agent                   |       manages        | Order              |
+| Client                  |                      |                    |
+| Request                 |                      | TypeBusiness       |
+| Client                  |       responds       | AppointmentRequest |
+| AppointmentRequest      |      created by      | Agent              |
+| SystemAdministrator     |       imports        | Information        |
+| Information             |       contains       | Owner              |
+| Information             |       contains       | Property           |
+| Information             |       contains       | Agency             |
+| Information             |       contains       | Announcement       |
+| Information             |       contains       | Request            |
+
 
 
 

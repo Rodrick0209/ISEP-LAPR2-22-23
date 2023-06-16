@@ -223,27 +223,7 @@ class User {
     - phone
 }
 
-class DisplayOfProperties {
-    + display()
-    + orderByPrice()
-    + searchByName()
-    + displayProperty()
-    + showDetailsProperty()
 
-}
-
-class System {
-    + createFilter()
-    + searchPropertiesByFilter()
-    + validateUser()
-    + registerUser()
-    + registerAccess()
-    + loadProperties()
-}
-
-class Filter {
-    + defineCriteria()
-}
 
 class Agent {
     - name
@@ -287,8 +267,6 @@ class RegisterAgencyController{
     - getAdministratorFromSession()
 }
 
-class "Unregistered User" as UU
-
 class ":RegistrationUI" as UI {
     +register(name: String, email: String, password: String, role: String, passwordPreference: String): void
 }
@@ -324,6 +302,47 @@ class "userCredentialsRepository:\nUserCredentialsRepository" as UserCredentials
 
 class "userDataRepository:\nUserDataRepository" as UserDataRepository {
     +addUserData(userData: UserData): void
+}
+
+class ResponseOfAppointmentRequest {
+    - Boolean acceptAppointment
+    - String reason
+
+    + ResponseOfAppointmentRequest\n(appointmentRequest, acceptAppointment, client)
+    + ResponseOfAppointmentRequest(appointmentRequest, \nacceptAppointment, reason, client)
+}
+
+class AppointmentRequest {
+    - Date dateOfAppointmentRequest
+
+    + AppointmentRequest(property, dateOfAppointmentRequest, agentName, agentPhoneNumber)
+}
+
+class ImportInformationController{
+    + ImportInformationController(propertyRepository, ownerRepository, \npropertTypeRepository, typeOfBusinessRepository, agencyRepository, \nrequestRepository, announcementRepository)
+    + readFile(fileName)
+    + createOwner(information)
+    + createProperty(information)
+    + createAgency(information)
+    + createRequest(information)
+    - getAuthenticationRepository()
+    - getPropertyRepository()
+    - getOwnerRepository()
+    - getAgencyRepository()
+    - getAnnouncementRepository()
+    - getPropertyTypeRepository()
+    - getTypeOfBusinessRepository()
+    - getAnnouncementRepository()
+    - getEmployeeRepository()
+}
+
+class RespondAppointmentController {
+    + RespondAppointmentController(appointmentRequestRepository, responseOfAppointmentRequestRepository, clientRepository)
+    + getTaskCategories()
+    + createResponseAccepted(appointmentRequestLocation, acceptAppointment)
+    + createResponseRejected(appointmentRequestLocation, acceptAppointment, reason)
+    - getAppointmentRequestByProperty(property)
+    - getClientFromSession()
 }
 
 
@@ -441,6 +460,38 @@ CTRL --> userDataRepository: addUserData(userData)
 CTRL --> Organization: addNewUser(email, name, role)
 CTRL --> UI: success
 UI --> UU: shows success message
+
+ImportInformationController ..> PropertyRepository : PropertyRepository
+ImportInformationController .> OwnerRepository : OwnerRepository
+ImportInformationController ..> PropertyTypeRepository : PropertyTypeRepository
+ImportInformationController .> AnnouncementRepository : AnnouncementRepository
+ImportInformationController ..> RequestRepository : RequestRepository
+ImportInformationController .> TypeOfBusinessRepository : TypeOfBusinessRepository
+ImportInformationController ..> EmployeeRepository : EmployeeRepository
+ImportInformationController .> AgencyRepository : AgencyRepository
+ImportInformationController ..> AuthenticationRepository
+ImportInformationController .> ApplicationSession
+ImportInformationController ..> UserSession
+
+RespondAppointmentUI .> RespondAppointmentController
+
+RespondAppointmentController .> Repositories : repositories
+
+Repositories -> "1" AppointmentRequestRepository
+
+RespondAppointmentController .> AppointmentRequest
+RespondAppointmentController ..> ClientRepository : clientRepository
+RespondAppointmentController .> AppointmentRequestRepository : AppointmentRequestRepository
+RespondAppointmentController .> "1" ResponseOfAppointmentRequestRepository : responseOfAppointmentRequestRepository
+RespondAppointmentController ..> ApplicationSession
+RespondAppointmentController ..> UserSession
+ResponseOfAppointmentRequest "*" --> "1" AppointmentRequest : appointmentRequest
+AppointmentRequestRepository "1" --> "*" AppointmentRequest : appointmentRequest
+AppointmentRequest --> Agent : createdBy
+ResponseOfAppointmentRequestRepository "1" --> "*" ResponseOfAppointmentRequest
+ResponseOfAppointmentRequest --> Client : createdBy
+
+AppointmentRequestRepository ..> Property : property
 
 
 @enduml

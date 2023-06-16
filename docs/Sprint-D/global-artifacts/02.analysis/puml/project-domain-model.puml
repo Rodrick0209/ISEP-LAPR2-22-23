@@ -151,6 +151,14 @@ class Message{
 message
 }
 
+class AppointmentRequest{
+    date
+}
+
+class Information {
+    file
+}
+
 
 
 
@@ -201,6 +209,12 @@ Request"1" --> "1" Announcement: is needed for  >
 Client "1" -- "1..*" Order : places a >
 Agent "1" -- "1..*" Order : lists >
 Agent "1" -- "1*" Order : accepts or declines >
-
+Client "1" --> "1..*" AppointmentRequest: accepts or requests a
+AppointmentRequest "*" --> "1" Agent: created by
+AppointmentRequest "1" --> "1" Property: has a
+SystemAdministrator "1" -- "1" Information: imports >
+Information "1" -- "*" Agency: contains >
+Information "1" -- "*" Property: contains >
+Information "1" -- "*" Owner: contains >
 
 @enduml
