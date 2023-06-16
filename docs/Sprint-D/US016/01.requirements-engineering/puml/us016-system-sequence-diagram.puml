@@ -12,19 +12,21 @@ participant ":System" as System
 
 activate Agent
 
-    Agent -> System : asks to see the booking request
+    Agent -> System : asks to see the booking request list
     activate System
 
-        System --> Agent : shows the booking request
+        System --> Agent : shows the booking request list
+    deactivate System
+
+    Agent -> System : selects a booking request
+    activate System
+
+    System --> Agent : shows data of the selecting booking request
     deactivate System
 
 opt want to responde to scheduled request
 loop want to responde to scheduled request
-    Agent -> System : selects the email service
-        activate System
 
-        System --> Agent : enter in the email service
-    deactivate System
 
     Agent -> System : write the response to the user
     activate System

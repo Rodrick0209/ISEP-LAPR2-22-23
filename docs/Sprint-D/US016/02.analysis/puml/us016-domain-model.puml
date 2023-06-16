@@ -18,6 +18,16 @@ class Agent{
     phoneNumber
 }
 
+class Property{
+       type of property
+       area
+       distance from center
+       price
+       state
+       zipCode
+}
+
+
 class VisitRequest{
     property
     type of business
@@ -44,4 +54,6 @@ Agent -l-> VisitRequest :  view
 Agent -> Response : write
 Response -> Owner : is sent
 Response -u-> TypeEmail
+Property -> VisitRequest : has
+Owner -d-> VisitRequest : write
 @enduml

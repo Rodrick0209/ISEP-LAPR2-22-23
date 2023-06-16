@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 
 import pt.ipp.isep.dei.esoft.project.domain.Employee;
+import pt.ipp.isep.dei.esoft.project.domain.Request;
 import pt.ipp.isep.dei.esoft.project.domain.Sort;
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
@@ -18,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.Properties;
 
 import java.util.*;
@@ -28,15 +30,14 @@ public class ListVisitRequestController {
     private VisitRepository visitRepository;
     private EmployeeRepository employeeRepository;
     private AuthenticationRepository authenticationRepository;
-    private Sort sortingAlgorithm;
-    private LocalDate begin;
-    private LocalDate end;
-    private List<VisitRequest> list;
 
-    public ListVisitRequestController(VisitRepository visitRepository, EmployeeRepository employeeRepository, Sort sortingAlgorithm) {
+    private static LocalDate begin;
+    private LocalDate end;
+
+
+    public ListVisitRequestController(VisitRepository visitRepository, EmployeeRepository employeeRepository ) {
         this.visitRepository = visitRepository;
         this.employeeRepository = employeeRepository;
-        this.sortingAlgorithm = sortingAlgorithm;
     }
 
 
@@ -46,6 +47,7 @@ public class ListVisitRequestController {
         getSortedVisitRequestList(begin, end);
         getConfigurationFile();
     }
+
 
 
     private List<VisitRequest> getSortedVisitRequestList(LocalDate begin, LocalDate end) {
@@ -100,17 +102,28 @@ public class ListVisitRequestController {
     }
 
     public LocalDate getBeginDate() {
-        System.out.println("Begin Date (year, month, day):");
-        int year1 = Utils.readIntegerFromConsole("year");
-        int year = year1 - 1900;
-        int month1 = Utils.readIntegerFromConsole("month");
-        int month = month1 - 1;
-        int day = Utils.readIntegerFromConsole("day");
-        Date beginDate1= new Date (year, month, day);
-        LocalDate beginDate = beginDate1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        return beginDate ;
+        Scanner scanner = new Scanner(System.in);
+        LocalDate beginDate = null;
+
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                System.out.println("Begin Date (year, month, day):");
+                int year = Utils.readIntegerFromConsole("year");
+                int month = Utils.readIntegerFromConsole("month");
+                int day = Utils.readIntegerFromConsole("day");
+
+                // Validate the input and create LocalDate object
+                beginDate = LocalDate.of(year, month, day);
+                validInput = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please enter a valid date.");
+            }
+        }
+
+        return beginDate;
     }
-    
+
 
     public LocalDate getEndDate() {
         System.out.println("End Date (year, month, day):");
@@ -122,8 +135,9 @@ public class ListVisitRequestController {
         Date endDate1= new Date(year, month, day);
         LocalDate endDate = endDate1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         return endDate ;
-
     }
+
+
 
 
     public List<VisitRequest> AgentVisitRequest() {
@@ -161,40 +175,14 @@ public class ListVisitRequestController {
 
 
 
-    public List<VisitRequest> getSortedVisitRequestList(List<VisitRequest> list, LocalDate begin, LocalDate end){
-        return Repositories.getVisitRepository().getSortedVisitRequestList(list, begin, end);
-    }
-    /*public List<VisitRequest> bubbleSort(List<VisitRequest> unsorted) {
-        List<VisitRequest> sorted = new ArrayList<>(unsorted);
-        for (int i = 0; i < sorted.size() - 1; i++) {
-            for (int j = 0; j < sorted.size() - i - 1; j++) {
-                if (sorted.get(j).getDate().after(sorted.get(j + 1).getDate())) {
-                    VisitRequest temp = sorted.get(j);
-                    sorted.set(j, sorted.get(j + 1));
-                    sorted.set(j + 1, temp);
-                }
-            }
-        }
-        return sorted;
+    public List<VisitRequest> getSortedVisitRequestList(List<VisitRequest> requestList, LocalDate begin, LocalDate end){
+        //return Repositories.getVisitRepository().getSortedVisitRequestList(requestList, begin, end);
+        return Repositories.getVisitRepository().newList;
     }
 
-    public List<VisitRequest> selectionSort(List<VisitRequest> unsorted) {
-        List<VisitRequest> sorted = new ArrayList<>(unsorted);
-        for (int i = 0; i < sorted.size() - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < sorted.size(); j++) {
-                if (sorted.get(j).getDate().after(sorted.get(j + 1).getDate())) {
-                    minIndex = j;
-                }
-            }
-            VisitRequest temp = sorted.get(i);
-            sorted.set(i, sorted.get(minIndex));
-            sorted.set(minIndex, temp);
-        }
-        return sorted;
-    }*/
 
 }
+
 
 
 

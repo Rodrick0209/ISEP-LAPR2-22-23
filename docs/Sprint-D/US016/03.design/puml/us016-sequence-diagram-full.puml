@@ -1,0 +1,166 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Agent" as ADM
+participant "RespondBookingRequestUI" as UI
+participant "RespondBookingRequestController" as CTRL
+participant ":Repositories" as Repositories
+participant "repositories\n:Repositories" as Rep
+participant "visitRepository\n:VisitRepository" as VRep
+participant "authentication\n: AuthenticationRepository" as AuRep
+participant "appointmentRequestRepository\n: AppointmentRequestRepository" as ApRep
+participant "clientRepository\n: ClientRepository" as TaskCategoryRepository
+participant "Client " as Client
+participant "Agent"  as Emp
+
+
+participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+
+participant "currentSession\n:UserSession" as SESSAO
+participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
+participant "organization\n:Organization" as ORG
+participant "task\n:Task" as TAREFA
+
+activate ADM
+
+        ADM -> UI : requests visitList
+
+        activate UI
+
+'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+            'create CTRL
+            UI -> CTRL** : create
+
+            UI-> CTRL : getVisitList
+            activate CTRL
+
+           CTRL -> Repositories : getInstance()
+                activate Repositories
+
+                    Repositories --> CTRL: repositories
+                deactivate Repositories
+
+
+
+
+           CTRL -> Rep : getVisitRepository()
+           activate Rep
+
+           Rep --> CTRL : VisitRepository
+           deactivate Rep
+
+
+            CTRL -> VRep : getVisitList
+            activate VRep
+           VRep --> CTRL : visitList
+           deactivate VRep
+
+
+           CTRL --> UI : visitList
+           deactivate CTRL
+
+UI --> ADM : shows VisitList and asks to selects one
+deactivate UI
+
+  ADM -> UI : Selects a booking request and asks to select the option to respond
+    activate UI
+
+        UI --> ADM : Asks to accept or decline the booking request
+    deactivate UI
+
+    ADM -> UI : Accepts or declines
+    activate UI
+
+    UI --> ADM : Informs about the success of the operation
+deactivate UI
+
+alt if the booking request was rejected
+
+
+
+
+   ADM -> UI : Rejected booking request
+
+   activate UI
+
+   UI -> CTRL : sendEmailBookingRequestRejected(requestId)
+
+
+
+   activate CTRL
+
+   CTRL -> VisitRepository: getVisitRequestById(requestId)
+
+   activate visitRequestRepository
+
+   VisitRepository --> CTRL : visitRequest
+
+   deactivate VisitRepository
+
+
+   CTRL -> EmailService : sendEmailVisitRequestRejected(visitRequest)
+
+
+   activate EmailService
+
+   EmailService --> CTRL :
+
+
+
+   deactivate EmailService
+
+    else if the booking request was accepted
+
+    ADM -> UI : Accepted booking request
+
+
+
+       UI -> CTRL : sendEmailBookingRequestAccepted(requestId)
+
+      CTRL -> bookingRequestRepository: getBookingRequestById(requestId)
+
+       activate bookingRequestRepository
+
+       bookingRequestRepository --> CTRL : bookingRequest
+
+       deactivate bookingRequestRepository
+
+
+
+
+
+    CTRL -> EmailService : sendEmailBookingRequestAccepted(bookingRequest)
+
+    activate EmailService
+
+    EmailService --> CTRL :
+
+    deactivate EmailService
+
+    CTRL -> Booking** : create(bookingRequest)
+
+    CTRL -> Vrep : save(booking)
+
+    activate VRep
+
+    BookingRepository --> CTRL :
+
+    deactivate VRep
+
+
+
+    end
+
+    CTRL --> UI:
+
+    deactivate CTRL
+
+    UI --> ADM : Informs about the success of the operation
+
+    deactivate UI
+@enduml

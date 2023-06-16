@@ -3,7 +3,9 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateVisitController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.repository.EmployeeRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
@@ -26,13 +28,15 @@ public class ScheduleVisitUI implements Runnable {
     private String clientUserName;
     private String clientPhoneNumber;
 
-    private Employee agent;
+    private List<Employee> agent;
     /**
      * The Controller.
      */
     CreateVisitController controller = new CreateVisitController();
 
     private AuthenticationRepository authenticationRepository;
+
+    private EmployeeRepository employeeRepository;
     private Request request;
 
     private Commission commission;
@@ -62,7 +66,7 @@ public class ScheduleVisitUI implements Runnable {
 
     private void submitData() {
 
-        Optional<VisitRequest> visitRequest = controller.createVisitRequest (new Announcement( request , commission , date), clientUserName, clientPhoneNumber, requestDate, timeSlot,message);
+        Optional<VisitRequest> visitRequest = controller.createVisitRequest (new Announcement( request , commission , date), clientUserName, clientPhoneNumber, requestDate, timeSlot,message, (Employee) agent);
                 if(visitRequest.isPresent()){
                     System.out.println("Request was created");
                 }
@@ -175,7 +179,14 @@ public class ScheduleVisitUI implements Runnable {
 
         agent = requestAgent();
 
-
+        System.out.println(
+            "\nClientUserName: " + requestClientUserName() +
+            "\nClient Phone number: " + requestClientPhoneNumber() +
+            "\nAnnouncement: " + requestAnnouncement() +
+            "\nDate: " + requestDate() +
+            "\nTime Slot: " + Arrays.deepToString(requestTimeSlot()) +
+            "\nMessage: " + requestMessage()     +
+            "\nAgent: " + requestAgent());
 
 
 
@@ -188,13 +199,14 @@ public class ScheduleVisitUI implements Runnable {
 
 
 
-            createVisitRequest(announcement, clientUserName, clientPhoneNumber, requestDate, timeSlot, message);
+            createVisitRequest(announcement, clientUserName, clientPhoneNumber, requestDate, timeSlot, message, (Employee) agent);
         } else {
             System.out.println("The hour you've written is not available ");
         }
     }
 
-    private Employee requestAgent() {
+    private List<Employee> requestAgent() {
+        List<Employee> agent = Repositories.getInstance().getEmployeeRepository().getEmployee();
         return agent;
     }
 
@@ -238,8 +250,8 @@ public class ScheduleVisitUI implements Runnable {
         int year = Utils.readIntegerFromConsole("year");
         int month = Utils.readIntegerFromConsole("month");
         int day = Utils.readIntegerFromConsole("day");
-        Date date = new Date(year,month,day);
-        return date;
+        Date visitDate = new Date(year,month,day);
+        return visitDate;
     }
 
     /*private Client requestID() {
@@ -261,12 +273,12 @@ public class ScheduleVisitUI implements Runnable {
 
 
 
-    private void createVisitRequest(Announcement announcement, String clientUserName, String clientPhoneNumber, Date requestDate, int[][] timeSlot, String message) {
-        controller.createVisitRequest(announcement,clientUserName, clientPhoneNumber, requestDate, timeSlot, message);
+    private void createVisitRequest(Announcement announcement, String clientUserName, String clientPhoneNumber, Date requestDate, int[][] timeSlot, String message, Employee agent) {
+        controller.createVisitRequest(announcement,clientUserName, clientPhoneNumber, requestDate, timeSlot, message, agent);
     }
 
 
-    @Override
+   /* @Override
     public String toString() {
         return  "Visit Request: " +
                 "Date: " + requestDate +
@@ -274,5 +286,5 @@ public class ScheduleVisitUI implements Runnable {
                 "Announcement: " + announcement +
                 "ClientUserName: " + clientUserName +
                 "ClientPhoneNumber: " + clientPhoneNumber ;
-    }
+    }*/
 }

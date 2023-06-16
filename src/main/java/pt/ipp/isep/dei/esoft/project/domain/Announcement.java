@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -17,12 +15,14 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     private Date date;
 
 
+
     /**
      * Instantiates a new Announcement.
      *
      * @param request    the request
      * @param commission the commission
      */
+    /*
     public Announcement( Request request, Commission commission) {
         this.announcementId = announcmentIdCounter++;
         this.request = request;
@@ -34,7 +34,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
             throw new IllegalArgumentException("Invalid date format");
         }
 
-    }
+    }*/
 
     /**
      * Instantiates a new Announcement.
@@ -62,7 +62,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     /**
      * Instantiates a new Announcement.
      */
-    public Announcement() {
+    public Announcement(Request request1, Commission commission1) {
         this.announcementId = announcmentIdCounter++;
     }
 

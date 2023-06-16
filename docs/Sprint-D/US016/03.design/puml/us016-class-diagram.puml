@@ -1,0 +1,103 @@
+@startuml
+'skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+'skinparam linetype orto
+
+skinparam classAttributeIconSize 0
+
+'left to right direction
+
+class  RespondBookingRequestController {
+- visitRepository: VisitRepository
+ - authenticationRepository: AuthenticationRepository
+ - clientRepository: ClientRepository
+ - appointmentRequestRepository: AppointmentRequestRepository
+  RespondBookingRequestController()
++ RespondBookingRequestController(visitRepository: VisitRepository, authenticationRepository: AuthenticationRepository, clientRepository: ClientRepository, appointmentRequestRepository: AppointmentRequestRepository)
+- getVisitRepository(): VisitRepository
+- getAuthenticationRepository(): AuthenticationRepository
+- getClientRepository(): ClientRepository
+- getAppointmentRequestRepository(): AppointmentRequestRepository
++ createAppointmentRequest(visitRequestAnnouncement: Announcement, message: String, clientEmail: String): Optional<AppointmentRequest>
+- getAgentFromSession(): Employee
++ writeFile(visitRequest: VisitRequest, pwd: String): void
+
+
+}
+
+interface FileWriter  {
++ writeFile(visitRequest: VisitRequest, pwd: String): void
+}
+
+class Agent{
+- name: String
+- phoneNumber: String
++ getName(): String
++ getPhoneNumber(): String
++ setName(name: String): void
++ setPhoneNumber(phoneNumber: String): void
+
+}
+
+class Repositories{
+ visitRepository: VisitRepository
+ - authenticationRepository: AuthenticationRepository
+ - clientRepository: ClientRepository
+ - appointmentRequestRepository: AppointmentRequestRepository
++ getInstance(): Repositories
++ getVisitRepository(): VisitRepository
++ getAuthenticationRepository(): AuthenticationRepository
++ getClientRepository(): ClientRepository
++ getAppointmentRequestRepository(): AppointmentRequestRepository
+}
+
+ class  VisitRepository  {
++ getVisitRequestByAnnouncement(announcement: Announcement): VisitRequest
+ }
+
+ class AuthenticationRepository  {
++ getCurrentUserSession(): UserSession
+ }
+
+ class UserSession  {
+- userId: Email
++ getUserId(): Email
+ }
+
+ class   ClientRepository   {
++ getClientByEmail(email: String): Client
+ }
+
+ class  AppointmentRequestRepository  {
++ createAppointmentRequest(visitRequest: VisitRequest, message: String, client: Client, agent: Employee): Optional<AppointmentRequest>
++ getAppointmentRequestByVisitRequest(visitRequest: VisitRequest): AppointmentRequest
+ }
+ class Announcement  {
+
+ }
+
+ class  VisitRequest    {
+
+ }
+
+class Client{
+- email: String
++ getEmail(): String
+}
+
+Repositories -u-> VisitRepository
+Repositories -d-> AuthenticationRepository
+Repositories -d-> ClientRepository
+Repositories -r->AppointmentRequestRepository
+RespondBookingRequestController -d-> FileWriter
+Client -> ClientRepository
+FileWriter-> VisitRequest
+VisitRequest-> VisitRepository
+Announcement -u-> VisitRequest
+Agent -d-> VisitRequest
+UserSession -l-> Agent
+
+
+@enduml

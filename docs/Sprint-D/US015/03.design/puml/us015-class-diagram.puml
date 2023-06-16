@@ -29,6 +29,8 @@ class VisitRequest{
     -property
 }
 
+
+
 class VisitRepository{
     -add(visitRequest)
 }

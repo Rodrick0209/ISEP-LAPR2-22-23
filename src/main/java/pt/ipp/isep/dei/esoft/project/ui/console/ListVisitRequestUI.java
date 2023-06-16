@@ -37,6 +37,7 @@ public class ListVisitRequestUI implements Runnable {
     /*private void requestDate() {
         System.out.println(controller.getBeginDate());
         System.out.println(controller.getEndDate());
+
     }*/
 }
 
