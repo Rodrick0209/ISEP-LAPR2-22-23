@@ -92,12 +92,13 @@ Repositories -d-> AuthenticationRepository
 Repositories -d-> ClientRepository
 Repositories -r->AppointmentRequestRepository
 RespondBookingRequestController -d-> FileWriter
-Client -> ClientRepository
+ClientRepository  -l-> Client
 FileWriter-> VisitRequest
 VisitRequest-> VisitRepository
 Announcement -u-> VisitRequest
 Agent -d-> VisitRequest
 UserSession -l-> Agent
+Client -u-> VisitRequest
 
 
 @enduml

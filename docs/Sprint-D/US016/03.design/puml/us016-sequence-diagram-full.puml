@@ -17,14 +17,9 @@ participant "appointmentRequestRepository\n: AppointmentRequestRepository" as Ap
 participant "clientRepository\n: ClientRepository" as TaskCategoryRepository
 participant "Client " as Client
 participant "Agent"  as Emp
-
-
+participant "SendEmail" as SEmail
 participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
-
 participant "currentSession\n:UserSession" as SESSAO
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
 
 activate ADM
 
@@ -67,7 +62,7 @@ activate ADM
 UI --> ADM : shows VisitList and asks to selects one
 deactivate UI
 
-  ADM -> UI : Selects a booking request and asks to select the option to respond
+  ADM -> UI : Selects a booking request
     activate UI
 
         UI --> ADM : Asks to accept or decline the booking request
@@ -94,7 +89,7 @@ alt if the booking request was rejected
 
    activate CTRL
 
-   CTRL -> VisitRepository: getVisitRequestById(requestId)
+   CTRL -> Repository: getVisitRequestById(requestId)
 
    activate visitRequestRepository
 
@@ -103,60 +98,62 @@ alt if the booking request was rejected
    deactivate VisitRepository
 
 
-   CTRL -> EmailService : sendEmailVisitRequestRejected(visitRequest)
+   CTRL -> SEmail : sendEmailVisitRequestRejected(visitRequest)
+
+   SEmail --> CTRL :EmailVisitRequestRejected(visitRequest)
+
+   CTRL --> UI : EmailVisitRequestRejected(visitRequest)
+   deactivate CTRL
+    deactivate UI
 
 
-   activate EmailService
 
-   EmailService --> CTRL :
-
-
-
-   deactivate EmailService
+ activate SEmail
+   deactivate SEmail
 
     else if the booking request was accepted
 
     ADM -> UI : Accepted booking request
-
+    activate UI
 
 
        UI -> CTRL : sendEmailBookingRequestAccepted(requestId)
+       activate CTRL
 
-      CTRL -> bookingRequestRepository: getBookingRequestById(requestId)
+      CTRL -> VisitRepository: getVisitRequestedById(requestId)
 
-       activate bookingRequestRepository
+       activate VisitRepository
 
-       bookingRequestRepository --> CTRL : bookingRequest
+       VisitRepository --> CTRL : visitRequest
 
-       deactivate bookingRequestRepository
-
-
-
+       deactivate VisitRepository
 
 
-    CTRL -> EmailService : sendEmailBookingRequestAccepted(bookingRequest)
 
-    activate EmailService
 
-    EmailService --> CTRL :
 
-    deactivate EmailService
+    CTRL -> SEmail : sendEmailVisitRequestAccepted(visitRequest)
 
-    CTRL -> Booking** : create(bookingRequest)
+    activate SEmail
 
-    CTRL -> Vrep : save(booking)
+     SEmail --> CTRL  : sendEmailVisitRequestRejected(visitRequest)
+
+    deactivate SEmail
+
 
     activate VRep
-
-    BookingRepository --> CTRL :
-
     deactivate VRep
+
+
+     CTRL --> UI : EmailVisitRequestRejected(visitRequest)
+       deactivate CTRL
+        deactivate UI
 
 
 
     end
 
-    CTRL --> UI:
+
 
     deactivate CTRL
 

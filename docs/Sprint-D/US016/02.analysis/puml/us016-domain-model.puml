@@ -29,9 +29,10 @@ class Property{
 
 
 class VisitRequest{
-    property
-    type of business
-    owner
+    client
+    phoneNumber
+    timeSlot
+    date
 }
 
 class Owner{
@@ -42,12 +43,16 @@ class Owner{
 class Response {
     -typeEmail
     -response
-    -AgentName
-    -AgentPhoneNumber
+    -userName
+    -phoneNumber
 }
 
 class TypeEmail{
     typeEmail
+}
+
+class Response {
+
 }
 
 Agent -l-> VisitRequest :  view
@@ -55,5 +60,6 @@ Agent -> Response : write
 Response -> Owner : is sent
 Response -u-> TypeEmail
 Property -> VisitRequest : has
-Owner -d-> VisitRequest : write
+Owner -d-> VisitRequest : request
+VisitRequest -r-> Response: has
 @enduml
