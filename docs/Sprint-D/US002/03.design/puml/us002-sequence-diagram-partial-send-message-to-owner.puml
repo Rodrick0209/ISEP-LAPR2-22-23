@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+participant ":PublishAnnouncementController" as CTRL
+participant ":Repositories" as RepositorySingleton
+participant "repositories\n:Repositories" as PLAT
+participant "propertyRepository:\nPropertyRepository" as PropertyRepository
+
+activate CTRL
+autonumber 5
+CTRL -> AnnouncementRepository : createAnnouncement(announcementDetails)
+activate AnnouncementRepository
+AnnouncementRepository -> announcementRepository : createAnnouncement(announcementDetails)
+deactivate AnnouncementRepository
+
+group Sending message to the owner
+autonumber 7
+autonumber 7.1
+CTRL -> MessageController : sendMessageToOwner(announcement)
+activate MessageController
+MessageController --> Owner : sendMessage(announcement)
+deactivate MessageController
+CTRL -> Message : createMessage(announcement, Agent, Owner)
+activate Message
+Message --> Owner : receiveMessage(message)
+autonumber 8
+end
+
+
+@enduml

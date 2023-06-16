@@ -1,0 +1,41 @@
+@startuml
+
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+'hide footbox
+actor "StoreManager " as StoreManager
+participant "System" as System
+
+activate Manager
+
+Manager -> System: Selects to analyze the deals
+
+activate System
+System --> Manager: Asks to select regression model type
+deactivate System
+
+Manager -> System: Selects regression model
+
+alt Store Manager selects simple regression
+activate System
+System --> Manager: Asks for the variable to forecast property price
+deactivate System
+
+Manager -> System: Selects the variable and provides the value
+
+alt Store Manager selects multiple regression
+System --> Manager: Asks for variables and their values
+end alt
+
+Manager -> System: Selects variables and provides their values
+
+System --> Manager: Displays forecast property price
+
+deactivate System
+
+
+
+@enduml

@@ -4,7 +4,6 @@ import org.apache.commons.math4.legacy.stat.regression.OLSMultipleLinearRegressi
 import org.apache.commons.math4.legacy.stat.regression.SimpleRegression;
 import pt.ipp.isep.dei.esoft.project.domain.FileReader;
 import pt.ipp.isep.dei.esoft.project.domain.RegressionResults;
-import pt.ipp.isep.dei.esoft.project.ui.console.utils.Files;
 
 
 import java.io.File;

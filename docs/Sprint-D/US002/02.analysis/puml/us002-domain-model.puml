@@ -56,8 +56,8 @@ property
 Owner "1" -- "1..*" Property : owns a >
 Agent "1" -- "1..*" Announcement : publishes an >
 Announcement "1"-- "1..*" Property: contains >
-Announcement"1"--"1" Commision : needs >
-Owner "1"--"1" Message : receives a >
+Announcement"1" -- "1" Commision : needs >
+Owner "1" -- "1" Message : receives a >
 Agent "1"--"1" Message : sends a
-Message "1"--"1" Property : has information of >
+Message "1" -- "1" Property : has information of >
 @enduml

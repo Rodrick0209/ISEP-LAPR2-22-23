@@ -43,13 +43,13 @@ This diagram shows the full sequence of interactions between the classes involve
 
 
 
-**Get Property Partial SD**
+**Prepare the system for the agent to publish an announcement**
 
 ![Sequence Diagram - Partial - Get Property List](svg/us002-sequence-diagram-partial-get-agent.svg)
 
 **Get Property**
 
-![Sequence Diagram - Partial - Get Property](svg/us002-sequence-diagram-partial-get-agent.svg)
+![Sequence Diagram - Partial - Get Property](svg/us002-sequence-diagram-partial-agent-menu-process-to-display-user-story-functionalities.svg)
 
 **Get Agent**
 

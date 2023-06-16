@@ -1,0 +1,26 @@
+@startuml
+ skinparam monochrome true
+ skinparam packageStyle rectangle
+ skinparam shadowing false
+
+ actor "Real Estate Agent" as Agent
+ participant ":PublishAnnouncementUI" as UI
+ participant ":PublishAnnouncementController" as CTRL
+
+
+activate Agent
+activate UI
+activate CTRL
+autonumber 8
+autonumber 8.1
+group Informating the agent the announcment has been published
+CTRL --> UI : announcementPublished
+deactivate CTRL
+UI -> Agent : showSuccessMessage(announcementPublished)
+autonumber 9
+end
+deactivate UI
+deactivate Agent
+@enduml
+
+

@@ -1,0 +1,86 @@
+@startuml
+skinparam monochrome false
+skinparam packageStyle true
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+
+
+
+
+title Class Diagram
+
+class StoreManager {
+   - String email
+  - String password
+}
+
+class Announcement {
+  + property
+}
+
+class Property {
+ - int area
+ - int distanceFromCenter
+ - int numberOfBedrooms
+ - int numberOfBathrooms
+ - int numberOfParkingSpaces
+}
+
+class Agency {
+  + Deal deal
+}
+
+class Deal {
+  announcement
+  dateOfSale
+  +Agency agency
+  + Property
+}
+
+class RegressionResults {
+ - double forecastPropertyPrice
+}
+
+
+
+
+  class AnalyseDealController {
+    + createDeal()
+    + updateDeal()
+    + deleteDeal()
+    + getDeal()
+  }
+
+  class DealRepository {
+    + save()
+    + update()
+    + delete()
+    + get()
+  }
+
+
+
+  class AnalyseDealsUI {
+    + displayDeal()
+    + createDeal()
+    + updateDeal()
+    + deleteDeal()
+  }
+
+
+StoreManager "1" -- "1..*" Deal : analyses >
+Deal "1" -- "1" Announcement : includes >
+Announcement "1" -- "1" Property : references >
+Deal "1" -- "1" Agency : uses >
+Deal "1" -- "0..1" RegressionResults : has >
+
+
+DealController -- Deal : manages >
+DealRepository -- Deal : saves data >
+AnalyseDealsUI -- DealController : interacts with >
+
+@enduml

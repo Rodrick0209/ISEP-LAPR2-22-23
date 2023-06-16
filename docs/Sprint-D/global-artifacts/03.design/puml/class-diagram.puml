@@ -87,30 +87,13 @@ class Agency {
         + Agency(id, designation, \nlocation, emailAddress, \nphoneNumber, registeredBy)
 }
 
-class Organization{
-    - String description
-    - addAgency(store)
-    - validateAgency(store)
-    + registerAgency(id, designation, location, \nemailAddress, phoneNumber)
-     '+ saveAgency(agency)
-    + Organization(description)
-    - getAdministratorByEmail(email)
-    - addAnnouncement(announcement)
-    - validateAnnouncement(announcement)
-    + anyAgentHasEmail(email)
-    + createAnnouncement(property, description, commission, agent)
-    - getAgentByEmail(email)
-    - addNewUser(email, name, role)
-}
 
 
-class locationsRepository {
+
+class LocationsRepository {
     + getLocation(location)
 }
 
-class OrganizationRepository {
-    + getOrganizationByEmployeeEmail(email)
-}
 
 class Repositories {
     - Repositories()
@@ -121,7 +104,7 @@ class Repositories {
 }
 
 class CreateRequestController {
-    + CreateRequestController(agencyRepository, locationsRepository, typeOfPropertyRepository)
+    + CreateRequestController(agencyRepository, LocationsRepository, typeOfPropertyRepository)
     + createRequest(status, beginDate, endDate, the area in m2, location, \ndistance from the city centre and one or more photos)
     + CreateSale(price)
     + CreateRent(mountlyRent, contractDuration)
@@ -136,7 +119,7 @@ note top of CreateRequestController
     is retrieved from selected data
 end note
 
-note top of locationsRepository
+note top of LocationsRepository
     - used for displaying
     the location of the property
 end note
@@ -145,7 +128,7 @@ class Owner{
     - String name
     - String email
     - int phoneNumber
-
+    + receiveMessage(message)
     + createRequest(status, beginDate, endDate)
 }
 
@@ -216,7 +199,7 @@ class PropertyRepository{
     +getPropertyByLocation(location)
 }
 
-class User {
+class Unregisteduser {
     - name
     - email
     - password
@@ -232,6 +215,9 @@ class Agent {
     - address
     - email
     - phoneNumber
+     + displayAndSelectAnnouncements()
+      + publishAnnouncement()
+      + showSuccessMessage(announcementPublished)
 }
 
 class Announcement {
@@ -346,6 +332,63 @@ class RespondAppointmentController {
 }
 
 
+class PublishAnnouncementUI {
+  + createAnnouncementView(announcement)
+  + displayAnnouncementView()
+  + getAnnouncementDetails()
+}
+
+class PublishAnnouncementController {
+  + getAnnouncement()
+  + validateAnnouncementDetails(announcementDetails)
+}
+
+class Repositories {
+  - announcementRepository
+  + getInstance()
+}
+
+class AnnouncementRepository {
+  + getAnnouncementById()
+  + createAnnouncement(announcementDetails)
+}
+
+class MessageController {
+  + sendMessageToOwner(announcement)
+}
+
+
+
+
+class Message {
+  + createMessage(announcement, Agent, Owner)
+}
+
+class Commission {
+- String type
+- int value
+ + getCommissionType()
+ + validateCommission(commissionType, announcementDetails)
+}
+
+Agent --> PublishAnnouncementUI
+PublishAnnouncementUI --> PublishAnnouncementController
+PublishAnnouncementController --> Repositories
+PublishAnnouncementController --> Commission
+PublishAnnouncementController --> AnnouncementRepository
+PublishAnnouncementController --> MessageController
+PublishAnnouncementController --> Owner
+PublishAnnouncementController --> Message
+PublishAnnouncementUI --> Agent
+PublishAnnouncementController --> PublishAnnouncementUI
+PublishAnnouncementUI --> PublishAnnouncementController
+PublishAnnouncementController --> AnnouncementRepository
+PublishAnnouncementController --> Commission
+MessageController --> Owner
+Message --> Owner
+Message --> Agent
+
+
 Repositories --> Repositories : instance
 Repositories ---> "1" OrganizationRepository
 Repositories ---> "1" PropertyTypeRepository
@@ -360,12 +403,12 @@ SendEmail-> AppointmentRequest
 SelectionSort --> VisitRepository
 BubbleSort --> VisitRepository
 
-Repositories --> "1" locationsRepository
+Repositories --> "1" LocationsRepository
 
 CreateRequestController ..> Repositories : repositories
 CreateRequestController ..> Request
 CreateRequestController ..> OrganizationRepository : organizationRepository
-CreateRequestController ..> locationsRepository : locationsRepository
+CreateRequestController ..> LocationsRepository : LocationsRepository
 CreateRequestController ..> "1" Organization : organization
 
 
@@ -373,7 +416,7 @@ OrganizationRepository --> "*" Organization
 
 
 
-locationsRepository "1" --> "*" Property : location
+LocationsRepository "1" --> "*" Property : location
 
 Employee --> Request : handles
 
@@ -415,12 +458,9 @@ Administrator "1" --> "*" Organization : administrates
 
 Property --> PropertyRepository
 PropertyRepository --> DisplayOfProperties
-User --> DisplayOfProperties
-System --> Property
-System --> PropertyRepository
-System --> User
-System --> DisplayOfProperties
-System --> Filter
+Unregisteduser --> DisplayOfProperties
+
+
 
 
 CreateAnnouncementUI .> CreateAnnouncementController

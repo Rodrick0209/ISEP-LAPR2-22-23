@@ -1,0 +1,56 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+'left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+
+title Domain Model
+
+class StoreManager {
+  id/email
+  password
+}
+
+class Announcement {
+  property
+}
+
+class Property {
+  area
+  distanceFromCenter
+  numberOfBedrooms
+  numberOfBathrooms
+  numberOfParkingSpaces
+}
+
+class Agency {
+  deal
+}
+
+class Deal {
+  announcement
+  dateOfSale
+  agency
+  property
+}
+
+class RegressionResults {
+  forecastPropertyPrice
+
+}
+
+StoreManager "1" -- "1..*" Deal : analyses >
+Deal "1" -- "1" Property : has >
+Announcement "1" -- "1" Property : references >
+Deal "1" -- "1" Agency : uses >
+Deal "1" -- "0..1" RegressionResults : is used to get >
+StoreManager "1" ----- "0..1" RegressionResults : gets >
+
+@enduml

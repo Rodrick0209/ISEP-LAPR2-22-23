@@ -1,0 +1,35 @@
+
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Real Estate Agent" as Agent
+participant ":PublishAnnouncementUI" as UI
+participant ":PublishAnnouncementController" as CTRL
+participant ":Repositories" as Repositories
+participant "AnnouncementRepository" as AnnouncementRepository
+participant "MessageController" as MessageController
+participant "Owner" as Owner
+participant "Message" as Message
+participant "Commission" as Commission
+activate UI
+autonumber 2
+activate Agent
+Agent -> UI : publishAnnouncement()
+UI -> UI : getAnnouncementDetails()
+group Announcement validation (Only Commission in this case)
+autonumber 4
+autonumber 4.1
+UI --> CTRL : validateAnnouncementDetails(announcementDetails)
+activate CTRL
+CTRL -> Commission : getCommissionType()
+activate Commission
+Commission --> CTRL : commissionType
+deactivate Commission
+CTRL -> Commission : validateCommission(commissionType, announcementDetails)
+activate Commission
+Commission --> CTRL : commissionValid
+autonumber 5
+end
+@enduml

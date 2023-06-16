@@ -3,81 +3,86 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-autonumber
-
-'hide footbox
 actor "Real Estate Agent" as Agent
 participant ":PublishAnnouncementUI" as UI
 participant ":PublishAnnouncementController" as CTRL
 participant ":Repositories" as Repositories
-participant "repositories :Repositories" as RPS
-participant "AuthenticationRepository" as AuthenticationRepository
 participant "AnnouncementRepository" as AnnouncementRepository
 participant "MessageController" as MessageController
 participant "Owner" as Owner
 participant "Message" as Message
 participant "Commission" as Commission
+autonumber 1
 
 activate Agent
-
-
+autonumber 1.1
+group In Agent Menu
 Agent -> UI : displayAndSelectAnnouncements()
 activate UI
-
-UI --> CTRL** : new PublishAnnouncementController()
+UI --> CTRL : new PublishAnnouncementController()
 UI -> CTRL : getAnnouncement()
 activate CTRL
+CTRL -> Repositories : getInstance()
+activate Repositories
+Repositories --> CTRL : repositories
+deactivate Repositories
+CTRL -> AnnouncementRepository : getAnnouncementById()
+activate AnnouncementRepository
+AnnouncementRepository --> CTRL : announcementId
+deactivate AnnouncementRepository
+CTRL --> UI : announcement
+deactivate CTRL
+UI -> UI : createAnnouncementView(announcement)
+UI -> UI : displayAnnouncementView()
 
+end
+autonumber 2
 
+Agent -> UI : publishAnnouncement()
+UI -> UI : getAnnouncementDetails()
 
-    CTRL -> Repositories : getInstance()
-    activate Repositories
-    Repositories --> CTRL : repositories
-    deactivate Repositories
+group Announcement validation (only commission in this case)
+autonumber 4
+autonumber 4.1
+UI --> CTRL : validateAnnouncementDetails(announcementDetails)
+activate CTRL
+CTRL -> Commission : getCommissionType()
+activate Commission
+Commission --> CTRL : commissionType
+deactivate Commission
+CTRL -> Commission : validateCommission(commissionType, announcementDetails)
+activate Commission
+Commission --> CTRL : commissionValid
+autonumber 5
+end
+deactivate Commission
 
-    CTRL -> RPS : getAnnouncementRepository()
-    activate RPS
-    RPS --> CTRL : announcementRepository
-    deactivate RPS
-    CTRL -> AnnouncementRepository : getAnnouncementById()
+CTRL -> AnnouncementRepository : createAnnouncement(announcementDetails)
+activate AnnouncementRepository
+AnnouncementRepository -> announcementRepository : createAnnouncement(announcementDetails)
+deactivate AnnouncementRepository
 
-    activate AnnouncementRepository
-    AnnouncementRepository --> CTRL : announcementId
-    deactivate AnnouncementRepository
-    CTRL --> UI : announcement
-    deactivate CTRL
-    UI -> UI : createAnnouncementView(announcement)
-    UI -> UI : displayAnnouncementView()
-
-    Agent -> UI : publishAnnouncement()
-
-    UI -> UI : getAnnouncementDetails()
-    UI --> CTRL : validateAnnouncementDetails(announcementDetails)
-    activate CTRL
-    CTRL -> Commission : getCommissionType()
-    activate Commission
-    Commission --> CTRL : commissionType
-    deactivate Commission
-    CTRL -> Commission : validateCommission(commissionType, announcementDetails)
-    activate Commission
-    Commission --> CTRL : commissionValid
-    deactivate Commission
-    CTRL -> AnnouncementRepository : createAnnouncement(announcementDetails)
-    activate AnnouncementRepository
-    AnnouncementRepository -> announcementRepository : createAnnouncement(announcementDetails)
-    deactivate AnnouncementRepository
-    CTRL -> MessageController : sendMessageToOwner(announcement)
-    activate MessageController
-    MessageController --> Owner : sendMessage(announcement)
-    deactivate MessageController
-    CTRL -> Message : createMessage(announcement, Agent, Owner)
-    activate Message
-    Message --> Owner : receiveMessage(message)
-    deactivate Message
-    CTRL --> UI : announcementPublished
-    deactivate CTRL
-    UI -> Agent : showSuccessMessage(announcementPublished)
-
+group Sending message to owner
+autonumber 7
+autonumber 7.1
+CTRL -> MessageController : sendMessageToOwner(announcement)
+activate MessageController
+MessageController --> Owner : sendMessage(announcement)
+deactivate MessageController
+CTRL -> Message : createMessage(announcement, Agent, Owner)
+activate Message
+Message --> Owner : receiveMessage(message)
+autonumber 8
+end
+deactivate Message
+autonumber 8
+autonumber 8.1
+group Informating the agent the announcment has been published
+CTRL --> UI : announcementPublished
+deactivate CTRL
+UI -> Agent : showSuccessMessage(announcementPublished)
+autonumber 9
+end
 deactivate UI
 deactivate Agent
 @enduml

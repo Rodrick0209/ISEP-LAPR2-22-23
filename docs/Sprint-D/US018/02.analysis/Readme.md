@@ -4,8 +4,9 @@
 
 ### 2.1. Relevant Domain Model Excerpt 
 
-![Domain Model](svg/us006-domain-model.svg)
+![Domain Model](svg/us018-domain-model-Domain_Model.svg)
 
 ### 2.2. Other Remarks
 
-n/a
+The RegressionReulsts is a class that returns the forecast prices(which is the main functionality of this us)
+The return will differ depending on how many an which variables are in use.
