@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -33,7 +34,6 @@ public class ImportInformationController implements FileReader {
     private OwnerRepository ownerRepository;
 
     private DealRepository dealRepository;
-
 
 
     /**
@@ -195,7 +195,7 @@ public class ImportInformationController implements FileReader {
             }
             File file = new File(Files.pathCSV + fileName);
             operationSuccess = readFile(file);
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
         return operationSuccess;
@@ -353,8 +353,10 @@ public class ImportInformationController implements FileReader {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 Date dateOfSale = sdf.parse(information[23]);
                 newDeal = getDealRepository().createDeal(announcement, dateOfSale, agency);
+                removeProperty(property);
                 removeRequest(request);
                 removeAnnouncement(announcement);
+                addPropertyToAgency(agency, property);
             } catch (ParseException e) {
                 throw new IllegalArgumentException("Invalid Date Format");
             }
@@ -396,9 +398,23 @@ public class ImportInformationController implements FileReader {
         return getAgencyRepository().getAgencyByID(agencyID);
     }
 
-    private boolean removeRequest(Request request){ return getRequestRepository().removeRequest(request);}
+    private void addPropertyToAgency(Agency agency, Property property) {
+        agency.addProperty(property);
+    }
 
-    private boolean removeAnnouncement(Announcement announcement){ return getAnnouncementRepository().removeAnnouncement(announcement);}
+    private boolean removeRequest(Request request) {
+        return getRequestRepository().removeRequest(request);
+    }
+
+    private boolean removeAnnouncement(Announcement announcement) {
+        return getAnnouncementRepository().removeAnnouncement(announcement);
+    }
+
+    private boolean removeProperty(Property property) {
+        return getPropertyRepository().removeProperty(property);
+    }
+
+
 }
 
 
