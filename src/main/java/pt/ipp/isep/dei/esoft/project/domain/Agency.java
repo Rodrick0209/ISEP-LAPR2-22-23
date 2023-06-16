@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,7 @@ public class Agency implements Serializable {
     private String emailAddress;
     private String phoneNumber;
     private Employee administrator;
+    private List<Property> properties;
 
     /**
      * Instantiates a new Agency.
@@ -37,27 +40,20 @@ public class Agency implements Serializable {
      */
     public Agency(int id, String designation, String location, String emailAddress, String phoneNumber, Employee administrator){
         this.id = id;
-        if(designation.replace(" ", "").length() > 40){
-            throw new IllegalArgumentException("Agency Designation is longer than 40 characters");
-        } else {
-            this.designation = designation;
-        }
+        this.designation = designation;
         this.location = location;
-        int count = 0;
-        for (char c : emailAddress.toCharArray()) {
-            if (c == '@') {
-                count++;
-            }
-        }
-        if (count != 1) {
-            throw new IllegalArgumentException("Invalid email address");
-        } else this.emailAddress = emailAddress;
-        if(!phoneNumber.contains("(") && !phoneNumber.contains(")") && !phoneNumber.contains("-")){
-            throw new IllegalArgumentException("Invalid Phone Number");
-        } else {
-            this.phoneNumber = phoneNumber;
-        }
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
         this.administrator = administrator;
+        this.properties = new ArrayList<>();
+    }
+
+    public void addProperty(Property property){
+        properties.add(property);
+    }
+
+    public int getPropertyCount(){
+        return properties.size();
     }
 
     public boolean equals(Object o){

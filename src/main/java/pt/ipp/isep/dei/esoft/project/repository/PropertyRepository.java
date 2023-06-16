@@ -154,6 +154,10 @@ public class PropertyRepository implements Serializable {
     public List<Property> getProperties() {
         return List.copyOf(properties);
     }
+
+    public boolean removeProperty(Property property){
+        return properties.remove(property);
+    }
 }
 
 
