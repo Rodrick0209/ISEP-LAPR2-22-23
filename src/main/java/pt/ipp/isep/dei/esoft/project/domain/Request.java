@@ -18,9 +18,9 @@ public class Request implements Serializable {
     private final Date requestDate;
 
 
-//    public Date getRequestDate() {
-//        return requestDate;
-//    }
+   public Date getRequestDate() {
+        return requestDate;
+    }
 
     /**
      * Gets owner.
@@ -106,7 +106,7 @@ public class Request implements Serializable {
     }
 
     @Override
-    public String toString() {  // method to convert into displayable
+    public String toString() {
         return  "Property: "  + property +
                 "\nType of Business: " + typeBusiness +
                 "\nPrice: " + price +"$" +

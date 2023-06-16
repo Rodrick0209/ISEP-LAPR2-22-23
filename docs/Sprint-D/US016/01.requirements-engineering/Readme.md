@@ -5,10 +5,7 @@
 
 ### 1.1. User Story Description
 
-
-As an organization employee, I want to create a new task in order to be further published.
-
-
+As an agent, when viewing a booking request, I want to respond to the user that scheduled the visit
 
 ### 1.2. Customer Specifications and Clarifications 
 
@@ -37,15 +34,14 @@ As an organization employee, I want to create a new task in order to be further 
 ### 1.3. Acceptance Criteria
 
 
-* **AC1:** All required fiels must be filled in.
-* **AC2:** Task reference must have at least 5 alphanumeric chars.
-* **AC3:** When creating a task with an already existing reference, the system must reject such operation and the user must have the change to modify the typed reference.
-
+* **AC1** The response is sent by email.
+* **AC2** Different email services can send the message. These services must be configured using a configuration file to enable using different platforms (e.g.:gmail, DEI's email service, etc.)
+* **AC3** The response should include the name and phone number of the responsible Agent.
 
 ### 1.4. Found out Dependencies
 
 
-* There is a dependency to "US003 Create a task category" since at least a task category must exist to classify the task being created.
+* There is a dependency to "US015 To list all booking requests" since at least a task category must exist to classify the task being created.
 
 
 ### 1.5 Input and Output Data
@@ -54,21 +50,15 @@ As an organization employee, I want to create a new task in order to be further 
 **Input Data:**
 
 * Typed data:
-	* a reference, 
-	* a designation, 
-	* an informal description
-	* a technical description
-	* an estimated duration
-	* an estimated cost
+	* Name of client
+    * Phone number of client
 	
 * Selected data:
-	* Classifying task category 
-
-
+	* Visit Request
+    
 **Output Data:**
 
-* List of existing task categories
-* (In)Success of the operation
+* Response of scheduled visit
 
 ### 1.6. System Sequence Diagram (SSD)
 
@@ -76,12 +66,8 @@ As an organization employee, I want to create a new task in order to be further 
 
 #### Alternative One
 
-![System Sequence Diagram - Alternative One](svg/us006-system-sequence-diagram-alternative-one.svg)
+![System Sequence Diagram ](svg/us016-system-sequence-diagram.svg)
 
-#### Alternative Two
-
-![System Sequence Diagram - Alternative Two](svg/us006-system-sequence-diagram-alternative-two.svg)
 
 ### 1.7 Other Relevant Remarks
 
-* The created task stays in a "not published" state in order to distinguish from "published" tasks.

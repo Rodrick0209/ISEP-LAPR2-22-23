@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -17,13 +15,15 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     private Date date;
 
 
+
     /**
      * Instantiates a new Announcement.
      *
      * @param request    the request
      * @param commission the commission
      */
-    public Announcement(Request request, Commission commission) {
+    /*
+    public Announcement( Request request, Commission commission) {
         this.announcementId = announcmentIdCounter++;
         this.request = request;
         this.commission = commission;
@@ -34,7 +34,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
             throw new IllegalArgumentException("Invalid date format");
         }
 
-    }
+    }*/
 
     /**
      * Instantiates a new Announcement.
@@ -47,12 +47,13 @@ public class Announcement implements Serializable, Comparable<Announcement>{
         this.announcementId = announcmentIdCounter++;
         this.request = request;
         this.commission = commission;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        this.date = date;
+        /*SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         try {
             this.date = sdf.parse(sdf.format(date));
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format");
-        }
+        }*/
     }
 
 
@@ -61,7 +62,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     /**
      * Instantiates a new Announcement.
      */
-    public Announcement() {
+    public Announcement(Request request1, Commission commission1) {
         this.announcementId = announcmentIdCounter++;
     }
 
@@ -128,11 +129,13 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     @Override
     public String toString() {
         return "\nId: " + announcementId +
-                "\n" + request.getProperty() +
+                "\nRequest: " + request +
                 "\nType of Business: " + request.getTypeBusiness() +
                 "\nPrice: " + request.getPrice() +
                 "\nDate of announcement: " + date;
     }
+
+
 
     @Override
     public int compareTo(Announcement o) {
@@ -142,6 +145,7 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     public Announcement clone(){
         return new Announcement(this.request, this.commission, this.date);
     }
+
 
 }
 

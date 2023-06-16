@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.domain.Client;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
 import pt.ipp.isep.dei.esoft.project.repository.*;
 
@@ -108,8 +109,12 @@ public class CreateVisitController {
     }
 
 
+
+
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
     ClientRepository clientRepository = Repositories.getInstance().getClientRepository();
+
+    EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
 
     public List<Announcement> getAnnouncements() {
         return announcementRepository.getAnnouncements();
@@ -117,9 +122,9 @@ public class CreateVisitController {
 
     public ClientRepository getClientRepository() { return clientRepository; }
 
-    public Optional<VisitRequest> createVisitRequest(Announcement announcement, String username, String phonenumber, Date date, int[][] timeSlot, String message) {
-        VisitRequest visit = new VisitRequest(announcement, username, phonenumber, date, timeSlot, message);
-        visitRepository.addRequest(visit);
+    public Optional<VisitRequest> createVisitRequest(Announcement announcement, String username, String phonenumber, Date visitDate, int[][] timeSlot, String message, Employee agent) {
+        VisitRequest visit = new VisitRequest(announcement, username, phonenumber, visitDate, timeSlot, message, agent);
+        visitRepository.addRequests(visit);
         return Optional.of(visit);
     }
 
@@ -127,6 +132,8 @@ public class CreateVisitController {
         return ownerRepository;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "CreateVisitController{}";
+    }
 }

@@ -7,29 +7,31 @@ title System Sequence Diagram (SSD)
 
 autonumber
 
-actor "Organization Employee" as Employee
+actor "Real Estate Agent" as Agent
 participant ":System" as System
 
-activate Employee
+activate Agent
 
-    Employee -> System : asks to see the booking request
+    Agent -> System : asks to see the booking request list
     activate System
 
-        System --> Employee : shows the booking request
+        System --> Agent : shows the booking request list
+    deactivate System
+
+    Agent -> System : selects a booking request
+    activate System
+
+    System --> Agent : shows data of the selecting booking request
     deactivate System
 
 opt want to responde to scheduled request
 loop want to responde to scheduled request
-    Employee -> System : selects the email service
-        activate System
 
-        System --> Employee : enter in the email service
-    deactivate System
 
-    Employee -> System : write the response to the user
+    Agent -> System : write the response to the user
     activate System
 
-        System --> Employee : send the response
+        System --> Agent : send the response
     deactivate System
 
  end

@@ -68,7 +68,7 @@ public class Repositories implements Serializable {
     /**
      * The Visit repository.
      */
-    VisitRepository visitRepository =  new VisitRepository();
+    static VisitRepository visitRepository =  new VisitRepository();
 
     ClientRepository clientRepository = new ClientRepository();
     DealRepository dealRepository = new DealRepository();
@@ -181,7 +181,7 @@ public class Repositories implements Serializable {
      *
      * @return the visit repository
      */
-    public VisitRepository getVisitRepository() {
+    public static VisitRepository getVisitRepository() {
         return visitRepository;
     }
 
@@ -220,6 +220,8 @@ public class Repositories implements Serializable {
     public Repositories clone(){
         return new Repositories(agencyRepository, roleRepository, propertyRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository, userRepository, appointmentRequestRepository);
     }
+
+
 
 //    private void initProps(){
 //        if(properties==null){

@@ -3,50 +3,46 @@ package pt.ipp.isep.dei.esoft.project.ui.console;
 import pt.ipp.isep.dei.esoft.project.application.controller.CreateVisitController;
 import pt.ipp.isep.dei.esoft.project.domain.*;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.repository.EmployeeRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.*;
 
-/**
- * The type Schedule visit ui.
- **/
+
 public class ScheduleVisitUI implements Runnable {
-    private Date date;
+    private Date requestDate;
     private String message;
     private Announcement announcement;
-    /**
-     * The Name.
-     */
-    String name;
+    private Date date;
     /**
      * The Input.
      */
     Scanner input = new Scanner(System.in);
 
     private int[][] timeSlot;
-    private Owner owner;
 
-    private String username;
-    private String phoneNumber;
+    private String clientUserName;
+    private String clientPhoneNumber;
 
-    private Employee agent;
+    private List<Employee> agent;
     /**
      * The Controller.
      */
     CreateVisitController controller = new CreateVisitController();
 
     private AuthenticationRepository authenticationRepository;
+
+    private EmployeeRepository employeeRepository;
     private Request request;
 
     private Commission commission;
 
     private String prompt;
+
 
 
 
@@ -70,7 +66,7 @@ public class ScheduleVisitUI implements Runnable {
 
     private void submitData() {
 
-        Optional<VisitRequest> visitRequest = controller.createVisitRequest (new Announcement( request , commission ,date), username,phoneNumber,date, timeSlot,message);
+        Optional<VisitRequest> visitRequest = controller.createVisitRequest (new Announcement( request , commission , date), clientUserName, clientPhoneNumber, requestDate, timeSlot,message, (Employee) agent);
                 if(visitRequest.isPresent()){
                     System.out.println("Request was created");
                 }
@@ -160,13 +156,18 @@ public class ScheduleVisitUI implements Runnable {
     }
 
     private void requestData() {
+        clientUserName = requestClientUserName();
+        System.out.println();
+
+        clientPhoneNumber = requestClientPhoneNumber();
+        System.out.println();
 
         //request the property he wants to visit
         announcement = requestAnnouncement();
         System.out.println();
 
         //request the date he wants to visit the property
-        date = requestDate();
+        requestDate = requestDate();
         System.out.println();
 
         //request the hour he wants to visit the property
@@ -176,9 +177,18 @@ public class ScheduleVisitUI implements Runnable {
         message = requestMessage();
         System.out.println();
 
-        username = requestUsername();
+        agent = requestAgent();
 
-        phoneNumber = requestPhoneNumber();
+        System.out.println(
+            "\nClientUserName: " + requestClientUserName() +
+            "\nClient Phone number: " + requestClientPhoneNumber() +
+            "\nAnnouncement: " + requestAnnouncement() +
+            "\nDate: " + requestDate() +
+            "\nTime Slot: " + Arrays.deepToString(requestTimeSlot()) +
+            "\nMessage: " + requestMessage()     +
+            "\nAgent: " + requestAgent());
+
+
 
         if (timeSlot != null) {
 
@@ -189,56 +199,64 @@ public class ScheduleVisitUI implements Runnable {
 
 
 
-            createVisitRequest(announcement,username, phoneNumber , date, timeSlot, message);
+            createVisitRequest(announcement, clientUserName, clientPhoneNumber, requestDate, timeSlot, message, (Employee) agent);
         } else {
             System.out.println("The hour you've written is not available ");
         }
     }
+
+    private List<Employee> requestAgent() {
+        List<Employee> agent = Repositories.getInstance().getEmployeeRepository().getEmployee();
+        return agent;
+    }
+
+
+    private String requestClientPhoneNumber() {
+        String input = null;
+        boolean valid = false;
+        do {
+            try{
+                input = Utils.readStringFromConsole("Number of the client's phone: ");
+                clientPhoneNumber = input.toString();
+                valid = true;
+            }catch (NullPointerException e){
+                System.out.println("Invalid phone number. Please enter a valid phone number.");
+            }
+        }while (!valid);
+        return clientPhoneNumber;
+    }
+
+
+    private String requestClientUserName() {
+        String input = null;
+        boolean valid = false;
+        do {
+            try{
+                input = Utils.readStringFromConsole("Name of the client: ");
+                clientUserName = input;
+                valid = true;
+            }catch (NullPointerException e){
+                System.out.println("Invalid name. Please enter a valid name.");
+            }
+        }while (!valid);
+        return clientUserName;
+    }
+
+
+
 
     private Date requestDate() {
         System.out.println("Type the date you want to visit this property (yyyy/mm/dd)");
         int year = Utils.readIntegerFromConsole("year");
         int month = Utils.readIntegerFromConsole("month");
         int day = Utils.readIntegerFromConsole("day");
-        Date date1 = new Date (year, month, day);
-        return date;
+        Date visitDate = new Date(year,month,day);
+        return visitDate;
     }
 
-    private String requestPhoneNumber() {
-        String input = null;
-        boolean valid = false;
-        do {
-            try{
-                input = Utils.readStringFromConsole("Number of the client's phone: ");
-                phoneNumber = input.toString();
-                valid = true;
-            }catch (NullPointerException e){
-                System.out.println("Invalid phone number. Please enter a valid phone number.");
-            }
-        }while (!valid);
-        return input;
-    }
-
-
-    private String requestUsername() {
-        String input = null;
-        boolean valid = false;
-        do {
-            try{
-                input = Utils.readStringFromConsole("Name of the client: ");
-                username = input.toString();
-                valid = true;
-            }catch (NullPointerException e){
-                System.out.println("Invalid name. Please enter a valid name.");
-            }
-        }while (!valid);
-        return input;
-    }
-
-
-    private Client requestID() {
+    /*private Client requestID() {
         return controller.getClientRepository().getClient();
-    }
+    }*/
 
 
     private AuthenticationRepository getAuthenticationRepository() {
@@ -255,23 +273,18 @@ public class ScheduleVisitUI implements Runnable {
 
 
 
-    private void createVisitRequest(Announcement announcement, String username, String phonenumber, Date date, int[][] timeSlot, String message) {
-        controller.createVisitRequest(announcement,username, phonenumber, date, timeSlot, message);
-
-
+    private void createVisitRequest(Announcement announcement, String clientUserName, String clientPhoneNumber, Date requestDate, int[][] timeSlot, String message, Employee agent) {
+        controller.createVisitRequest(announcement,clientUserName, clientPhoneNumber, requestDate, timeSlot, message, agent);
     }
 
-    @Override
+
+   /* @Override
     public String toString() {
-        return "CreateVisitUI{" +
-                "date='" + date + '\'' +
-                ", message='" + message + '\'' +
-                ", announcement=" + announcement +
-                ", name='" + name + '\'' +
-                ", input=" + input +
-                ", timeSlot=" +timeSlot +
-                ", owner=" + owner +
-                ", controller=" + controller +
-                '}';
-    }
+        return  "Visit Request: " +
+                "Date: " + requestDate +
+                "Message;" + message +
+                "Announcement: " + announcement +
+                "ClientUserName: " + clientUserName +
+                "ClientPhoneNumber: " + clientPhoneNumber ;
+    }*/
 }

@@ -1,0 +1,163 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+'hide footbox
+actor "Agent" as ADM
+participant "RespondBookingRequestUI" as UI
+participant "RespondBookingRequestController" as CTRL
+participant ":Repositories" as Repositories
+participant "repositories\n:Repositories" as Rep
+participant "visitRepository\n:VisitRepository" as VRep
+participant "authentication\n: AuthenticationRepository" as AuRep
+participant "appointmentRequestRepository\n: AppointmentRequestRepository" as ApRep
+participant "clientRepository\n: ClientRepository" as TaskCategoryRepository
+participant "Client " as Client
+participant "Agent"  as Emp
+participant "SendEmail" as SEmail
+participant "taskCategoryRepository:\nTaskCategoryRepository" as TaskCategoryRepository
+participant "currentSession\n:UserSession" as SESSAO
+
+activate ADM
+
+        ADM -> UI : requests visitList
+
+        activate UI
+
+'            UI --> ADM : requests data (reference, description,  informal \n description, technical description, duration, cost)
+            'create CTRL
+            UI -> CTRL** : create
+
+            UI-> CTRL : getVisitList
+            activate CTRL
+
+           CTRL -> Repositories : getInstance()
+                activate Repositories
+
+                    Repositories --> CTRL: repositories
+                deactivate Repositories
+
+
+
+
+           CTRL -> Rep : getVisitRepository()
+           activate Rep
+
+           Rep --> CTRL : VisitRepository
+           deactivate Rep
+
+
+            CTRL -> VRep : getVisitList
+            activate VRep
+           VRep --> CTRL : visitList
+           deactivate VRep
+
+
+           CTRL --> UI : visitList
+           deactivate CTRL
+
+UI --> ADM : shows VisitList and asks to selects one
+deactivate UI
+
+  ADM -> UI : Selects a booking request
+    activate UI
+
+        UI --> ADM : Asks to accept or decline the booking request
+    deactivate UI
+
+    ADM -> UI : Accepts or declines
+    activate UI
+
+    UI --> ADM : Informs about the success of the operation
+deactivate UI
+
+alt if the booking request was rejected
+
+
+
+
+   ADM -> UI : Rejected booking request
+
+   activate UI
+
+   UI -> CTRL : sendEmailBookingRequestRejected(requestId)
+
+
+
+   activate CTRL
+
+   CTRL -> Repository: getVisitRequestById(requestId)
+
+   activate visitRequestRepository
+
+   VisitRepository --> CTRL : visitRequest
+
+   deactivate VisitRepository
+
+
+   CTRL -> SEmail : sendEmailVisitRequestRejected(visitRequest)
+
+   SEmail --> CTRL :EmailVisitRequestRejected(visitRequest)
+
+   CTRL --> UI : EmailVisitRequestRejected(visitRequest)
+   deactivate CTRL
+    deactivate UI
+
+
+
+ activate SEmail
+   deactivate SEmail
+
+    else if the booking request was accepted
+
+    ADM -> UI : Accepted booking request
+    activate UI
+
+
+       UI -> CTRL : sendEmailBookingRequestAccepted(requestId)
+       activate CTRL
+
+      CTRL -> VisitRepository: getVisitRequestedById(requestId)
+
+       activate VisitRepository
+
+       VisitRepository --> CTRL : visitRequest
+
+       deactivate VisitRepository
+
+
+
+
+
+    CTRL -> SEmail : sendEmailVisitRequestAccepted(visitRequest)
+
+    activate SEmail
+
+     SEmail --> CTRL  : sendEmailVisitRequestRejected(visitRequest)
+
+    deactivate SEmail
+
+
+    activate VRep
+    deactivate VRep
+
+
+     CTRL --> UI : EmailVisitRequestRejected(visitRequest)
+       deactivate CTRL
+        deactivate UI
+
+
+
+    end
+
+
+
+    deactivate CTRL
+
+    UI --> ADM : Informs about the success of the operation
+
+    deactivate UI
+@enduml

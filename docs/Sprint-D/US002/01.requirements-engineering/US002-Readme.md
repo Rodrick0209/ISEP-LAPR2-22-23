@@ -17,22 +17,23 @@ As an agent, I can publish any sale announcement on the system, for example rece
 
 ** From the client clarifications:**  
 
-> **Question:** How does the agent determine whether it is a fixed commission or a percentage commission? 
+>>**Question:** How does the agent determine whether it is a fixed commission or a percentage commission? 
 >
 > **Answer:** The agent should choose the type of commission and enter the value.
 
-> **Question:** Is the phone call the only way the agent can receive the sale announcement? Or he can receive them via e-mail/letter/etc
+>> **Question:** Is the phone call the only way the agent can receive the sale announcement? Or he can receive them via e-mail/letter/etc
 >
 > **Answer:** For now this is the only way.
 
-> **Question:** Can an Agent work in more than 1 store (Multiple stores)? 
+>> **Question:** Can an Agent work in more than 1 store (Multiple stores)? 
 >
 > **Answer:** No.
 
-> **Question:** According to the Project Description, the agent when selling a agency can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
+>> **Question:** According to the Project Description, the agent when selling a agency can charge a flat price comission or a percentage of the sale value, my question here is wether there is a minimum and/or a maximum to each of these types of comissions?
 > 
 > **Answer:** There is no maximum and the minimum is 0.
-> > **Question:** In this User Story it is requested that "All deals made" are listed. Are these deals just accepted purchase requests, or are declined purchase requests also included?
+  
+>> **Question:** In this User Story it is requested that "All deals made" are listed. Are these deals just accepted purchase requests, or are declined purchase requests also included?
 > 
 > **Answer:**  A deal takes place when the proposed purchase/renting is accepted.
 
@@ -67,8 +68,7 @@ As an agent, I can publish any sale announcement on the system, for example rece
 * Announcment status dispplayd
 
 ### 1.6. System Sequence Diagram (SSD)
-
-![System Sequence Diagram - Alternative One](svg/us002-system-sequence-diagram.svg)
+![System Sequence Diagram - Alternative One](svg/us002-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
 

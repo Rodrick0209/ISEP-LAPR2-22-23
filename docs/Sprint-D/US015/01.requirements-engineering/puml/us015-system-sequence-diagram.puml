@@ -26,13 +26,13 @@ activate Employee
     Employee -> System : Submit the end date of the requests
     activate System
 
-    System --> Employee : Shows details and asks confirmation
+    System --> Employee : Shows unsorted list of visits
     deactivate System
 
-    Employee --> System : Confirms all data
+    Employee -> System : asks to sort
     activate System
 
-    System --> Employee : Shows the sorted list of all booking requests
+    System --> Employee : Shows the sorted list of all visit requests
     deactivate System
 
 

@@ -133,9 +133,38 @@ clientId;
  clientEmail;
 }
 
+class Deal{
+DealID;
+    announcement;
+    dateOfSale;
+    agency;
+}
+
+class VisitRequest{
+    client
+    phoneNumber
+    timeSlot
+    date
+}
+
+class Message{
+message
+}
 
 
 
+
+
+Agency "1" -- "1..*" Deal : makes >
+Deal "1" -- "Property" : includes >
+Deal "1" -- "Client" : includes >
+Deal "1" -- "Agent" : includes >
+Deal "1" -- "Order" : includes >
+
+VisitRequest "1..*"-l->  "1..*" Property
+Client "1" -l-> "1..*" VisitRequest : requests >
+Agent "1" -> "1" Message : write >
+Message "1" -> "1" Client : is sent >
 
 Agent "1..*" -- "1..*" Request : receives a  >
 Agent "1..*" -- "1" Request: selects a request from >

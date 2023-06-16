@@ -26,11 +26,13 @@ class VisitRequest{
     -clientName
     -clientPhoneNumber
     -agent
-    -property
 }
+
+
 
 class VisitRepository{
     -add(visitRequest)
+    +List<VisitRequest>
 }
 
 class ApplicationSession{
@@ -48,9 +50,7 @@ class SelectionSort{
     sort()
 }
 
-class SortingAlgorithm{
-        sort()
-    }
+
 
 class CreateVisitController{
     getListVisitRequest(fileName)
@@ -72,13 +72,12 @@ class Repositories{
 +getVisitRepository()
 }
 VisitRepository "1" ->  "0..*" VisitRequest :  has
-SelectionSort -l-> SortingAlgorithm : implements
-BubbleSort -> SortingAlgorithm : implements
-VisitRepository --> SortingAlgorithm: sorting algorithm
+BubbleSort-> VisitRepository
+SelectionSort -u-> VisitRepository
 VisitRequest -> Agent : has an
 CreateVisitController -d-> VisitRequest : visit request
 CreateVisitController -> UserSession
 CreateVisitController -l-> ApplicationSession
 CreateVisitController -u-> Repositories : repositories
-
+UserSession -> Agent
 @enduml

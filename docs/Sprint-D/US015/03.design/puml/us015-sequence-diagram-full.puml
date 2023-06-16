@@ -6,7 +6,7 @@ skinparam shadowing false
 autonumber
 
 'hide footbox
-actor "Organization Employee" as ADM
+actor "Agent" as ADM
 participant "ListVisitRequestUI" as UI
 participant "ListVisitRequestController" as CTRL
 participant "Repositories" as Rep
@@ -16,9 +16,6 @@ participant "visitRequest " as VisReq
 participant ":ApplicationSession" as _APP
 participant "appSession\n:ApplicationSession" as APP
 participant "currentSession\n:UserSession" as SESS
-participant "organizationRepository:\nOrganizationRepository" as OrganizationRepository
-participant "organization\n:Organization" as ORG
-participant "task\n:Task" as TAREFA
 participant "visitRepository: \nVisitRepository" as VisRep
 participant "visitRequestList\n List<VisitRequest>" as VisReqList
 participant "algorithm: \n SortingAlgorithm" as ALG
@@ -133,6 +130,12 @@ end
 
     VisRep --> CTRL : visitRequestList
     deactivate VisRep
+
+   CTRL --> UI : visitRequestList
+   deactivate CTRL
+
+   UI--> ADM : shows visitRequestList
+   deactivate UI
 
 deactivate ADM
 

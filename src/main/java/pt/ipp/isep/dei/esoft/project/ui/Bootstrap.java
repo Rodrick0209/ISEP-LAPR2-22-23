@@ -134,14 +134,15 @@ public class Bootstrap implements Runnable {
         AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
         OrderRepository orderRepository = Repositories.getInstance().getOrderRepository();
 
-        Property property = new Land(new PropertyType("Land"), 123, "Lol Street, Porto, Portugal, 12345", 23, new Owner("owner@this.app"));
-        Request request = new Request(property, new TypeBusiness("Sale"), 4500, new Owner("owner@this.app"));
-        Announcement announcement = new Announcement(request, new Commission("Percentage Commission", 12), new Date());
+        Property property1 = new Land(new PropertyType("Land"), 123, "Lol Street, Porto, Portugal, 12345", 23, new Owner("owner@this.app"));
+        Request request1 = new Request(property1, new TypeBusiness("Sale"), 4500, new Owner("owner@this.app"));
+        Date date1 = new Date(2023,6,17);
+        Announcement announcement = new Announcement(request1, new Commission("Percentage Commission", 12), date1);
         announcementRepository.add(announcement);
 
         // Create an order and add it to the order repository
         Client client1 = new Client("client@this.app");
-        Date date1 = new Date(123,5,12);
+        //Date date1 = new Date(2023,6 , 17);
         Date date2 = new Date();
 
 
@@ -167,10 +168,12 @@ public class Bootstrap implements Runnable {
         Property land1 = new Land(new PropertyType("Land"), 150, "Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345",12, owner1 );
         Request request1 = new Request(land1 , new TypeBusiness("Sale") , 120000, owner1);
         Commission commission1 = new Commission("percentage", 5);
-        Date date1 = new Date(2022, 6, 23);
+        Date visitdate1 = new Date(2022, 6, 23);
         Announcement announcement1 = new Announcement(request1, commission1);
         Announcement announcement2 = new Announcement(new Request(new Property(new PropertyType("Land"), 150, "Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345", 12, new Owner("joao", 1234567,"12345678", "joao@this.app", "12345678" )), new TypeBusiness("Sell"), 135000 , new Owner("joao", 1234567,"12345678", "joao@this.app", "12345678")), new Commission("percentage", 5));
-        //VisitRequest visitRequest1 = new VisitRequest(announcement2,"Pedro", "123456789", date1 , [15][16] , "I want to visit this property");
+        int[][] timeslot = new int[15][18];
+        Employee agent1 = new Employee("agent@this.app");
+        VisitRequest visitRequest1 = new VisitRequest(announcement2,"Pedro", "123456789", visitdate1 , timeslot , "I want to visit this property", agent1);
         //visitRequest = new VisitRequest( new Announcement(new Request(new House( new PropertyType("House") , 120,"Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345", 12, 2, 1, 2,true, false, true, true, "N", new Owner("Tomás", 12345678,"123456789", "owner@this.app", "123456777453")) , new TypeBusiness("Sell"),130000, new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023, Calendar.JANUARY,31)),"Owner1" , "932414522", "31/05" , 15-16 , "I want to visit this porperty.");
 
         //visitRepository.addRequests(visitRequest1);

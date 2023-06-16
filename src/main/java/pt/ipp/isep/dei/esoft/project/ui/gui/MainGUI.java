@@ -19,7 +19,7 @@ public class MainGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainConsole.class.getResource("/fxml/mainMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainConsole.class.getResource("/fxml/MainMenuUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Real Estate USA App");
         primaryStage.setScene(scene);

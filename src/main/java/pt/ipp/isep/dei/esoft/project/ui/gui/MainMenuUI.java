@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.ui.console.authorization.AuthenticationUI;
+import pt.ipp.isep.dei.esoft.project.ui.gui.Actors.UnregisteredUserUI;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +49,7 @@ public class MainMenuUI {
 
     /**
      * On login button.
-     *
+     *Switches to login scene
      * @param event the event
      * @throws IOException the io exception
      */
@@ -59,7 +59,7 @@ public class MainMenuUI {
         Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/LogIn.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("List all Properties");
+        stage.setTitle("Real Estate USA App");
         stage.setScene(mainScene);
         stage.show();
 
@@ -78,7 +78,7 @@ public class MainMenuUI {
         Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/ListAllProperties.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("List all Properties");
+        stage.setTitle("Real Estate USA App");
         stage.setScene(mainScene);
         stage.show();
     }
@@ -91,10 +91,10 @@ public class MainMenuUI {
      */
     @FXML
     public void onSignUpButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(RegisterUserUI.class.getResource("/fxml/RegisterUser.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(UnregisteredUserUI.class.getResource("/fxml/RegisterUser.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("Sign Up");
+        stage.setTitle("Real Estate USA App");
         stage.setScene(mainScene);
         stage.show();
     }
@@ -110,7 +110,7 @@ public class MainMenuUI {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ShowDevelopmentTeamUI.class.getResource("/fxml/ShowDevelopmentTeam.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
-        stage.setTitle("Show Development Team");
+        stage.setTitle("Real Estate USA App");
         stage.setScene(mainScene);
         stage.show();
     }
@@ -119,13 +119,14 @@ public class MainMenuUI {
 
 
 
+
     @FXML
         void initialize() {
 
-            assert btnListAllProperties != null : "fx:id=\"btnListAllProperties\" was not injected: check your FXML file 'mainMenu.fxml'.";
-            assert btnLogIn != null : "fx:id=\"btnLogIn\" was not injected: check your FXML file 'mainMenu.fxml'.";
-            assert btnShowDevelopmentTeam != null : "fx:id=\"btnShowDevelopmentTeam\" was not injected: check your FXML file 'mainMenu.fxml'.";
-            assert btnSignUp != null : "fx:id=\"btnSignUp\" was not injected: check your FXML file 'mainMenu.fxml'.";
+            assert btnListAllProperties != null : "fx:id=\"btnListAllProperties\" was not injected: check your FXML file 'MainMenuUI.fxml'.";
+            assert btnLogIn != null : "fx:id=\"btnLogIn\" was not injected: check your FXML file 'MainMenuUI.fxml'.";
+            assert btnShowDevelopmentTeam != null : "fx:id=\"btnShowDevelopmentTeam\" was not injected: check your FXML file 'MainMenuUI.fxml'.";
+            assert btnSignUp != null : "fx:id=\"btnSignUp\" was not injected: check your FXML file 'MainMenuUI.fxml'.";
 
         }
 

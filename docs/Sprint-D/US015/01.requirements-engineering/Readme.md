@@ -18,14 +18,6 @@ As an agent, I intend to list all booking requests for properties managed by me.
 
 **From the client clarifications:**
 
-> **Question:** 
->  
-> **Answer:** Duration is estimated in days.
-
-
-> **Question:** Monetary data is expressed in any particular currency?
->  
-> **Answer:** Monetary data (e.g. estimated cost of a task) is indicated in POTs (virtual currency internal to the platform).
 
 
 ### 1.3. Acceptance Criteria

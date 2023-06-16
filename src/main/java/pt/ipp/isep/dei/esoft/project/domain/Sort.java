@@ -1,11 +1,16 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class Sort {
-    public List<VisitRequest> bubbleSort(List<VisitRequest> unsorted) {
-        List<VisitRequest> sorted = new ArrayList<>(unsorted);
+
+    String sortingAlgorithm;
+    public void bubbleSort() {
+        List<VisitRequest> sorted = new ArrayList<>();
         for (int i = 0; i < sorted.size() - 1; i++) {
             for (int j = 0; j < sorted.size() - i - 1; j++) {
                 if (sorted.get(j).getDate().after(sorted.get(j+1).getDate())) {
@@ -15,11 +20,10 @@ public class Sort {
                 }
             }
         }
-        return sorted;
     }
 
-    public List<VisitRequest> selectionSort(List<VisitRequest> unsorted){
-        List<VisitRequest> sorted = new ArrayList<>(unsorted);
+    public void selectionSort(){
+        List<VisitRequest> sorted = new ArrayList<>();
         for (int i = 0; i < sorted.size() - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < sorted.size(); j++) {
@@ -31,6 +35,29 @@ public class Sort {
             sorted.set(i, sorted.get(minIndex));
             sorted.set(minIndex, temp);
         }
-        return sorted;
     }
-}
+
+
+    }
+
+    /*public Properties getConfigurationFile() {
+        Properties properties = new Properties();
+        try {
+        FileInputStream file = new FileInputStream("src/main/resources/application.properties");
+        properties.load(file);
+        file.close();
+    } catch (
+    IOException e) {
+        e.printStackTrace();
+    }
+
+    String algorithm = properties.getProperty("sorting.algorithms");
+    System.out.println("Sorting algorithm: "+ sortingAlgorithm);
+
+    return properties;
+
+
+    }
+*/
+
+

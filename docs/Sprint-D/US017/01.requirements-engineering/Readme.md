@@ -36,6 +36,14 @@ global behaviour of the network on a daily basis.
 >
 > **Answer :** The default is to sort deals from the most recent ones to the oldest ones.
 
+>**Question :** Regarding the Algorithms, is it supposed to be one for each sorting order, or must both algorithms present both sorting orders?
+>
+> **Answer :** The two algorithms can be used for both sorting orders.
+
+>**Question :** We have to present information about the deal, but is it necessary to display any information about the agent/agency that oversees the deal?
+>
+> **Answer :** Yes, show the store ID and the store name.
+
 ### 1.3. Acceptance Criteria
 * **AC1 :** The actor should be able to sort all properties by property area (square feet)
 in descending/ascending order.
