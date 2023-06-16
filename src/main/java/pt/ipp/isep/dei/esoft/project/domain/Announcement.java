@@ -47,12 +47,13 @@ public class Announcement implements Serializable, Comparable<Announcement>{
         this.announcementId = announcmentIdCounter++;
         this.request = request;
         this.commission = commission;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        this.date = date;
+        /*SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         try {
             this.date = sdf.parse(sdf.format(date));
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format");
-        }
+        }*/
     }
 
 

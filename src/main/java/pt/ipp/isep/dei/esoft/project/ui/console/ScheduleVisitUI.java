@@ -22,7 +22,6 @@ public class ScheduleVisitUI implements Runnable {
     Scanner input = new Scanner(System.in);
 
     private int[][] timeSlot;
-    //private Owner owner;
 
     private String clientUserName;
     private String clientPhoneNumber;
@@ -174,6 +173,8 @@ public class ScheduleVisitUI implements Runnable {
         message = requestMessage();
         System.out.println();
 
+        agent = requestAgent();
+
 
 
 
@@ -193,6 +194,11 @@ public class ScheduleVisitUI implements Runnable {
         }
     }
 
+    private Employee requestAgent() {
+        return agent;
+    }
+
+
     private String requestClientPhoneNumber() {
         String input = null;
         boolean valid = false;
@@ -205,7 +211,7 @@ public class ScheduleVisitUI implements Runnable {
                 System.out.println("Invalid phone number. Please enter a valid phone number.");
             }
         }while (!valid);
-        return input;
+        return clientPhoneNumber;
     }
 
 
@@ -221,7 +227,7 @@ public class ScheduleVisitUI implements Runnable {
                 System.out.println("Invalid name. Please enter a valid name.");
             }
         }while (!valid);
-        return input;
+        return clientUserName;
     }
 
 

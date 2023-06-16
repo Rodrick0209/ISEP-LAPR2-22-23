@@ -113,6 +113,8 @@ public class CreateVisitController {
     AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
     ClientRepository clientRepository = Repositories.getInstance().getClientRepository();
 
+    EmployeeRepository employeeRepository = Repositories.getInstance().getEmployeeRepository();
+
     public List<Announcement> getAnnouncements() {
         return announcementRepository.getAnnouncements();
     }

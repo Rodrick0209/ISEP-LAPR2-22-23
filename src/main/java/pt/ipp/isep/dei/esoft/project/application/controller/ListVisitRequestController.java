@@ -146,14 +146,15 @@ public class ListVisitRequestController {
     public String getConfigurationFile() {
         Properties properties = new Properties();
         try {
-            FileInputStream file = new FileInputStream("C:\\Users\\tomas\\OneDrive\\Ambiente de Trabalho\\submissãoSprintC\\src\\main\\resources\\application.properties");
+            FileInputStream file = new FileInputStream("src/main/resources/application.properties");
             properties.load(file);
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return properties.getProperty("sorting.algorithms");
+        String property = properties.getProperty("sorting.algorithms");
+        return property;
 
     }
 
@@ -163,7 +164,7 @@ public class ListVisitRequestController {
     public List<VisitRequest> getSortedVisitRequestList(List<VisitRequest> list, LocalDate begin, LocalDate end){
         return Repositories.getVisitRepository().getSortedVisitRequestList(list, begin, end);
     }
-    public List<VisitRequest> bubbleSort(List<VisitRequest> unsorted) {
+    /*public List<VisitRequest> bubbleSort(List<VisitRequest> unsorted) {
         List<VisitRequest> sorted = new ArrayList<>(unsorted);
         for (int i = 0; i < sorted.size() - 1; i++) {
             for (int j = 0; j < sorted.size() - i - 1; j++) {
@@ -191,7 +192,7 @@ public class ListVisitRequestController {
             sorted.set(minIndex, temp);
         }
         return sorted;
-    }
+    }*/
 
 }
 

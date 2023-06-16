@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
 
-import pt.ipp.isep.dei.esoft.project.domain.Announcement;
-import pt.ipp.isep.dei.esoft.project.domain.Request;
-import pt.ipp.isep.dei.esoft.project.domain.Sort;
-import pt.ipp.isep.dei.esoft.project.domain.VisitRequest;
+import pt.ipp.isep.dei.esoft.project.domain.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -71,17 +68,19 @@ public class VisitRepository implements Serializable {
         properties.load(new FileReader("src/main/resources/sortingMethods.properties"));
         String algorithm = properties.getProperty("sorting.algorithm");
 
-        if ( algorithm.toUpperCase().equalsIgnoreCase("BUBBLE")) {
+        /*if ( algorithm.toUpperCase().equalsIgnoreCase("BUBBLE")) {
 
-        }
+        }*/
 
         Sort sort = new Sort();
         switch (algorithm.toUpperCase()) {
             case "BUBBLE":
-                sort.bubbleSort();
+                //sort.bubbleSort();
+                BublleSort bubbleSort = new BublleSort();
                 break;
             case "SELECTION":
-                sort.selectionSort();
+                //sort.selectionSort();
+                SelectionSort selectionSort = new SelectionSort();
                 break;
             default:
                 System.out.println("Warning: invalid");

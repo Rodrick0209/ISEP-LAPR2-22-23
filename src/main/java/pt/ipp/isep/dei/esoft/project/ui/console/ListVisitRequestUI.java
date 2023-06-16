@@ -15,10 +15,9 @@ public class ListVisitRequestUI implements Runnable {
     @Override
     public void run() {
         requestAgentList();
-        requestDate();
+        //requestDate();
         configurationFile();
         visitList();
-
     }
 
     private void visitList() {
@@ -32,13 +31,13 @@ public class ListVisitRequestUI implements Runnable {
     }
 
     private void configurationFile() {
-        controller.getConfigurationFile();
+        System.out.println(controller.getConfigurationFile());
     }
 
-    private void requestDate() {
+    /*private void requestDate() {
         System.out.println(controller.getBeginDate());
         System.out.println(controller.getEndDate());
-    }
+    }*/
 }
 
 
