@@ -1,0 +1,57 @@
+@startuml
+actor "Network Manager" as Manager
+participant ":ListDealsUI" as UI
+participant ":ListDealsController" as Controller
+participant ":DealsRepository" as DealsRepository
+participant ":AgencyRepository" as AgencyRepository
+participant ":Repositories" as Repositories
+
+
+
+activate Manager
+Manager -> UI: asks to list all deals made
+activate UI
+UI --> Manager : Asks to select sorting option Ascending/Descending by property area (square feet)
+deactivate UI
+Manager -> UI: selects sorting option (A/D)
+activate UI
+UI -> Controller: requestListOfDeals()
+activate Controller
+Controller -> Repositories : create()
+activate Repositories
+Repositories -> DealsRepository: create()
+activate DealsRepository
+deactivate DealsRepository
+Repositories -> AgencyRepository: create()
+activate AgencyRepository
+deactivate AgencyRepository
+deactivate Repositories
+Controller -> AgencyRepository : agencies = getAgenciesByNetworkManager()
+activate AgencyRepository
+AgencyRepository -> AgencyRepository : getAgenciesByNetworkManager()
+activate AgencyRepository
+deactivate AgencyRepository
+deactivate AgencyRepository
+Controller -> DealsRepository : deals = getDealsByAgencies(agencies)
+activate DealsRepository
+DealsRepository -> DealsRepository : getDealsByAgencies(agencies)
+activate DealsRepository
+deactivate DealsRepository
+deactivate DealsRepository
+Controller -> DealsRepository : deals = sortDealsByArea(deals, sortingOption)
+activate DealsRepository
+DealsRepository -> DealsRepository : sortDealsByArea(deals, sortingOption)
+activate DealsRepository
+deactivate DealsRepository
+deactivate DealsRepository
+Controller -> UI : return deals sorted by area
+deactivate Controller
+UI --> Manager : return deals sorted by area
+UI --> Manager : display operation (in)success message
+deactivate UI
+deactivate Manager
+
+
+
+
+@enduml

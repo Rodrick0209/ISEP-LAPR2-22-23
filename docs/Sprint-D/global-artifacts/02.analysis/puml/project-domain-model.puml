@@ -133,7 +133,20 @@ clientId;
  clientEmail;
 }
 
+class Deal{
+DealID;
+    announcement;
+    dateOfSale;
+    agency;
+}
 
+
+
+Agency "1" -- "1..*" Deal : makes >
+Deal "1" -- "Property" : includes >
+Deal "1" -- "Client" : includes >
+Deal "1" -- "Agent" : includes >
+Deal "1" -- "Order" : includes >
 
 
 

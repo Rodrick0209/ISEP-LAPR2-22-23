@@ -1,0 +1,94 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+left to right direction
+
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+title Domain Model
+
+class Agency{
+id
+designation
+location
+phone_number
+email_address
+}
+
+
+class Employee{
+name
+citizen_card_number
+tax_number
+address
+email_address
+contact
+employeeRole
+assignedAgency
+}
+
+class NetworkManager{
+name
+}
+
+class Employee {
+    name
+    email
+    position
+    phone
+}
+
+class Deal{
+DealID;
+    announcement;
+    dateOfSale;
+    agency;
+}
+
+class Property {
+    type
+    area
+    location
+    distance_from_the_city_centre
+    requested_price
+    photos
+    propertyType
+    }
+
+class Agent{
+name
+citizen_card_number
+tax_number
+address
+email_address
+}
+
+class Client{
+clientId;
+ clientName;
+ phoneNumber;
+ clientEmail;
+}
+
+class Order{
+OrderId;
+ orderValue;
+ orderDate;
+}
+
+Agency "1" -- "1..*" Deal : makes >
+NetworkManager "1" -- "1..*" Agency : manages >
+NetworkManager "1" -- "1" Employee : is >
+NetworkManager "1" -- "1..*" Deal : lists >
+Deal "1" -- "Property" : includes >
+Deal "1" -- "Client" : includes >
+Deal "1" -- "Agent" : includes >
+Deal "1" -- "Order" : includes >
+Agent "1" -- "1" Employee : is >
+
+@enduml
