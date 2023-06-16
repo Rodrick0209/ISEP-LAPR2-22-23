@@ -28,7 +28,7 @@ UI --> CTRL** : new PublishAnnouncementController()
 UI -> CTRL : getAnnouncement()
 activate CTRL
 
-    ref over CTRL, AnnouncementRepository : Announcements
+
 
     CTRL -> Repositories : getInstance()
     activate Repositories

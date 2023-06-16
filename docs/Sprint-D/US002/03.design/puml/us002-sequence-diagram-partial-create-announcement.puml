@@ -3,32 +3,46 @@ skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 
-participant "organization\n:Organization" as ORG
-participant "announcement\n:Announcement" as ANNOUNCE
+autonumber
 
-autonumber 18
--> ORG: createAnnouncement(property, \ndescription, commission, agent)
+actor "Real Estate Agent" as Agent
+participant ":PublishAnnouncementUI" as UI
+participant ":PublishAnnouncementController" as CTRL
+participant ":Repositories" as Repositories
+participant "repositories :Repositories" as RPS
+participant "AuthenticationRepository" as AuthenticationRepository
+participant "AnnouncementRepository" as AnnouncementRepository
+participant "MessageController" as MessageController
+participant "Owner" as Owner
+participant "Message" as Message
+participant "Commission" as Commission
 
-autonumber 18.1
-activate ORG
-    group Create Announcement
+activate Agent
 
-        ORG -> ANNOUNCE**: create(property, description, \ncommission, agent)
-        ORG -> ORG: addAnnouncement(announcement)
+Agent -> UI : displayAndSelectAnnouncements()
+activate UI
 
-        activate ORG
-            ORG -> ORG: validateAnnouncement(announcement)
-            activate ORG
-                ORG --> ORG
-            deactivate ORG
+UI --> CTRL** : new PublishAnnouncementController()
+UI -> CTRL : getAnnouncement()
+activate CTRL
 
-            ORG --> ORG
-        deactivate ORG
-    end
+CTRL -> Repositories : getInstance()
+activate Repositories
+Repositories --> CTRL : repositories
+deactivate Repositories
 
-    autonumber 19
-    <-- ORG : announcement
-deactivate ORG
+CTRL -> RPS : getAnnouncementRepository()
+activate RPS
+RPS --> CTRL : announcementRepository
+deactivate RPS
+CTRL -> AnnouncementRepository : getAnnouncementById()
+activate AnnouncementRepository
+AnnouncementRepository --> CTRL : announcementId
+deactivate AnnouncementRepository
+CTRL --> UI : announcement
+deactivate CTRL
+UI -> UI : createAnnouncementView(announcement)
+UI -> UI : displayAnnouncementView()
 
-
+deactivate UI
 @enduml

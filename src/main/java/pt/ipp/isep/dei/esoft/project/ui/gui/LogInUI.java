@@ -42,7 +42,7 @@ public class LogInUI {
         String password = passwordField.getText();
 
         try {
-            if (authenticationFacade.existsUser(email) && isValidEmail(email)) {
+            if (authenticationFacade.existsUser(email) && isValidEmail(email) && password.equals("agent") || password.equals("networkmanager") || password.equals("networkmanager") || password.equals("storemanager") || password.equals("client")) {
                 UserSession currentUsersession = authenticationFacade.doLogin(email, password);   //get user from session
                 if (currentUsersession.isLoggedInWithRole(AuthenticationController.ROLE_AGENT)) {   //role validation
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI.fxml/AgentUI.fxml"));
