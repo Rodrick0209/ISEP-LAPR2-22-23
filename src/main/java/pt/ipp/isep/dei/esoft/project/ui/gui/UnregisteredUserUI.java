@@ -2,22 +2,17 @@ package pt.ipp.isep.dei.esoft.project.ui.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterUserUI {
+public class UnregisteredUserUI {
     public Button doLogout;
 
     private Stage stage;
@@ -49,15 +44,9 @@ public class RegisterUserUI {
 
 
     @FXML
-    private void getBackToMainMenu(ActionEvent actionEvent) throws IOException {
-        AuthenticationRepository authenticationRepository = new AuthenticationRepository();
-        authenticationRepository.getCurrentUserSession().doLogout();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/mainMenu.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Parent root = fxmlLoader.load();
-        Scene agentScene = new Scene(root);
-        stage.setScene(agentScene);
-        stage.show();
+    private void doLogout(ActionEvent actionEvent) throws IOException {
+        SceneController.loadMainMenuScene(actionEvent);
+
     }
     private boolean isValidEmail (String email){
         String emailRegex = ("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");

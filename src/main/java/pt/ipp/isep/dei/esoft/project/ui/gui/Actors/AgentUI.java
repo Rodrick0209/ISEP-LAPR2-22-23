@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui.gui;
+package pt.ipp.isep.dei.esoft.project.ui.gui.Actors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NetworkManagerUI implements Initializable {
+public class AgentUI implements Initializable {
     public MenuItem doLogout;
     public MenuItem ViewBookingRequests;
     public Button btnRegisterVisit;

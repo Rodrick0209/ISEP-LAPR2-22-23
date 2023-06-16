@@ -1,0 +1,46 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title User Story - System Sequence Diagram (SSD)
+
+autonumber
+
+actor "Store Manager" as Manager
+participant "System" as System
+
+activate Manager
+
+Manager -> System: Selects to analyze the deals
+
+activate System
+System --> Manager: Asks to select regression model type (either simple or multiple)
+deactivate System
+
+Manager -> System: Selects regression model
+alt Store Manager selects simple regression
+activate System
+System --> Manager : asks which  variable (propertie Area,Distance from city centre,number of betrooms ,number of bathroom,number of parking spaces) the manager wants the system to geT the forecast property price.
+end alt
+
+alt Store manager select multiple regression
+System --> Manager :asks which and how many variables (propertie Area,Distance from city centre,number of betrooms ,number of bathroom,number of parking spaces) the manager wants the system to gET the forecast property price.
+end alt
+Manager -> System : selects and insert values necessary variables  to get the forecast property price.
+   alt Store Manager chooses only one variable and adds only one value to it
+
+System --> Manager: Displays forecast property price.
+
+
+end alt
+
+alt Manager inserts more than one value to each variable or selects multiple regression.
+System --> Manager: Displays forecast property price in a graph (variable(s)/forecast price).
+
+end alt
+System --> Manager: Displays success message
+deactivate System
+
+deactivate Manager
+@enduml

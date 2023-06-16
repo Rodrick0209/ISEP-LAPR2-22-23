@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.esoft.project.ui;
+package pt.ipp.isep.dei.esoft.project.ui.gui.Controller;
 
 
 import javafx.event.ActionEvent;
