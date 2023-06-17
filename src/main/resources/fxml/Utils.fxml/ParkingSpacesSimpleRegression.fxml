@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Utils.fxml.ParkingSpacesSimpleRegression">
+   <children>
+      <Button layoutX="265.0" layoutY="300.0" mnemonicParsing="false" text="Forecast" />
+      <Button layoutX="389.0" layoutY="10.0" mnemonicParsing="false" text="Simple Regression Menu" />
+      <TextField editable="false" layoutX="290.0" layoutY="209.0" prefHeight="32.0" prefWidth="169.0" />
+      <Text layoutX="191.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="169.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="88.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parking Spaces">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="290.0" layoutY="140.0" prefHeight="32.0" prefWidth="169.0" />
+   </children>
+</AnchorPane>
