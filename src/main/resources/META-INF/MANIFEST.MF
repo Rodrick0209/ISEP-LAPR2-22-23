@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: pt.ipp.isep.dei.esoft.project.ui.MainConsole
+Main-Class: pt.ipp.isep.dei.esoft.project.ui.console.MainConsole
 Class-Path: AuthLib-1.0-20220308.131530-2.jar commons-math4-core-4.0-bet
  a1.jar commons-math4-legacy-4.0-beta1.jar commons-math4-neuralnet-4.0-b
  eta1.jar commons-math4-transform-4.0-beta1.jar commons-math4-legacy-cor
