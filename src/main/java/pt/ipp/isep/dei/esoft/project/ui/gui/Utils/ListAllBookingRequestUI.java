@@ -7,12 +7,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
+import pt.ipp.isep.dei.esoft.project.ui.gui.Domain.BookingRequest;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ListAllBookingRequestUI implements Initializable {
@@ -22,6 +25,17 @@ public class ListAllBookingRequestUI implements Initializable {
     public MenuItem doLogout;
     public MenuItem ViewBookingRequests;
     public MenuItem backToAgentMenu;
+    @FXML
+    private TableView<BookingRequest> tableView;
+    @FXML
+    private TableColumn<BookingRequest, LocalDateTime> beginDateColumn;
+    @FXML
+    private TableColumn<BookingRequest, LocalDateTime> endDateColumn;
+
+    private List<BookingRequest> bookingRequests = new ArrayList<>();
+
+
+
     @FXML
     private Label label;
     @FXML
@@ -53,17 +67,20 @@ public class ListAllBookingRequestUI implements Initializable {
             LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
 
             if (endDateTime.isBefore(beginDateTime)) {
-                showAlert(AlertType.ERROR, "Error", "Invalid Dates", "The end date and time cannot be earlier than the begin date and time.");
+                showAlert(AlertType.ERROR, "Error", "Invalid Dates", "The end date  cannot be earlier than the begin date .");
                 return;
             }
 
             if (beginDateTime.isBefore(LocalDateTime.now())) {
-                showAlert(AlertType.ERROR, "Error", "Invalid Begin Date and Time", "Please select a valid begin date and time.");
+                showAlert(AlertType.ERROR, "Error", "Invalid Begin Date ", "Please select a valid begin date .");
                 return;
             }
 
-            // Perform logic to submit the booking request
-            // ...
+            // Create a new BookingRequest object in case of sucess
+            BookingRequest newBookingRequest = new BookingRequest(beginDateTime, endDateTime);
+
+            // Add the new booking request to the bookingRequests list sucess
+            bookingRequests.add(newBookingRequest);
 
             // Display confirmation window
             showConfirmationWindow(beginDateTime, endDateTime);
@@ -72,6 +89,7 @@ public class ListAllBookingRequestUI implements Initializable {
             showAlert(AlertType.ERROR, "Error", "Incomplete Selection", "Please select both begin date and end date.");
         }
     }
+
 
 
 

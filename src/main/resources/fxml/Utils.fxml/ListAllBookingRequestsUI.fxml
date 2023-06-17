@@ -47,7 +47,6 @@
                <String fx:value="21:00" />
                <String fx:value="22:00" />
                <String fx:value="23:00" />
-               <!-- Add more hour options as needed -->
             </FXCollections>
          </items>
       </ComboBox>
@@ -79,7 +78,6 @@
                <String fx:value="21:00" />
                <String fx:value="22:00" />
                <String fx:value="23:00" />
-               <!-- Add more hour options as needed -->
             </FXCollections>
          </items>
       </ComboBox>

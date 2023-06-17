@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.gui.Actors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
@@ -51,7 +48,7 @@ public class NetworkManagerUI implements Initializable {
     public void onViewBookingRequests(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils.fxml/ViewBookingRequestsUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils.fxml/ViewAllBookingRequestsUI.fxml");
     }
 
 

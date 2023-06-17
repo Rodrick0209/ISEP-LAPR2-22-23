@@ -4,24 +4,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class AnalyseAllDealsUI implements Initializable {
 
-    public ComboBox beginHourComboBox;
-    public ComboBox endHourComboBox;
     public MenuItem doLogout;
-    public MenuItem ViewBookingRequests;
-    public MenuItem backToAgentMenu;
+;
+    public MenuItem backToStoreManagerMenu;
+    public Button multipleRegressionButton;
+    public Button simpleRegressionButton;
+
     @FXML
     private Label label;
     @FXML
@@ -36,97 +34,23 @@ public class AnalyseAllDealsUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        beginDatePicker.setEditable(false);
-        endDatePicker.setEditable(false);
+
     }
+
+
 
 
     @FXML
-    private void onSubmitButton(ActionEvent actionEvent) {
-        LocalDate beginDate = beginDatePicker.getValue();
-        LocalDate endDate = endDatePicker.getValue();
-        LocalTime beginTime = LocalTime.parse((String) beginHourComboBox.getValue());
-        LocalTime endTime = LocalTime.parse((String) endHourComboBox.getValue());
-
-        if (beginDate != null && endDate != null) {
-            LocalDateTime beginDateTime = LocalDateTime.of(beginDate, beginTime);
-            LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
-
-            if (endDateTime.isBefore(beginDateTime)) {
-                showAlert(AlertType.ERROR, "Error", "Invalid Dates", "The end date and time cannot be earlier than the begin date and time.");
-                return;
-            }
-
-            if (beginDateTime.isBefore(LocalDateTime.now())) {
-                showAlert(AlertType.ERROR, "Error", "Invalid Begin Date and Time", "Please select a valid begin date and time.");
-                return;
-            }
-
-            // Perform logic to submit the booking request
-            // ...
-
-            // Display confirmation window
-            showConfirmationWindow(beginDateTime, endDateTime);
-        } else {
-            // Display an error message if either begin date or end date is not selected
-            showAlert(AlertType.ERROR, "Error", "Incomplete Selection", "Please select both begin date and end date.");
-        }
-    }
-
-
-
-    private void showConfirmationWindow(LocalDateTime beginDate, LocalDateTime endDate) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Booking Request Confirmation");
-        alert.setHeaderText("Do you want to submit the Booking Request ?");
-        alert.setContentText("Your Request has the following dates:\n\n"
-                + "Begin Date: " + beginDate.toString() + "\n"
-                + "End Date: " + endDate.toString());
-
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.setAlwaysOnTop(true);
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-
-                showSuccessWindow();
-            }
-        });
+    public void doLogout(ActionEvent actionEvent) throws IOException {
+        SceneController.loadMainMenuScene(actionEvent);
     }
     @FXML
-    private void getBackToAgentMenu(ActionEvent actionEvent) throws IOException {
+    private void getBackToStoreManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/AgentUI.fxml");
-
-    }
-    @FXML
-    private void doLogout(ActionEvent actionEvent) throws IOException {
-        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/MainMenuUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/StoreManagerUI.fxml");
 
     }
 
-    private void showSuccessWindow() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setHeaderText("Booking Request Submitted");
-        alert.setContentText("Your booking request has been successfully submitted.");
-
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.setAlwaysOnTop(true);
-
-        alert.showAndWait();
-    }
-
-    private void showAlert(AlertType alertType, String title, String headerText, String contentText) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
-
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.setAlwaysOnTop(true);
-
-        alert.showAndWait();
+    public void buttonPressed(ActionEvent actionEvent) {
     }
 }

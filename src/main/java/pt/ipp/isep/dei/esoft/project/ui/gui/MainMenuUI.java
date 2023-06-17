@@ -91,7 +91,7 @@ public class MainMenuUI {
      */
     @FXML
     public void onSignUpButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(UnregisteredUserUI.class.getResource("/fxml/RegisterUser.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(UnregisteredUserUI.class.getResource("/fxml/UnregisteredUser.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
         stage.setTitle("Real Estate USA App");
