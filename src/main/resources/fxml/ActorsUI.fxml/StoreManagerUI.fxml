@@ -14,15 +14,13 @@
          <menus>
             <Menu text="Personal Menu">
                <items>
-                  <MenuItem fx:id="ViewBookingRequests" onAction="#onViewBookingRequests" text="View Booking Requests" />
                   <MenuItem fx:id="doLogout" onAction="#doLogout" text="Logout" />
                </items>
             </Menu>
          </menus>
       </MenuBar>
-      <Button layoutX="185.0" layoutY="149.0" mnemonicParsing="false" onAction="#onPublishinAnnoucement" prefHeight="30.0" prefWidth="200.0" text="Publish an announcement" />
-      <Button layoutX="185.0" layoutY="201.0" mnemonicParsing="false" onAction="#onListBookingRequests" prefHeight="30.0" prefWidth="200.0" text="List all booking requests" />
-      <Button layoutX="185.0" layoutY="255.0" mnemonicParsing="false" onAction="#onRegisterVisit" prefHeight="30.0" prefWidth="200.0" text="Register visit" />
+      <Button layoutX="185.0" layoutY="149.0" mnemonicParsing="false" onAction="#onAnalyseDeals" prefHeight="30.0" prefWidth="200.0" text="Analyse all Deals" />
+
       <Label layoutX="125.0" layoutY="59.0" prefHeight="48.0" prefWidth="444.0" text="Store Manager Menu:">
          <font>
             <Font size="39.0" />

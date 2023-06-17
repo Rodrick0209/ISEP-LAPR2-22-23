@@ -38,28 +38,16 @@ public class StoreManagerUI implements Initializable {
     }
 
     @FXML
-    public void onPublishinAnnoucement(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllBookingRequestsUI.fxml");
-    }
-
-    @FXML
-    public void onListBookingRequests(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllBookingRequestsUI.fxml");
-    }
-
-    @FXML
-    public void onViewBookingRequests(ActionEvent actionEvent) throws IOException {
-
-        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils.fxml/ViewBookingRequestsUI.fxml");
-    }
-
-
-
-    @FXML
-    public void onRegisterVisit(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/RegisterVisitUI.fxml");
+    public void onAnalyseDeals(ActionEvent actionEvent) throws IOException {
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/AnalyseAllDealsUI.fxml");
     }
 }
+
+
+
+
+
+
+
 
 
