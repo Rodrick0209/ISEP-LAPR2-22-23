@@ -42,7 +42,7 @@ public class LogInUI {
         String password = passwordField.getText();
 
         try {
-            if (authenticationFacade.existsUser(email)  && isValidEmail(email) &&  password.equals("agent")  || password.equals("networkmanager") || password.equals("storemanager") || password.equals("client") || authenticationFacade.existsRole("Client") ) {
+            if (authenticationFacade.existsUser(email)  && isValidEmail(email) && isValidPassword(password) &&  password.equals("agent")  || password.equals("networkmanager") || password.equals("storemanager") || password.equals("client")  ) {
                 UserSession currentUsersession = authenticationFacade.doLogin(email, password);   //get user from session
 
                 if (currentUsersession.isLoggedInWithRole(AuthenticationController.ROLE_AGENT)) {   //role validation
@@ -108,5 +108,9 @@ public class LogInUI {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+    private boolean isValidPassword(String password) {
+        return password != null && !password.isEmpty() && password.matches("^[a-zA-Z0-9]+$");
+    }
+
 }
 

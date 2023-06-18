@@ -8,24 +8,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="377.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Actors.ClientUI">
+<AnchorPane prefHeight="350.0" prefWidth="528.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Actors.ClientUI">
    <children>
       <MenuBar layoutX="503.0" AnchorPane.rightAnchor="0.5" AnchorPane.topAnchor="0.0">
          <menus>
             <Menu text="Personal Menu">
                <items>
-                  <MenuItem fx:id="ViewBookingRequests" onAction="#onViewBookingRequests" text="View Booking Requests" />
+                  <MenuItem fx:id="ViewBookingRequests" onAction="#onViewBookingRequests" text="View Appointment Requests" />
                   <MenuItem fx:id="doLogout" onAction="#doLogout" text="Logout" />
                </items>
             </Menu>
          </menus>
       </MenuBar>
-      <Button layoutX="185.0" layoutY="149.0" mnemonicParsing="false" onAction="#onPublishinAnnoucement" prefHeight="30.0" prefWidth="200.0" text="Publish an announcement" />
-      <Button layoutX="185.0" layoutY="201.0" mnemonicParsing="false" onAction="#onListBookingRequests" prefHeight="30.0" prefWidth="200.0" text="List all booking requests" />
-      <Button layoutX="185.0" layoutY="255.0" mnemonicParsing="false" onAction="#onRegisterVisit" prefHeight="30.0" prefWidth="200.0" text="Register visit" />
-      <Label layoutX="185.0" layoutY="65.0" prefHeight="17.0" prefWidth="240.0" text="Client Menu:">
+      <Button layoutX="175.0" layoutY="170.0" mnemonicParsing="false" onAction="#onListBookingRequests" prefHeight="30.0" prefWidth="200.0" text="List all Properties" />
+      <Button layoutX="175.0" layoutY="224.0" mnemonicParsing="false" onAction="#onRegisterVisit" prefHeight="30.0" prefWidth="200.0" text="Schedule a visit" />
+      <Label layoutX="175.0" layoutY="64.0" prefHeight="17.0" prefWidth="240.0" text="Client Menu:">
          <font>
-            <Font size="39.0" />
+            <Font size="38.0" />
          </font>
       </Label>
    </children>

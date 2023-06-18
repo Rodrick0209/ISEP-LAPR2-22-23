@@ -20,7 +20,7 @@
          <menus>
             <Menu text="Personal Menu">
                <items>
-                  <MenuItem fx:id="backToStoreManagerMenu" onAction="#getBackToStoreManagerMenu" text="Go back to Store manager menu:" />
+                  <MenuItem fx:id="backToStoreManagerMenu" onAction="#getBackToStoreManagerMenu" text="Go back to store manager menu" />
                   <MenuItem fx:id="doLogout" onAction="#doLogout" text="Logout" />
                </items>
             </Menu>

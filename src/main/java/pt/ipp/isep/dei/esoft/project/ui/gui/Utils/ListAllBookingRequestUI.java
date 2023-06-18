@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ListAllBookingRequestUI implements Initializable {
@@ -44,8 +45,8 @@ public class ListAllBookingRequestUI implements Initializable {
     private DatePicker endDatePicker;
     @FXML
     private Button submitButton;
-
-    private Stage stage;
+    @FXML
+    private Stage currentStage;
 
 
     @Override
@@ -111,6 +112,11 @@ public class ListAllBookingRequestUI implements Initializable {
             }
         });
     }
+
+
+
+
+
     @FXML
     private void getBackToAgentMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
@@ -134,6 +140,7 @@ public class ListAllBookingRequestUI implements Initializable {
         stage.setAlwaysOnTop(true);
 
         alert.showAndWait();
+
     }
 
     private void showAlert(AlertType alertType, String title, String headerText, String contentText) {
