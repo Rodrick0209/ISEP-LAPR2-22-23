@@ -25,6 +25,7 @@ public class AdminUI implements Runnable {
         options.add(new MenuItem("Register Employee", new RegisterEmployeeUI()));
         options.add(new MenuItem("Register Agency", new RegisterAgencyUI()));
         options.add(new MenuItem("Import Information from a legacy system", new ImportInformationUI()));
+        options.add(new MenuItem("Reset System", new ResetSystemUI()));
 
         int option = 0;
         do {

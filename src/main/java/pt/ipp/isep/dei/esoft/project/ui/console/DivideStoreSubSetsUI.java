@@ -16,8 +16,6 @@ public class DivideStoreSubSetsUI implements Runnable{
     private final ImportInformationController importInformationController = new ImportInformationController();
 
     private String fileName;
-    private int numberOfAgencies;
-    private int minDifferenceSubSets;
 
 
     public DivideStoresSubSetsController getController() {
@@ -26,7 +24,6 @@ public class DivideStoreSubSetsUI implements Runnable{
 
     public void run(){
         submitData();
-        requestAgencyNum();
         submitAgencyNum();
     }
 
@@ -39,16 +36,13 @@ public class DivideStoreSubSetsUI implements Runnable{
         fileName = requestFileName();
     }
 
-    private void requestAgencyNum(){
-        numberOfAgencies = requestsNumAgencies();
-    }
 
     private void submitAgencyNum(){
         List<Agency> agencies = controller.getAgencies();
         List<AgencyInfo> subset1 = new ArrayList();
         List<AgencyInfo> subset2 = new ArrayList();
         long startTime = System.nanoTime();
-        minDifferenceSubSets = controller.findMinSubsetDifference(agencies, subset1, subset2);
+        int minDifferenceSubSets = controller.findMinSubsetDifference(agencies, subset1, subset2);
         long endTime = System.nanoTime();
         double runtime = (double)(endTime - startTime) / 1.0E9;
         System.out.println("Subset 1: " + subset1);
@@ -56,6 +50,7 @@ public class DivideStoreSubSetsUI implements Runnable{
         System.out.println("Start time: " + startTime);
         System.out.println("End time: " + endTime);
         System.out.println("Runtime: " + runtime);
+        System.out.println("Minimum Difference: " + minDifferenceSubSets);
     }
 
     private String requestFileName(){

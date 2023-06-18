@@ -29,7 +29,7 @@ public class AgencyInfo {
     }
 
     public String toString(){
-        return "Agency ID: " + agencyID +
-               "Number of Properties: " + numberOfProperties;
+        return "/nAgency ID: " + agencyID +
+               "/nNumber of Properties: " + numberOfProperties + "\n";
     }
 }

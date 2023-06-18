@@ -332,9 +332,16 @@ public class ImportInformationController implements FileReader {
         Commission commission = new Commission("Percentage Commission", Double.parseDouble(information[20]));
         if (getAnnouncementRepository() != null) {
             try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date date = sdf.parse(information[22]);
-                newAnnouncement = getAnnouncementRepository().createAnnouncementWithInputDate(request, commission, date);
+                if(information[22].contains("-")) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = sdf.parse(information[22]);
+                    newAnnouncement = getAnnouncementRepository().createAnnouncementWithInputDate(request, commission, date);
+                }
+                else {
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+                    Date date = sdf2.parse(information[22]);
+                    newAnnouncement = getAnnouncementRepository().createAnnouncementWithInputDate(request, commission, date);
+                }
             } catch (ParseException e) {
                 throw new IllegalArgumentException("Invalid Date Format");
             }
@@ -350,9 +357,16 @@ public class ImportInformationController implements FileReader {
         Announcement announcement = getAnnouncementByRequest(request);
         if (getDealRepository() != null) {
             try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date dateOfSale = sdf.parse(information[23]);
-                newDeal = getDealRepository().createDeal(announcement, dateOfSale, agency);
+                if(information[23].contains("-")) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Date dateOfSale = sdf.parse(information[23]);
+                    newDeal = getDealRepository().createDeal(announcement, dateOfSale, agency);;
+                }
+                else {
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+                    Date dateOfSale = sdf2.parse(information[23]);
+                    newDeal = getDealRepository().createDeal(announcement, dateOfSale, agency);
+                }
                 removeProperty(property);
                 removeRequest(request);
                 removeAnnouncement(announcement);
