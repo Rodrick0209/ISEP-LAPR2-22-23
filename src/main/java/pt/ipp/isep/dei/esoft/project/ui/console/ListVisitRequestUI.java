@@ -10,8 +10,14 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The type List visit request ui.
+ */
 public class ListVisitRequestUI implements Runnable {
 
+    /**
+     * The Controller.
+     */
     ListVisitRequestController controller = new ListVisitRequestController();
     private Sort sortingAlgorithm;
 

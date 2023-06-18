@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Bublle sort.
+ */
 public class BublleSort {
 
     /*public List<VisitRequest> bubbleSort(List<VisitRequest> newList) {
@@ -20,6 +23,12 @@ public class BublleSort {
     //return  finalList;
     //}
 
+    /**
+     * Bubble sort list.
+     *
+     * @param newList the new list
+     * @return the list
+     */
     public List<VisitRequest> bubbleSort(List<VisitRequest> newList) {
         List<VisitRequest> finalList = new ArrayList<>(newList);
 

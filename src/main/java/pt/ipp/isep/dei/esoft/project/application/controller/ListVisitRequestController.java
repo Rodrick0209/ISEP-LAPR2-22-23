@@ -26,6 +26,9 @@ import java.util.Properties;
 import java.util.*;
 
 
+/**
+ * The type List visit request controller.
+ */
 public class ListVisitRequestController {
 
     private VisitRepository visitRepository;
@@ -42,17 +45,21 @@ public class ListVisitRequestController {
     private List<VisitRequest> newList;
 
 
-
-
-
+    /**
+     * Instantiates a new List visit request controller.
+     *
+     * @param visitRepository    the visit repository
+     * @param employeeRepository the employee repository
+     */
     public ListVisitRequestController(VisitRepository visitRepository, EmployeeRepository employeeRepository ) {
         this.visitRepository = visitRepository;
         this.employeeRepository = employeeRepository;
     }
 
 
-
-
+    /**
+     * Instantiates a new List visit request controller.
+     */
     public ListVisitRequestController()  {
         getVisitRepository();
         getEmployeeRepository();
@@ -212,6 +219,11 @@ public class ListVisitRequestController {
     }*/
 
 
+    /**
+     * Gets sorted visit request list.
+     *
+     * @return the sorted visit request list
+     */
     public List<VisitRequest> getSortedVisitRequestList()  {
         List<VisitRequest> visitList = Repositories.getInstance().getVisitRepository().getVisitList();
         List<VisitRequest> finalList = new ArrayList<>();

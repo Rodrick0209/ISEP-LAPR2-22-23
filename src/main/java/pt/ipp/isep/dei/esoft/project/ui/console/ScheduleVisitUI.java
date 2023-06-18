@@ -183,6 +183,7 @@ public class ScheduleVisitUI implements Runnable {
 
         System.out.println("Visit Request: " +
                 "\nDate: " + requestDate +
+                //"\nTimeSLot" + Arrays.deepToString(timeSlot) +
                 "\nMessage;" + message +
                 "\nAnnouncement: " + announcement +
                 "\nClientUserName: " + clientUserName +

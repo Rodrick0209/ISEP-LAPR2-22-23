@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.esoft.project.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Selection sort.
+ */
 public class SelectionSort {
 
     public List<VisitRequest> selectionSort(List<VisitRequest> newList){

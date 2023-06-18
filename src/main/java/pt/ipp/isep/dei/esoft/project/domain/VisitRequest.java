@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * The type Visit request.
+ */
 public class VisitRequest implements Serializable {
 
     private final Announcement announcement;
@@ -19,6 +22,17 @@ public class VisitRequest implements Serializable {
     private final String message;
     private final Employee agent;
 
+    /**
+     * Instantiates a new Visit request.
+     *
+     * @param announcement the announcement
+     * @param userName     the user name
+     * @param phoneNumber  the phone number
+     * @param visitDate    the visit date
+     * @param timeSlot     the time slot
+     * @param message      the message
+     * @param agent        the agent
+     */
     public VisitRequest(Announcement announcement, String userName, String phoneNumber, Date visitDate, int[][] timeSlot, String message, Employee agent) {
         this.announcement = announcement;
         this.userName = userName;
@@ -30,10 +44,20 @@ public class VisitRequest implements Serializable {
         this.agent = agent ;
     }
 
+    /**
+     * Get time slot int [ ] [ ].
+     *
+     * @return the int [ ] [ ]
+     */
     public int[][] getTimeSlot() {
     return timeSlot;
     }
 
+    /**
+     * Get announcement announcement.
+     *
+     * @return the announcement
+     */
     public Announcement getAnnouncement(){ return announcement; }
 
     @Override
@@ -49,12 +73,21 @@ public class VisitRequest implements Serializable {
 
     }
 
+    /**
+     * Gets agent.
+     *
+     * @return the agent
+     */
     public Employee getAgent() {
         return agent;
     }
 
 
-
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public Date getDate() {
         return visitDate;
     }

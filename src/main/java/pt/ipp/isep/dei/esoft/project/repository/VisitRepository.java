@@ -26,15 +26,26 @@ public class VisitRepository implements Serializable {
 
 
     private  List<VisitRequest> visitList = new ArrayList<>();
+    /**
+     * The New list.
+     */
     public List<VisitRequest> newList = new ArrayList<>();
 
+    /**
+     * Add visit 1.
+     *
+     * @param visitRequest the visit request
+     */
     public void addVisit1(VisitRequest visitRequest) {
         this.visitList.add(visitRequest);
     }
 
 
-
-
+    /**
+     * Gets sorted visit request list.
+     *
+     * @return the sorted visit request list
+     */
     public List<VisitRequest> getSortedVisitRequestList()  {
         ZoneId zId = ZoneId.systemDefault();
         List<VisitRequest> finalList = new ArrayList<>();
@@ -96,6 +107,12 @@ public class VisitRepository implements Serializable {
         return List.copyOf(visitList);
     }
 
+    /**
+     * Gets visit request by announcement.
+     *
+     * @param announcement the announcement
+     * @return the visit request by announcement
+     */
     public VisitRequest getVisitRequestByAnnouncement(Announcement announcement) {
         VisitRequest visitRequest = null;
         for (VisitRequest vr : visitList) {
@@ -106,6 +123,11 @@ public class VisitRepository implements Serializable {
         return visitRequest;
     }
 
+    /**
+     * Gets visit list.
+     *
+     * @return the visit list
+     */
     public List<VisitRequest> getVisitList() {
         return visitList;
     }
@@ -132,11 +154,25 @@ public class VisitRepository implements Serializable {
     }
 */
 
+    /**
+     * Visit request list list.
+     *
+     * @return the list
+     */
     public List<VisitRequest> visitRequestList() {
         return visitList;
     }
 
 
+    /**
+     * Gets unsorted visit request list.
+     *
+     * @param visitList the visit list
+     * @param visitDate the visit date
+     * @param begin     the begin
+     * @param end       the end
+     * @return the unsorted visit request list
+     */
     public List<VisitRequest> getUnsortedVisitRequestList(List<VisitRequest> visitList, Date visitDate,  LocalDate begin, LocalDate end) {
         ZoneId zId = ZoneId.systemDefault();
 
@@ -151,6 +187,15 @@ public class VisitRepository implements Serializable {
         }
         return newList;
     }
+
+    /**
+     * Gets sorted visit request list.
+     *
+     * @param newList the new list
+     * @param begin   the begin
+     * @param end     the end
+     * @return the sorted visit request list
+     */
     public List<VisitRequest> getSortedVisitRequestList(List<VisitRequest> newList, LocalDate begin, LocalDate end)  {
         ZoneId zId = ZoneId.systemDefault();
         List<VisitRequest> finalList = new ArrayList<>();
@@ -185,10 +230,18 @@ public class VisitRepository implements Serializable {
     }
 
 
+    /**
+     * Add requests.
+     *
+     * @param request1 the request 1
+     */
     public void addRequests(VisitRequest request1) {
         this.visitList.add(request1);
     }
 
+    /**
+     * Clear.
+     */
     public void clear(){visitList.clear();}
 }
 
