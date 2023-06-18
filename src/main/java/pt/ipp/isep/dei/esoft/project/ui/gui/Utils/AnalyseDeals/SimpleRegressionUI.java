@@ -124,14 +124,14 @@ public class SimpleRegressionUI implements Initializable {
     @FXML
     private void getBackToStoreManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/StoreManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
 
     }
 
 
     public void getBackToAlyseDealsMenu(ActionEvent actionEvent) throws IOException{
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils.fxml/AnalyseAllDealsUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils-fxml/AnalyseAllDealsUI.fxml");
     }
 
     public void predictPrice(ActionEvent actionEvent) {

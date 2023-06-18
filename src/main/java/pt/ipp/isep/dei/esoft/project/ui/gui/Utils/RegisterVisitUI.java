@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
-import pt.ipp.isep.dei.esoft.project.ui.gui.Domain.BookingRequest;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,7 +62,7 @@ public class RegisterVisitUI implements Initializable {
     @FXML
     private void getBackToAgentMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/AgentUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/AgentUI.fxml");
 
     }
     @FXML

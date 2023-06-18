@@ -53,19 +53,19 @@ public class SelectionSortUI implements Initializable {
     @FXML
     private void getBackToNetworkManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/StoreManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
 
     }
 
 
     @FXML
     private void switchToBubbleSortUI(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/SimpleRegressionUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SimpleRegressionUI.fxml");
     }
 
     @FXML
     private void switchToSelectionSort(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/AnalyseDeals/MultipleRegressionUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/AnalyseDeals/MultipleRegressionUI.fxml");
     }
 
 

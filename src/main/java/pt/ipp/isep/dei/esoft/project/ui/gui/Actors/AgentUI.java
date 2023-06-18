@@ -36,26 +36,26 @@ public class AgentUI implements Initializable {
 
     @FXML
     public void onPublishinAnnoucement(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllBookingRequestsUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/ListAllBookingRequestsUI.fxml");
     }
 
     @FXML
     public void onListBookingRequests(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllBookingRequestsUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/ListAllBookingRequestsUI.fxml");
     }
 
     @FXML
     public void onViewBookingRequests(ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils.fxml/ViewAllBookingRequestsUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils-fxml/ViewAllBookingRequestsUI.fxml");
     }
 
 
 
     @FXML
     public void onRegisterVisit(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/RegisterVisitUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/RegisterVisitUI.fxml");
     }
 }
 

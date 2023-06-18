@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
@@ -41,19 +39,19 @@ public class ListAlllDealsUI implements Initializable {
     @FXML
     private void getBackToNetworkManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/NetworkManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/NetworkManagerUI.fxml");
 
     }
 
 
     @FXML
     private void switchToBubbleSortUI(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/SortingMethods.fxml/BubbleSort.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SortingMethods.fxml/BubbleSort.fxml");
     }
 
     @FXML
     private void switchToSelectionSort(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/SortingMethods.fxml/SelectionSort.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SortingMethods.fxml/SelectionSort.fxml");
     }
 
 

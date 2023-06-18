@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
-import pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseDeals.MultipleRegressionUI;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,19 +48,19 @@ public class AnalyseAllDealsUI implements Initializable {
     @FXML
     private void getBackToStoreManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/StoreManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
 
     }
 
 
     @FXML
     private void switchToSimpleRegressionUI(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/SimpleRegressionUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SimpleRegressionUI.fxml");
     }
 
     @FXML
     private void switchToMultipleRegressionUI(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/MultipleRegression.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/MultipleRegression.fxml");
     }
 
 

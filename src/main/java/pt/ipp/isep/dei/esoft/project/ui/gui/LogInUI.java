@@ -46,14 +46,14 @@ public class LogInUI {
                 UserSession currentUsersession = authenticationFacade.doLogin(email, password);   //get user from session
 
                 if (currentUsersession.isLoggedInWithRole(AuthenticationController.ROLE_AGENT)) {   //role validation
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI.fxml/AgentUI.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI-fxml/AgentUI.fxml"));
                     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                     Parent root = fxmlLoader.load();
                     Scene agentScene = new Scene(root);
                     stage.setScene(agentScene);
                     stage.show();
                 } else if (currentUsersession.isLoggedInWithRole(AuthenticationController.ROLE_NETWORK_MANAGER)) {   //role validation
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI.fxml/NetworkManagerUI.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI-fxml/NetworkManagerUI.fxml"));
                     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                     Parent root = fxmlLoader.load();
                     Scene agentScene = new Scene(root);
@@ -61,7 +61,7 @@ public class LogInUI {
                     stage.show();
 
                 } else if (currentUsersession.isLoggedInWithRole(AuthenticationController.ROLE_CLIENT)) {   //role validation
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI.fxml/ClientUI.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI-fxml/ClientUI.fxml"));
                     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                     Parent root = fxmlLoader.load();
                     Scene agentScene = new Scene(root);
@@ -69,7 +69,7 @@ public class LogInUI {
                     stage.show();
 
                 } else if (currentUsersession.isLoggedInWithRole(AuthenticationController.ROLE_STORE_MANAGER)) {   //role validation
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI.fxml/StoreManagerUI.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ActorsUI-fxml/StoreManagerUI.fxml"));
                     stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                     Parent root = fxmlLoader.load();
                     Scene agentScene = new Scene(root);

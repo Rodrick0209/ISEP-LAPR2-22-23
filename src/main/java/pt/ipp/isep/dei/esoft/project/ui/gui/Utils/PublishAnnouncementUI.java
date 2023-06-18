@@ -28,7 +28,7 @@ public class PublishAnnouncementUI implements Initializable {
     }
 
     public void onListBookingRequests(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent,"/fxml/Utils.fxml/ListAllBookingRequestUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/ListAllBookingRequestUI.fxml");
     }
 
     public void onViewBookingRequests(ActionEvent actionEvent) {

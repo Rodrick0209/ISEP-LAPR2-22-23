@@ -54,7 +54,7 @@ public class StoreManagerUI implements Initializable {
         if (selectedFile != null) {
             XSSFWorkbook fileToReturn = convertCSVToWorkbook(selectedFile);
             dealsFile = fileToReturn;
-            SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/AnalyseAllDealsUI.fxml");
+            SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/AnalyseAllDealsUI.fxml");
 
 
 

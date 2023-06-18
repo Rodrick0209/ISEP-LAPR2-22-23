@@ -8,13 +8,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.apache.commons.math4.legacy.stat.regression.OLSMultipleLinearRegression;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import pt.ipp.isep.dei.esoft.project.domain.LinearRegression;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Actors.StoreManagerUI;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
-import pt.ipp.isep.dei.esoft.project.ui.gui.MainMenuUI;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,7 +63,7 @@ public class MultipleRegressionUI implements Initializable {
     @FXML
     private void getBackToStoreManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI.fxml/StoreManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
     }
 
     @FXML

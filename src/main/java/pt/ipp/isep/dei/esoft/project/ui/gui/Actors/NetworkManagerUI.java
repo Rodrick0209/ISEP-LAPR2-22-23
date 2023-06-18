@@ -40,12 +40,12 @@ public class NetworkManagerUI implements Initializable {
 
 @FXML
     public void onDivideTheStoresIntoTwoSubstets(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/DivideAllStoreIntoTwoSubsets.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/DivideAllStoreIntoTwoSubsets.fxml");
     }
 
     @FXML
     public void onListAllDeals(ActionEvent actionEvent) throws IOException{
-            SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllDeals.fxml");
+            SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/ListAllDeals.fxml");
         }
 
     }
