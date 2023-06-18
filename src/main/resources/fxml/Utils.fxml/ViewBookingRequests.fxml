@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.ViewAllBookingRequestsUI">
+   <children>
+      <TableView layoutX="60.0" layoutY="63.0" prefHeight="200.0" prefWidth="291.0">
+        <columns>
+          <TableColumn prefWidth="216.0" text="                                      Requests" />
+        </columns>
+      </TableView>
+      <MenuBar layoutX="293.0" prefHeight="25.0" prefWidth="116.0">
+         <menus>
+            <Menu text="Personal Menu">
+               <items>
+                  <MenuItem fx:id="backToAgentMenu" onAction="#getBackToAgentMenu" text="Go back to Agent menu" />
+                  <MenuItem fx:id="doLogout" onAction="#doLogout" text="Logout" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <MenuBar layoutX="154.0" layoutY="271.0" prefHeight="25.0" prefWidth="116.0">
+         <menus>
+            <Menu text="           Sort">
+               <items>
+                  <MenuItem fx:id="sortInAscendingOrder" onAction="#sortInAscendingOrder" text="Ascending order" />
+                  <MenuItem fx:id="sortInDescendingOrder" onAction="#sortInAscendingOrdert" text="Descending order" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

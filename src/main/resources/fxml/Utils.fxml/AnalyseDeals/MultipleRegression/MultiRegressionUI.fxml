@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.Utils.fxml.MultiRegressionUI">
+   <children>
+      <Button layoutX="255.0" layoutY="324.0" mnemonicParsing="false" text="Forecast" />
+      <Button layoutX="424.0" layoutY="14.0" mnemonicParsing="false" text="Regression Menu" />
+      <TextField editable="false" layoutX="294.0" layoutY="256.0" prefHeight="32.0" prefWidth="169.0" />
+      <Text layoutX="187.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="169.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="59.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Area">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="135.0" layoutY="69.0" prefHeight="39.0" prefWidth="147.0" />
+      <TextField layoutX="135.0" layoutY="122.0" prefHeight="39.0" prefWidth="147.0" />
+      <Text layoutX="23.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distance">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="424.0" layoutY="69.0" prefHeight="39.0" prefWidth="147.0" />
+      <TextField layoutX="424.0" layoutY="137.0" prefHeight="39.0" prefWidth="147.0" />
+      <TextField layoutX="135.0" layoutY="172.0" prefHeight="39.0" prefWidth="147.0" />
+      <Text layoutX="14.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrooms">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="294.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bathrooms">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="314.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parking Spaces" wrappingWidth="162.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
