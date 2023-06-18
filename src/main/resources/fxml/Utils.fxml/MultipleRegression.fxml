@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="543.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseDeals.SimpleRegressionUI">
+<AnchorPane prefHeight="543.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseAllDealsUI">
    <children>
       <MenuBar layoutX="530.0" prefHeight="28.0" prefWidth="115.0">
          <menus>
@@ -47,12 +47,12 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="237.0" layoutY="60.0" text="Simple  Regression">
+      <Label layoutX="237.0" layoutY="60.0" text="Multiple  Regression">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Button  fx:id="predictPriceButton" layoutX="269.0" layoutY="411.0" mnemonicParsing="false"  onAction="#onPredictPirceButton" prefHeight="28.0" prefWidth="168.0" text="Predict Price" />
+      <Button layoutX="269.0" layoutY="411.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="168.0" text="Predict Price" />
       <Label layoutX="290.0" layoutY="465.0" prefHeight="28.0" prefWidth="201.0" text="Predicted prices">
          <font>
             <Font size="20.0" />

@@ -50,7 +50,7 @@ public class StoreManagerUI implements Initializable {
             // For example, you can pass the file path to the AnalyseAllDealsUI controller
 
             // Switch to the next scene
-            SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/AnalyseDeals/AnalyseAllDealsUI.fxml");
+            SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/AnalyseAllDealsUI.fxml");
         }
     }
 

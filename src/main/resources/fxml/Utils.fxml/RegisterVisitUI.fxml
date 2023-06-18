@@ -78,7 +78,7 @@
          </items>
       </ComboBox>
       <Label layoutX="43.0" layoutY="133.0" text="Visit  Duration:" />
-      <ComboBox fx:id="visitDuration" layoutX="237.0" layoutY="129.0" prefHeight="22.0" prefWidth="86.0">
+      <ComboBox fx:id="visitDuration" layoutX="237.0" layoutY="129.0" prefHeight="26.0" prefWidth="99.0">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="5 minutes" />
