@@ -16,5 +16,5 @@ public class ResetSystemController {
         return repositories;
     }
 
-    public void clearRepositories(){ getRepositories().clear(); }
+    public void clearRepositories(){ getRepositories().clearRepositories(); }
 }

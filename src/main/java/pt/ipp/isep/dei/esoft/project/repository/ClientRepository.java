@@ -77,5 +77,5 @@ public class ClientRepository implements Serializable {
         return user1;
     }
 
-
+public void clear(){clients.clear();}
 }

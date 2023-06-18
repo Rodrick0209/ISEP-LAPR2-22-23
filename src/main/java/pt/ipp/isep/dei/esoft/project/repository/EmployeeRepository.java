@@ -117,4 +117,6 @@ public class EmployeeRepository implements Serializable {
         for (String  : filteredAgents) {
             System.out.println(name);
     }*/
+
+    public void clear(){employees.clear();}
 }

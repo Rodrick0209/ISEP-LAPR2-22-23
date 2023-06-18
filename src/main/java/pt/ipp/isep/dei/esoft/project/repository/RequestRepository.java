@@ -134,7 +134,7 @@ public class RequestRepository implements Serializable {
      */
     public List<Request> getRequests(){ return List.copyOf(requests); }
     private boolean validateRequest(Request request){ return !requests.contains(request);
-
-
     }
+
+    public void clear(){requests.clear();}
 }

@@ -88,4 +88,6 @@ public class AgencyRepository implements Serializable {
      * @return a copy of the list of agencies
      */
     public List<Agency> getAgencies(){ return List.copyOf(agencies); }
+
+    public void clear(){agencies.clear();}
 }

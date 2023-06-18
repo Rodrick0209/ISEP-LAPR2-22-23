@@ -111,4 +111,5 @@ public class OwnerRepository implements Serializable {
         return user1;
     }
 
+    public void clear(){owners.clear();}
 }

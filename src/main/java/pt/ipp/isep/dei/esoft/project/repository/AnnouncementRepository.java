@@ -124,5 +124,5 @@ public class AnnouncementRepository implements Serializable {
         return List.copyOf(announcements);
     }
 
-
+    public void clear(){announcements.clear();}
 }

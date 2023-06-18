@@ -35,4 +35,6 @@ public class DealRepository implements Serializable {
     private boolean validateDeal(Deal deal){return !deals.contains(deal);}
 
     public List<Deal> getDeals(){return List.copyOf(deals);}
+
+    public void clear(){deals.clear();}
 }

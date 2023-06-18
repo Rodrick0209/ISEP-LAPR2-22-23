@@ -222,6 +222,18 @@ public class Repositories implements Serializable {
         return new Repositories(agencyRepository, roleRepository, propertyRepository, propertyTypeRepository, ownerRepository, typeBusinessRepository, employeeRepository, requestRepository, announcementRepository, visitRepository, clientRepository, dealRepository, orderRepository, userRepository, appointmentRequestRepository);
     }
 
+    public void clearRepositories(){
+        agencyRepository.clear();
+        propertyRepository.clear();
+        ownerRepository.clear();
+        employeeRepository.clear();
+        requestRepository.clear();
+        announcementRepository.clear();
+        visitRepository.clear();
+        clientRepository.clear();
+        dealRepository.clear();
+    }
+
 
 
 //    private void initProps(){

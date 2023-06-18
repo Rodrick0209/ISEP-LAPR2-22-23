@@ -188,5 +188,7 @@ public class VisitRepository implements Serializable {
     public void addRequests(VisitRequest request1) {
         this.visitList.add(request1);
     }
+
+    public void clear(){visitList.clear();}
 }
 

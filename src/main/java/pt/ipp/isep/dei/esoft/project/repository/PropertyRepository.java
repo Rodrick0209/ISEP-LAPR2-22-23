@@ -158,6 +158,8 @@ public class PropertyRepository implements Serializable {
     public boolean removeProperty(Property property){
         return properties.remove(property);
     }
+
+    public void clear(){properties.clear();}
 }
 
 
