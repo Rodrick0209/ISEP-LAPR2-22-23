@@ -147,7 +147,7 @@ public class Property implements Serializable {
 
     @Override
     public String toString() {
-        return "\nType: " + type +
+        return "\nType: " + type  +
                 "\nArea: " + area + " m2"+
                 "\nLocation: " + location +
                 "\nDistance of city centre: " + distance + " miles" ;

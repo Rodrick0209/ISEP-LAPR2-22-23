@@ -5,20 +5,21 @@ import java.util.List;
 
 public class SelectionSort {
 
-    public List<VisitRequest> selectionSort(){
-        List<VisitRequest> sorted = new ArrayList<>();
-        for (int i = 0; i < sorted.size() - 1; i++) {
+    public List<VisitRequest> selectionSort(List<VisitRequest> newList){
+        List<VisitRequest> finalList = new ArrayList<>();
+        for (int i = 0; i < newList.size() - 1; i++) {
             int minIndex = i;
-            for (int j = i + 1; j < sorted.size(); j++) {
-                if (sorted.get(j).getDate().after(sorted.get(j+1).getDate())) {
+            for (int j = i + 1; j < newList.size(); j++) {
+                if (newList.get(j).getDate().after(newList.get(j+1).getDate())) {
                     minIndex = j;
+                    finalList.add(newList.get(i));
                 }
             }
-            VisitRequest temp = sorted.get(i);
-            sorted.set(i, sorted.get(minIndex));
-            sorted.set(minIndex, temp);
+            VisitRequest temp = newList.get(i);
+            newList.set(i, newList.get(minIndex));
+            newList.set(minIndex, temp);
         }
-        return sorted;
+        return finalList;
     }
 
 }

@@ -29,6 +29,7 @@ public class ScheduleVisitUI implements Runnable {
     private String clientPhoneNumber;
 
     private List<Employee> agent;
+    //private Employee agent;
     /**
      * The Controller.
      */
@@ -177,16 +178,16 @@ public class ScheduleVisitUI implements Runnable {
         message = requestMessage();
         System.out.println();
 
-        agent = requestAgent();
+        agent = (List<Employee>) requestAgent();
 
-        System.out.println(
-            "\nClientUserName: " + requestClientUserName() +
-            "\nClient Phone number: " + requestClientPhoneNumber() +
-            "\nAnnouncement: " + requestAnnouncement() +
-            "\nDate: " + requestDate() +
-            "\nTime Slot: " + Arrays.deepToString(requestTimeSlot()) +
-            "\nMessage: " + requestMessage()     +
-            "\nAgent: " + requestAgent());
+
+        System.out.println("Visit Request: " +
+                "\nDate: " + requestDate +
+                "\nMessage;" + message +
+                "\nAnnouncement: " + announcement +
+                "\nClientUserName: " + clientUserName +
+                "\nClientPhoneNumber: " + clientPhoneNumber );
+
 
 
 
@@ -205,11 +206,16 @@ public class ScheduleVisitUI implements Runnable {
         }
     }
 
-    private List<Employee> requestAgent() {
+    /*private List<Employee> requestAgent() {
         List<Employee> agent = Repositories.getInstance().getEmployeeRepository().getEmployee();
         return agent;
-    }
+    }*/
 
+    private Employee requestAgent(){
+        agent = Repositories.getInstance().getEmployeeRepository().getEmployee();
+        return (Employee) agent;
+
+    }
 
     private String requestClientPhoneNumber() {
         String input = null;
@@ -278,7 +284,7 @@ public class ScheduleVisitUI implements Runnable {
     }
 
 
-   /* @Override
+    @Override
     public String toString() {
         return  "Visit Request: " +
                 "Date: " + requestDate +
@@ -286,5 +292,5 @@ public class ScheduleVisitUI implements Runnable {
                 "Announcement: " + announcement +
                 "ClientUserName: " + clientUserName +
                 "ClientPhoneNumber: " + clientPhoneNumber ;
-    }*/
+    }
 }

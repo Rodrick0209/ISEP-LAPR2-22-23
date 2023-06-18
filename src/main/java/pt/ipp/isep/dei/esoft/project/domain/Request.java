@@ -60,6 +60,8 @@ public class Request implements Serializable {
 
 
 
+
+
     /**
      * Gets property.
      *
@@ -107,12 +109,13 @@ public class Request implements Serializable {
 
     @Override
     public String toString() {
-        return  "Property: "  + property +
-                "\nType of Business: " + typeBusiness +
-                "\nPrice: " + price +"$" +
-                "\nOwner: " + owner +
-                "\nRequest Date: " + requestDate;
+        return  "Property: "  + getProperty() +
+                "\nType of Business: " + getTypeBusiness() +
+                "\nPrice: " + getPrice() +"$" +
+                "\nOwner: " + getOwner() +
+                "\nRequest Date: " + getRequestDate();
     }
+
 
 
 }

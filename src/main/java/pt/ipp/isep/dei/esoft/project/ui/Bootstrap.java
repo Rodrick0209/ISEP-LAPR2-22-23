@@ -7,9 +7,7 @@ import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class Bootstrap implements Runnable {
@@ -134,10 +132,14 @@ public class Bootstrap implements Runnable {
         AnnouncementRepository announcementRepository = Repositories.getInstance().getAnnouncementRepository();
         OrderRepository orderRepository = Repositories.getInstance().getOrderRepository();
 
-        Property property1 = new Land(new PropertyType("Land"), 123, "Lol Street, Porto, Portugal, 12345", 23, new Owner("owner@this.app"));
-        Request request1 = new Request(property1, new TypeBusiness("Sale"), 4500, new Owner("owner@this.app"));
-        Date date1 = new Date(2023,6,17);
-        Announcement announcement = new Announcement(request1, new Commission("Percentage Commission", 12), date1);
+        PropertyType propertyType1 =  new PropertyType("Land");
+        Property property1 = new Land(propertyType1, 123, "Lol Street, Porto, Portugal, 12345", 23, new Owner("owner@this.app"));
+        TypeBusiness typeBusiness1 = new TypeBusiness("Sale");
+        Owner owner1 = new Owner("owner@this.app");
+        Request request1 = new Request(property1,typeBusiness1 , 4500, owner1);
+        Date date1 = new Date(2023, 6, 15);
+        Commission commission1 = new Commission("Percentage Commission", 12);
+        Announcement announcement = new Announcement(request1, commission1, date1);
         announcementRepository.add(announcement);
 
         // Create an order and add it to the order repository
@@ -146,9 +148,8 @@ public class Bootstrap implements Runnable {
         Date date2 = new Date();
 
 
-
-        Order order1 = new Order(500,date1,client1);
-        Order order2 = new Order(1000,date2,client1);
+        Order order1 = new Order(500, date1, client1);
+        Order order2 = new Order(1000, date2, client1);
 
 
         orderRepository.addOrder(order1);
@@ -161,22 +162,25 @@ public class Bootstrap implements Runnable {
 
 
     private void addVisit() {
-        VisitRepository visitRepository = Repositories.getInstance().getVisitRepository();
-
-        VisitRequest visitRequest;
         Owner owner1 = new Owner("Joao", 1234567, "1234567", "joao@this.app", "1234567");
         Property land1 = new Land(new PropertyType("Land"), 150, "Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345",12, owner1 );
         Request request1 = new Request(land1 , new TypeBusiness("Sale") , 120000, owner1);
         Commission commission1 = new Commission("percentage", 5);
-        Date visitdate1 = new Date(2022, 6, 23);
+        Date visitDate1 = new Date(123, 6, 23);
+        Date visitDate2 = new Date(123, 8, 19);
+        PropertyType propertyType1 = new PropertyType("Land");
         Announcement announcement1 = new Announcement(request1, commission1);
-        Announcement announcement2 = new Announcement(new Request(new Property(new PropertyType("Land"), 150, "Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345", 12, new Owner("joao", 1234567,"12345678", "joao@this.app", "12345678" )), new TypeBusiness("Sell"), 135000 , new Owner("joao", 1234567,"12345678", "joao@this.app", "12345678")), new Commission("percentage", 5));
-        int[][] timeslot = new int[15][18];
+        Owner owner2 = new Owner("joao", 1234567,"12345678", "joao@this.app", "12345678" );
+        Property property1 = new Property(propertyType1, 150, "Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345", 12,owner2 );
+        Request request2 =new Request(property1, new TypeBusiness("Sell"), 135000 , owner2);
+        Announcement announcement2 = new Announcement(request2, new Commission("percentage", 5));
         Employee agent1 = new Employee("agent@this.app");
-        VisitRequest visitRequest1 = new VisitRequest(announcement2,"Pedro", "123456789", visitdate1 , timeslot , "I want to visit this property", agent1);
-        //visitRequest = new VisitRequest( new Announcement(new Request(new House( new PropertyType("House") , 120,"Rua Professor Laurentino Monteiro, Póvoa de Varzim ,Porto, 12345", 12, 2, 1, 2,true, false, true, true, "N", new Owner("Tomás", 12345678,"123456789", "owner@this.app", "123456777453")) , new TypeBusiness("Sell"),130000, new Owner("owner@this.app")), new TypeBusiness("Sell") ,130000, new Owner("owner@this.app")), new Commission("percentage" , 5), new Date(2023, Calendar.JANUARY,31)),"Owner1" , "932414522", "31/05" , 15-16 , "I want to visit this porperty.");
+        int[][] timeslot = new int[15][18];
+        VisitRequest visitRequest1 = new VisitRequest(announcement2,"Pedro", "123456789", visitDate1 , new int[16][18] , "I want to visit this property", agent1);
+        VisitRequest visitRequest2 = new VisitRequest(announcement1, "Tiago" , "1234242142141" , visitDate2, new int[15][19] , "I want to visit this land please", agent1);
+        Repositories.getInstance().getVisitRepository().addVisit1(visitRequest1);
+        Repositories.getInstance().getVisitRepository().addVisit1(visitRequest2);
 
-        //visitRepository.addRequests(visitRequest1);
     }
 
 }

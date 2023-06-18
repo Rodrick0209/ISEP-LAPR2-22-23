@@ -13,7 +13,8 @@ public class Repositories implements Serializable {
 
     private static final Repositories instance = new Repositories();
     private static final String DEFAULT_SORTING_ALGORITHM = "MERGE";
-   // private Properties properties = new Properties();
+
+    // private Properties properties = new Properties();
 
     /**
      * The Agency repository.
@@ -68,7 +69,7 @@ public class Repositories implements Serializable {
     /**
      * The Visit repository.
      */
-    static VisitRepository visitRepository =  new VisitRepository();
+    VisitRepository visitRepository =  new VisitRepository();
 
     ClientRepository clientRepository = new ClientRepository();
     DealRepository dealRepository = new DealRepository();
@@ -181,7 +182,7 @@ public class Repositories implements Serializable {
      *
      * @return the visit repository
      */
-    public static VisitRepository getVisitRepository() {
+    public VisitRepository getVisitRepository() {
         return visitRepository;
     }
 

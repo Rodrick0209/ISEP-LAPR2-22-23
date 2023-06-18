@@ -17,7 +17,7 @@ public class VisitRequest implements Serializable {
 
     private final int [][] timeSlot;
     private final String message;
-    private Employee agent;
+    private final Employee agent;
 
     public VisitRequest(Announcement announcement, String userName, String phoneNumber, Date visitDate, int[][] timeSlot, String message, Employee agent) {
         this.announcement = announcement;
@@ -30,9 +30,6 @@ public class VisitRequest implements Serializable {
         this.agent = agent ;
     }
 
-
-
-
     public int[][] getTimeSlot() {
     return timeSlot;
     }
@@ -41,12 +38,12 @@ public class VisitRequest implements Serializable {
 
     @Override
     public String toString() {
-        return "VisitRequest: " +
+        return "\nVisitRequest: " +
                 "\nAnnouncement: " + announcement +
                 "\nUserName: " + userName  +
                 "\nPhoneNumber: " + phoneNumber +
                 "\nVisit date: " + visitDate +
-                "\nTimeSlot: " + Arrays.deepToString(timeSlot) +
+                "\nTimeSlot: " +timeSlot +
                 "\nMessage: " + message +
                 "\nAgent:  " + agent;
 

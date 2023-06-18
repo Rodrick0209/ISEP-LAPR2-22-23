@@ -48,12 +48,6 @@ public class Announcement implements Serializable, Comparable<Announcement>{
         this.request = request;
         this.commission = commission;
         this.date = date;
-        /*SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            this.date = sdf.parse(sdf.format(date));
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Invalid date format");
-        }*/
     }
 
 
@@ -126,16 +120,18 @@ public class Announcement implements Serializable, Comparable<Announcement>{
         return date;
     }
 
+
+
+
+
     @Override
     public String toString() {
         return "\nId: " + announcementId +
-                "\nRequest: " + request +
-                "\nType of Business: " + request.getTypeBusiness() +
-                "\nPrice: " + request.getPrice() +
-                "\nDate of announcement: " + date;
+                "\nRequest: " + request;
+
+
+
     }
-
-
 
     @Override
     public int compareTo(Announcement o) {
@@ -145,6 +141,9 @@ public class Announcement implements Serializable, Comparable<Announcement>{
     public Announcement clone(){
         return new Announcement(this.request, this.commission, this.date);
     }
+
+
+
 
 
 }
