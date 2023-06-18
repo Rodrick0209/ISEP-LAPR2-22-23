@@ -21,7 +21,7 @@
             <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#onSignUpButton" prefHeight="29.0" prefWidth="205.0" text="Sign Up" textAlignment="CENTER" translateY="-120.0" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <Button fx:id="btnListAllProperties" mnemonicParsing="false" prefHeight="24.0" prefWidth="200.0" text="List All Properties" translateY="10.0" BorderPane.alignment="CENTER" />
+            <Button fx:id="btnListAllProperties" mnemonicParsing="false" onAction="#onListAllPropertiesButton" prefHeight="24.0" prefWidth="200.0" text="List All Properties" translateY="10.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Real Estate USA!" textAlignment="CENTER" translateX="85.0" translateY="100.0">

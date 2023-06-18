@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
+import pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseDeals.MultipleRegressionUI;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +61,7 @@ public class AnalyseAllDealsUI implements Initializable {
 
     @FXML
     private void switchToMultipleRegressionUI(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/AnalyseDeals/MultipleRegressionUI.fxml");
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/MultipleRegression.fxml");
     }
 
 

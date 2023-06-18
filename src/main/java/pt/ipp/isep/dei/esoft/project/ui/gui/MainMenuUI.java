@@ -75,7 +75,7 @@ public class MainMenuUI {
      */
     @FXML
     public void onListAllPropertiesButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/ListAllProperties.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(LogInUI.class.getResource("/fxml/Utils.fxml/ListAllPropertiesUI.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
         stage.setTitle("Real Estate USA App");

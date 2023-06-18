@@ -18,6 +18,7 @@ public class NetworkManagerUI implements Initializable {
     public Button btnRegisterVisit;
     public Button btnListBookingRequests;
     public Button btnPublishAnnouncement;
+    public Button DivideStoresIntoTwoSubstetsButton;
 
     private Stage stage;
 
@@ -34,29 +35,20 @@ public class NetworkManagerUI implements Initializable {
 
     }
 
-    @FXML
-    public void onPublishinAnnoucement(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllBookingRequestsUI.fxml");
+
+
+
+@FXML
+    public void onDivideTheStoresIntoTwoSubstets(ActionEvent actionEvent) throws IOException {
+        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/DivideAllStoreIntoTwoSubsets.fxml");
     }
 
     @FXML
-    public void onListBookingRequests(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllBookingRequestsUI.fxml");
+    public void onListAllDeals(ActionEvent actionEvent) throws IOException{
+            SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/ListAllDeals.fxml");
+        }
+
     }
 
-    @FXML
-    public void onViewBookingRequests(ActionEvent actionEvent) throws IOException {
-
-        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils.fxml/ViewAllBookingRequestsUI.fxml");
-    }
-
-
-
-    @FXML
-    public void onRegisterVisit(ActionEvent actionEvent) throws IOException {
-        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils.fxml/RegisterVisitUI.fxml");
-    }
-}
 
 

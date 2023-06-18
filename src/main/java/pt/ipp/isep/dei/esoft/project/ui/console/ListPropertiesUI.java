@@ -1,14 +1,23 @@
 package pt.ipp.isep.dei.esoft.project.ui.console;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 import pt.ipp.isep.dei.esoft.project.application.controller.ListPropertiesController;
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
+import pt.ipp.isep.dei.esoft.project.ui.gui.Controller.SceneController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListPropertiesUI implements Runnable{
     private final ListPropertiesController controller = new ListPropertiesController();
+    public Button ListAllPropertiesButton;
+    public MenuItem doLogout;
 
     @Override
     public void run() {
@@ -40,5 +49,10 @@ public class ListPropertiesUI implements Runnable{
             }
         }
     }
+    @FXML
+    private void doLogout(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/MainMenuUI.fxml");
 
+    }
 }

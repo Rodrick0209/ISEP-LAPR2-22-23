@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="543.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseAllDealsUI">
+<AnchorPane prefHeight="708.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseDeals.MultipleRegressionUI">
    <children>
-      <MenuBar layoutX="530.0" prefHeight="28.0" prefWidth="115.0">
+      <MenuBar layoutX="693.0" prefHeight="28.0" prefWidth="115.0">
          <menus>
             <Menu text="Personal Menu">
                <items>
@@ -26,7 +26,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <ScatterChart layoutX="232.0" layoutY="127.0" prefHeight="276.0" prefWidth="359.0">
+      <ScatterChart layoutX="252.0" layoutY="122.0" prefHeight="283.0" prefWidth="499.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -47,26 +47,26 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="237.0" layoutY="60.0" text="Multiple  Regression">
+      <Label layoutX="301.0" layoutY="59.0" prefHeight="35.0" prefWidth="308.0" text="Multiple  Regression">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Button layoutX="269.0" layoutY="411.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="168.0" text="Predict Price" />
-      <Label layoutX="290.0" layoutY="465.0" prefHeight="28.0" prefWidth="201.0" text="Predicted prices">
+      <Button layoutX="46.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleViewMultipleRegression" prefHeight="28.0" prefWidth="140.0" text="Predict Price" />
+      <Label layoutX="12.0" layoutY="340.0" prefHeight="28.0" prefWidth="258.0" text="( Price will appear here)">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TitledPane animated="false" layoutX="-1.0" layoutY="272.0" prefHeight="189.0" prefWidth="231.0" text="Regression Analysis">
+      <TitledPane animated="false" layoutX="46.0" layoutY="447.0" prefHeight="189.0" prefWidth="717.0" text="                                                                                                                       Regression Analysis">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="229.0">
                <children>
-                  <Label layoutX="26.0" layoutY="6.0" prefHeight="17.0" prefWidth="89.0" text="R²:" />
-                  <Label layoutX="26.0" layoutY="59.0" prefHeight="17.0" prefWidth="89.0" text="Slope:" />
-                  <Label layoutX="26.0" layoutY="127.0" prefHeight="17.0" prefWidth="89.0" text="Significance:" />
-                  <Label layoutX="26.0" layoutY="91.0" prefHeight="17.0" prefWidth="89.0" text="Intercept:" />
-                  <Label layoutX="26.0" layoutY="34.0" prefHeight="17.0" prefWidth="89.0" text="R² adjusted:" />
+                  <Label fx:id="statistic1" layoutX="24.0" prefHeight="28.0" prefWidth="737.0" text="R²:" />
+                  <Label fx:id="statistic2" layoutX="26.0" layoutY="59.0" prefHeight="17.0" prefWidth="734.0" text="Slope:" />
+                  <Label fx:id="statistic3" layoutX="26.0" layoutY="127.0" prefHeight="17.0" prefWidth="735.0" text="Significance:" />
+                  <Label fx:id="statistic4" layoutX="26.0" layoutY="91.0" prefHeight="17.0" prefWidth="731.0" text="Intercept:" />
+                  <Label fx:id="statistic5" layoutX="26.0" layoutY="34.0" prefHeight="17.0" prefWidth="733.0" text="R² adjusted:" />
                </children>
             </AnchorPane>
         </content>

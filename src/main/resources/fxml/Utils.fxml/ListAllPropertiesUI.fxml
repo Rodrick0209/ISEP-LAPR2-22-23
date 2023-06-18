@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.console.ListPropertiesUI">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.console.ListPropertiesUI">
    <children>
-      <ListView layoutX="100.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="334.0" layoutY="1.0" mnemonicParsing="false" text="Main menu" />
+      <ListView layoutX="90.0" layoutY="100.0" prefHeight="200.0" prefWidth="239.0" />
+      <Label layoutX="145.0" layoutY="53.0" prefHeight="17.0" prefWidth="175.0" text="Properties:">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <MenuBar layoutX="287.0">
+         <menus>
+            <Menu text="Personal Menu">
+               <items>
+                  <MenuItem fx:id="doLogout" onAction="#doLogout" text="Get back to Main Menu" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

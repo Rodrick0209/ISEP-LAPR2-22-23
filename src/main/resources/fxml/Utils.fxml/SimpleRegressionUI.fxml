@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.control.Button?>
@@ -14,64 +13,65 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="543.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseDeals.SimpleRegressionUI">
+<AnchorPane prefHeight="708.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.AnalyseDeals.SimpleRegressionUI">
    <children>
-      <MenuBar layoutX="530.0" prefHeight="28.0" prefWidth="115.0">
+      <MenuBar layoutX="686.0" prefHeight="28.0" prefWidth="121.0">
          <menus>
             <Menu text="Personal Menu">
                <items>
+                   <MenuItem fx:id="backToChoosingRegression" onAction="#getBackToAlyseDealsMenu" text="Go back to choosing the regression" />
                   <MenuItem fx:id="backToStoreManagerMenu" onAction="#getBackToStoreManagerMenu" text="Go back to store manager menu" />
                   <MenuItem fx:id="doLogout" onAction="#doLogout" text="Logout" />
                </items>
             </Menu>
          </menus>
       </MenuBar>
-      <ScatterChart layoutX="232.0" layoutY="127.0" prefHeight="276.0" prefWidth="359.0">
+      <ScatterChart fx:id="scatterChart" layoutX="261.0" layoutY="94.0" prefHeight="311.0" prefWidth="447.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
         </yAxis>
       </ScatterChart>
-      <MenuBar layoutX="12.0" layoutY="142.0" prefHeight="28.0" prefWidth="153.0">
+      <MenuBar layoutX="39.0" layoutY="126.0" prefHeight="28.0" prefWidth="153.0">
         <menus>
           <Menu mnemonicParsing="false" text="Independent Variable">
                <items>
-                  <RadioMenuItem mnemonicParsing="false" text="Property area" />
-                  <RadioMenuItem mnemonicParsing="false" text="Number of Bathrooms" />
-                  <RadioMenuItem mnemonicParsing="false" text="Number of Bedrooms" />
-                  <RadioMenuItem mnemonicParsing="false" text="Number of Parking Spaces" />
-                  <RadioMenuItem mnemonicParsing="false" text="Distance from the City Center" />
+                  <RadioMenuItem fx:id="areaItem" mnemonicParsing="false" onAction="#handleSimpleRegressionMenuItem" text="Property area" />
+                  <RadioMenuItem fx:id="bathroomsItem" mnemonicParsing="false" onAction="#handleSimpleRegressionMenuItem" text="Number of Bathrooms" />
+                  <RadioMenuItem fx:id="bedroomsItem" mnemonicParsing="false" onAction="#handleSimpleRegressionMenuItem" text="Number of Bedrooms" />
+                  <RadioMenuItem fx:id="parkingItem" mnemonicParsing="false" onAction="#handleSimpleRegressionMenuItem" text="Number of Parking Spaces" />
+                  <RadioMenuItem fx:id="distanceItem" mnemonicParsing="false" onAction="#handleSimpleRegressionMenuItem" text="Distance from the City Center" />
                </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="237.0" layoutY="60.0" text="Simple  Regression">
+      <Label layoutX="312.0" layoutY="44.0" text="Simple  Regression">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Button  fx:id="predictPriceButton" layoutX="269.0" layoutY="411.0" mnemonicParsing="false"  onAction="#onPredictPirceButton" prefHeight="28.0" prefWidth="168.0" text="Predict Price" />
-      <Label layoutX="290.0" layoutY="465.0" prefHeight="28.0" prefWidth="201.0" text="Predicted prices">
+      <Button fx:id="predictPriceButton" layoutX="32.0" layoutY="276.0" mnemonicParsing="false" onAction="#predictPrice" prefHeight="28.0" prefWidth="168.0" text="Predict Price" />
+      <Label fx:id="label" layoutX="32.0" layoutY="326.0" prefHeight="28.0" prefWidth="271.0" text="( Price will appear here)">
          <font>
-            <Font size="20.0" />
+            <Font size="17.0" />
          </font>
       </Label>
-      <TitledPane animated="false" layoutX="-1.0" layoutY="272.0" prefHeight="189.0" prefWidth="231.0" text="Regression Analysis">
+      <TitledPane animated="false" layoutX="61.0" layoutY="420.0" prefHeight="274.0" prefWidth="685.0" text="                                                                                                      Regression Analysis">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="229.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="211.0" prefWidth="275.0">
                <children>
-                  <Label layoutX="26.0" layoutY="6.0" prefHeight="17.0" prefWidth="89.0" text="R²:" />
-                  <Label layoutX="26.0" layoutY="59.0" prefHeight="17.0" prefWidth="89.0" text="Slope:" />
-                  <Label layoutX="26.0" layoutY="127.0" prefHeight="17.0" prefWidth="89.0" text="Significance:" />
-                  <Label layoutX="26.0" layoutY="91.0" prefHeight="17.0" prefWidth="89.0" text="Intercept:" />
-                  <Label layoutX="26.0" layoutY="34.0" prefHeight="17.0" prefWidth="89.0" text="R² adjusted:" />
+                  <Label fx:id="statistic1" layoutX="20.0" layoutY="13.0" prefHeight="35.0" prefWidth="657.0" text="R²:" />
+                  <Label fx:id="statistic2" layoutX="19.0" layoutY="107.0" prefHeight="17.0" prefWidth="662.0" text="Slope:" />
+                  <Label fx:id="statistic3" layoutX="20.0" layoutY="201.0" prefHeight="17.0" prefWidth="665.0" text="Significance:" />
+                  <Label fx:id="statistic4" layoutX="20.0" layoutY="142.0" prefHeight="17.0" prefWidth="659.0" text="Intercept:" />
+                  <Label fx:id="statistic5" layoutX="20.0" layoutY="59.0" prefHeight="17.0" prefWidth="658.0" text="R² adjusted:" />
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
-      <TextField layoutX="12.0" layoutY="214.0" prefHeight="28.0" prefWidth="153.0" />
-      <Label layoutX="12.0" layoutY="190.0" prefHeight="17.0" prefWidth="153.0" text="Introduce the variable value:" />
+      <TextField fx:id="inputTextField" layoutX="39.0" layoutY="196.0" prefHeight="28.0" prefWidth="153.0" />
+      <Label layoutX="39.0" layoutY="172.0" prefHeight="17.0" prefWidth="153.0" text="Introduce the variable value:" />
    </children>
 </AnchorPane>

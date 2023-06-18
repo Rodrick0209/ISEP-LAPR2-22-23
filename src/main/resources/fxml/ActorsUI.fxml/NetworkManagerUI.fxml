@@ -19,11 +19,12 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Button layoutX="185.0" layoutY="189.0" mnemonicParsing="false" onAction="#onListBookingRequests" prefHeight="30.0" prefWidth="200.0" text="Divide all Stores into two subsets" />
+        <Button  fx:id="DivideStoresIntoTwoSubstetsButton" layoutX="185.0" layoutY="189.0" mnemonicParsing="false" onAction="#onDivideTheStoresIntoTwoSubstets" prefHeight="30.0" prefWidth="200.0" text="Divide all Stores into two subsets" />
         <Label layoutX="111.0" layoutY="72.0" prefHeight="48.0" prefWidth="444.0" text="Network Manager Menu:">
             <font>
                 <Font name="System Bold" size="32.0" />
             </font>
         </Label>
+      <Button fx:id="ListAllDealsButton" layoutX="185.0" layoutY="251.0" mnemonicParsing="false" onAction="#onListAllDeals" prefHeight="30.0" prefWidth="200.0" text="List all deals" />
     </children>
 </AnchorPane>
