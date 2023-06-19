@@ -15,6 +15,11 @@ public class MainApp extends Application {
 @FXML
     public static void main(String[] args) {
 
+        Database.saveData();
+        Bootstrap bootstrap = new Bootstrap();
+        bootstrap.run();
+        Database.readData();
+
 
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -45,10 +50,7 @@ public class MainApp extends Application {
     }
 
     private static void runConsole() {
-        Database.saveData();
-        Bootstrap bootstrap = new Bootstrap();
-        bootstrap.run();
-        Database.readData();
+
 
         try {
             pt.ipp.isep.dei.esoft.project.ui.console.menu.MainMenuUI menu = new MainMenuUI();

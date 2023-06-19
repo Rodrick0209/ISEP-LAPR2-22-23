@@ -23,20 +23,8 @@ public class MultipleRegressionUI implements Initializable {
     private XSSFWorkbook dealsFile = StoreManagerUI.getDealsFile();
 
     public MenuItem doLogout;
-;
+
     public MenuItem backToStoreManagerMenu;
-  
-    public Button predictPriceButton;
-
-    @FXML
-    private Label label;
-    @FXML
-    private DatePicker beginDatePicker;
-    @FXML
-    private DatePicker endDatePicker;
-    @FXML
-    private Button submitButton;
-
     @FXML
     private Label statistic1;
     @FXML
@@ -48,7 +36,6 @@ public class MultipleRegressionUI implements Initializable {
     @FXML
     private Label statistic5;
 
-    private Stage stage;
 
 
     @Override

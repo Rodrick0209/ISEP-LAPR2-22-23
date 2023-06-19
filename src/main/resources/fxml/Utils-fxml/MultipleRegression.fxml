@@ -9,7 +9,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioMenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -26,7 +25,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <ScatterChart layoutX="252.0" layoutY="122.0" prefHeight="283.0" prefWidth="499.0">
+      <ScatterChart layoutX="236.0" layoutY="122.0" prefHeight="283.0" prefWidth="499.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -34,7 +33,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </ScatterChart>
-      <MenuBar layoutX="12.0" layoutY="142.0" prefHeight="28.0" prefWidth="153.0">
+      <MenuBar layoutX="40.0" layoutY="150.0" prefHeight="28.0" prefWidth="153.0">
         <menus>
           <Menu mnemonicParsing="false" text="Independent Variable">
                <items>
@@ -52,8 +51,8 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <Button layoutX="46.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleViewMultipleRegression" prefHeight="28.0" prefWidth="140.0" text="Predict Price" />
-      <Label layoutX="12.0" layoutY="340.0" prefHeight="28.0" prefWidth="258.0" text="( Price will appear here)">
+      <Button layoutX="47.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleViewMultipleRegression" prefHeight="28.0" prefWidth="140.0" text="Predict Price" />
+      <Label layoutX="12.0" layoutY="340.0" prefHeight="28.0" prefWidth="258.0" text="(Price will appear here)">
          <font>
             <Font size="20.0" />
          </font>
@@ -71,7 +70,5 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <TextField layoutX="12.0" layoutY="214.0" prefHeight="28.0" prefWidth="153.0" />
-      <Label layoutX="12.0" layoutY="190.0" prefHeight="17.0" prefWidth="153.0" text="Introduce the variable value:" />
    </children>
 </AnchorPane>
