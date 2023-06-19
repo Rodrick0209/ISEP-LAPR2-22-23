@@ -26,7 +26,7 @@ public class LogInUI {
     public Button btnLogout;
     private Stage stage;
     private AuthFacade authenticationFacade = Repositories.getInstance().getAuthenticationRepository().getAuthenticationFacade();
-
+    private  AuthenticationController authenticationController ;
     @FXML
     private Button btnLogIn;
 
@@ -43,6 +43,8 @@ public class LogInUI {
 
         try {
             if (authenticationFacade.existsUser(email)  && isValidEmail(email) && isValidPassword(password) &&  password.equals("agent")  || password.equals("networkmanager") || password.equals("storemanager") || password.equals("client")  ) {
+
+
                 UserSession currentUsersession = authenticationFacade.doLogin(email, password);   //get user from session
 
                 if (currentUsersession.isLoggedInWithRole(AuthenticationController.ROLE_AGENT)) {   //role validation

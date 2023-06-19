@@ -1,0 +1,33 @@
+.root {
+    -fx-background-color: #f5f5f5; /* Set the background color of the scene */
+}
+
+#btnLogIn, #btnSignUp, #btnListAllProperties, #btnShowDevelopmentTeam {
+    -fx-font-size: 14px; /* Set the font size for the buttons */
+    -fx-padding: 10px 20px; /* Set the padding for the buttons */
+    -fx-background-color: #4CAF50; /* Set the background color of the buttons */
+    -fx-text-fill: white; /* Set the text color of the buttons */
+    -fx-border-color: #666; /* Set the border color of the buttons */
+    -fx-border-width: 2px; /* Set the border width of the buttons */
+    -fx-border-radius: 3px; /* Set the border radius for the buttons */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 0,0,0,1 ); /* Add a drop shadow effect to the buttons */
+}
+
+#btnLogIn:hover, #btnSignUp:hover, #btnListAllProperties:hover, #btnShowDevelopmentTeam:hover {
+    -fx-background-color: #45a049; /* Set the background color of the buttons when hovered */
+}
+
+Text {
+    -fx-font-size: 36px; /* Set the font size for the text */
+    -fx-fill: #333; /* Set the text color */
+    -fx-font-family: "Arial", sans-serif; /* Set the font family for the text */
+}
+
+.border-pane {
+    -fx-background-color: white; /* Set the background color of the border pane */
+    -fx-border-color: #ccc; /* Set the border color of the border pane */
+    -fx-border-width: 2px; /* Set the border width of the border pane */
+    -fx-border-radius: 5px; /* Set the border radius for the border pane */
+    -fx-padding: 40px; /* Set the padding */
+}
+

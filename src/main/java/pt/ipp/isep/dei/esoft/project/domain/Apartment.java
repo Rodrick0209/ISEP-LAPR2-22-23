@@ -150,8 +150,8 @@ public class Apartment extends Property {
                 "\nNumber of bathrooms: " + n_bathrooms +
                 "\nNumber of parkingSpaces: " + n_parkingSpaces +
                 "\nExistence of central Heating: " + centralHeating +
-                "\nExistence of air Conditioning: " + airConditioning +
-                "\n";
+                "\nExistence of air Conditioning: " + airConditioning;
+
     }
 }
 

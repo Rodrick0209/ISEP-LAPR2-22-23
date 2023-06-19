@@ -56,7 +56,7 @@ public class ListAllBookingRequestUI implements Initializable {
 
 
     @FXML
-    private void onSubmitButton(ActionEvent actionEvent) {
+    private void onSubmitButton(ActionEvent actionEvent) throws IOException {
         LocalDate beginDate = beginDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
         LocalTime beginTime = LocalTime.parse((String) beginHourComboBox.getValue());
@@ -83,7 +83,7 @@ public class ListAllBookingRequestUI implements Initializable {
             bookingRequests.add(newBookingRequest);
 
             // Display confirmation window
-            showConfirmationWindow(beginDateTime, endDateTime);
+            showConfirmationWindow(actionEvent,beginDateTime, endDateTime);
         } else {
             // Display an error message if either begin date or end date is not selected
             showAlert(AlertType.ERROR, "Error", "Incomplete Selection", "Please select both begin date and end date.");
@@ -93,7 +93,7 @@ public class ListAllBookingRequestUI implements Initializable {
 
 
 
-    private void showConfirmationWindow(LocalDateTime beginDate, LocalDateTime endDate) {
+    private void showConfirmationWindow(ActionEvent actionEvent,LocalDateTime beginDate, LocalDateTime endDate) throws  IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Booking Request Confirmation");
         alert.setHeaderText("Do you want to submit the Booking Request ?");
@@ -108,6 +108,12 @@ public class ListAllBookingRequestUI implements Initializable {
             if (response == ButtonType.OK) {
 
                 showSuccessWindow();
+                try {
+                    SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/ActorsUI-fxml/AgentUI.fxml");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                ;
             }
         });
     }

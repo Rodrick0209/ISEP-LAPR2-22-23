@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
+import javafx.fxml.FXML;
 import pt.ipp.isep.dei.esoft.project.domain.Sort;
 import pt.ipp.isep.dei.esoft.project.domain.Deal;
 import pt.ipp.isep.dei.esoft.project.domain.FileReader;
@@ -7,6 +8,7 @@ import pt.ipp.isep.dei.esoft.project.repository.DealRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,35 +38,40 @@ public class ListDealsController implements FileReader{
     }
 
 
-    /*@Override
-    public void bubbleSortAscending(){
+
+    public List<Deal> bubbleSortAscending(){
         List<Deal> deals = getDeals();
-        for (int i = 0; i < deals.size() -1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisza
-            for (int j = 0; j < deals.size() - i -1; j++) { //propertyAreas.length
-                if(deals.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
-                    Deal temp = deals.get(j); // int temp = propertyAreas[j];
-                    deals.set(j, deals.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
-                    deals.set(j+1, temp); // propertyAreas[j+1] = temp;
+        List<Deal> deals1 = new ArrayList<>(deals);
+
+        for (int i = 0; i < deals1.size() -1; i++) {  // tb dava para ter size mas ele nao pega no ultimo elemento portanto so economisa
+            for (int j = 0; j < deals1.size() - i -1; j++) { //propertyAreas.length
+                if(deals1.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals1.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
+                    Deal temp = deals1.get(j); // int temp = propertyAreas[j];
+                    deals1.set(j, deals1.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    deals1.set(j+1, temp); // propertyAreas[j+1] = temp;
                 }
             }
         }
+        return deals1;
     }
 
-    @Override
-    public  void bubbleSortDescending(){
+
+    public List<Deal> bubbleSortDescending(){
         List<Deal> deals = getDeals();
-        for (int i = 0; i < deals.size() -1; i++) {
-            for (int j = 0; j < deals.size() -i-1 ; j++){
-                if(deals.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
-                    Deal temp = deals.get(j); // int temp = propertyAreas[j];
-                    deals.set(j, deals.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
-                    deals.set(j+1, temp); // propertyAreas[j+1] = temp;
+        List<Deal> deals1 = new ArrayList<>(deals);
+        for (int i = 0; i < deals1.size() -1; i++) {
+            for (int j = 0; j < deals1.size() -i-1 ; j++){
+                if(deals1.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals1.get(j+1).getAnnouncement().getRequest().getProperty().getArea()){
+                    Deal temp = deals1.get(j); // int temp = propertyAreas[j];
+                    deals1.set(j, deals1.get(j+1)); // propertyAreas[j] = propertyAreas[j+1];
+                    deals1.set(j+1, temp); // propertyAreas[j+1] = temp;
                 }
             }
         }
+        return deals1;
     }
 
-    @Override
+
     public void selectionSortAscending() {
         List<Deal> deals = getDeals();
         for (int i = 0; i < deals.size() - 1; i++) {
@@ -80,7 +87,7 @@ public class ListDealsController implements FileReader{
         }
     }
 
-    @Override
+
     public  void selectionSortDescending() {
         List<Deal> deals = getDeals();
         for (int i = 0; i < deals.size() - 1; i++) {
@@ -94,7 +101,7 @@ public class ListDealsController implements FileReader{
             deals.set(i, deals.get(maxIndex));
             deals.set(maxIndex, temp);
         }
-    }*/
+    }
 
     @Override
     public boolean readFile(File file) {

@@ -109,10 +109,10 @@ public class Request implements Serializable {
 
     @Override
     public String toString() {
-        return  "Property: "  + getProperty() +
+        return  "\n Property:\n"  + getProperty() +
                 "\nType of Business: " + getTypeBusiness() +
                 "\nPrice: " + getPrice() +"$" +
-                "\nOwner: " + getOwner() +
+                "\nOwner Email Adress: " + getOwner().getEmailAddress() +
                 "\nRequest Date: " + getRequestDate();
     }
 

@@ -150,6 +150,6 @@ public class Property implements Serializable {
         return "\nType: " + type  +
                 "\nArea: " + area + " m2"+
                 "\nLocation: " + location +
-                "\nDistance of city centre: " + distance + " miles" ;
+                "\nDistance of city centre: " + distance + " miles";
     }
 }

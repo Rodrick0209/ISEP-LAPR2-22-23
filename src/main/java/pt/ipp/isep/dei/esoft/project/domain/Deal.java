@@ -45,6 +45,6 @@ public class Deal implements Serializable {
     public String toString(){
         return "" + announcement.toString() +
                "\nDate of Sale: " + dateOfSale +
-               "\nAgency assigned " + agency.toString();
+               " " + agency.toString();
     }
 }

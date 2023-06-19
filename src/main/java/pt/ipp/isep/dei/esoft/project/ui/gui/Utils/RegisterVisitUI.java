@@ -77,7 +77,7 @@ public class RegisterVisitUI implements Initializable {
      * @param actionEvent the action event
      */
     @FXML
-    public void onregisterVisit(ActionEvent actionEvent) {
+    public void onregisterVisit(ActionEvent actionEvent) throws  IOException{
         try {
             LocalDate selectedDate = visitDate.getValue();
             LocalTime selectedTime = visitTime.getValue() != null ? LocalTime.parse(visitTime.getValue().toString()) : null;
@@ -102,7 +102,7 @@ public class RegisterVisitUI implements Initializable {
                 } else {
                     // Proceed with registering the visit
                     // ...
-                    showConfirmationWindow();
+                    showConfirmationWindow(actionEvent);
                 }
             }
         } catch (NullPointerException e) {
@@ -129,7 +129,7 @@ public class RegisterVisitUI implements Initializable {
 
 
 
-        private void showConfirmationWindow() {
+        private void showConfirmationWindow(ActionEvent actionEvent)throws IOException {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Visit Submission Confirmation");
             alert.setHeaderText("Do you want to submit the visit opinion?");
@@ -142,6 +142,12 @@ public class RegisterVisitUI implements Initializable {
                 if (response == ButtonType.OK) {
 
                     showSuccessWindow();
+                    try {
+                        SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/ActorsUI-fxml/AgentUI.fxml");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    ;
                 }
             });
         }
@@ -158,6 +164,7 @@ public class RegisterVisitUI implements Initializable {
             stage.setAlwaysOnTop(true);
 
             alert.showAndWait();
+
 
         }
 

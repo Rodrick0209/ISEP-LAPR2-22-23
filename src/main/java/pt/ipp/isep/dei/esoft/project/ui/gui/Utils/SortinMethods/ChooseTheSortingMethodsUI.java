@@ -1,9 +1,10 @@
-package pt.ipp.isep.dei.esoft.project.ui.gui.Utils;
+package pt.ipp.isep.dei.esoft.project.ui.gui.Utils.SortinMethods;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
@@ -13,18 +14,26 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ListAlllDealsUI implements Initializable {
+public class ChooseTheSortingMethodsUI implements Initializable {
     @FXML
     public MenuItem doLogout;
     @FXML
     public MenuItem backToStoreManagerMenu;
     @FXML
-    public Button SelectionSortButton;
+    public Button multipleRegressionButton;
+    public Button simpleRegressionButton;
+    public MenuItem backToAnalyeDeals;
+
     @FXML
-    public Button BubbleSortButton;
-    public Button SelectionSortMethodButton;
-    public Button BubbleSortMethodButton;
-    public Label label;
+    private Label label;
+    @FXML
+    private DatePicker beginDatePicker;
+    @FXML
+    private DatePicker endDatePicker;
+    @FXML
+    private Button submitButton;
+
+    private Stage stage;
 
 
     @Override
@@ -40,27 +49,20 @@ public class ListAlllDealsUI implements Initializable {
         SceneController.loadMainMenuScene(actionEvent);
     }
     @FXML
-    private void getBackToNetworkManagerMenu(ActionEvent actionEvent) throws IOException {
+    private void getBackToStoreManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/NetworkManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
 
     }
 
 
     @FXML
-    private void switchToBubbleSortUI(ActionEvent actionEvent) throws IOException {
+    public void switchToBubbleSortUI(ActionEvent actionEvent)throws  IOException {
         SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SortingMethods.fxml/BubbleSort.fxml");
     }
-
     @FXML
-    private void switchToSelectionSort(ActionEvent actionEvent) throws IOException {
+    public void switchToSelectionSortUI(ActionEvent actionEvent)throws IOException {
         SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SortingMethods.fxml/SelectionSort.fxml");
     }
 
-
-    public void switchToSelectionSortUI(ActionEvent actionEvent) {
-    }
-
-    public void getBackToStoreManagerMenu(ActionEvent actionEvent) {
-    }
 }

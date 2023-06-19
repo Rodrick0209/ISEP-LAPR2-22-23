@@ -20,6 +20,8 @@ public class AnalyseAllDealsUI implements Initializable {
     public Button multipleRegressionButton;
     public Button simpleRegressionButton;
     public MenuItem backToAnalyeDeals;
+    public Button BubbleSortMethodButton;
+    public Button SelectionSortMethodButton;
 
     @FXML
     private Label label;
@@ -53,6 +55,10 @@ public class AnalyseAllDealsUI implements Initializable {
     }
 
 
+
+
+
+
     @FXML
     private void switchToSimpleRegressionUI(ActionEvent actionEvent) throws IOException {
         SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SimpleRegressionUI.fxml");
@@ -62,6 +68,5 @@ public class AnalyseAllDealsUI implements Initializable {
     private void switchToMultipleRegressionUI(ActionEvent actionEvent) throws IOException {
         SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/MultipleRegression.fxml");
     }
-
 
 }

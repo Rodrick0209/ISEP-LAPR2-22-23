@@ -126,8 +126,8 @@ public class Announcement implements Serializable, Comparable<Announcement>{
 
     @Override
     public String toString() {
-        return "\nId: " + announcementId +
-                "\nRequest: " + request;
+        return "Id: " + announcementId +
+                "\n" + request;
 
 
 

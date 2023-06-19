@@ -44,8 +44,7 @@ public class Land extends Property {
         return "\nType: " + typeName +
                 "\nArea: " + area + " m2"+
                 "\nLocation: " + location +
-                "\nDistance of city centre: " + distance + " miles" +
-                "\n";
+                "\nDistance of city centre: " + distance + " miles";
     }
 
 }

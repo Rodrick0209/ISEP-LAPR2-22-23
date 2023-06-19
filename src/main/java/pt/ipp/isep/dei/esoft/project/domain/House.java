@@ -205,9 +205,9 @@ public class House extends Property {
     @Override
     public String toString() {
         return   "Type: " + typeName +
-                 "\nArea: " + area + "m2"+
+                 "\nArea: " + area + " m2"+
                  "\nLocation: " + location +
-                 "\nDistance of city centre: " + distance + "miles" +
+                 "\nDistance of city centre: " + distance + " miles" +
                  "\nNumber of bedrooms: " + n_bedrooms +
                  "\nNumber of bathrooms: " + n_bathrooms +
                  "\nNumber of parkingSpaces: " + n_parkingSpaces +
@@ -215,7 +215,6 @@ public class House extends Property {
                  "\nExistence of air Conditioning: " + airConditioning +
                  "\nExistence of basement: " + existBasement +
                  "\nExistince of inhabitableLoft: " + existinhabitableLoft +
-                 "\nSun exposure: " + sunExposure +
-                 "\n";
+                 "\nSun exposure: " + sunExposure;
     }
 }

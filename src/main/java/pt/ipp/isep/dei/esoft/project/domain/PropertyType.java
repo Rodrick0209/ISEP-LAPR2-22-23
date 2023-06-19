@@ -38,7 +38,7 @@ public class PropertyType implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s%n", propertyType);
+        return String.format("%s", propertyType);
     }
 }
 
