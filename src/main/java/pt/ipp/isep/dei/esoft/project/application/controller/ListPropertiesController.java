@@ -1,12 +1,15 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
 import pt.ipp.isep.dei.esoft.project.domain.Announcement;
+import pt.ipp.isep.dei.esoft.project.domain.PropertyType;
 import pt.ipp.isep.dei.esoft.project.repository.AnnouncementRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-
+import pt.ipp.isep.dei.esoft.project.domain.Property;
+import pt.ipp.isep.dei.esoft.project.repository.PropertyRepository;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Collections;
+
 
 public class ListPropertiesController {
     private AnnouncementRepository announcementRepository;
@@ -45,5 +48,32 @@ public class ListPropertiesController {
         return announcementsClone;
     }
 
-}
+
+        private PropertyRepository propertyRepository;
+
+
+
+        public List<Property> listProperties(String propertyType, String propertyArea, String propertyLocation, String distance) {
+            List<Property> properties = propertyRepository.getAllProperties();
+            List<Property> filteredProperties = new ArrayList<>();
+
+            for (Property property : properties) {
+                boolean matchesType = propertyType.isEmpty() || property.getType().equals(PropertyType.valueOf(propertyType.toUpperCase()));
+                boolean matchesArea = propertyArea.isEmpty() || String.valueOf(property.getArea()).equalsIgnoreCase(propertyArea);
+                boolean matchesLocation = propertyLocation.isEmpty() || property.getLocation().equalsIgnoreCase(propertyLocation);
+                boolean matchesDistance = distance.isEmpty() || String.valueOf(property.getDistance()).equalsIgnoreCase(distance);
+
+
+                if (matchesType && matchesArea && matchesLocation && matchesDistance) {
+                    filteredProperties.add(property);
+                }
+            }
+
+
+            return filteredProperties;
+        }
+    }
+
+
+
 

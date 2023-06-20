@@ -75,7 +75,7 @@ public class UnregisteredUserUI {
                 controller.sendEmailToUser(userEmail);
                 showSuccessWindow();
                 authenticationFacade.addUser(userName,userEmail,userPassword);
-                authenticationFacade.addUserWithRole(userName,userEmail,userPassword,"Client");
+                authenticationFacade.addUserWithRole(userName,userEmail,userPassword,AuthenticationController.ROLE_CLIENT);
                 controller.createUser(userName, userEmail, userPassword, AuthenticationController.ROLE_CLIENT);
                 controller.addUserWithRole(userName, userEmail, userPassword, AuthenticationController.ROLE_CLIENT);
             }

@@ -130,6 +130,14 @@ public class PropertyRepository implements Serializable {
         return optionalValue;
     }
 
+
+
+        public List<Property> getAllProperties() {
+            return new ArrayList<>(properties);
+        }
+
+
+
     /**
      * Add property boolean.
      *
@@ -144,7 +152,9 @@ public class PropertyRepository implements Serializable {
         return success;
     }
 
-    private boolean validateProperty(Property property){return !properties.contains(property);}
+
+    private boolean validateProperty(Property property){return !properties.contains(property)
+            ;}
 
     /**
      * Gets properties.

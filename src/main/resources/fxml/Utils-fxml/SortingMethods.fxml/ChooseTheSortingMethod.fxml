@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="355.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.ListAlllDealsUI">
+<AnchorPane prefHeight="355.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.ui.gui.Utils.SortinMethods.ChooseTheSortingMethodsUI">
    <children>
       <Button fx:id="BubbleSortMethodButton" layoutX="198.0" layoutY="136.0" mnemonicParsing="false" onAction="#switchToBubbleSortUI" prefHeight="26.0" prefWidth="143.0" text="Bubble Sort" />
       <Label fx:id="label" layoutX="116.0" layoutY="68.0" text="Choose the type of regression ">

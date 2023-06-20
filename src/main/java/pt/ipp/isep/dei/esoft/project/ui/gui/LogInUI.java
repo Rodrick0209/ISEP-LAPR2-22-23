@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.esoft.project.ui.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
@@ -18,10 +20,12 @@ import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.UserSession;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LogInUI {
+public class LogInUI implements Initializable {
 
     public Button btnLogout;
     private Stage stage;
@@ -36,13 +40,21 @@ public class LogInUI {
     @FXML
     private TextField emailField;
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+       authenticationController = new AuthenticationController();
+
+
+    }
+
     @FXML
     private void doLogin(ActionEvent actionEvent) throws IOException {
         String email = emailField.getText();
         String password = passwordField.getText();
+        boolean success = authenticationController.doLogin(email,password);
 
         try {
-            if (authenticationFacade.existsUser(email)  && isValidEmail(email) && isValidPassword(password) &&  password.equals("agent")  || password.equals("networkmanager") || password.equals("storemanager") || password.equals("client")  ) {
+            if(success){
+            //if (  authenticationFacade.existsUser(email)  && isValidEmail(email) && isValidPassword(password) &&  password.equals("agent")  || password.equals("networkmanager") || password.equals("storemanager") || password.equals("client")  ) {
 
 
                 UserSession currentUsersession = authenticationFacade.doLogin(email, password);   //get user from session

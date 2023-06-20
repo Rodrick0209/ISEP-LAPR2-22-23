@@ -21,6 +21,8 @@ public class ChooseTheSortingMethodsUI implements Initializable {
     public MenuItem backToStoreManagerMenu;
    @FXML
     public MenuItem backToAnalyeDeals;
+    public Button BubbleSortMethodButton;
+    public Button SelectionSortMethodButton;
 
     @FXML
     private Label label;

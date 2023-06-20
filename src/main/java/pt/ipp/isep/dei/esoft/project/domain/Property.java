@@ -142,8 +142,10 @@ public class Property implements Serializable {
         return location;
     }
 
-    /*public void setPhotos(Object o) {
-    }*/
+    public PropertyType getType() {
+        return type;
+    }
+
 
     @Override
     public String toString() {
