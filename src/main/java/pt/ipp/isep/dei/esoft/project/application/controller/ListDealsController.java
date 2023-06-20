@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.application.controller;
 
-import javafx.fxml.FXML;
-import pt.ipp.isep.dei.esoft.project.domain.Sort;
 import pt.ipp.isep.dei.esoft.project.domain.Deal;
 import pt.ipp.isep.dei.esoft.project.domain.FileReader;
 import pt.ipp.isep.dei.esoft.project.repository.DealRepository;
@@ -72,35 +70,40 @@ public class ListDealsController implements FileReader{
     }
 
 
-    public void selectionSortAscending() {
+    public List<Deal> selectionSortAscending() {
+
         List<Deal> deals = getDeals();
-        for (int i = 0; i < deals.size() - 1; i++) {
+        List<Deal> deals1 = new ArrayList<>(deals);
+        for (int i = 0; i < deals1.size() - 1; i++) {
             int minIndex = i;
-            for (int j = i + 1; j < deals.size(); j++) {
-                if (deals.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals.get(minIndex).getAnnouncement().getRequest().getProperty().getArea()) {
+            for (int j = i + 1; j < deals1.size(); j++) {
+                if (deals1.get(j).getAnnouncement().getRequest().getProperty().getArea() < deals1.get(minIndex).getAnnouncement().getRequest().getProperty().getArea()) {
                     minIndex = j;
                 }
             }
-            Deal temp = deals.get(i);
-            deals.set(i, deals.get(minIndex));
-            deals.set(minIndex, temp);
+            Deal temp = deals1.get(i);
+            deals1.set(i, deals1.get(minIndex));
+            deals1.set(minIndex, temp);
         }
+        return deals1;
     }
 
 
-    public  void selectionSortDescending() {
+    public List<Deal> selectionSortDescending() {
         List<Deal> deals = getDeals();
-        for (int i = 0; i < deals.size() - 1; i++) {
+        List<Deal> deals1 = new ArrayList<>(deals);
+        for (int i = 0; i < deals1.size() - 1; i++) {
             int maxIndex = i;
-            for (int j = i + 1; j < deals.size(); j++) {
-                if (deals.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals.get(maxIndex).getAnnouncement().getRequest().getProperty().getArea()) {
+            for (int j = i + 1; j < deals1.size(); j++) {
+                if (deals.get(j).getAnnouncement().getRequest().getProperty().getArea() > deals1.get(maxIndex).getAnnouncement().getRequest().getProperty().getArea()) {
                     maxIndex = j;
                 }
             }
-            Deal temp = deals.get(i);
-            deals.set(i, deals.get(maxIndex));
-            deals.set(maxIndex, temp);
+            Deal temp = deals1.get(i);
+            deals1.set(i, deals1.get(maxIndex));
+            deals1.set(maxIndex, temp);
         }
+        return deals1;
     }
 
     @Override

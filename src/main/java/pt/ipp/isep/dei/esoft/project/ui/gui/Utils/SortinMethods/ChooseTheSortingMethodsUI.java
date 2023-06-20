@@ -19,9 +19,7 @@ public class ChooseTheSortingMethodsUI implements Initializable {
     public MenuItem doLogout;
     @FXML
     public MenuItem backToStoreManagerMenu;
-    @FXML
-    public Button multipleRegressionButton;
-    public Button simpleRegressionButton;
+   @FXML
     public MenuItem backToAnalyeDeals;
 
     @FXML
@@ -46,7 +44,8 @@ public class ChooseTheSortingMethodsUI implements Initializable {
 
     @FXML
     public void doLogout(ActionEvent actionEvent) throws IOException {
-        SceneController.loadMainMenuScene(actionEvent);
+        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/MainMenuUI.fxml");
     }
     @FXML
     private void getBackToStoreManagerMenu(ActionEvent actionEvent) throws IOException {
@@ -54,9 +53,16 @@ public class ChooseTheSortingMethodsUI implements Initializable {
         SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
 
     }
-
-
     @FXML
+    private void getBackToAnalyseDeals(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
+    }
+
+
+
+
+        @FXML
     public void switchToBubbleSortUI(ActionEvent actionEvent)throws  IOException {
         SceneController.switchToSceneOnButtonClick(actionEvent, "/fxml/Utils-fxml/SortingMethods.fxml/BubbleSort.fxml");
     }

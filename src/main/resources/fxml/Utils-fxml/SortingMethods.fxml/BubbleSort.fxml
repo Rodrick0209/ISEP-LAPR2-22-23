@@ -22,6 +22,7 @@
          <menus>
             <Menu text="Personal Menu">
                <items>
+                  <MenuItem fx:id="backToChooseingSortingMethod" onAction="#getBackToChoosingSortingMethod" text="Go back to choosing Sorting method" />
                   <MenuItem fx:id="backToStoreManagerMenu" onAction="#getBackToNetworkManagerMenu" text="Go back to network manager menu" />
                   <MenuItem fx:id="doLogout" onAction="#doLogout" text="Logout" />
                </items>

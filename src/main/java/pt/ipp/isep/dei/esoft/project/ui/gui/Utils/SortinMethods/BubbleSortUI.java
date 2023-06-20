@@ -36,6 +36,7 @@ public class BubbleSortUI implements Initializable {
     public Label subtitle;
     public Button ascendingOrderButton;
     public Button desceningOrderButton;
+    public MenuItem backToChooseingSortingMethod;
     @FXML
     private ListView<Deal> sortAscendingList;
     @FXML
@@ -60,7 +61,8 @@ public class BubbleSortUI implements Initializable {
 
     @FXML
     public void doLogout(ActionEvent actionEvent) throws IOException {
-        SceneController.loadMainMenuScene(actionEvent);
+        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/MainMenuUI.fxml");
     }
 
     @FXML
@@ -93,6 +95,13 @@ public class BubbleSortUI implements Initializable {
             sortAscendingList.setItems(listData);
 
         }
+
+    }
+
+    @FXML
+    public void getBackToChoosingSortingMethod(ActionEvent actionEvent) throws  IOException{
+        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/Utils-fxml/SortingMethods.fxml/ChooseTheSortingMethod.fxml");
 
     }
 }

@@ -37,7 +37,8 @@ public class ListAlllDealsUI implements Initializable {
 
     @FXML
     public void doLogout(ActionEvent actionEvent) throws IOException {
-        SceneController.loadMainMenuScene(actionEvent);
+        Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/MainMenuUI.fxml");
     }
     @FXML
     private void getBackToNetworkManagerMenu(ActionEvent actionEvent) throws IOException {
