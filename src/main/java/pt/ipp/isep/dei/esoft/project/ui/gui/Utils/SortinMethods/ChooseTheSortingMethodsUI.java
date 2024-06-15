@@ -58,7 +58,7 @@ public class ChooseTheSortingMethodsUI implements Initializable {
     @FXML
     private void getBackToAnalyseDeals(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/NetworkManagerUI.fxml");
     }
 
 

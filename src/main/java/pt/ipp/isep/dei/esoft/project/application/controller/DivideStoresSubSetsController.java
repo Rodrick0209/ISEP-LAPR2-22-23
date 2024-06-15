@@ -45,7 +45,7 @@ public class DivideStoresSubSetsController {
 
     public int findMinSubsetDifference(List<Agency> agencies, List<AgencyInfo> subset1, List<AgencyInfo> subset2) {
         int n = agencies.size();
-        int minDifference = Integer.MAX_VALUE;
+        int minDifference = Integer.MAX_VALUE;  // Igualar ao valor maximo
         List<AgencyInfo> minSubset1 = new ArrayList<>();
         List<AgencyInfo> minSubset2 = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class DivideStoresSubSetsController {
                 }
             }
 
-            difference = Math.abs(sum(subset1) - sum(subset2));
+            difference = Math.abs(sum(subset1) - sum(subset2)); // absolute value = concatenate
             if (difference < minDifference) {
                 minDifference = difference;
                 minSubset1 = new ArrayList<>(subset1);
@@ -77,7 +77,7 @@ public class DivideStoresSubSetsController {
         return minDifference;
     }
 
-    private int sum(List<AgencyInfo> list) {
+    private int sum(List<AgencyInfo> list) {  // soma todos os valores da lita
         int sum = 0;
         for(AgencyInfo ai : list){
             sum += ai.getNumberOfProperties();

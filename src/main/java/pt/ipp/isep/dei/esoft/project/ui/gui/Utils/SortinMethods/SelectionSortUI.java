@@ -67,7 +67,7 @@ public class SelectionSortUI implements Initializable {
     @FXML
     private void getBackToNetworkManagerMenu(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((MenuItem) actionEvent.getSource()).getParentPopup().getOwnerWindow();
-        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/StoreManagerUI.fxml");
+        SceneController.switchToSceneOnMenuBarButtonClick(stage, "/fxml/ActorsUI-fxml/NetworkManagerUI.fxml");
 
     }
 

@@ -2,14 +2,14 @@
 
 # 1. Team Members
 
-The teams consists of students identified in the following table.
+The teams consist of the regarding students:
 
 | Student Number | Name             |
-|---------------|------------------|
-| **1220741**   | Bernardo Barbosa |
-| **1211221**   | Leonor Curado    |
-| **1221083**   | Rodrigo Pontes   |     
-| **1220917**   | Tomás Gonçalves  |
+|----------------|------------------|
+| **1220741**    | Bernardo Barbosa |
+| **1211221**    | Leonor Curado    |
+| **1221083**    | Rodrigo Pontes   |     
+| **1220917**    | Tomás Gonçalves  |
 
 
 
@@ -25,7 +25,7 @@ was carried out as described in the following table.
 |-----------------------------|-------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
 | Glossary                    | [1221083<br/>1220741<br/>1220917](Sprint-A/global-artifacts/01.requirements-engineering/glossary.md)                    | [1221083<br/>1220917<br/>1220741](Sprint-B/global-artifacts/glossary.md)                                    | [1221083<br/>1220917<br/>1220741](sprintC/global-artifacts/00.engineering-requirements/use-case-diagram.md) | [all](sprintD/global-artifacts/00.engineering-requirements/use-case-diagram.md)            |
 | Supplementary Specification | [1221083<br/>1220741<br/>1220917](Sprint-A/global-artifacts/01.requirements-engineering/supplementary-specification.md) | [1221083<br/>1220917](Sprint-B/global-artifacts/00.engineering-requirements/supplementary-specification.md) | [all](sprintC/global-artifacts/00.engineering-requirements/supplementary-specification.md)                  | [all](sprintD/global-artifacts/00.engineering-requirements/supplementary-specification.md) |
-| Domain Model                | [1211221<br/>1221083](Sprint-A/global-artifacts/02.analysis/project-analysis.md)                                        | ...                                                                                                         | [all](glossary.md)                                                     | [all](sprintD/global-artifacts/01.analysis/analysis.md)                                    |
+| Domain Model                | [1211221<br/>1221083](Sprint-A/global-artifacts/02.analysis/project-analysis.md)                                        | ...                                                                                                         | [all](glossary.md)                                                                                          | [all](sprintD/global-artifacts/01.analysis/analysis.md)                                    |
 | Class Diagram               | Not needed                                                                                                              | [1221083<br/>1211221<br/>1220928<br/>1220917](Sprint-B/global-artifacts/03.design/Readme.md)                | ...                                                                                                         | ...                                                                                        |
 | US 001 (SDP Activities)     | [1220928](Sprint-A/US001/US001-menu.md)                                                                                 | [1220928](Sprint-B/US001/US001-menu.md)                                                                     | ...                                                                                                         | ...                                                                                        |
 | US 002 (SDP Activities)     | [1220741](Sprint-A/US002/US002-menu.md)                                                                                 | [1220741<br/>1221083](Sprint-B/US002/US002-menu.md)                                                         | ...                                                                                                         | ...                                                                                        |

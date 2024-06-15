@@ -63,6 +63,7 @@ public class MultipleRegressionUI implements Initializable {
         statistic2.setText("R² adjusted: " + multipleRegression.calculateAdjustedRSquared());
         statistic3.setText("R²: " + multipleRegression.calculateRSquared());
         statistic4.setText("Regressand variance: " + multipleRegression.estimateRegressandVariance());
+
     }
 
 }

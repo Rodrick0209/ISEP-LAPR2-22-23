@@ -44,7 +44,7 @@ public class DivideStoreSubSetsUI implements Runnable{
         long startTime = System.nanoTime();
         int minDifferenceSubSets = controller.findMinSubsetDifference(agencies, subset1, subset2);
         long endTime = System.nanoTime();
-        double runtime = (double)(endTime - startTime) / 1.0E9;
+        double runtime = (double)(endTime - startTime) / 1.0E9; //nano times so
         System.out.println("Subset 1: " + subset1);
         System.out.println("Subset 2: " + subset2);
         System.out.println("Start time: " + startTime);
