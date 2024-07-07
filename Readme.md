@@ -1,4 +1,4 @@
-# LAPR2 2023-2024 Project
+# LAPR2 2022-2023 Project
 Project for the follow classes:
 - ESOFT
 - PPROG
