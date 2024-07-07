@@ -1,19 +1,11 @@
-# Project Template
+# LAPR2 2023-2024 Project
+Project for the follow classes:
+- ESOFT
+- PPROG
+- MATCP
+- MDISC
+- LAPR2
 
-This is the project template for LEI's second semester project 2022/2023.
-
-It contains didactic artifacts relevant to the integrative project to be developed during the second semester of the academic year of 2021-2022 in the [Degree in Informatics Engineering (LEI)](http://www.isep.ipp.pt/Course/Course/26) from [Instituto Superior de Engenharia do Porto (ISEP)](http://www.isep.ipp.pt).
-
-In particular, it has:
-
-* [The team members and task assignment during Sprints](docs/Readme.md)
-* A template to capture and systematize evidence of applying properly the Software Development Process, namely regarding the activities of Engineering Requirements, Analysis and Design
-* Source code available to students as a starting point
-* General description of how the provided application works (and it is structured).
-
-## Application Overview
-
-WIP
 
 # How to generate the svg files
 
